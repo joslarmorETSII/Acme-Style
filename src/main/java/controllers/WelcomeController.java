@@ -49,6 +49,8 @@ public class WelcomeController extends AbstractController {
 		result.addObject("spanishWelcome", "de nuestra web de citas");
 		result.addObject("momentEs", momentEs);
 		result.addObject("momentEn", momentEn);
+		result.addObject("isIndex", true);
+
 
 		return result;
 	}

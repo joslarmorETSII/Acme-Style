@@ -6,8 +6,10 @@ import org.hibernate.validator.constraints.SafeHtml;
 import security.UserAccount;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.Collection;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -82,6 +84,12 @@ public abstract class Actor extends DomainEntity {
     // Relationships ----------------------------------------------------------
 
     private UserAccount userAccount;
+    private Collection<Folder> folders;
+    private Collection<Actor> followings;
+    private Collection<Actor> followers;
+    private Collection<Post> posts;
+
+
 
     @NotNull
     @OneToOne(cascade = CascadeType.ALL, optional = false)
@@ -89,8 +97,52 @@ public abstract class Actor extends DomainEntity {
         return userAccount;
     }
 
+
+    @Valid
+    @OneToMany(mappedBy = "actor")
+    @NotNull
+    public Collection<Folder> getFolders() {
+        return this.folders;
+    }
+
+    @Valid
+    @ManyToMany(mappedBy = "followings",fetch= FetchType.EAGER)
+    public Collection<Actor> getFollowers() {
+        return this.followers;
+    }
+
+    @Valid
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch= FetchType.EAGER)
+    public Collection<Actor> getFollowings() {
+        return this.followings;
+    }
+
+    @Valid
+    @NotNull
+    @OneToMany(mappedBy = "actor")
+    public Collection<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Collection<Post> posts) {
+        this.posts = posts;
+    }
+
+    public void setFollowings(Collection<Actor> following) {
+        this.followings = following;
+    }
+
+    public void setFollowers(Collection<Actor> followers) {
+        this.followers = followers;
+    }
+
+    public void setFolders(final Collection<Folder> folders) {
+        this.folders = folders;
+    }
+
     public void setUserAccount(UserAccount userAccount) {
         this.userAccount = userAccount;
     }
+
 
 }
