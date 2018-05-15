@@ -6,6 +6,9 @@ import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -92,6 +95,28 @@ public class Service extends DomainEntity{
 
 
     // Relationships ---------------------------------------------------------------------
+    private Collection<Question> questions;
+    private Collection<Subscription> subscriptions;
 
+    @Valid
+    @NotNull
+    @OneToMany(mappedBy = "service")
+    public Collection<Question> getQuestions() {
+        return questions;
+    }
 
+    public void setQuestions(Collection<Question> questions) {
+        this.questions = questions;
+    }
+
+    @Valid
+    @NotNull
+    @OneToMany(mappedBy = "service")
+    public Collection<Subscription> getSubscriptions() {
+        return subscriptions;
+    }
+
+    public void setSubscriptions(Collection<Subscription> subscriptions) {
+        this.subscriptions = subscriptions;
+    }
 }

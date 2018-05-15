@@ -88,6 +88,7 @@ public abstract class Actor extends DomainEntity {
     private Collection<Actor> followings;
     private Collection<Actor> followers;
     private Collection<Post> posts;
+    private Collection<Comment> comments;
 
 
 
@@ -105,12 +106,14 @@ public abstract class Actor extends DomainEntity {
         return this.folders;
     }
 
+    @NotNull
     @Valid
     @ManyToMany(mappedBy = "followings",fetch= FetchType.EAGER)
     public Collection<Actor> getFollowers() {
         return this.followers;
     }
 
+    @NotNull
     @Valid
     @ManyToMany(cascade = CascadeType.PERSIST, fetch= FetchType.EAGER)
     public Collection<Actor> getFollowings() {
@@ -122,6 +125,11 @@ public abstract class Actor extends DomainEntity {
     @OneToMany(mappedBy = "actor")
     public Collection<Post> getPosts() {
         return posts;
+    }
+
+    @OneToMany(mappedBy = "actor")
+    public Collection<Comment> getComments() {
+        return comments;
     }
 
     public void setPosts(Collection<Post> posts) {
@@ -144,5 +152,7 @@ public abstract class Actor extends DomainEntity {
         this.userAccount = userAccount;
     }
 
-
+    public void setComments(Collection<Comment> comments) {
+        this.comments = comments;
+    }
 }

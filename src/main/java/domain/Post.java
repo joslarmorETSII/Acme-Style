@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -98,6 +99,8 @@ public class Post extends DomainEntity{
     // Relationships ---------------------------------------------------------------------
 
     private Actor actor;
+    private Collection<Comment> comments;
+
 
     @Valid
     @NotNull
@@ -108,5 +111,16 @@ public class Post extends DomainEntity{
 
     public void setActor(Actor actor) {
         this.actor = actor;
+    }
+
+    @NotNull
+    @Valid
+    @OneToMany(mappedBy = "post")
+    public Collection<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Collection<Comment> comments) {
+        this.comments = comments;
     }
 }
