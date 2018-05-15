@@ -22,6 +22,8 @@ public class User extends Actor{
 
     private Collection<Feedback> feedbacks;
     private Collection<Subscription> subscriptions;
+    private Collection<Event> events;
+    private Collection<Panel> panels;
 
     @Valid
     @NotNull
@@ -43,5 +45,16 @@ public class User extends Actor{
 
     public void setSubscriptions(Collection<Subscription> subscriptions) {
         this.subscriptions = subscriptions;
+    }
+
+    @Valid
+    @NotNull
+    @ManyToMany
+    public Collection<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Collection<Event> events) {
+        this.events = events;
     }
 }

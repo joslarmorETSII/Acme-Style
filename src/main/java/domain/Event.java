@@ -6,6 +6,10 @@ import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -23,6 +27,8 @@ public class Event extends DomainEntity{
     private Date moment;
     private String type;
     private Double price;
+    private Date publicationDate;
+    private GpsCoordinates location;
 
     @NotBlank
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
@@ -72,8 +78,31 @@ public class Event extends DomainEntity{
         this.price = price;
     }
 
+    @Future
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+    public Date getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate(Date publicationDate) {
+        this.publicationDate = publicationDate;
+    }
+
+    @Valid
+    @NotNull
+    public GpsCoordinates getLocation() {
+        return location;
+    }
+
+    public void setLocation(GpsCoordinates location) {
+        this.location = location;
+    }
+
     // Relationships ----------------------------------------------------------------------
     private Manager manager;
+    private Collection<User> participants;
 
     @ManyToOne(optional = false)
     public Manager getManager() {
@@ -82,5 +111,16 @@ public class Event extends DomainEntity{
 
     public void setManager(Manager manager) {
         this.manager = manager;
+    }
+
+    @Valid
+    @NotNull
+    @ManyToMany
+    public Collection<User> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(Collection<User> participants) {
+        this.participants = participants;
     }
 }
