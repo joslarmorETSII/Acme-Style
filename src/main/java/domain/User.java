@@ -57,4 +57,15 @@ public class User extends Actor{
     public void setEvents(Collection<Event> events) {
         this.events = events;
     }
+
+    @Valid
+    @NotNull
+    @OneToMany(mappedBy = "user")
+    public Collection<Panel> getPanels() {
+        return panels;
+    }
+
+    public void setPanels(Collection<Panel> panels) {
+        this.panels = panels;
+    }
 }

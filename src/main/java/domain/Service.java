@@ -97,6 +97,7 @@ public class Service extends DomainEntity{
     // Relationships ---------------------------------------------------------------------
     private Collection<Question> questions;
     private Collection<Subscription> subscriptions;
+    private Artist creator;
 
     @Valid
     @NotNull
@@ -118,5 +119,15 @@ public class Service extends DomainEntity{
 
     public void setSubscriptions(Collection<Subscription> subscriptions) {
         this.subscriptions = subscriptions;
+    }
+
+    @Valid
+    @ManyToOne(optional = false)
+    public Artist getCreator() {
+        return creator;
+    }
+
+    public void setCreator(Artist creator) {
+        this.creator = creator;
     }
 }

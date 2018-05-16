@@ -71,7 +71,6 @@ public class Post extends DomainEntity{
         this.picture = picture;
     }
 
-    // todo: poner min = 0?
     public int getLike() {
         return like;
     }
@@ -100,6 +99,7 @@ public class Post extends DomainEntity{
 
     private Actor actor;
     private Collection<Comment> comments;
+    private Collection<Category> categories;
 
 
     @Valid
@@ -122,5 +122,16 @@ public class Post extends DomainEntity{
 
     public void setComments(Collection<Comment> comments) {
         this.comments = comments;
+    }
+
+    @NotNull
+    @Valid
+    @ManyToMany
+    public Collection<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Collection<Category> categories) {
+        this.categories = categories;
     }
 }
