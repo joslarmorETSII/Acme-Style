@@ -1,6 +1,5 @@
 package domain;
 
-import com.lowagie.text.pdf.PRIndirectReference;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,7 +24,7 @@ public class Event extends DomainEntity{
     private String title;
     private String description;
     private Date moment;
-    private String type;
+    private String tipo;
     private Double price;
     private Date publicationDate;
     private GpsCoordinates location;
@@ -62,12 +61,12 @@ public class Event extends DomainEntity{
 
     @NotBlank
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
-    public String getType() {
-        return type;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTipo(String type) {
+        this.tipo = type;
     }
 
     public Double getPrice() {
@@ -78,8 +77,6 @@ public class Event extends DomainEntity{
         this.price = price;
     }
 
-    @Future
-    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     public Date getPublicationDate() {

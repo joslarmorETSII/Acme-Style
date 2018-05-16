@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- 
+<!--
  * PopulateDatabase.xml
  *
  * Copyright (C) 2017 Universidad de Sevilla
- * 
- * The use of this project is hereby constrained to the conditions of the 
- * TDG Licence, a copy of which you may download from 
+ *
+ * The use of this project is hereby constrained to the conditions of the
+ * TDG Licence, a copy of which you may download from
  * http://www.tdg-seville.info/License.html
  -->
 
@@ -15,7 +15,7 @@
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	">
-	
+
 	<!-- User accounts -->
 
 	<bean id="userAccount1" class="security.UserAccount">
@@ -93,7 +93,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<!-- Other domain beans come here -->
 
 	<!-- Admin -->
@@ -168,7 +168,7 @@
 
 		<property name="subscriptions">
 			<list>
-				<null/>
+				<ref bean="subscription1"/>
 			</list>
 		</property>
 		<property name="events">
@@ -221,17 +221,15 @@
 		<property name="userAccount" ref="userAccount4"/>
 		<property name="posts">
 			<list>
-				<value></value>
+				<null/>
 			</list>
 		</property>
 		<property name="followings">
 			<list>
-				<value></value>
 			</list>
 		</property>
 		<property name="followers">
 			<list>
-				<value></value>
 			</list>
 		</property>
 		<property name="folders">
@@ -245,12 +243,10 @@
 		</property>
 		<property name="comments">
 			<list>
-				<value></value>
 			</list>
 		</property>
 		<property name="services">
 			<list>
-				<value></value>
 			</list>
 		</property>
 	</bean>
@@ -268,17 +264,14 @@
 
 		<property name="posts">
 			<list>
-				<value></value>
 			</list>
 		</property>
 		<property name="followings">
 			<list>
-				<value></value>
 			</list>
 		</property>
 		<property name="followers">
 			<list>
-				<value></value>
 			</list>
 		</property>
 		<property name="folders">
@@ -292,16 +285,140 @@
 		</property>
 		<property name="comments">
 			<list>
-				<value></value>
 			</list>
 		</property>
 		<property name="services">
 			<list>
-				<value></value>
+				<ref bean="service1"/>
 			</list>
 		</property>
 
 	</bean>
+
+	<!-- MakeUpArtist -->
+
+	<bean id="makeUpArtist1" class="domain.Artist">
+		<property name="name" value="Antonio"/>
+		<property name="surname" value="Godoy"/>
+		<property name="email" value="antonio@alum.us.es"/>
+		<property name="phone" value="+34123333333"/>
+		<property name="postalAddresses" value="C\ Reina Mercedes Bloque 25"/>
+		<property name="userAccount" ref="userAccount5"/>
+		<property name="services">
+			<list>
+			</list>
+		</property>
+
+		<property name="posts">
+			<list>
+			</list>
+		</property>
+		<property name="followings">
+			<list>
+			</list>
+		</property>
+		<property name="followers">
+			<list>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="inbox6" />
+				<ref bean="outbox6" />
+				<ref bean="spambox6" />
+				<ref bean="trashbox6" />
+				<ref bean="notificationbox6"/>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Store -->
+	<bean id="store1" class="domain.Store">
+		<property name="banner" value="https://www.zara.es"/>
+		<property name="creditCard" ref="creditCard1"/>
+		<property name="gpsCoordinates" ref="gpsCoordinates1"/>
+		<property name="manager" ref="manager1"/>
+		<property name="title" value="ZARA"/>
+	</bean>
+
+	<!-- GpsCoordinates -->
+	<bean id="gpsCoordinates1" class="domain.GpsCoordinates">
+
+		<property name="name" value="Sevilla"/>
+		<property name="longitude" value="90.0"/>
+		<property name="latitude" value="180.0"/>
+	</bean>
+
+	<!-- Services-->
+
+	<bean id="service1" class="domain.Service">
+		<property name="title" value="Service1"/>
+		<property name="description" value="Description1"/>
+		<property name="publicationDate" value="01/01/2019 15:30"/>
+		<property name="picture" value="http://www.image.com"/>
+		<property name="taboo" value="false"/>
+		<property name="price" value="90.0"/>
+		<property name="discount" value="5"/>
+		<property name="questions">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="subscriptions">
+			<list>
+				<ref bean="subscription1"/>
+			</list>
+		</property>
+		<property name="creator" ref="photographer1"/>
+	</bean>
+
+	<!-- Categories -->
+
+	<bean id="category1" class="domain.Category">
+		<property name="name" value="CATEGORY1"/>
+		<property name="posts">
+			<list>
+				<null/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Galleries -->
+
+	<bean id="gallery1" class="domain.Gallery">
+		<property name="picture" value="http://www.gallery.com"/>
+	</bean>
+
+	<!-- Profiles -->
+
+	<bean id="profile1" class="domain.Profile">
+		<property name="fullName" value="Taziny Yassine"/>
+		<property name="profilePhoto" value="http://www.images.com"/>
+		<property name="education" value="DT"/>
+		<property name="artist" ref="photographer1"/>
+		<property name="galleries">
+			<list>
+				<null/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Subscriptions -->
+
+	<bean id="subscription1" class="domain.Subscription">
+		<property name="creditCard" ref="creditCard2"/>
+		<property name="moment" value="02/01/2019 15:30"/>
+		<property name="user" ref="user1"/>
+		<property name="service" ref="service1"/>
+	</bean>
+
+	<!-- Subscriptions -->
+
+
 
 
 	<!-- Folders -->
@@ -542,6 +659,51 @@
 		<property name="actor" ref="photographer1" />
 	</bean>
 
+	<bean id="inbox6" class="domain.Folder">
+		<property name="name" value="inbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="makeUpArtist1" />
+	</bean>
+
+	<bean id="outbox6" class="domain.Folder">
+		<property name="name" value="outbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="actor" ref="makeUpArtist1" />
+	</bean>
+
+	<bean id="spambox6" class="domain.Folder">
+		<property name="name" value="spambox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="makeUpArtist1" />
+	</bean>
+
+	<bean id="trashbox6" class="domain.Folder">
+		<property name="name" value="trashbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="makeUpArtist1" />
+	</bean>
+
+	<bean id="notificationbox6" class="domain.Folder">
+		<property name="name" value="notificationbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="makeUpArtist1" />
+	</bean>
 
 
 
