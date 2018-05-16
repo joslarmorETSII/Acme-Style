@@ -25,7 +25,7 @@ public class Post extends DomainEntity{
     private Date moment;
     private String description;
     private String picture;
-    private int like;
+    private int lik;
     private int dislike;
     private int heart;
 
@@ -71,12 +71,12 @@ public class Post extends DomainEntity{
         this.picture = picture;
     }
 
-    public int getLike() {
-        return like;
+    public int getLik() {
+        return lik;
     }
 
-    public void setLike(int like) {
-        this.like = like;
+    public void setLik(int like) {
+        this.lik = like;
     }
 
     public int getDislike() {

@@ -87,7 +87,7 @@
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
-					<property name="authority" value="PHTOGRAPHER" />
+					<property name="authority" value="PHOTOGRAPHER" />
 				</bean>
 
 			</list>
@@ -102,7 +102,7 @@
 		<property name="name" value="José Manuel"/>
 		<property name="surname" value="Lara Morilla"/>
 		<property name="email" value="joslarmor@alum.us.es"/>
-		<property name="phone" value="+34618030683"/>
+		<property name="phone" value="+34 618030683"/>
 		<property name="postalAddresses" value="C\ Tarfia Bloque 7 Piso 6B"/>
 		<property name="userAccount" ref="userAccount1"/>
 		<property name="folders">
@@ -114,6 +114,27 @@
 				<ref bean="notificationbox1"/>
 			</list>
 		</property>
+		<property name="followers">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="posts">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="followings">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+				<null/>
+			</list>
+		</property>
+
 	</bean>
 
 	<!-- Manager -->
@@ -122,7 +143,7 @@
 		<property name="name" value="José Félix"/>
 		<property name="surname" value="Gómez Rodríguez"/>
 		<property name="email" value="josgomrod3@alum.us.es"/>
-		<property name="phone" value="+34695395229"/>
+		<property name="phone" value="+34 695395229"/>
 		<property name="postalAddresses" value="C\ Reina Mercedes Bloque 25"/>
 		<property name="userAccount" ref="userAccount2"/>
 		<property name="stores">
@@ -154,6 +175,17 @@
 				<null/>
 			</list>
 		</property>
+		<property name="posts">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+				<null/>
+			</list>
+		</property>
+
 	</bean>
 
 	<!-- User -->
@@ -162,7 +194,7 @@
 		<property name="name" value="Fulanita"/>
 		<property name="surname" value="Fulanita"/>
 		<property name="email" value="fulanita@alum.us.es"/>
-		<property name="phone" value="+34234562334"/>
+		<property name="phone" value="+34 234562334"/>
 		<property name="postalAddresses" value="reina mercedes"/>
 		<property name="userAccount" ref="userAccount3"/>
 
@@ -206,9 +238,15 @@
 		</property>
 		<property name="panels">
 			<list>
-				<null />
+				<null/>
 			</list>
 		</property>
+		<property name="posts">
+			<list>
+				<null/>
+			</list>
+		</property>
+
 	</bean>
 
 	<!-- Stylist -->
@@ -216,7 +254,7 @@
 		<property name="name" value="alejandro"/>
 		<property name="surname" value="alejandro"/>
 		<property name="email" value="alejandro@alum.us.es"/>
-		<property name="phone" value="+34666666666"/>
+		<property name="phone" value="+34 666666666"/>
 		<property name="postalAddresses" value="reina mercedes"/>
 		<property name="userAccount" ref="userAccount4"/>
 		<property name="posts">
@@ -257,7 +295,7 @@
 		<property name="name" value="Yassine"/>
 		<property name="surname" value="Taziny"/>
 		<property name="email" value="yuzi@alum.us.es"/>
-		<property name="phone" value="+34123456789"/>
+		<property name="phone" value="+34 123456789"/>
 		<property name="postalAddresses" value="C\ Reina Mercedes Bloque 25"/>
 		<property name="userAccount" ref="userAccount6"/>
 
@@ -301,7 +339,7 @@
 		<property name="name" value="Antonio"/>
 		<property name="surname" value="Godoy"/>
 		<property name="email" value="antonio@alum.us.es"/>
-		<property name="phone" value="+34123333333"/>
+		<property name="phone" value="+34 123333333"/>
 		<property name="postalAddresses" value="C\ Reina Mercedes Bloque 25"/>
 		<property name="userAccount" ref="userAccount5"/>
 		<property name="services">
@@ -349,8 +387,8 @@
 	<bean id="gpsCoordinates1" class="domain.GpsCoordinates">
 
 		<property name="name" value="Sevilla"/>
-		<property name="longitude" value="90.0"/>
-		<property name="latitude" value="180.0"/>
+		<property name="longitude" value="100.0"/>
+		<property name="latitude" value="80.0"/>
 	</bean>
 
 	<!-- Services-->
