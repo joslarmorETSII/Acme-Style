@@ -246,7 +246,11 @@
 				<null/>
 			</list>
 		</property>
-
+		<property name="raffles">
+			<list>
+				<null/>
+			</list>
+		</property>
 	</bean>
 
 	<!-- Stylist -->
@@ -381,6 +385,17 @@
 		<property name="gpsCoordinates" ref="gpsCoordinates1"/>
 		<property name="manager" ref="manager1"/>
 		<property name="title" value="ZARA"/>
+		<property name="services">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="events">
+			<list>
+				<null/>
+			</list>
+		</property>
+
 	</bean>
 
 	<!-- GpsCoordinates -->
@@ -412,6 +427,12 @@
 			</list>
 		</property>
 		<property name="creator" ref="photographer1"/>
+		<property name="stores">
+			<list>
+				<null/>
+			</list>
+		</property>
+
 	</bean>
 
 	<!-- Categories -->

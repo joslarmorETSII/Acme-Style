@@ -100,6 +100,7 @@ public class Post extends DomainEntity{
     private Actor actor;
     private Collection<Comment> comments;
     private Collection<Category> categories;
+    private Raffle raffle;
 
 
     @Valid
@@ -133,5 +134,15 @@ public class Post extends DomainEntity{
 
     public void setCategories(Collection<Category> categories) {
         this.categories = categories;
+    }
+
+    @Valid
+    @OneToOne
+    public Raffle getRaffle() {
+        return raffle;
+    }
+
+    public void setRaffle(Raffle raffle) {
+        this.raffle = raffle;
     }
 }

@@ -100,6 +100,7 @@ public class Event extends DomainEntity{
     // Relationships ----------------------------------------------------------------------
     private Manager manager;
     private Collection<User> participants;
+    private Store store;
 
     @ManyToOne(optional = false)
     public Manager getManager() {
@@ -119,5 +120,16 @@ public class Event extends DomainEntity{
 
     public void setParticipants(Collection<User> participants) {
         this.participants = participants;
+    }
+
+    @Valid
+    @NotNull
+    @ManyToOne
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
     }
 }

@@ -4,12 +4,10 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.URL;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -70,7 +68,8 @@ public class Store extends DomainEntity{
 
     // Relationships ----------------------------------------------------------------------
     private Manager manager;
-
+    private Collection<Service> services;
+    private Collection<Event> events;
 
     @Valid
     @ManyToOne(optional = false)
@@ -80,5 +79,26 @@ public class Store extends DomainEntity{
 
     public void setManager(Manager manager) {
         this.manager = manager;
+    }
+
+    @Valid
+    @NotNull
+    @ManyToMany
+    public Collection<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(Collection<Service> services) {
+        this.services = services;
+    }
+    @Valid
+    @NotNull
+    @OneToMany
+    public Collection<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Collection<Event> events) {
+        this.events = events;
     }
 }

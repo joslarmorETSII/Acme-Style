@@ -24,6 +24,7 @@ public class User extends Actor{
     private Collection<Subscription> subscriptions;
     private Collection<Event> events;
     private Collection<Panel> panels;
+    private Collection<Raffle> raffles;
 
     @Valid
     @NotNull
@@ -67,5 +68,16 @@ public class User extends Actor{
 
     public void setPanels(Collection<Panel> panels) {
         this.panels = panels;
+    }
+
+    @Valid
+    @NotNull
+    @ManyToMany
+    public Collection<Raffle> getRaffles() {
+        return raffles;
+    }
+
+    public void setRaffles(Collection<Raffle> raffles) {
+        this.raffles = raffles;
     }
 }
