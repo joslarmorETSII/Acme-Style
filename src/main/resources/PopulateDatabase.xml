@@ -408,7 +408,7 @@
 
 	<!-- Services-->
 
-	<bean id="service1" class="domain.Service">
+	<bean id="service1" class="domain.Servise">
 		<property name="title" value="Service1"/>
 		<property name="description" value="Description1"/>
 		<property name="publicationDate" value="01/01/2019 15:30"/>
@@ -432,7 +432,11 @@
 				<null/>
 			</list>
 		</property>
-
+		<property name="feedbacks">
+			<list>
+				<null/>
+			</list>
+		</property>
 	</bean>
 
 	<!-- Categories -->

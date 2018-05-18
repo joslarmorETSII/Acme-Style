@@ -19,17 +19,17 @@ public class Artist extends Actor{
 
     // Relationships ----------------------------------------------------------------------
 
-    private Collection<Service> services;
+    private Collection<Servise> services;
     private Profile profile;
 
     @NotNull
     @Valid
     @OneToMany(mappedBy = "creator")
-    public Collection<Service> getServices() {
+    public Collection<Servise> getServices() {
         return services;
     }
 
-    public void setServices(Collection<Service> services) {
+    public void setServices(Collection<Servise> services) {
         this.services = services;
     }
 

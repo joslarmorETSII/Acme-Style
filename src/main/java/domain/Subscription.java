@@ -43,7 +43,7 @@ public class Subscription extends DomainEntity{
     // Relationships ----------------------------------------------------------------------
 
     private User user;
-    private Service service;
+    private Servise service;
 
     @Valid
     @ManyToOne(optional = false)
@@ -57,11 +57,11 @@ public class Subscription extends DomainEntity{
 
     @Valid
     @ManyToOne(optional = false)
-    public Service getService() {
+    public Servise getService() {
         return service;
     }
 
-    public void setService(Service service) {
+    public void setService(Servise service) {
         this.service = service;
     }
 }

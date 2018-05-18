@@ -1,14 +1,17 @@
 package services;
 
 import domain.Actor;
+import domain.Folder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import repositories.ActorRepository;
+import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Service
@@ -22,6 +25,8 @@ public class ActorService {
 
     // Supporting services ----------------------------------------------------
 
+    @Autowired
+    private FolderService folderService;
 
     // Constructors -----------------------------------------------------------
 
@@ -77,6 +82,60 @@ public class ActorService {
     }
 
 
+    public boolean checkRole(String role) {
+        boolean result;
+        Collection<Authority> authorities;
 
+        result = false;
+        authorities = LoginService.getPrincipal().getAuthorities();
+        for (final Authority a : authorities)
+            result = result || a.getAuthority().equals(role);
+
+        return result;
+    }
+
+    public boolean isAdministrator() {
+        return this.checkRole(Authority.ADMINISTRATOR);
+    }
+
+    public boolean isStylist() {
+        return this.checkRole(Authority.STYLIST);
+    }
+
+    public boolean isPhotographer() {
+        return this.checkRole(Authority.PHOTOGRAPHER);
+    }
+
+    public boolean isMakeUpArtist() {
+        return this.checkRole(Authority.MAKEUPARTIST);
+    }
+
+    public boolean isUser() {
+        return this.checkRole(Authority.USER);
+    }
+
+
+    public Collection<Folder> generateFolders(Actor actor){
+        Collection<Folder> folders = new ArrayList<>();
+
+        Folder inbox = folderService.createInFolder(actor);
+        folderService.saveCreate(inbox);
+        Folder outbox = folderService.createOutFolder(actor);
+        folderService.saveCreate(outbox);
+        Folder spambox = folderService.createSpamFolder(actor);
+        folderService.saveCreate(spambox);
+        Folder trashbox = folderService.createTrashFolder(actor);
+        folderService.saveCreate(trashbox);
+        Folder notification = folderService.createNotificationFolder(actor);
+        folderService.saveCreate(notification);
+
+        folders.add(inbox);
+        folders.add(outbox);
+        folders.add(spambox);
+        folders.add(trashbox);
+        folders.add(notification);
+
+        return folders;
+    }
 
 }

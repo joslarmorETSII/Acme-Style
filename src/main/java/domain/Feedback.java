@@ -7,6 +7,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -40,6 +41,7 @@ public class Feedback extends DomainEntity {
     }
     // Relationships ---------------------------------------------------------------------
     private User user;
+    private Servise servise;
 
     @ManyToOne(optional = false)
     public User getUser() {
@@ -48,5 +50,15 @@ public class Feedback extends DomainEntity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Valid
+    @ManyToOne(optional = false)
+    public Servise getServise() {
+        return servise;
+    }
+
+    public void setServise(Servise servise) {
+        this.servise = servise;
     }
 }

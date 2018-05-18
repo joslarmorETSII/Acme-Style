@@ -13,10 +13,10 @@ import java.util.Date;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Service extends DomainEntity{
+public class Servise extends DomainEntity{
     // Constructors ----------------------------------------------------------------------
 
-    public Service() { super();}
+    public Servise() { super();}
 
     // Attributes ------------------------------------------------------------------------
 
@@ -99,6 +99,7 @@ public class Service extends DomainEntity{
     private Collection<Subscription> subscriptions;
     private Artist creator;
     private Collection<Store> stores;
+    private Collection<Feedback> feedbacks;
 
     @Valid
     @NotNull
@@ -141,5 +142,16 @@ public class Service extends DomainEntity{
 
     public void setStores(Collection<Store> stores) {
         this.stores = stores;
+    }
+
+    @Valid
+    @NotNull
+    @OneToMany(mappedBy = "servise")
+    public Collection<Feedback> getFeedbacks() {
+        return feedbacks;
+    }
+
+    public void setFeedbacks(Collection<Feedback> feedbacks) {
+        this.feedbacks = feedbacks;
     }
 }
