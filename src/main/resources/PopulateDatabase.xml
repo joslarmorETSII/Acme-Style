@@ -105,6 +105,7 @@
 		<property name="phone" value="+34 618030683"/>
 		<property name="postalAddresses" value="C\ Tarfia Bloque 7 Piso 6B"/>
 		<property name="userAccount" ref="userAccount1"/>
+
 		<property name="folders">
 			<list>
 				<ref bean="inbox1" />
@@ -457,6 +458,8 @@
 
 	<bean id="gallery1" class="domain.Gallery">
 		<property name="picture" value="http://www.gallery.com"/>
+		<property name="profile" ref="profile1"/>
+
 	</bean>
 
 	<!-- Profiles -->

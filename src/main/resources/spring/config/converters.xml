@@ -18,10 +18,60 @@
 	">
 
 	<util:list id="converters">
-		<!-- 
-			Add your own converters using entries of the following form: 
-			<bean class="converters.Class1ToClass2" /> 
-		-->
+		<bean class="converters.MessageToStringConverter"/>
+		<bean class="converters.ActorToStringConverter" />
+		<bean class="converters.AdministratorToStringConverter"/>
+		<bean class="converters.AuthorityToStringConverter" />
+		<bean class="converters.CreditCardToStringConverter" />
+		<bean class="converters.UserAccountToStringConverter" />
+		<bean class="converters.UserToStringConverter" />
+		<bean class="converters.ConfigurationToStringConverter"/>
+		<bean class="converters.FolderToStringConverter"/>
+		<bean class="converters.StringToMessageConverter"/>
+		<bean class="converters.StringToActorConverter" />
+		<bean class="converters.StringToAdministratorConverter" />
+		<bean class="converters.StringToAuthorityConverter"/>
+		<bean class="converters.StringToCreditCardConverter" />
+		<bean class="converters.StringToUserAccountConverter"/>
+		<bean class="converters.StringToUserConverter" />
+		<bean class="converters.StringToConfigurationConverter"/>
+		<bean class="converters.StringToFolderConverter"/>
+		<bean class="converters.SubscriptionToStringConverter"/>
+		<bean class="converters.StringToSubscripitonConverter"/>
+		<bean class="converters.ManagerToStringConverter"/>
+		<bean class="converters.StringToManagerConverter"/>
+		<bean class="converters.StringToArtistConverter"/>
+		<bean class="converters.ArtistToStringConverter"/>
+		<bean class="converters.FeedbackToStringConverter" />
+		<bean class="converters.StringToFeedbackConverter" />
+		<bean class="converters.CommentToStringConverter" />
+		<bean class="converters.StringToCommentConverter" />
+		<bean class="converters.CategoryToStringConverter" />
+		<bean class="converters.StringToCategoryConverter" />
+		<bean class="converters.EventToStringConverter" />
+		<bean class="converters.StringToEventConverter" />
+		<bean class="converters.PanelToStringConverter" />
+		<bean class="converters.StringToPanelConverter" />
+		<bean class="converters.QuestionToStringConverter" />
+		<bean class="converters.StringToQuestionConverter" />
+		<bean class="converters.PhotoToStringConverter" />
+		<bean class="converters.StringToPhotoConverter" />
+		<bean class="converters.RaffleToStringConverter" />
+		<bean class="converters.StringToRaffleConverter" />
+		<bean class="converters.ServiseToStringConverter" />
+		<bean class="converters.StringToServiseConverter" />
+		<bean class="converters.AnswerToStringConverter" />
+		<bean class="converters.StringToAnswerConverter" />
+		<bean class="converters.GalleryToStringConverter" />
+		<bean class="converters.StringToGalleryConverter" />
+		<bean class="converters.GpsCoordinatesToStringConverter" />
+		<bean class="converters.StringToGpsCoordinatesConverter" />
+		<bean class="converters.ProfileToStringConverter" />
+		<bean class="converters.StringToProfileConverter" />
+		<bean class="converters.StoreToStringConverter" />
+		<bean class="converters.StringToStoreConverter" />
+		<bean class="converters.PostToStringConverter" />
+		<bean class="converters.StringToPostConverter" />
 	</util:list>
 	
 </beans>

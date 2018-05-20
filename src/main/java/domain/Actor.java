@@ -134,7 +134,7 @@ public abstract class Actor extends DomainEntity {
     }
 
     @Valid
-    @OneToOne(optional = false)
+    @OneToOne(optional = true)
     public Profile getProfile() {
         return profile;
     }

@@ -28,11 +28,10 @@ public class UserForm {
     private String	phone;
     private String	email;
     private String  postalAddresses;
-    private Date  birthday;
     private boolean	check;
 
     @Column(unique = true)
-    @Size(min = 4, max = 32)
+    @Size(min = 5, max = 32)
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
     public String getUsername() {
         return this.username;
@@ -41,7 +40,7 @@ public class UserForm {
         this.username = username;
     }
 
-    @Size(min = 4, max = 32)
+    @Size(min = 5, max = 32)
     public String getPassword() {
         return this.password;
     }
@@ -101,17 +100,6 @@ public class UserForm {
         this.postalAddresses = postalAddresses;
     }
 
-    @NotNull
-    @Past
-    @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
 
     public boolean getCheck() {
         return this.check;

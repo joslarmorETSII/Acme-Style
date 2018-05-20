@@ -17,3 +17,66 @@
 	color: red;
 	font-weight: bolder;
 }
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+
+.bg-1 {
+	background-color: #C0C0C0; /* Green */
+	color: #888888;
+}
+
+.navbar {
+	margin-bottom: 0 !important;
+	border-radius: 0;
+}
+
+/* ------------------- Carousel Styling ------------------- */
+.carousel-inner {
+	width: 100%;
+	margin: auto;
+	min-height:100px;
+	max-height: 500px;
+	border-radius: 15px;
+
+}
+
+@media (max-width: 500px) {
+	.carousel-caption {
+		display: none;
+	}
+}
+
+/* ------------------- Footer Styling ------------------- */
+
+
+.footer {
+	background: #090c14;
+	color: #eee;
+	font-size: 11px;
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	height: 100px;
+	margin-bottom: 0px;
+
+}
+
+body {
+	margin-bottom: 100px;
+
+}
+ul.unstyled {
+	list-style: none;
+	padding: 0;
+}
+
+
+/* ------------------- Body Styling ------------------- */
+
