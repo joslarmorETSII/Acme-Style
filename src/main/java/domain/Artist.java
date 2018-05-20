@@ -20,7 +20,7 @@ public class Artist extends Actor{
     // Relationships ----------------------------------------------------------------------
 
     private Collection<Servise> services;
-    private Profile profile;
+
 
     @NotNull
     @Valid
@@ -33,13 +33,5 @@ public class Artist extends Actor{
         this.services = services;
     }
 
-    @Valid
-    @OneToOne
-    public Profile getProfile() {
-        return profile;
-    }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
 }

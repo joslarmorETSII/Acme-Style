@@ -53,17 +53,17 @@ public class Profile extends DomainEntity{
     }
 
     // Relationships ----------------------------------------------------------------------
-    private Artist artist;
+    private Actor actor;
     private Collection<Gallery> galleries;
 
     @Valid
     @OneToOne(optional = false)
-    public Artist getArtist() {
-        return artist;
+    public Actor getActor() {
+        return actor;
     }
 
-    public void setArtist(Artist artist) {
-        this.artist = artist;
+    public void setActor(Actor actor) {
+        this.actor = actor;
     }
 
     @NotNull

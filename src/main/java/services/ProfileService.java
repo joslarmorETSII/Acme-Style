@@ -54,14 +54,14 @@ public class ProfileService {
 
     public void delete(Profile profile){
         Assert.notNull(profile);
-        Actor actor= profile.getArtist();
+        Actor actor= profile.getActor();
         Assert.isTrue(actorService.findByPrincipal().equals(actor));
         profileRepository.delete(profile);
     }
 
     public Profile save(Profile profile){
         Assert.notNull(profile);
-        Actor actor= profile.getArtist();
+        Actor actor= profile.getActor();
         Assert.isTrue(actorService.findByPrincipal().equals(actor));
         return profileRepository.save(profile);
     }

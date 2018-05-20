@@ -1,9 +1,6 @@
 package services;
 
-import domain.Event;
-import domain.Post;
-import domain.Raffle;
-import domain.User;
+import domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,7 +37,7 @@ public class EventService {
         Event result;
 
         result= new Event();
-        result.setParticipants(new ArrayList<User>());
+        result.setParticipates(new ArrayList<Participate>());
         return result;
     }
 

@@ -2,13 +2,12 @@ package domain;
 
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.SafeHtml;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -20,6 +19,7 @@ public class Feedback extends DomainEntity {
     // Attributes ------------------------------------------------------------------------
     private String text;
     private int points;
+    private Date moment;
 
     @NotNull
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
@@ -39,6 +39,17 @@ public class Feedback extends DomainEntity {
     public void setPoints(int points) {
         this.points = points;
     }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+    public Date getMoment() {
+        return moment;
+    }
+
+    public void setMoment(Date moment) {
+        this.moment = moment;
+    }
+
     // Relationships ---------------------------------------------------------------------
     private User user;
     private Servise servise;

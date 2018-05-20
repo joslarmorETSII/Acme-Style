@@ -49,7 +49,7 @@ public class UserService {
         result.setFollowers(new ArrayList<Actor>());
         result.setFollowings(new ArrayList<Actor>());
         result.setFolders(new ArrayList<Folder>());
-        result.setEvents(new ArrayList<Event>());
+        result.setParticipates(new ArrayList<Participate>());
         result.setFeedbacks(new ArrayList<Feedback>());
         result.setPanels(new ArrayList<Panel>());
         result.setRaffles(new ArrayList<Raffle>());

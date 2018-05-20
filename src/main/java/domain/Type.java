@@ -1,5 +1,5 @@
 package domain;
 
 public enum Type {
-    MEETUP, MASTERCLASS
+    MEETUP, MASTERCLASS, FASHION_SHOW, EXPOSITION
 }

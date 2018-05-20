@@ -99,7 +99,7 @@ public class Event extends DomainEntity{
 
     // Relationships ----------------------------------------------------------------------
     private Manager manager;
-    private Collection<User> participants;
+    private Collection<Participate> participates;
     private Store store;
 
     @ManyToOne(optional = false)
@@ -113,13 +113,13 @@ public class Event extends DomainEntity{
 
     @Valid
     @NotNull
-    @ManyToMany
-    public Collection<User> getParticipants() {
-        return participants;
+    @OneToMany(mappedBy = "event")
+    public Collection<Participate> getParticipates() {
+        return participates;
     }
 
-    public void setParticipants(Collection<User> participants) {
-        this.participants = participants;
+    public void setParticipates(Collection<Participate> participates) {
+        this.participates = participates;
     }
 
     @Valid

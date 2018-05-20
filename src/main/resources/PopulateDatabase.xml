@@ -203,7 +203,7 @@
 				<ref bean="subscription1"/>
 			</list>
 		</property>
-		<property name="events">
+		<property name="participates">
 			<list>
 				<null/>
 			</list>
@@ -261,6 +261,7 @@
 		<property name="phone" value="+34 666666666"/>
 		<property name="postalAddresses" value="reina mercedes"/>
 		<property name="userAccount" ref="userAccount4"/>
+		<property name="profile" ref ="profile3"/>
 		<property name="posts">
 			<list>
 				<null/>
@@ -302,6 +303,7 @@
 		<property name="phone" value="+34 123456789"/>
 		<property name="postalAddresses" value="C\ Reina Mercedes Bloque 25"/>
 		<property name="userAccount" ref="userAccount6"/>
+		<property name="profile" ref="profile1"/>
 
 
 		<property name="posts">
@@ -346,6 +348,7 @@
 		<property name="phone" value="+34 123333333"/>
 		<property name="postalAddresses" value="C\ Reina Mercedes Bloque 25"/>
 		<property name="userAccount" ref="userAccount5"/>
+		<property name="profile" ref ="profile2"/>
 		<property name="services">
 			<list>
 			</list>
@@ -462,7 +465,31 @@
 		<property name="fullName" value="Taziny Yassine"/>
 		<property name="profilePhoto" value="http://www.images.com"/>
 		<property name="education" value="DT"/>
-		<property name="artist" ref="photographer1"/>
+		<property name="actor" ref="photographer1"/>
+		<property name="galleries">
+			<list>
+				<null/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="profile2" class="domain.Profile">
+		<property name="fullName" value="Khawla khawla"/>
+		<property name="profilePhoto" value="http://www.images.com"/>
+		<property name="education" value="DT"/>
+		<property name="actor" ref="makeUpArtist1"/>
+		<property name="galleries">
+			<list>
+				<null/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="profile3" class="domain.Profile">
+		<property name="fullName" value="Rosa Rosa"/>
+		<property name="profilePhoto" value="http://www.images.com"/>
+		<property name="education" value="DT"/>
+		<property name="actor" ref="stylist1"/>
 		<property name="galleries">
 			<list>
 				<null/>

@@ -84,6 +84,7 @@ public abstract class Actor extends DomainEntity {
     // Relationships ----------------------------------------------------------
 
     private UserAccount userAccount;
+    private Profile profile;
     private Collection<Folder> folders;
     private Collection<Actor> followings;
     private Collection<Actor> followers;
@@ -130,6 +131,16 @@ public abstract class Actor extends DomainEntity {
     @OneToMany(mappedBy = "actor")
     public Collection<Comment> getComments() {
         return comments;
+    }
+
+    @Valid
+    @OneToOne(optional = false)
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
     public void setPosts(Collection<Post> posts) {

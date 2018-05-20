@@ -22,7 +22,7 @@ public class User extends Actor{
 
     private Collection<Feedback> feedbacks;
     private Collection<Subscription> subscriptions;
-    private Collection<Event> events;
+    private Collection<Participate> participates;
     private Collection<Panel> panels;
     private Collection<Raffle> raffles;
 
@@ -50,13 +50,13 @@ public class User extends Actor{
 
     @Valid
     @NotNull
-    @ManyToMany
-    public Collection<Event> getEvents() {
-        return events;
+    @OneToMany(mappedBy = "user")
+    public Collection<Participate> getParticipates() {
+        return participates;
     }
 
-    public void setEvents(Collection<Event> events) {
-        this.events = events;
+    public void setParticipates(Collection<Participate> participates) {
+        this.participates = participates;
     }
 
     @Valid

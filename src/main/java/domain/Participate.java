@@ -1,7 +1,5 @@
 package domain;
 
-import org.hibernate.validator.constraints.NotEmpty;
-import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -11,26 +9,18 @@ import java.util.Date;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Comment extends DomainEntity{
+public class Participate extends DomainEntity{
 
     // Constructors ----------------------------------------------------------------------
 
-    public Comment() {super(); }
+    public Participate(){
+        super();
+    }
 
     // Attributes ------------------------------------------------------------------------
 
-    private String text;
     private Date moment;
-
-    @NotEmpty
-    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
+    private CreditCard creditCard;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
@@ -42,27 +32,37 @@ public class Comment extends DomainEntity{
         this.moment = moment;
     }
 
-    // Relationships ---------------------------------------------------------------------
-    private Post post;
-    private Actor actor;
+    @NotNull
+    @Valid
+    public CreditCard getCreditCard() {
+        return creditCard;
+    }
+
+    public void setCreditCard(CreditCard creditCard) {
+        this.creditCard = creditCard;
+    }
+
+    // Relationships ----------------------------------------------------------------------
+
+    private User user;
+    private Event event;
 
     @Valid
     @ManyToOne(optional = false)
-    public Post getPost() {
-        return post;
+    public User getUser() {
+        return user;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setUser(User user) {
+        this.user = user;
     }
-
     @Valid
     @ManyToOne(optional = false)
-    public Actor getActor() {
-        return actor;
+    public Event getEvent() {
+        return event;
     }
 
-    public void setActor(Actor actor) {
-        this.actor = actor;
+    public void setEvent(Event event) {
+        this.event = event;
     }
 }
