@@ -68,7 +68,7 @@ public class Profile extends DomainEntity{
 
     @NotNull
     @Valid
-    @OneToMany
+    @OneToMany(mappedBy = "profile")
     public Collection<Gallery> getGalleries() {
         return galleries;
     }

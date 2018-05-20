@@ -6,6 +6,8 @@ import org.hibernate.validator.constraints.SafeHtml;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -30,4 +32,16 @@ public class Gallery extends DomainEntity{
     }
 
     // Relationships ----------------------------------------------------------------------
+
+    private Profile profile;
+
+    @Valid
+    @ManyToOne(optional = false)
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
 }
