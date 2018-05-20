@@ -73,6 +73,7 @@
 	<br />
 	<span class="message"><spring:message code="${message}" /></span>
 </jstl:if>
+<br>
 <footer class="footer">
 	<div class="container">
 		<div class="row">

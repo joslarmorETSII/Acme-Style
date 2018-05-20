@@ -24,7 +24,7 @@
                 <div class="panel-heading">
                     <span class="glyphicon glyphicon-lock"></span> <spring:message code="general.register"/></div>
                 <div class="panel-body">
-                 <form:form  action="user/register.do" modelAttribute="userForm" class="form-horizontal">
+                 <form:form  action="managr/register.do" modelAttribute="userForm" class="form-horizontal">
 
                     <div class="form-group">
                         <label for="inputName" class="col-sm-3 control-label"><spring:message code="user.name"/>*</label>

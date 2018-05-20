@@ -25,6 +25,9 @@
 		<value>/views/administrator/tiles.xml</value>
 		<value>/views/termAndCondition/tiles.xml</value>
 		<value>/views/user/tiles.xml</value>
+		<value>/views/artist/tiles.xml</value>
+		<value>/views/manager/tiles.xml</value>
+
 	</util:list>
 
 </beans>

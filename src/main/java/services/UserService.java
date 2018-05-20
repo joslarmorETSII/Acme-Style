@@ -122,30 +122,12 @@ public class UserService {
         result.setPostalAddresses(userForm.getPostalAddresses());
         result.getUserAccount().setPassword(new Md5PasswordEncoder().encodePassword(userForm.getPassword(), null));
 
-        this.comprobarContrasena(userForm.getPassword(), userForm.getRepeatPassword(), binding);
+        actorService.comprobarContrasena(userForm.getPassword(), userForm.getRepeatPassword(), binding);
 
         return result;
     }
 
-    private boolean comprobarContrasena(final String password, final String passwordRepeat, final BindingResult binding) {
-        FieldError error;
-        String[] codigos;
-        boolean result;
 
-        if (StringUtils.isNotBlank(password) && StringUtils.isNotBlank(passwordRepeat))
-            result = password.equals(passwordRepeat);
-        else
-            result = false;
-
-        if (!result && password.length()>=5 && passwordRepeat.length()>=5) {
-            codigos = new String[1];
-            codigos[0] = "user.password.mismatch";
-            error = new FieldError("userForm", "repeatPassword", password, false, codigos, null, "password mismatch");
-            binding.addError(error);
-        }
-
-        return result;
-    }
 
     public Collection<Actor> follow(int actorId){
         Assert.notNull(actorId);

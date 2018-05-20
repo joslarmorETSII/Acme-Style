@@ -29,6 +29,7 @@ public class UserForm {
     private String	email;
     private String  postalAddresses;
     private boolean	check;
+    private String role;
 
     @Column(unique = true)
     @Size(min = 5, max = 32)
@@ -106,5 +107,14 @@ public class UserForm {
     }
     public void setCheck(final boolean check) {
         this.check = check;
+    }
+
+    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

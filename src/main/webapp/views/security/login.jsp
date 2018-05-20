@@ -21,7 +21,7 @@
 		 <div class="col-md-6 col-md-offset-3">
 			 <div class="panel panel-default">
 				 <div class="panel-heading">
-					 <span class="glyphicon glyphicon-lock"></span> Login</div>
+					 <span class="glyphicon glyphicon-log-in"></span> Login</div>
 				 <div class="panel-body">
 					 <form:form action="j_spring_security_check" modelAttribute="credentials" class="form-horizontal" >
 

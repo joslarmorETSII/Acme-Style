@@ -24,7 +24,7 @@
                 <div class="panel-heading">
                     <span class="glyphicon glyphicon-lock"></span> <spring:message code="general.register"/></div>
                 <div class="panel-body">
-                 <form:form  action="user/register.do" modelAttribute="userForm" class="form-horizontal">
+                 <form:form  action="artist/register.do" modelAttribute="userForm" class="form-horizontal">
 
                     <div class="form-group">
                         <label for="inputName" class="col-sm-3 control-label"><spring:message code="user.name"/>*</label>
@@ -68,6 +68,17 @@
                             <form:errors class="error" path="repeatPassword"/>
                         </div>
                     </div>
+
+                     <div class="form-group">
+                         <label for="sel1" class="col-sm-3 control-label">Select a Role</label>
+                         <div class="col-sm-9">
+                         <form:select path="role" class="form-control" id="sel1">
+                             <option>PHOTOGRAPHER</option>
+                             <option>MAKEUPARTIST</option>
+                             <option>STYLIST</option>
+                         </form:select>
+                         </div>
+                     </div>
 
                     <div class="form-group">
                         <label for="phone" class="col-sm-3 control-label"><spring:message code="user.phone"/> </label>

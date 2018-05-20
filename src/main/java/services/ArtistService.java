@@ -1,9 +1,14 @@
 package services;
 
 import domain.*;
+import forms.UserForm;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import repositories.ArtistRepository;
 import security.LoginService;
 import security.UserAccount;
@@ -45,7 +50,6 @@ public class ArtistService {
         result.setPosts(new ArrayList<Post>());
         result.setFollowers(new ArrayList<Actor>());
         result.setFollowings(new ArrayList<Actor>());
-        result.setUserAccount(new UserAccountService().create("STYLIST")); // TODO: al registrar un artist tiene que eligir el rol
 
         return result;
     }
@@ -92,4 +96,26 @@ public class ArtistService {
         result = artistRepository.findByUserAccountId(userAccountId);
         return result;
     }
+
+
+    public Artist reconstruct(UserForm userForm, BindingResult binding) {
+
+        Artist result;
+
+        result = this.create();
+        result.setName(userForm.getName());
+        result.setSurname(userForm.getSurname());
+        result.setPhone(userForm.getPhone());
+        result.setEmail(userForm.getEmail());
+        result.setPostalAddresses(userForm.getPostalAddresses());
+        result.setUserAccount(new UserAccountService().create(userForm.getRole()));
+        result.getUserAccount().setUsername(userForm.getUsername());
+        result.getUserAccount().setPassword(new Md5PasswordEncoder().encodePassword(userForm.getPassword(), null));
+
+        actorService.comprobarContrasena(userForm.getPassword(), userForm.getRepeatPassword(), binding);
+
+        return result;
+    }
+
+
 }

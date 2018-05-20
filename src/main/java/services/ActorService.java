@@ -2,9 +2,12 @@ package services;
 
 import domain.Actor;
 import domain.Folder;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import repositories.ActorRepository;
 import security.Authority;
 import security.LoginService;
@@ -136,6 +139,26 @@ public class ActorService {
         folders.add(notification);
 
         return folders;
+    }
+
+    public boolean comprobarContrasena(String password,  String passwordRepeat,  BindingResult binding) {
+        FieldError error;
+        String[] codigos;
+        boolean result;
+
+        if (StringUtils.isNotBlank(password) && StringUtils.isNotBlank(passwordRepeat))
+            result = password.equals(passwordRepeat);
+        else
+            result = false;
+
+        if (!result && password.length()>=5 && passwordRepeat.length()>=5) {
+            codigos = new String[1];
+            codigos[0] = "user.password.mismatch";
+            error = new FieldError("userForm", "repeatPassword", password, false, codigos, null, "password mismatch");
+            binding.addError(error);
+        }
+
+        return result;
     }
 
 }

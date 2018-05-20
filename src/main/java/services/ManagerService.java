@@ -1,10 +1,13 @@
 package services;
 
 import domain.*;
+import forms.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
 import repositories.ManagerRepository;
 import security.LoginService;
 import security.UserAccount;
@@ -87,5 +90,24 @@ public class ManagerService {
 
     public Manager findByUserAccountId(int userAccountId) {
         return managerRepository.findByUserAccountId(userAccountId);
+    }
+
+
+    public Manager reconstruct(UserForm userForm, BindingResult binding) {
+
+        Manager result;
+
+        result = this.create();
+        result.getUserAccount().setUsername(userForm.getUsername());
+        result.setName(userForm.getName());
+        result.setSurname(userForm.getSurname());
+        result.setPhone(userForm.getPhone());
+        result.setEmail(userForm.getEmail());
+        result.setPostalAddresses(userForm.getPostalAddresses());
+        result.getUserAccount().setPassword(new Md5PasswordEncoder().encodePassword(userForm.getPassword(), null));
+
+        actorService.comprobarContrasena(userForm.getPassword(), userForm.getRepeatPassword(), binding);
+
+        return result;
     }
 }

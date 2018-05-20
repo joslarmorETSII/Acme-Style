@@ -27,20 +27,59 @@
 			<ul class="nav navbar-nav">
 				<security:authorize access="isAnonymous()">
 					<li class="active"><a href="security/login.do"><spring:message code="master.page.login" /></a></li>
-
-				</security:authorize>
+					<li class="dorpdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >
+							<spring:message code="general.register" /> <span class="caret"/></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="user/register.do"><spring:message code="master.page.user" /></a> </li>
+							<li><a href="artist/register.do"><spring:message code="master.page.artist" /></a> </li>
+							<li><a href="managr/register.do"><spring:message code="master.page.manager" /></a> </li>
+						</ul>
+						</security:authorize>
 
 				<security:authorize access="isAuthenticated()">
 
 				</security:authorize>
 
+				<!-- USER -->
 				<security:authorize access="hasRole('USER')">
 				<li class="dorpdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" ><spring:message code="master.page.user" /> <span class="caret"></span>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >
+						 <spring:message code="master.page.user" /> <span class="caret"/>
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-log-in"/> <spring:message code="master.page.logout"/></a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-user"/> <spring:message code="master.page.profile" /></a> </li>
+						<li class="divider"></li>
+						<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-off"/> <spring:message code="master.page.logout"/></a></li>
 					</ul>
+				</li>
+				</security:authorize>
+
+				<!-- Artist -->
+				<security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')">
+					<li class="dorpdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >
+							<spring:message code="master.page.artist" /> <span class="caret"/>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#"><span class="glyphicon glyphicon-user"/> <spring:message code="master.page.profile" /></a> </li>
+							<li class="divider"></li>
+							<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-off"/> <spring:message code="master.page.logout"/></a></li>
+						</ul>
+					</li>
+				</security:authorize>
+					<!-- Manager -->
+					<security:authorize access="hasRole('MANAGER')">
+						<li class="dorpdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >
+								<spring:message code="master.page.manager" /> <span class="caret"/>
+							</a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#"><span class="glyphicon glyphicon-user"/> <spring:message code="master.page.profile" /></a> </li>
+								<li class="divider"></li>
+								<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-off"/> <spring:message code="master.page.logout"/></a></li>
+							</ul>
+						</li>
 					</security:authorize>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -49,6 +88,10 @@
 		</div>
 	</div>
 </nav>
+
+
+
+<!-- Carousel -->
 <jstl:if test="${isIndex}">
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		<!-- Indicators -->
