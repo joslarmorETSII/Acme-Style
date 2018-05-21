@@ -4,11 +4,16 @@ import domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
 import repositories.ServiseRepository;
+import org.springframework.validation.Validator;
 
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 @Transactional
@@ -26,6 +31,12 @@ public class ServiseService {
 
     @Autowired
     private ActorService actorService;
+
+    @Autowired
+    private Validator validator;
+
+    @Autowired
+    private ConfigurationService configurationService;
 
 
     // Constructors -----------------------------------------------------------
@@ -46,6 +57,7 @@ public class ServiseService {
         result.setQuestions(new ArrayList<Question>());
         result.setStores(new ArrayList<Store>());
         result.setSubscriptions(new ArrayList<Subscription>());
+        result.setFeedbacks(new ArrayList<Feedback>());
 
         return result;
     }
@@ -80,6 +92,63 @@ public class ServiseService {
         principal = artistService.findByPrincipal();
         Assert.isTrue(result.getSubscriptions().isEmpty(),"Users are subscribed to this Service");
         Assert.isTrue(principal.equals(result.getCreator()),"Not the creator of this Service");
+
+        return result;
+    }
+
+    public Servise reconstructS(final Servise servicePruned, final BindingResult binding) {
+        Servise res;
+        if (servicePruned.getId() == 0) {
+            res = this.create();
+        } else {
+            res = this.findOne(servicePruned.getId());
+
+        }
+        res.setTitle(servicePruned.getTitle());
+        res.setPublicationDate(servicePruned.getPublicationDate());
+        res.setDescription(servicePruned.getDescription());
+        res.setPicture(servicePruned.getPicture());
+        res.setDiscount(servicePruned.getDiscount());
+        res.setPrice(servicePruned.getPrice());
+
+        this.validator.validate(res,binding);
+
+    return res;
+
+
+    }
+
+    private boolean isTabooServise(final Servise servise) {
+        boolean result = false;
+        Pattern p;
+        Matcher isAnyMatcherTitle;
+        Matcher isAnyMatcherDescription;
+
+        p = this.tabooWords();
+        isAnyMatcherTitle = p.matcher(servise.getTitle());
+        isAnyMatcherDescription = p.matcher(servise.getDescription());
+
+        if (isAnyMatcherTitle.find() || isAnyMatcherDescription.find())
+            result = true;
+
+        return result;
+    }
+
+    public Pattern tabooWords() {
+        Pattern result;
+        List<String> tabooWords;
+
+        final Collection<String> taboolist = this.configurationService.findAll().iterator().next().getTabooWords();
+        tabooWords = new ArrayList<>(taboolist);
+
+        String str = ".*\\b(";
+        for (int i = 0; i <= tabooWords.size(); i++)
+            if (i < tabooWords.size())
+                str += tabooWords.get(i) + "|";
+            else
+                str += tabooWords.iterator().next() + ")\\b.*";
+
+        result = Pattern.compile(str, Pattern.CASE_INSENSITIVE);
 
         return result;
     }

@@ -49,7 +49,9 @@
 		<security:intercept-url pattern="/managr/register.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/managr/save.do" access="isAnonymous()" />
 
+		<!-- Artist -->
 
+		<security:intercept-url pattern="/servise/artist/**" access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')"/>
 		<!-- Message / Folder -->
 		<security:intercept-url pattern="/message/admin/**" access="hasRole('ADMINISTRATOR')" />
 		<security:intercept-url pattern="/message/actor/**" access="isAuthenticated()" />

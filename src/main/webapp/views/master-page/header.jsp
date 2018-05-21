@@ -69,6 +69,7 @@
 							<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-off"/> <spring:message code="master.page.logout"/></a></li>
 						</ul>
 					</li>
+					<li><a href="servise/artist/list.do"/><spring:message code="master.page.servise" /></li>
 				</security:authorize>
 					<!-- Manager -->
 					<security:authorize access="hasRole('MANAGER')">

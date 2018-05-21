@@ -19,18 +19,18 @@ public class Artist extends Actor{
 
     // Relationships ----------------------------------------------------------------------
 
-    private Collection<Servise> services;
+    private Collection<Servise> servises;
 
 
     @NotNull
     @Valid
     @OneToMany(mappedBy = "creator")
-    public Collection<Servise> getServices() {
-        return services;
+    public Collection<Servise> getServises() {
+        return servises;
     }
 
-    public void setServices(Collection<Servise> services) {
-        this.services = services;
+    public void setServises(Collection<Servise> servises) {
+        this.servises = servises;
     }
 
 

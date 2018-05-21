@@ -44,7 +44,7 @@ public class ArtistService {
         Artist result;
 
         result = new Artist();
-        result.setServices(new ArrayList<Servise>());
+        result.setServises(new ArrayList<Servise>());
         result.setComments(new ArrayList<Comment>());
         result.setFolders(new ArrayList<Folder>());
         result.setPosts(new ArrayList<Post>());
