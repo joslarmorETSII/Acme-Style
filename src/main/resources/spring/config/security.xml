@@ -50,6 +50,14 @@
 		<security:intercept-url pattern="/managr/save.do" access="isAnonymous()" />
 
 
+		<!-- Message / Folder -->
+		<security:intercept-url pattern="/message/admin/**" access="hasRole('ADMINISTRATOR')" />
+		<security:intercept-url pattern="/message/actor/**" access="isAuthenticated()" />
+		<security:intercept-url pattern="/folder/**" access="isAuthenticated()" />
+
+
+
+
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 
 		<security:form-login 

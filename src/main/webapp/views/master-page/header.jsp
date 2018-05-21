@@ -49,6 +49,7 @@
 					</a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="#"><span class="glyphicon glyphicon-user"/> <spring:message code="master.page.profile" /></a> </li>
+						<li><a href="folder/actor/list.do"><span class="glyphicon glyphicon-envelope"/> <spring:message code="master.page.mail" /></a> </li>
 						<li class="divider"></li>
 						<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-off"/> <spring:message code="master.page.logout"/></a></li>
 					</ul>
@@ -63,6 +64,7 @@
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#"><span class="glyphicon glyphicon-user"/> <spring:message code="master.page.profile" /></a> </li>
+							<li><a href="folder/actor/list.do"><span class="glyphicon glyphicon-envelope"/> <spring:message code="master.page.mail" /></a> </li>
 							<li class="divider"></li>
 							<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-off"/> <spring:message code="master.page.logout"/></a></li>
 						</ul>
@@ -76,6 +78,7 @@
 							</a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="#"><span class="glyphicon glyphicon-user"/> <spring:message code="master.page.profile" /></a> </li>
+								<li><a href="folder/actor/list.do"><span class="glyphicon glyphicon-envelope"/> <spring:message code="master.page.mail" /></a> </li>
 								<li class="divider"></li>
 								<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-off"/> <spring:message code="master.page.logout"/></a></li>
 							</ul>

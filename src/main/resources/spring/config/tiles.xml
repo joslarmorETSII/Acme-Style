@@ -27,6 +27,8 @@
 		<value>/views/user/tiles.xml</value>
 		<value>/views/artist/tiles.xml</value>
 		<value>/views/manager/tiles.xml</value>
+		<value>/views/folder/tiles.xml</value>
+		<value>/views/message/tiles.xml</value>
 
 	</util:list>
 

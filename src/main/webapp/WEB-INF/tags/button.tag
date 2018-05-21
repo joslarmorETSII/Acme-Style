@@ -29,8 +29,5 @@
 <%-- Definition --%>
 
 <spring:message code="${code}" var="value" />
-<button  onclick='javascript: relativeRedir("${url}")'>${value}</button>
-<%--  <input type="submit" name="${name}" value="<spring:message code="${code}"/>"/>--%>
-<%--
-<spring:message code="${code}" var="value" />
-<button onclick='javascript: relativeRedir("<jstl:out value="${url}"></jstl:out>")' >${value}</button>--%>
+<button  class="btn btn-primary" onclick='javascript: relativeRedir("${url}")'>${value}</button>
+
