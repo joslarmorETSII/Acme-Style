@@ -60,9 +60,8 @@
 		<!-- Profile -->
 		<security:intercept-url pattern="/profile/**" access="isAuthenticated()" />
 
-
-
-
+		<!-- Post -->
+		<security:intercept-url pattern="/post/actor/**" access="isAuthenticated()" />
 
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 

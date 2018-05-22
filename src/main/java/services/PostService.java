@@ -1,17 +1,18 @@
 package services;
 
-import domain.Category;
-import domain.Comment;
-import domain.Post;
+import domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import repositories.PostRepository;
 import security.Authority;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 @Service
 @Transactional
@@ -26,6 +27,9 @@ public class PostService {
 
     @Autowired
     private ActorService actorService;
+
+    @Autowired
+    private Validator validator;
 
     // Constructors -----------------------------------------------------------
 
@@ -50,6 +54,15 @@ public class PostService {
         return postRepository.findOne(id);
     }
 
+    public Post findOneToEdit(int id){
+        Post res = postRepository.findOne(id);
+        Actor actor = actorService.findByPrincipal();
+
+        Assert.isTrue(res.getActor().equals(actor), "Not the creator of this Post");
+
+        return res;
+    }
+
     public Collection<Post> findAll(){
         return postRepository.findAll();
     }
@@ -63,10 +76,39 @@ public class PostService {
     public Post save(Post post){
         Assert.notNull(post);
         Assert.isTrue(actorService.findByPrincipal().equals(post.getActor()));
+
+        post.setMoment(new Date(System.currentTimeMillis() - 1000));
+
         return postRepository.save(post);
     }
 
     // Other business methods -------------------------------------------------
 
+    public Post reconstructS(final Post postPruned, final BindingResult binding) {
+        Post res;
+
+        if (postPruned.getId() == 0) {
+            res = this.create();
+        } else {
+            res = this.findOne(postPruned.getId());
+        }
+
+        res.setTitle(postPruned.getTitle());
+        res.setMoment(postPruned.getMoment());
+        res.setDescription(postPruned.getDescription());
+        res.setPicture(postPruned.getPicture());
+        res.setLik(postPruned.getLik());
+        res.setDislike(postPruned.getDislike());
+        res.setHeart(postPruned.getHeart());
+
+        this.validator.validate(res,binding);
+
+        return res;
+    }
+
+    public void likePost(Post post){
+        post.setLik(post.getLik() + 1);
+        this.postRepository.save(post);
+    }
 
 }

@@ -29,7 +29,6 @@ public class Post extends DomainEntity{
     private int dislike;
     private int heart;
 
-
     @NotBlank
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
     public String getTitle() {
@@ -39,7 +38,6 @@ public class Post extends DomainEntity{
     public void setTitle(String title) {
         this.title = title;
     }
-
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")

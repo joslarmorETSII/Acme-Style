@@ -38,8 +38,9 @@
 						</security:authorize>
 
 				<security:authorize access="isAuthenticated()">
+					<li><a href="post/actor/list.do"><span class="glyphicon glyphicon-pushpin"/> <spring:message code="master.page.posts" /></a> </li>
 
-				</security:authorize>
+					</security:authorize>
 
 				<!-- USER -->
 				<security:authorize access="hasRole('USER')">
@@ -92,8 +93,6 @@
 		</div>
 	</div>
 </nav>
-
-
 
 <!-- Carousel -->
 <jstl:if test="${isIndex}">
