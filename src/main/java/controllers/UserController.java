@@ -53,7 +53,7 @@ public class UserController extends AbstractController{
             if (binding.hasErrors())
                 result = createEditModelAndView(userForm);
             else {
-                result = new ModelAndView("redirect:/welcome/index.do");
+                result = new ModelAndView("redirect:/security/login.do");
 
                 user = this.userService.save(user);
 

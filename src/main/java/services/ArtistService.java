@@ -32,6 +32,9 @@ public class ArtistService {
     @Autowired
     private ActorService actorService;
 
+    @Autowired
+    private ProfileService profileService;
+
     // Constructors -----------------------------------------------------------
 
     public ArtistService() {
@@ -70,6 +73,8 @@ public class ArtistService {
         if(artist.getId()==0){
             result = artistRepository.save(artist);
             folders = actorService.generateFolders(result);
+            Profile saved = profileService.generateProfileForActors(result);
+            result.setProfile(saved);
             result.setFolders(folders);
             result = artistRepository.save(result);
         }else {

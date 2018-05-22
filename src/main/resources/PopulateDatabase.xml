@@ -135,6 +135,7 @@
 				<null/>
 			</list>
 		</property>
+		<property name="profile" ref="profile6"/>
 
 	</bean>
 
@@ -146,7 +147,7 @@
 		<property name="email" value="josgomrod3@alum.us.es"/>
 		<property name="phone" value="+34 695395229"/>
 		<property name="postalAddresses" value="C\ Reina Mercedes Bloque 25"/>
-		<property name="userAccount" ref="userAccount2"/>
+		<property name="userAccount" ref="userAccount3"/>
 		<property name="stores">
 			<list>
 				<null/>
@@ -186,6 +187,7 @@
 				<null/>
 			</list>
 		</property>
+		<property name="profile" ref="profile5"/>
 
 	</bean>
 
@@ -197,7 +199,7 @@
 		<property name="email" value="fulanita@alum.us.es"/>
 		<property name="phone" value="+34 234562334"/>
 		<property name="postalAddresses" value="reina mercedes"/>
-		<property name="userAccount" ref="userAccount3"/>
+		<property name="userAccount" ref="userAccount2"/>
 
 		<property name="subscriptions">
 			<list>
@@ -252,6 +254,8 @@
 				<null/>
 			</list>
 		</property>
+		<property name="profile" ref="profile4"/>
+
 	</bean>
 
 	<!-- Stylist -->
@@ -493,6 +497,42 @@
 		<property name="profilePhoto" value="http://www.images.com"/>
 		<property name="education" value="DT"/>
 		<property name="actor" ref="stylist1"/>
+		<property name="galleries">
+			<list>
+				<null/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="profile4" class="domain.Profile">
+		<property name="fullName" value="User One"/>
+		<property name="profilePhoto" value="http://www.images.com"/>
+		<property name="education" value="DT"/>
+		<property name="actor" ref="user1"/>
+		<property name="galleries">
+			<list>
+				<null/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="profile5" class="domain.Profile">
+		<property name="fullName" value="Manager One"/>
+		<property name="profilePhoto" value="http://www.images.com"/>
+		<property name="education" value="DT"/>
+		<property name="actor" ref="manager1"/>
+		<property name="galleries">
+			<list>
+				<null/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="profile6" class="domain.Profile">
+		<property name="fullName" value="Administrator"/>
+		<property name="profilePhoto" value="http://www.images.com"/>
+		<property name="education" value="DT"/>
+		<property name="actor" ref="administrator"/>
 		<property name="galleries">
 			<list>
 				<null/>

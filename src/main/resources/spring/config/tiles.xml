@@ -30,6 +30,7 @@
 		<value>/views/folder/tiles.xml</value>
 		<value>/views/message/tiles.xml</value>
 		<value>/views/servise/tiles.xml</value>
+		<value>/views/profile/tiles.xml</value>
 
 	</util:list>
 

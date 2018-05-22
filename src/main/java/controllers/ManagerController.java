@@ -1,6 +1,7 @@
 package controllers;
 
 import domain.Manager;
+import domain.Profile;
 import forms.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import services.ManagerService;
+import services.ProfileService;
 
 import javax.validation.Valid;
 
@@ -20,6 +22,9 @@ public class ManagerController extends AbstractController{
 
     @Autowired
     private ManagerService managerService;
+
+    @Autowired
+    private ProfileService profileService;
 
     // Constructor -----------------------------------------
 
@@ -46,6 +51,7 @@ public class ManagerController extends AbstractController{
     public ModelAndView save(@Valid  UserForm userForm, BindingResult binding) {
         ModelAndView result;
         Manager manager;
+        Profile profile;
 
         try {
             manager = managerService.reconstruct(userForm, binding);
@@ -53,10 +59,8 @@ public class ManagerController extends AbstractController{
             if (binding.hasErrors())
                 result = createEditModelAndView(userForm);
             else {
-                result = new ModelAndView("redirect:/welcome/index.do");
-
-                manager = this.managerService.save(manager);
-
+                result = new ModelAndView("redirect:/security/login.do");
+                this.managerService.save(manager);
             }
         } catch (final Throwable oops) {
             if(oops.getCause().getCause().getMessage().contains("Duplicate entry"))
@@ -76,7 +80,7 @@ public class ManagerController extends AbstractController{
 
     private ModelAndView createEditModelAndView( UserForm userForm,  String message) {
 
-        ModelAndView result = new ModelAndView("user/register");
+        ModelAndView result = new ModelAndView("manager/register");
 
         result.addObject("userForm", userForm);
         result.addObject("message", message);

@@ -32,7 +32,7 @@
 		<value>/views/folder/messages</value>
 		<value>/views/message/messages</value>
 		<value>/views/servise/messages</value>
-
+		<value>/views/profile/messages</value>
 
 
 	</util:list>

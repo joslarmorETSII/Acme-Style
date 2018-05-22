@@ -61,10 +61,23 @@ public class ProfileService {
 
     public Profile save(Profile profile){
         Assert.notNull(profile);
-        Actor actor= profile.getActor();
-        Assert.isTrue(actorService.findByPrincipal().equals(actor));
+        Actor actor;
+
+        if (profile.getId() != 0) {
+            actor = profile.getActor();
+            Assert.isTrue(actorService.findByPrincipal().equals(actor));
+        }
         return profileRepository.save(profile);
+
     }
 
     // Other business methods -------------------------------------------------
+
+    public Profile generateProfileForActors(Actor actor){
+        Profile profile;
+        profile = create();
+        profile.setFullName(actor.getName()+" "+actor.getSurname());
+        profile.setActor(actor);
+       return profileRepository.save(profile);
+    }
 }

@@ -79,6 +79,14 @@
                     </div>
 
                      <div class="form-group">
+                         <label for="postalAddresses" class="col-sm-3 control-label"><spring:message code="user.postalAddresses"/> </label>
+                         <div class="col-sm-9">
+                             <form:input path="postalAddresses" class="form-control"  id="postalAddresses" />
+                             <form:errors class="error" path="postalAddresses"/>
+                         </div>
+                     </div>
+
+                     <div class="form-group">
                      <label class="col-sm-3 control-label ">Terms of use</label>
                         <div class="col-sm-9">
                             <form:checkbox id="checkTerm" onclick="comprobar();" path="check"/>

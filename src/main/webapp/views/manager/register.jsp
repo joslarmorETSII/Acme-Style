@@ -27,42 +27,42 @@
                  <form:form  action="managr/register.do" modelAttribute="userForm" class="form-horizontal">
 
                     <div class="form-group">
-                        <label for="inputName" class="col-sm-3 control-label"><spring:message code="user.name"/>*</label>
+                        <label for="inputName" class="col-sm-3 control-label"><spring:message code="manager.name"/>*</label>
                         <div class="col-sm-9">
                             <form:input path="name" class="form-control"  id="inputName" placeholder="Name"/>
                             <form:errors class="error" path="name" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputSurname" class="col-sm-3 control-label"><spring:message code="user.surname"/>*</label>
+                        <label for="inputSurname" class="col-sm-3 control-label"><spring:message code="manager.surname"/>*</label>
                         <div class="col-sm-9">
                             <form:input path="surname" class="form-control"  id="inputSurname" placeholder="Surname" />
                             <form:errors class="error" path="surname" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="email" class="col-sm-3 control-label"><spring:message code="user.email"/>* </label>
+                        <label for="email" class="col-sm-3 control-label"><spring:message code="manager.email"/>* </label>
                         <div class="col-sm-9">
                             <form:input path="email" class="form-control"  id="email" placeholder="Email"/>
                             <form:errors class="error" path="email" />
                         </div>
                     </div>
                      <div class="form-group">
-                         <label for="inputUsername" class="col-sm-3 control-label"><spring:message code="user.username"/>*</label>
+                         <label for="inputUsername" class="col-sm-3 control-label"><spring:message code="manager.username"/>*</label>
                          <div class="col-sm-9">
                              <form:input path="username" class="form-control"  id="inputUsername" placeholder="Username" />
                              <form:errors class="error" path="username" />
                          </div>
                      </div>
                     <div class="form-group">
-                        <label for="password" class="col-sm-3 control-label"><spring:message code="user.password"/>*</label>
+                        <label for="password" class="col-sm-3 control-label"><spring:message code="manager.password"/>*</label>
                         <div class="col-sm-9">
                             <form:password path="password" class="form-control"  id="password" placeholder="Password"/>
                             <form:errors class="error" path="password" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><spring:message code="user.repeatPassword"/>*</label>
+                        <label class="col-sm-3 control-label"><spring:message code="manager.repeatPassword"/>*</label>
                         <div class="col-sm-9">
                             <form:password path="repeatPassword" class="form-control"  id="repeatPassword" placeholder="Password"/>
                             <form:errors class="error" path="repeatPassword"/>
@@ -70,13 +70,21 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="phone" class="col-sm-3 control-label"><spring:message code="user.phone"/> </label>
+                        <label for="phone" class="col-sm-3 control-label"><spring:message code="manager.phone"/> </label>
                         <div class="col-sm-9">
                             <form:input path="phone" class="form-control"  id="phone" placeholder="Phone"/>
                             <form:errors class="error" path="phone"/>
                             <span class="help-block">Your phone number won't be disclosed anywhere </span>
                         </div>
                     </div>
+
+                     <div class="form-group">
+                         <label for="postalAddresses" class="col-sm-3 control-label"><spring:message code="manager.postalAddresses"/> </label>
+                         <div class="col-sm-9">
+                             <form:input path="postalAddresses" class="form-control"  id="postalAddresses" />
+                             <form:errors class="error" path="postalAddresses"/>
+                         </div>
+                     </div>
 
                      <div class="form-group">
                      <label class="col-sm-3 control-label ">Terms of use</label>

@@ -26,14 +26,16 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private ActorService actorService;
-
-
     // Supporting services ----------------------------------------------------
 
     @Autowired
     private UserAccountService userAccountService;
+
+    @Autowired
+    private ActorService actorService;
+
+    @Autowired
+    private ProfileService profileService;
 
 
     // Constructors -----------------------------------------------------------
@@ -83,6 +85,8 @@ public class UserService {
         if(user.getId()==0){
             result = userRepository.save(user);
             folders = actorService.generateFolders(result);
+            Profile saved = profileService.generateProfileForActors(result);
+            result.setProfile(saved);
             result.setFolders(folders);
             result = userRepository.save(result);
         }else {

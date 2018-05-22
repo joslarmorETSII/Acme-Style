@@ -42,7 +42,6 @@ public class Profile extends DomainEntity{
         this.profilePhoto = profilePhoto;
     }
 
-    @NotBlank
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
     public String getEducation() {
         return education;

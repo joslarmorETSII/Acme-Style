@@ -29,6 +29,9 @@ public class ManagerService {
     @Autowired
     private ActorService actorService;
 
+    @Autowired
+    private ProfileService profileService;
+
     // Constructors -----------------------------------------------------------
 
     public ManagerService() {
@@ -69,6 +72,8 @@ public class ManagerService {
         if(artist.getId()==0){
             result = managerRepository.save(artist);
             folders = actorService.generateFolders(result);
+            Profile saved = profileService.generateProfileForActors(result);
+            result.setProfile(saved);
             result.setFolders(folders);
             result = managerRepository.save(result);
         }else {
