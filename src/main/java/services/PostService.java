@@ -111,4 +111,14 @@ public class PostService {
         this.postRepository.save(post);
     }
 
+    public void dislikePost(Post post){
+        post.setDislike(post.getDislike() + 1);
+        this.postRepository.save(post);
+    }
+
+    public void heartPost(Post post){
+        post.setHeart(post.getHeart() + 1);
+        this.postRepository.save(post);
+    }
+
 }

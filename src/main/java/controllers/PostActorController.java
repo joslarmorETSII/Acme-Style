@@ -137,6 +137,36 @@ public class PostActorController extends AbstractController{
         return result;
     }
 
+    @RequestMapping(value = "/dislike", method = RequestMethod.GET)
+    public ModelAndView dislike(@RequestParam int postId){
+        ModelAndView result;
+        Post post= postService.findOne(postId);
+
+        try{
+            postService.dislikePost(post);
+            result = new ModelAndView("redirect:list.do");
+        }catch (Throwable oops){
+            result = createEditModelAndView(post,"general.commit.error");
+        }
+
+        return result;
+    }
+
+    @RequestMapping(value = "/heart", method = RequestMethod.GET)
+    public ModelAndView heart(@RequestParam int postId){
+        ModelAndView result;
+        Post post= postService.findOne(postId);
+
+        try{
+            postService.heartPost(post);
+            result = new ModelAndView("redirect:list.do");
+        }catch (Throwable oops){
+            result = createEditModelAndView(post,"general.commit.error");
+        }
+
+        return result;
+    }
+
     // Ancillary methods ------------------------------------------------------
 
     protected ModelAndView createEditModelAndView(final Post post) {
