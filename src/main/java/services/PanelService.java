@@ -1,15 +1,17 @@
 package services;
 
+import domain.*;
 import domain.Panel;
-import domain.Photo;
-import domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import repositories.PanelRepository;
 
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
+import java.util.Collection;
 
 @Service
 @Transactional
@@ -24,6 +26,11 @@ public class PanelService {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private Validator validator;
+
+
 
     // Constructors -----------------------------------------------------------
 
@@ -45,16 +52,30 @@ public class PanelService {
         return result;
     }
 
+    public Collection<Panel> findAll(){
+        Collection<Panel> res;
+        res= panelRepository.findAll();
+        return  res;
+    }
+
     public Panel findOne(int panelId){
         return panelRepository.findOne(panelId);
     }
 
+    public Panel findOneToEdit(final int id) {
+        Panel res;
+
+        res= this.panelRepository.findOne(id);
+        Assert.isTrue(res.getUser().equals(userService.findByPrincipal()));
+        return  res;
+    }
+
+
     public Panel save(Panel panel){
         Assert.notNull(panel);
-        User principal;
+        User principal = this.userService.findByPrincipal();
         Panel result;
 
-        principal = userService.findByPrincipal();
         Assert.isTrue(panel.getUser().equals(principal));
         if(panel.getId()==0){
             result = panelRepository.save(panel);
@@ -73,6 +94,23 @@ public class PanelService {
 
     // Other business methods -------------------------------------------------
 
+
+    public Panel reconstructS(final Panel panelPruned, final BindingResult binding) {
+        Panel res;
+        if (panelPruned.getId() == 0) {
+            res = this.create();
+        } else {
+            res = this.findOne(panelPruned.getId());
+
+        }
+        res.setName(panelPruned.getName());
+
+        this.validator.validate(res,binding);
+
+        return res;
+
+
+    }
 
 
 }

@@ -33,7 +33,8 @@
 		<value>/views/message/messages</value>
 		<value>/views/servise/messages</value>
 		<value>/views/profile/messages</value>
-
+		<value>/views/panel/messages</value>
+		<value>/views/photo/messages</value>
 
 	</util:list>
 

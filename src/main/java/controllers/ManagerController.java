@@ -15,7 +15,7 @@ import services.ProfileService;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/managr")
+@RequestMapping("/manager")
 public class ManagerController extends AbstractController{
 
     // Services --------------------------------------------
