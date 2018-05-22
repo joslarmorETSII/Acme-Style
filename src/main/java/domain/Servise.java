@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Date;
@@ -48,6 +49,7 @@ public class Servise extends DomainEntity{
         this.description = description;
     }
 
+    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     public Date getPublicationDate() {
@@ -76,7 +78,7 @@ public class Servise extends DomainEntity{
         this.taboo = taboo;
     }
 
-
+    @NotNull
     public Double getPrice() {
         return price;
     }
