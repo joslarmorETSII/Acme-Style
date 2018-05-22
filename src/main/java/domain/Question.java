@@ -42,16 +42,16 @@ public class Question extends DomainEntity{
     }
 
     // Relationships ---------------------------------------------------------------------
-    private Servise service;
+    private Servise servise;
     private Collection<Answer> answers;
 
     @ManyToOne(optional = false)
-    public Servise getService() {
-        return service;
+    public Servise getServise() {
+        return servise;
     }
 
-    public void setService(Servise service) {
-        this.service = service;
+    public void setServise(Servise servise) {
+        this.servise = servise;
     }
     @OneToMany(mappedBy = "question")
     public Collection<Answer> getAnswers() {

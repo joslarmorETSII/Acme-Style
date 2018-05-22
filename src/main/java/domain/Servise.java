@@ -105,7 +105,7 @@ public class Servise extends DomainEntity{
 
     @Valid
     @NotNull
-    @OneToMany(mappedBy = "service")
+    @OneToMany(mappedBy = "servise")
     public Collection<Question> getQuestions() {
         return questions;
     }
@@ -116,7 +116,7 @@ public class Servise extends DomainEntity{
 
     @Valid
     @NotNull
-    @OneToMany(mappedBy = "service")
+    @OneToMany(mappedBy = "servise")
     public Collection<Subscription> getSubscriptions() {
         return subscriptions;
     }

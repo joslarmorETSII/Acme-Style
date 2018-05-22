@@ -37,7 +37,7 @@ public class StoreService {
         Store result;
 
         result = new Store();
-        result.setServices(new ArrayList<Servise>());
+        result.setServises(new ArrayList<Servise>());
         result.setEvents(new ArrayList<Event>());
 
         return result;

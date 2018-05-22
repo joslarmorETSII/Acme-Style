@@ -87,6 +87,7 @@ public class ServiseArtistController extends AbstractController{
 
     }
 
+
     //  Edition ----------------------------------------------------------------
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
@@ -119,7 +120,7 @@ public class ServiseArtistController extends AbstractController{
             if (binding.hasErrors()){
                 result = this.createEditModelAndView(servisePruned);
             }else{
-                result = this.createEditModelAndView(servisePruned, "newsPaper.commit.error");
+                result = this.createEditModelAndView(servisePruned, "general.commit.error");
             }
         }
         return result;
@@ -134,7 +135,7 @@ public class ServiseArtistController extends AbstractController{
             serviseService.delete(servise);
             result = new ModelAndView("redirect:list.do");
         }catch (Throwable oops){
-            result = createEditModelAndView(servise,"newsPaper.commit.error");
+            result = createEditModelAndView(servise,"general.commit.error");
         }
 
         return result;

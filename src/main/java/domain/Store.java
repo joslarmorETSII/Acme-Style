@@ -68,7 +68,7 @@ public class Store extends DomainEntity{
 
     // Relationships ----------------------------------------------------------------------
     private Manager manager;
-    private Collection<Servise> services;
+    private Collection<Servise> servises;
     private Collection<Event> events;
 
     @Valid
@@ -84,12 +84,12 @@ public class Store extends DomainEntity{
     @Valid
     @NotNull
     @ManyToMany
-    public Collection<Servise> getServices() {
-        return services;
+    public Collection<Servise> getServises() {
+        return servises;
     }
 
-    public void setServices(Collection<Servise> services) {
-        this.services = services;
+    public void setServises(Collection<Servise> servises) {
+        this.servises = servises;
     }
     @Valid
     @NotNull

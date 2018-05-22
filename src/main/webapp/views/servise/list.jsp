@@ -51,13 +51,25 @@
     <spring:message var="formatDate" code="event.format.date"/>
     <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
 
-
+    <security:authorize access="hasRole('USER')">
+        <display:column >
+                <acme:button url="servise/user/subscribe.do?serviseId=${row.id}" code="servise.subscribe"/>
+        </display:column>
+    </security:authorize>
 
 
     <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')" >
     <display:column >
             <acme:button url="servise/artist/display.do?serviseId=${row.id}" code="general.display"/>
     </display:column>
+    </security:authorize>
+
+    <security:authorize access="hasRole('USER')" >
+        <display:column>
+            <jstl:if test="${IsSuscribed ne false}">
+                <acme:button url="servise/user/display.do?serviseId=${servise.id}" code="general.display"/>
+            </jstl:if>
+        </display:column>
     </security:authorize>
 
     <security:authorize access="hasRole('ADMINISTRATOR')">

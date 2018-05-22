@@ -338,7 +338,7 @@
 		</property>
 		<property name="servises">
 			<list>
-				<ref bean="service1"/>
+				<ref bean="servise1"/>
 			</list>
 		</property>
 
@@ -393,7 +393,7 @@
 		<property name="gpsCoordinates" ref="gpsCoordinates1"/>
 		<property name="manager" ref="manager1"/>
 		<property name="title" value="ZARA"/>
-		<property name="services">
+		<property name="servises">
 			<list>
 				<null/>
 			</list>
@@ -416,7 +416,7 @@
 
 	<!-- Services-->
 
-	<bean id="service1" class="domain.Servise">
+	<bean id="servise1" class="domain.Servise">
 		<property name="title" value="Service1"/>
 		<property name="description" value="Description1"/>
 		<property name="publicationDate" value="01/01/2019 15:30"/>
@@ -546,7 +546,7 @@
 		<property name="creditCard" ref="creditCard2"/>
 		<property name="moment" value="02/01/2019 15:30"/>
 		<property name="user" ref="user1"/>
-		<property name="service" ref="service1"/>
+		<property name="servise" ref="servise1"/>
 	</bean>
 
 	<!-- Subscriptions -->

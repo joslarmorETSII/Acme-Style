@@ -1,6 +1,7 @@
 package services;
 
 import domain.*;
+import forms.SubscribeServiseForm;
 import forms.UserForm;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,9 @@ import security.UserAccount;
 
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 
 @Service
 @Transactional
@@ -173,5 +176,41 @@ public class UserService {
 
     public void flush() {
         userRepository.flush();
+    }
+
+    public CreditCard reconstructSubscribeServise(SubscribeServiseForm subscribeVolumeForm, BindingResult binding) {
+        CreditCard creditCard = new CreditCard();
+
+        creditCard.setBrand(subscribeVolumeForm.getBrand());
+        creditCard.setCvv(subscribeVolumeForm.getCvv());
+        creditCard.setExpirationMonth(subscribeVolumeForm.getExpirationMonth());
+        creditCard.setExpirationYear(subscribeVolumeForm.getExpirationYear());
+        creditCard.setHolder(subscribeVolumeForm.getHolder());
+        creditCard.setNumber(subscribeVolumeForm.getNumber());
+
+        checkMonth(subscribeVolumeForm.getExpirationMonth(),subscribeVolumeForm.getExpirationYear(),binding);
+        return creditCard;
+    }
+
+    private boolean checkMonth(Integer month, Integer year, BindingResult binding) {
+        FieldError error;
+        String[] codigos;
+        boolean result;
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        Integer actualMonth = c.get(Calendar.MONTH)+1;
+        Integer actualYear = c.get(Calendar.YEAR);
+
+        if (month!=null && year!=null)
+            result = actualYear.equals(year) && month<actualMonth;
+        else
+            result = false;
+        if (result) {
+            codigos = new String[1];
+            codigos[0] = "creditCard.month.invalid";
+            error = new FieldError("registerAdvertisementForm", "expirationMonth", month, false, codigos, null, "should not be in the past");
+            binding.addError(error);
+        }
+        return result;
     }
 }

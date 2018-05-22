@@ -38,6 +38,8 @@
 						</security:authorize>
 
 				<security:authorize access="isAuthenticated()">
+					<li><a href="servise/listServisesPublished.do"/><spring:message code="master.page.serviseAll" /></li>
+				</security:authorize>
 					<li><a href="post/actor/list.do"><span class="glyphicon glyphicon-pushpin"/> <spring:message code="master.page.posts" /></a> </li>
 
 					</security:authorize>
@@ -51,7 +53,6 @@
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="profile/actor/display.do"><span class="glyphicon glyphicon-user"/> <spring:message code="master.page.profile" /></a> </li>
 						<li><a href="folder/actor/list.do"><span class="glyphicon glyphicon-envelope"/> <spring:message code="master.page.mail" /></a> </li>
-						<li><a href="panel/user/list.do"><span class="glyphicon glyphicon-th-list"/> <spring:message code="master.page.panel" /></a> </li>
 						<li class="divider"></li>
 						<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-off"/> <spring:message code="master.page.logout"/></a></li>
 					</ul>
@@ -94,6 +95,8 @@
 		</div>
 	</div>
 </nav>
+
+
 
 <!-- Carousel -->
 <jstl:if test="${isIndex}">

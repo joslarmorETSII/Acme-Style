@@ -42,13 +42,13 @@
     </security:authorize>
 
     <security:authorize access="hasRole('ADMINISTRATOR')">
-        <jstl:if test="${ row.taboo ne false }">
+        <jstl:if test="${ servise.taboo ne false }">
             <acme:submit name="delete" code="general.delete"/>
         </jstl:if>
     </security:authorize>
 
     <security:authorize access="hasRole('USER')">
-        <jstl:if test="${newsPaper.id !=0}">
+        <jstl:if test="${servise.id !=0}">
             <acme:submit name="delete" code="newsPaper.delete"/>
         </jstl:if>
     </security:authorize>

@@ -11,6 +11,7 @@ import org.springframework.validation.Validator;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -73,6 +74,7 @@ public class ServiseService {
 
     public Servise save(Servise servise){
         Assert.notNull(servise);
+        Assert.isTrue(servise.getPublicationDate().after(new Date()));
 
         return serviseRepository.save(servise);
     }
@@ -152,4 +154,10 @@ public class ServiseService {
 
         return result;
     }
+
+    public Collection<Servise> servisesPublished(){
+        return serviseRepository.servisesPublished();
+    }
+
+
 }
