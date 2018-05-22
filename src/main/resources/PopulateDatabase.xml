@@ -293,7 +293,7 @@
 			<list>
 			</list>
 		</property>
-		<property name="services">
+		<property name="servises">
 			<list>
 			</list>
 		</property>
@@ -336,7 +336,7 @@
 			<list>
 			</list>
 		</property>
-		<property name="services">
+		<property name="servises">
 			<list>
 				<ref bean="service1"/>
 			</list>
@@ -354,7 +354,7 @@
 		<property name="postalAddresses" value="C\ Reina Mercedes Bloque 25"/>
 		<property name="userAccount" ref="userAccount5"/>
 		<property name="profile" ref ="profile2"/>
-		<property name="services">
+		<property name="servises">
 			<list>
 			</list>
 		</property>
