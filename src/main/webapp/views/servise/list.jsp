@@ -31,7 +31,7 @@
     <b><spring:message code="servise.allTaboo"/></b>
     </security:authorize>
 
-<display:table name="servises" id="row" pagesize="5" class="displaytag" requestURI="${requestURI}">
+<display:table name="servises" id="row" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}">
 
 
     <display:column>
