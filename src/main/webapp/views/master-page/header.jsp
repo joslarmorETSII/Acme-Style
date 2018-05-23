@@ -39,10 +39,8 @@
 
 				<security:authorize access="isAuthenticated()">
 					<li><a href="servise/listServisesPublished.do"/><spring:message code="master.page.serviseAll" /></li>
-				</security:authorize>
 					<li><a href="post/actor/list.do"><span class="glyphicon glyphicon-pushpin"/> <spring:message code="master.page.posts" /></a> </li>
-
-					</security:authorize>
+				</security:authorize>
 
 				<!-- USER -->
 				<security:authorize access="hasRole('USER')">
