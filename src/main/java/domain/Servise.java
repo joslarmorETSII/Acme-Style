@@ -71,7 +71,7 @@ public class Servise extends DomainEntity{
         this.picture = picture;
     }
 
-    public boolean isTaboo() {
+    public boolean getTaboo() {
         return taboo;
     }
 

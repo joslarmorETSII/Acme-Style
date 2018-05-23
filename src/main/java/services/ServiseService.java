@@ -9,6 +9,8 @@ import repositories.ServiseRepository;
 import org.springframework.validation.Validator;
 
 import org.springframework.transaction.annotation.Transactional;
+import security.Authority;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -25,6 +27,8 @@ public class ServiseService {
     @Autowired
     private ServiseRepository serviseRepository;
 
+
+
     // Supporting services ----------------------------------------------------
 
     @Autowired
@@ -38,6 +42,12 @@ public class ServiseService {
 
     @Autowired
     private ConfigurationService configurationService;
+
+    @Autowired
+    private AdministratorService administratorService;
+
+    @Autowired
+    private SubscribeService subscribeService;
 
 
     // Constructors -----------------------------------------------------------
@@ -76,13 +86,17 @@ public class ServiseService {
     public Servise save(Servise servise){
         Assert.notNull(servise);
         servise.setPublicationDate(new Date(System.currentTimeMillis()-1000));
+        if(isTabooServise(servise)){
+            servise.setTaboo(true);
+        }
        // Assert.isTrue(servise.getPublicationDate().after(new Date()));
 
         return serviseRepository.save(servise);
     }
 
     public void delete(Servise servise){
-        Assert.isTrue(actorService.findByPrincipal().equals(servise.getCreator()),"Not the creator of this Service");
+        Assert.isTrue(checkByPrincipalAdmin(servise)||actorService.findByPrincipal().equals(servise.getCreator()),"Not the creator of this Service" );
+        subscribeService.deleteAll(servise.getSubscriptions());
         serviseRepository.delete(servise);
     }
 
@@ -158,13 +172,30 @@ public class ServiseService {
         return result;
     }
 
-    public Collection<Servise> servisesPublished(){
-        return serviseRepository.servisesPublished();
-    }
+
 
     public Double finalPrice(Servise servise){
         return servise.getPrice()-(servise.getPrice()*(servise.getDiscount()/100));
 
     }
 
+    public Collection<Servise> servisesPerCreator(int creatorId){
+        return serviseRepository.servisesPerCreator(creatorId);
+    }
+
+    public Collection<Servise> servisesTaboo(){
+        return serviseRepository.servisesTaboo();
+    }
+
+    public boolean checkByPrincipalAdmin(Servise servise){
+        Boolean res= false;
+        Administrator administrator = administratorService.findByPrincipal();
+        if(administrator!=null) {
+            Collection<Authority> authorities = administrator.getUserAccount().getAuthorities();
+            String authority = authorities.toArray()[0].toString();
+            res = authority.equals("ADMINISTRATOR");
+        }
+        return res;
+
+    }
 }

@@ -9,6 +9,9 @@ import java.util.Collection;
 
 @Repository
 public interface ServiseRepository  extends JpaRepository<Servise,Integer>{
-    @Query("select s from Servise s where s.publicationDate <= CURRENT_TIMESTAMP ")
-    Collection<Servise> servisesPublished();
+    @Query("select s from Servise s where s.creator.id =?1")
+    Collection<Servise> servisesPerCreator(int creatorId);
+
+    @Query("select s from Servise s where s.taboo =true")
+    Collection<Servise> servisesTaboo();
 }

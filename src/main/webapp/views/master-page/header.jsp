@@ -86,7 +86,11 @@
 				<!-- Manager -->
 				<security:authorize access="hasRole('MANAGER')">
 					<li><a href="servise/listServisesPublished.do"><spring:message code="master.page.serviseAll" /></a></li>
-					<li><a href="event/manager/list.do"><spring:message code="master.page.event" /></a></li>
+				</security:authorize>
+
+				<!-- Admin -->
+				<security:authorize access="hasRole('ADMINISTRATOR')">
+					<li><a href="servise/listServisesPublished.do"><spring:message code="master.page.serviseAll" /></a></li>
 				</security:authorize>
 			</ul>
 

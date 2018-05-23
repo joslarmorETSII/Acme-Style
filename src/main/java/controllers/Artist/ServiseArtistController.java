@@ -59,6 +59,7 @@ public class ServiseArtistController extends AbstractController{
     public ModelAndView list() {
         ModelAndView result;
         Artist artist;
+
         Collection<Servise> servises=new ArrayList<>();
 
 
@@ -68,6 +69,7 @@ public class ServiseArtistController extends AbstractController{
         result = new ModelAndView("servise/list");
         result.addObject("servises", servises);
         result.addObject("artist",artist);
+        result.addObject("isPublished",true);
         result.addObject("requestURI","servise/artist/list.do");
 
 
@@ -135,16 +137,19 @@ public class ServiseArtistController extends AbstractController{
     public ModelAndView display(@RequestParam final int serviseId) {
         ModelAndView result;
         Servise servise= null;
+        Double finalPrice;
 
 
 
         servise = this.serviseService.findOne(serviseId);
+        finalPrice= serviseService.finalPrice(servise);
 
 
 
         result = new ModelAndView("servise/display");
         result.addObject("servise", servise);
-        result.addObject("cancelURI", "servise/artist/list.do");
+        result.addObject("finalPrice",finalPrice);
+        result.addObject("cancelURI", "servise/listServisesPublished.do");
 
 
         return result;

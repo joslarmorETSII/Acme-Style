@@ -36,7 +36,9 @@
 
     <display:column>
         <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')" >
+            <jstl:if test="${isPublished eq true}">
                  <acme:button url="servise/artist/edit.do?serviseId=${row.id}" code="general.edit" />
+            </jstl:if>
          </security:authorize>
     </display:column>
 
@@ -95,7 +97,7 @@
 <security:authorize access="hasRole('ADMINISTRATOR')">
 <fieldset>
     <b><spring:message code="servise.all"/></b>
-<display:table name="allServises" id="row" pagesize="5" class="displaytag" requestURI="${requestUri}">
+<display:table name="allServises" id="row" pagesize="5" class="table table-striped table-hover" requestURI="${requestUri}">
 
     <acme:column code="servise.creator" value="${row.creator.name} " />
     <acme:column code="servise.title" value="${row.title}"/>
@@ -125,4 +127,4 @@
 </security:authorize>
 
 
-<acme:cancel code="general.cancel" url="${cancelUri}"/>
+<acme:cancel code="general.cancel" url="${cancelURI}"/>

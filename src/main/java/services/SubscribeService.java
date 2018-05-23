@@ -58,6 +58,10 @@ public class SubscribeService {
         subscriptionRepository.delete(subscription);
     }
 
+    public void deleteAll(Collection<Subscription> subscriptions){
+        subscriptionRepository.delete(subscriptions);
+    }
+
     public Subscription save(Subscription subscription){
         //Assert.isTrue(subscription.getServise().getPublicationDate().after(new Date()),"Service not published yet");
         subscription.setMoment(new Date());
