@@ -35,68 +35,63 @@
 							<li><a href="artist/register.do"><spring:message code="master.page.artist" /></a> </li>
 							<li><a href="managr/register.do"><spring:message code="master.page.manager" /></a> </li>
 						</ul>
-						</security:authorize>
+					</li>
+				</security:authorize>
 
 				<security:authorize access="isAuthenticated()">
-					<li><a href="servise/listServisesPublished.do"/><spring:message code="master.page.serviseAll" /></li>
-
-					<li><a href="post/actor/list.do"><span class="glyphicon glyphicon-pushpin"/> <spring:message code="master.page.posts" /></a> </li>
-				</security:authorize>
-
-				<!-- USER -->
-				<security:authorize access="hasRole('USER')">
-				<li class="dorpdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >
-						 <spring:message code="master.page.user" /> <span class="caret"/>
-					</a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="profile/actor/display.do"><span class="glyphicon glyphicon-user"/> <spring:message code="master.page.profile" /></a> </li>
-						<li><a href="folder/actor/list.do"><span class="glyphicon glyphicon-envelope"/> <spring:message code="master.page.mail" /></a> </li>
-						<li class="divider"></li>
-						<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-off"/> <spring:message code="master.page.logout"/></a></li>
-					</ul>
-				</li>
-					<li><a href="servise/user/listServisesToSubscribe.do"/><spring:message code="master.page.listServisesToSubscribe" /></li>
-					<li><a href="servise/user/list.do"/><spring:message code="master.page.list" /></li>
-				</security:authorize>
-
-				<!-- Artist -->
-				<security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')">
 					<li class="dorpdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >
-							<spring:message code="master.page.artist" /> <span class="caret"/>
-						</a>
+						<security:authorize access="hasRole('USER')">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >
+								<spring:message code="master.page.user" /> <span class="caret"/>
+							</a>
+						</security:authorize>
+						<security:authorize access="hasRole('MANAGER')">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >
+								<spring:message code="master.page.manager" /> <span class="caret"/>
+							</a>
+						</security:authorize>
+						<security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >
+								<spring:message code="master.page.artist" /> <span class="caret"/>
+							</a>
+						</security:authorize>
+						<security:authorize access="hasRole('ADMINISTRATOR')">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >
+								<spring:message code="master.page.administrator" /> <span class="caret"/>
+							</a>
+						</security:authorize>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="profile/actor/display.do"><span class="glyphicon glyphicon-user"/> <spring:message code="master.page.profile" /></a> </li>
 							<li><a href="folder/actor/list.do"><span class="glyphicon glyphicon-envelope"/> <spring:message code="master.page.mail" /></a> </li>
+							<li><a href="post/actor/list.do"><span class="glyphicon glyphicon-pushpin"/> <spring:message code="master.page.posts" /></a> </li>
+							<li><a href="user/search.do?keyword="><span class="glyphicon glyphicon-search"/> <spring:message code="master.page.search" /></a></li>
 							<li class="divider"></li>
 							<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-off"/> <spring:message code="master.page.logout"/></a></li>
 						</ul>
 					</li>
-					<li><a href="servise/artist/list.do"/><spring:message code="master.page.servise" /></li>
-                    <li><a href="servise/listServisesPublished.do"/><spring:message code="master.page.serviseAll" /></li>
+				</security:authorize>
 
-                </security:authorize>
-					<!-- Manager -->
-					<security:authorize access="hasRole('MANAGER')">
-						<li class="dorpdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >
-								<spring:message code="master.page.manager" /> <span class="caret"/>
-							</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="profile/actor/display.do"><span class="glyphicon glyphicon-user"/> <spring:message code="master.page.profile" /></a> </li>
-								<li><a href="folder/actor/list.do"><span class="glyphicon glyphicon-envelope"/> <spring:message code="master.page.mail" /></a> </li>
-								<li class="divider"></li>
-								<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-off"/> <spring:message code="master.page.logout"/></a></li>
-							</ul>
-						</li>
-                        <li><a href="servise/listServisesPublished.do"/><spring:message code="master.page.serviseAll" /></li>
+					<!-- USER -->
+				<security:authorize access="hasRole('USER')">
+						<li><a href="servise/user/listServisesToSubscribe.do"><spring:message code="master.page.listServisesToSubscribe" /></a></li>
+						<li><a href="servise/user/list.do"><spring:message code="master.page.list" /></a></li>
+				</security:authorize>
 
-                    </security:authorize>
+				<!-- Artist -->
+				<security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')">
+					<li><a href="servise/artist/list.do"><spring:message code="master.page.servise" /></a></li>
+					<li><a href="servise/listServisesPublished.do"><spring:message code="master.page.serviseAll" /></a></li>
+				</security:authorize>
+
+				<!-- Manager -->
+				<security:authorize access="hasRole('MANAGER')">
+					<li><a href="servise/listServisesPublished.do"><spring:message code="master.page.serviseAll" /></a></li>
+					<li><a href="event/manager/list.do"><spring:message code="master.page.event" /></a></li>
+				</security:authorize>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="user/search.do?keyword="><span class="glyphicon glyphicon-search"/></a></li>
-			</ul>
+
+
+
 		</div>
 	</div>
 </nav>
