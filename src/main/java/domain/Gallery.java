@@ -17,7 +17,7 @@ public class Gallery extends DomainEntity{
 
     public Gallery() { super();}
 
-    // Attributes ------------------------------------------------------------------------
+    // Attributes ----------------------------------------profile--------------------------------
 
     private String picture;
 

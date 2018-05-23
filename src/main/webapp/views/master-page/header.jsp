@@ -73,18 +73,42 @@
 
 					<!-- USER -->
 				<security:authorize access="hasRole('USER')">
-						<li><a href="servise/user/listServisesToSubscribe.do"><spring:message code="master.page.listServisesToSubscribe" /></a></li>
-						<li><a href="servise/user/list.do"><spring:message code="master.page.list" /></a></li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><spring:message code="master.page.servise" /> </a>
+						<ul class="dropdown-menu">
+							<li><a href="servise/user/listServisesToSubscribe.do"><spring:message code="master.page.listServisesToSubscribe" /></a></li>
+							<li><a href="servise/user/list.do"><spring:message code="master.page.list" /></a></li>
+						</ul>
+					</li>
+
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><spring:message code="master.page.event" /> </a>
+						<ul class="dropdown-menu">
+							<li><a href="event/user/list.do"><spring:message code="master.page.event.toSubscribe" /></a></li>
+							<li><a href="event/user/listParticipated.do"><spring:message code="master.page.event.my" /></a></li>
+						</ul>
+					</li>
 				</security:authorize>
 
 				<!-- Artist -->
 				<security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')">
-					<li><a href="servise/artist/list.do"><spring:message code="master.page.servise" /></a></li>
-					<li><a href="servise/listServisesPublished.do"><spring:message code="master.page.serviseAll" /></a></li>
+
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><spring:message code="master.page.servise" /> </a>
+						<ul class="dropdown-menu">
+							<li><a href="servise/artist/list.do"><spring:message code="master.page.servise.my" /></a></li>
+							<li><a href="servise/listServisesPublished.do"><spring:message code="master.page.serviseAll" /></a></li>
+						</ul>
+					</li>
+					<li><a href="event/list.do"><spring:message code="master.page.event" /></a></li>
+
+
 				</security:authorize>
 
 				<!-- Manager -->
 				<security:authorize access="hasRole('MANAGER')">
+					<li><a href="servise/listServisesPublished.do"><spring:message code="master.page.serviseAll" /></a></li>
+				</security:authorize>
+
+				<!-- Admin -->
+				<security:authorize access="hasRole('ADMINISTRATOR')">
 					<li><a href="servise/listServisesPublished.do"><spring:message code="master.page.serviseAll" /></a></li>
 				</security:authorize>
 

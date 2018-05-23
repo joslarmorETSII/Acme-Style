@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
-import repositories.EventRepository;
 import repositories.ParticipateRepository;
-import security.Authority;
 
 import java.util.Collection;
 import java.util.Date;
@@ -26,6 +24,9 @@ public class ParticipateService {
     @Autowired
     private ActorService actorService;
 
+    @Autowired
+    private UserService userService;
+
     // Constructors -----------------------------------------------------------
 
     public ParticipateService() {
@@ -39,6 +40,7 @@ public class ParticipateService {
 
         result= new Participate();
         result.setMoment(new Date());
+        result.setUser(userService.findByPrincipal());
         return result;
     }
 
@@ -59,10 +61,9 @@ public class ParticipateService {
     }
 
     public Participate save(Participate participate){
-        User user= participate.getUser();
 
         Assert.notNull(participate);
-        Assert.isTrue(actorService.findByPrincipal().equals(user));
+        participate.setMoment(new Date());
         return participateRepository.save(participate);
     }
 

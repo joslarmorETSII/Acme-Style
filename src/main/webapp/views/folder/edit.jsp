@@ -29,14 +29,23 @@
             <form:hidden path="messages"/>
             <form:hidden path="actor"/>
 
-            <acme:textbox code="messageFolder.name" path="name"/>
-            <br />
 
+            <div class="form-group">
+                <label  class="col-sm-3 control-label"><spring:message code="messageFolder.name"/> </label>
+                <div class="col-sm-9">
+                    <form:input path="name" class="form-control"/>
+                    <form:errors class="error" path="name"/>
+                </div>
+            </div>
+
+
+            <div class="form-group last">
+                <div class="col-sm-offset-3 col-sm-9">
             <acme:submit name="save" code="general.save"/>
 
             <acme:cancel url="folder/actor/list.do" code="general.cancel"/>
-
-            <br />
+                </div>
+            </div>
 
         </form:form>
         </div>

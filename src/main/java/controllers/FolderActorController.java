@@ -122,14 +122,12 @@ public class FolderActorController extends AbstractController {
         ModelAndView result;
         if (binding.hasErrors()) {
             result = createEditModelAndView(folder);
-            System.out.println(binding);
         } else
             try {
                 Assert.isTrue(this.actorService.findByPrincipal().getId() == folder.getActor().getId());
                 this.folderService.save(folder);
                 result = new ModelAndView("redirect:/folder/actor/list.do");
             } catch (final Throwable oops) {
-                System.out.println(oops.toString());
                 result = this.createEditModelAndView(folder, "folder.commit.error.2");
             }
 

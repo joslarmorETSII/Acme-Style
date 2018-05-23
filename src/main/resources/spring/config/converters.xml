@@ -72,6 +72,8 @@
 		<bean class="converters.StringToStoreConverter" />
 		<bean class="converters.PostToStringConverter" />
 		<bean class="converters.StringToPostConverter" />
+		<bean class="converters.ParticipateToStringConverter"/>
+		<bean class="converters.StringToParticipateConverter"/>
 	</util:list>
 	
 </beans>

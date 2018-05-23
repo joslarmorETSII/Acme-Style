@@ -35,6 +35,9 @@
 		<value>/views/profile/messages</value>
 		<value>/views/panel/messages</value>
 		<value>/views/photo/messages</value>
+		<value>/views/gallery/messages</value>
+		<value>/views/event/messages</value>
+
 
 	</util:list>
 

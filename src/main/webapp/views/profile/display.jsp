@@ -29,6 +29,9 @@
                             <span class="btn-label"><i class="fa fa-pencil"></i></span><spring:message code="general.edit"/>
                         </a>
                         </jstl:if>
+                        <a  class="btn btn-labeled btn-info" href="gallery/actor/list.do?profileId=${profile.id}">
+                            <span class="glyphicon glyphicon-picture"></span> <spring:message code="master.page.gallery"/>
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-6 no-pad">
