@@ -94,8 +94,6 @@
 		</property>
 	</bean>
 
-	<!-- Other domain beans come here -->
-
 	<!-- Admin -->
 
 	<bean id="administrator" class="domain.Administrator">
@@ -155,7 +153,7 @@
 		</property>
 		<property name="events">
 			<list>
-				<null />
+				<ref bean="event1" />
 			</list>
 		</property>
 		<property name="folders">
@@ -208,7 +206,7 @@
 		</property>
 		<property name="participates">
 			<list>
-				<null/>
+				<ref bean="participate1"/>
 			</list>
 		</property>
 		<property name="followings">
@@ -231,12 +229,14 @@
 		</property>
 		<property name="comments">
 			<list>
-				<null />
+				<ref bean="comment1" />
 			</list>
 		</property>
 		<property name="feedbacks">
 			<list>
-				<null />
+				<ref bean="feedback1" />
+				<ref bean="feedback2" />
+				<ref bean="feedback3" />
 			</list>
 		</property>
 		<property name="panels">
@@ -251,7 +251,7 @@
 		</property>
 		<property name="raffles">
 			<list>
-				<null/>
+				<ref bean="raffle1"/>
 			</list>
 		</property>
 		<property name="profile" ref="profile4"/>
@@ -299,7 +299,42 @@
 		</property>
 	</bean>
 
+	<!-- Galleries -->
+
+	<bean id="gallery1" class="domain.Gallery" >
+		<property name="picture" value="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" />
+		<property name="profile" ref="profile1" />
+	</bean>
+
+	<bean id="gallery2" class="domain.Gallery" >
+		<property name="picture" value="https://image.freepik.com/free-icon/male-user-profile-picture_318-37825.jpg" />
+		<property name="profile" ref="profile1" />
+	</bean>
+
+	<bean id="gallery3" class="domain.Gallery" >
+		<property name="picture" value="http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png" />
+		<property name="profile" ref="profile1" />
+	</bean>
+
+	<bean id="gallery4" class="domain.Gallery" >
+		<property name="picture" value="https://www.profilegroup.co.nz/wp-content/uploads/2015/12/au.png" />
+		<property name="profile" ref="profile1" />
+	</bean>
+
+	<bean id="gallery5" class="domain.Gallery" >
+		<property name="picture" value="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" />
+		<property name="profile" ref="profile1" />
+	</bean>
+
+	<bean id="gallery6" class="domain.Gallery" >
+		<property name="picture" value="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" />
+		<property name="profile" ref="profile1" />
+	</bean>
+
+
+
 	<!-- Photographer -->
+
 	<bean id="photographer1" class="domain.Artist">
 
 		<property name="name" value="Yassine"/>
@@ -406,8 +441,69 @@
 
 	</bean>
 
+	<bean id="store2" class="domain.Store">
+		<property name="banner" value="https://www.stradivarius.com/es/"/>
+		<property name="creditCard" ref="creditCard1"/>
+		<property name="gpsCoordinates" ref="gpsCoordinates2"/>
+		<property name="manager" ref="manager1"/>
+		<property name="title" value="Stradivarius"/>
+		<property name="servises">
+			<list>
+				<ref bean="servise2"/>
+			</list>
+		</property>
+		<property name="events">
+			<list>
+				<ref bean="event1"/>
+			</list>
+		</property>
+
+	</bean>
+
+	<!-- Events -->
+
+	<bean id="event1" class="domain.Event">
+		<property name="title" value="Titulo 1 de evento de prueba"/>
+		<property name="description" value="Descripcion 1 de evento de prueba"/>
+		<property name="moment" value="01/01/2019 15:30"/>
+		<property name="tipo" value="MASTERCLASS"/>
+		<property name="price" value="200.0" />
+		<property name="celebrationDate" value="01/01/2019 15:30" />
+		<property name="location" ref="gpsCoordinates3"/>
+		<property name="manager" ref="manager1"/>
+		<property name="participates" >
+			<list>
+				<ref bean="participate1" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Participates -->
+
+	<bean id="participate1" class="domain.Participate" >
+		<property name="moment" value="02/02/2018 13:00" />
+		<property name="creditCard" ref ="creditCard2" />
+		<property name="user" ref="user1"/>
+		<property name="event" ref="event1" />
+	</bean>
+
 	<!-- GpsCoordinates -->
+
 	<bean id="gpsCoordinates1" class="domain.GpsCoordinates">
+
+		<property name="name" value="Sevilla"/>
+		<property name="longitude" value="100.0"/>
+		<property name="latitude" value="80.0"/>
+	</bean>
+
+	<bean id="gpsCoordinates2" class="domain.GpsCoordinates">
+
+		<property name="name" value="Sevilla"/>
+		<property name="longitude" value="150.0"/>
+		<property name="latitude" value="80.0"/>
+	</bean>
+
+	<bean id="gpsCoordinates3" class="domain.GpsCoordinates">
 
 		<property name="name" value="Sevilla"/>
 		<property name="longitude" value="100.0"/>
@@ -447,10 +543,115 @@
 		</property>
 	</bean>
 
+	<bean id="servise2" class="domain.Servise">
+		<property name="title" value="Service2"/>
+		<property name="description" value="Description2"/>
+		<property name="publicationDate" value="01/01/2019 15:30"/>
+		<property name="picture" value="http://www.image.com"/>
+		<property name="taboo" value="false"/>
+		<property name="price" value="80.0"/>
+		<property name="discount" value="0"/>
+		<property name="questions">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="subscriptions">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="creator" ref="photographer1"/>
+		<property name="stores">
+			<list>
+				<ref bean="store2"/>
+			</list>
+		</property>
+		<property name="feedbacks">
+			<list>
+				<null/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="servise3" class="domain.Servise">
+		<property name="title" value="Service3"/>
+		<property name="description" value="Description3"/>
+		<property name="publicationDate" value="01/01/2019 15:30"/>
+		<property name="picture" value="http://www.image.com"/>
+		<property name="taboo" value="false"/>
+		<property name="price" value="150.0"/>
+		<property name="discount" value="0"/>
+		<property name="questions">
+			<list>
+				<ref bean="question1" />
+			</list>
+		</property>
+		<property name="subscriptions">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="creator" ref="photographer1"/>
+		<property name="stores">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="feedbacks">
+			<list>
+				<ref bean="feedback1" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Questions -->
+
+	<bean id="question1" class="domain.Question">
+		<property name="text" value="¿Pregunta numero 1?" />
+		<property name="moment" value="01/01/2018 15:30" />
+		<property name="servise" ref="servise3"/>
+		<property name="answers" ref="answer1" />
+	</bean>
+
+	<!-- Answers -->
+
+	<bean id="answer1" class="domain.Answer">
+		<property name="text" value="Respuesta de prueba a la pregunta 1" />
+		<property name="moment" value="02/01/2018 15:30" />
+		<property name="question" ref="question1"/>
+	</bean>
+
+	<!-- Feedback -->
+
+	<bean id="feedback1" class="domain.Feedback" >
+		<property name="text" value="Feedback 1 de prueba"/>
+		<property name="points" value="3"/>
+		<property name="moment" value="02/04/2018 15:30"/>
+		<property name="user" ref="user1" />
+		<property name="servise" ref="servise3" />
+	</bean>
+
+	<bean id="feedback2" class="domain.Feedback" >
+		<property name="text" value="Feedback 2 de prueba"/>
+		<property name="points" value="1"/>
+		<property name="moment" value="02/04/2018 15:30"/>
+		<property name="user" ref="user1" />
+		<property name="servise" ref="servise2" />
+	</bean>
+
+	<bean id="feedback3" class="domain.Feedback" >
+		<property name="text" value="Feedback 3 de prueba"/>
+		<property name="points" value="5"/>
+		<property name="moment" value="02/04/2018 15:30"/>
+		<property name="user" ref="user1" />
+		<property name="servise" ref="servise1" />
+	</bean>
+
 	<!-- Categories -->
 
 	<bean id="category1" class="domain.Category">
-		<property name="name" value="CATEGORY1"/>
+		<property name="name" value="WEDDING"/>
 		<property name="posts">
 			<list>
 				<null/>
@@ -458,12 +659,65 @@
 		</property>
 	</bean>
 
-	<!-- Galleries -->
+	<bean id="category2" class="domain.Category">
+		<property name="name" value="BAPTISM"/>
+		<property name="posts">
+			<list>
+				<null/>
+			</list>
+		</property>
+	</bean>
 
-	<bean id="gallery1" class="domain.Gallery">
-		<property name="picture" value="http://www.gallery.com"/>
-		<property name="profile" ref="profile1"/>
+	<bean id="category3" class="domain.Category">
+		<property name="name" value="COMMUION"/>
+		<property name="posts">
+			<list>
+				<null/>
+			</list>
+		</property>
+	</bean>
 
+	<bean id="category4" class="domain.Category">
+		<property name="name" value="GRADUATION"/>
+		<property name="posts">
+			<list>
+				<null/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Posts -->
+
+	<bean id="post1" class="domain.Post" >
+		<property name="title" value="Esto es un post de prueba"/>
+		<property name="moment" value="13/03/2018 12:00"/>
+		<property name="description" value="Esto es una descripcion de prueba para el post 1"/>
+		<property name="picture"  value="https://about.canva.com/wp-content/uploads/sites/3/2017/02/congratulations_-banner.png"/>
+		<property name="lik" value="0"/>
+		<property name="dislike" value="0"/>
+		<property name="heart" value="0"/>
+		<property name="actor" ref="stylist1" />
+		<property name="raffle" ref="raffle1" />
+		<property name="comments">
+			<list>
+				<ref bean="comment1"/>
+			</list>
+		</property>
+		<property name="categories">
+			<list>
+				<ref bean="category1"/>
+				<ref bean="category2" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Comments -->
+
+	<bean id="comment1" class="domain.Comment" >
+		<property name="text" value="Comentario de prueba" />
+		<property name="moment" value="01/01/2018 13:00" />
+		<property name="post" ref="post1" />
+		<property name="actor" ref="user1" />
 	</bean>
 
 	<!-- Profiles -->
@@ -475,7 +729,7 @@
 		<property name="actor" ref="photographer1"/>
 		<property name="galleries">
 			<list>
-				<null/>
+				<ref bean="gallery1"/>
 			</list>
 		</property>
 	</bean>
@@ -487,7 +741,7 @@
 		<property name="actor" ref="makeUpArtist1"/>
 		<property name="galleries">
 			<list>
-				<null/>
+				<ref bean="gallery2"/>
 			</list>
 		</property>
 	</bean>
@@ -499,7 +753,7 @@
 		<property name="actor" ref="stylist1"/>
 		<property name="galleries">
 			<list>
-				<null/>
+				<ref bean="gallery3"/>
 			</list>
 		</property>
 	</bean>
@@ -511,7 +765,7 @@
 		<property name="actor" ref="user1"/>
 		<property name="galleries">
 			<list>
-				<null/>
+				<ref bean="gallery4"/>
 			</list>
 		</property>
 	</bean>
@@ -523,7 +777,7 @@
 		<property name="actor" ref="manager1"/>
 		<property name="galleries">
 			<list>
-				<null/>
+				<ref bean="gallery5"/>
 			</list>
 		</property>
 	</bean>
@@ -535,7 +789,7 @@
 		<property name="actor" ref="administrator"/>
 		<property name="galleries">
 			<list>
-				<null/>
+				<ref bean="gallery6"/>
 			</list>
 		</property>
 	</bean>
@@ -548,11 +802,6 @@
 		<property name="user" ref="user1"/>
 		<property name="servise" ref="servise1"/>
 	</bean>
-
-	<!-- Subscriptions -->
-
-
-
 
 	<!-- Folders -->
 
@@ -838,9 +1087,79 @@
 		<property name="actor" ref="makeUpArtist1" />
 	</bean>
 
+	<!-- Messages -->
 
+	<bean id="message1" class="domain.Message" >
+		<property name="moment" value="11/03/2017 12:00"/>
+		<property name="subject" value="Mensaje de prueba" />
+		<property name="body" value ="Hola buenas tardes, esta aplicacion es una maquina."/>
+		<property name="priority" value="HIGH"/>
+		<property name="folder" ref="outbox6"/>
+		<property name="actorSender" ref="stylist1"/>
+		<property name="actorReceivers" >
+			<list>
+				<ref bean="photographer1" />
+			</list>
+		</property>
 
+	</bean>
 
+	<bean id="message2" class="domain.Message" >
+		<property name="moment" value="11/03/2017 12:00"/>
+		<property name="subject" value="Mensaje de prueba" />
+		<property name="body" value ="Hola buenas tardes, esta aplicacion es una maquina."/>
+		<property name="priority" value="HIGH"/>
+		<property name="folder" ref="inbox5"/>
+		<property name="actorSender" ref="stylist1"/>
+		<property name="actorReceivers" >
+			<list>
+				<ref bean="photographer1" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Panels -->
+
+	<bean id="panel1" class="domain.Panel">
+
+		<property name="name" value="Mejores fotos"/>
+		<property name="user" ref="user1"/>
+		<property name="photos">
+			<list>
+				<ref bean="photo1" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Photos -->
+
+	<bean id="photo1" class="domain.Photo" >
+		<property name="url" value="http://www.canalpatrimonio.com/wp-content/uploads/2017/05/CanalPatrimonio_musica_Stradivarius_PNAS_Phys-e1494399689892.jpg"/>
+		<property name="description" value="Esto es una foto de prueba para el panel 1"/>
+		<property name="panel" ref="panel1"/>
+	</bean>
+
+	<bean id="photo2" class="domain.Photo" >
+		<property name="url" value="https://st-listas.20minutos.es/images/2013-01/352618/3872086_640px.jpg?1358196852"/>
+		<property name="description" value="Esto es una foto de prueba para el panel 1"/>
+		<property name="panel" ref="panel1"/>
+	</bean>
+
+	<!-- Raffles -->
+
+	<bean id="raffle1" class="domain.Raffle">
+
+		<property name="title" value="Titulo 1 para raffle 1"/>
+		<property name="description" value="Esto es una descripcion de prueba para el rafle 1"/>
+		<property name="endDate" value="02/09/2018 12:00"/>
+		<property name="reward" value="Obten un aprobado en DP"/>
+		<property name="post" ref="post1"/>
+		<property name="users">
+			<list>
+				<ref bean="user1" />
+			</list>
+		</property>
+	</bean>
 
 	<!-- Configuration -->
 
