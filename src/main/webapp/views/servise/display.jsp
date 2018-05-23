@@ -25,12 +25,23 @@
 <b><spring:message code="servise.creator.name"/>:&nbsp; </b><jstl:out value="${servise.creator.name}"/>
 <br/>
 
+<b><spring:message code="servise.price"/>:&nbsp; </b><jstl:out value="${servise.price}"/>
+<br/>
+
+<b><spring:message code="servise.discount"/>:&nbsp; </b><jstl:out value="${servise.discount}"/>
+<br/>
+
+
+
+
+
+<b><spring:message code="servise.finalPrice"/>:&nbsp; </b><jstl:out value="${finalPrice}"/>
+<br/>
+
+<br/>
+
 <img src="${servise.picture}" width="500px" height="100%" />
 <br/>
 
-
-
-<br/>
-
-<input type="button" name="cancel" value="<spring:message code="general.cancel" />"
+<input type="button" class="btn btn-warning" name="cancel" value="<spring:message code="general.cancel" />"
        onclick="javascript: relativeRedir('${cancelURI}');" />

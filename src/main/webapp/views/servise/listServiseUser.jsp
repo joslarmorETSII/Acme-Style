@@ -21,11 +21,11 @@
 </jstl:if>
 
 
-    <display:table id="servise" name="servises" requestURI="${requestURI}"
+    <display:table id="servise" name="servises" class="table table-striped table-hover" requestURI="${requestURI}"
                    pagesize="5">
 
 
-        <acme:column code="servise.publisher" value="${servise.creator.name} " />
+        <acme:column code="servise.creator" value="${servise.creator.name} " />
         <acme:column code="servise.title" value="${servise.title}"/>
         <acme:column code="servise.description" value="${servise.description}"/>
 
@@ -36,11 +36,7 @@
         <spring:message var="formatDate" code="event.format.date"/>
         <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
 
-        <security:authorize access="hasRole('USER')" >
-            <display:column >
-                <acme:button url="servise/user/display.do?serviseId=${servise.id}" code="servise.display"/>
-            </display:column>
-        </security:authorize>
+
 
         <security:authorize access="hasRole('USER')">
             <display:column>
@@ -48,6 +44,12 @@
             </display:column>
         </security:authorize>
 
+        <security:authorize access="hasRole('USER')" >
+            <display:column >
+                <acme:button url="servise/user/display.do?serviseId=${servise.id}" code="general.display"/>
+            </display:column>
+        </security:authorize>
+
     </display:table>
 
-<input type="button" name="cancel" value="<spring:message code="general.cancel" />" onclick="javascript: relativeRedir('${cancelURI}');" />
+<acme:cancel code="general.cancel" url="${cancelUri}"/>

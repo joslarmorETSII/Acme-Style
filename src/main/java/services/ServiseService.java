@@ -55,6 +55,7 @@ public class ServiseService {
         artist=artistService.findByPrincipal();
         result = new Servise();
         result.setCreator(artist);
+        result.setPublicationDate(new Date());
         result.setQuestions(new ArrayList<Question>());
         result.setStores(new ArrayList<Store>());
         result.setSubscriptions(new ArrayList<Subscription>());
@@ -74,7 +75,8 @@ public class ServiseService {
 
     public Servise save(Servise servise){
         Assert.notNull(servise);
-        Assert.isTrue(servise.getPublicationDate().after(new Date()));
+        servise.setPublicationDate(new Date(System.currentTimeMillis()-1000));
+       // Assert.isTrue(servise.getPublicationDate().after(new Date()));
 
         return serviseRepository.save(servise);
     }
@@ -107,6 +109,7 @@ public class ServiseService {
 
         }
         res.setTitle(servicePruned.getTitle());
+        res.setPublicationDate(servicePruned.getPublicationDate());
         res.setPublicationDate(servicePruned.getPublicationDate());
         res.setDescription(servicePruned.getDescription());
         res.setPicture(servicePruned.getPicture());
@@ -159,5 +162,9 @@ public class ServiseService {
         return serviseRepository.servisesPublished();
     }
 
+    public Double finalPrice(Servise servise){
+        return servise.getPrice()-(servise.getPrice()*(servise.getDiscount()/100));
+
+    }
 
 }

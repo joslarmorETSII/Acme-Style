@@ -39,6 +39,7 @@
 
 				<security:authorize access="isAuthenticated()">
 					<li><a href="servise/listServisesPublished.do"/><spring:message code="master.page.serviseAll" /></li>
+
 					<li><a href="post/actor/list.do"><span class="glyphicon glyphicon-pushpin"/> <spring:message code="master.page.posts" /></a> </li>
 				</security:authorize>
 
@@ -55,6 +56,8 @@
 						<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-off"/> <spring:message code="master.page.logout"/></a></li>
 					</ul>
 				</li>
+					<li><a href="servise/user/listServisesToSubscribe.do"/><spring:message code="master.page.listServisesToSubscribe" /></li>
+					<li><a href="servise/user/list.do"/><spring:message code="master.page.list" /></li>
 				</security:authorize>
 
 				<!-- Artist -->
@@ -71,7 +74,9 @@
 						</ul>
 					</li>
 					<li><a href="servise/artist/list.do"/><spring:message code="master.page.servise" /></li>
-				</security:authorize>
+                    <li><a href="servise/listServisesPublished.do"/><spring:message code="master.page.serviseAll" /></li>
+
+                </security:authorize>
 					<!-- Manager -->
 					<security:authorize access="hasRole('MANAGER')">
 						<li class="dorpdown">
@@ -85,7 +90,9 @@
 								<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-off"/> <spring:message code="master.page.logout"/></a></li>
 							</ul>
 						</li>
-					</security:authorize>
+                        <li><a href="servise/listServisesPublished.do"/><spring:message code="master.page.serviseAll" /></li>
+
+                    </security:authorize>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="user/search.do?keyword="><span class="glyphicon glyphicon-search"/></a></li>

@@ -61,27 +61,15 @@ public class ServiseArtistController extends AbstractController{
         Artist artist;
         Collection<Servise> servises=new ArrayList<>();
 
-        SimpleDateFormat formatterEs;
-        SimpleDateFormat formatterEn;
-        String momentEs;
-        String momentEn;
-
-        formatterEs = new SimpleDateFormat("dd/MM/yyyy");
-        momentEs = formatterEs.format(new Date());
-        formatterEn = new SimpleDateFormat("yyyy/MM/dd");
-        momentEn = formatterEn.format(new Date());
 
         artist = artistService.findByPrincipal();
         servises=artist.getServises();
-
-
 
         result = new ModelAndView("servise/list");
         result.addObject("servises", servises);
         result.addObject("artist",artist);
         result.addObject("requestURI","servise/artist/list.do");
-        result.addObject("momentEs", momentEs);
-        result.addObject("momentEn", momentEn);
+
 
         return result;
 

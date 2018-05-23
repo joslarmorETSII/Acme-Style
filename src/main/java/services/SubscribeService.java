@@ -59,7 +59,7 @@ public class SubscribeService {
     }
 
     public Subscription save(Subscription subscription){
-        Assert.isTrue(subscription.getServise().getPublicationDate().after(new Date()),"Service not published yet");
+        //Assert.isTrue(subscription.getServise().getPublicationDate().after(new Date()),"Service not published yet");
         subscription.setMoment(new Date());
         return subscriptionRepository.save(subscription);
     }

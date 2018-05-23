@@ -1,6 +1,7 @@
 package domain;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -49,7 +50,7 @@ public class Servise extends DomainEntity{
         this.description = description;
     }
 
-    @NotNull
+
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     public Date getPublicationDate() {
@@ -87,6 +88,7 @@ public class Servise extends DomainEntity{
         this.price = price;
     }
 
+    @Range(min = 0,max = 100)
     public Double getDiscount() {
         return discount;
     }

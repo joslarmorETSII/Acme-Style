@@ -80,10 +80,10 @@ public class ServiseUserController extends AbstractController {
         ModelAndView result;
         User user = userService.findByPrincipal();
 
-        Collection<Servise> servisesPublished = serviseService.servisesPublished();
+        Collection<Servise> servisesPublished = serviseService.findAll();
         Collection<Servise> servisesSubscribed= subscribeService.servisesSubscribedPerUser(user.getId());
 
-        servisesPublished.retainAll(servisesSubscribed);
+        servisesPublished.removeAll(servisesSubscribed);
 
         result = new ModelAndView("servise/list");
         result.addObject("servises", servisesPublished);
@@ -92,6 +92,8 @@ public class ServiseUserController extends AbstractController {
         return result;
 
     }
+
+
     // Subscribe --------------------------------------------------------------
 
     @RequestMapping(value = "/subscribe", method = RequestMethod.GET)
@@ -103,7 +105,7 @@ public class ServiseUserController extends AbstractController {
         servise=serviseService.findOne(serviseId);
         Assert.notNull(servise);
         Subscription subscription = subscribeService.subscriptionByUserAndService(user.getId(),serviseId);
-        Assert.isTrue(subscription==null,"Already subscribed to this volume");
+        Assert.isTrue(subscription==null,"Already subscribed to this service");
 
         SubscribeServiseForm subscribeServiseForm = new SubscribeServiseForm();
         subscribeServiseForm.setServise(servise);
@@ -136,6 +138,7 @@ public class ServiseUserController extends AbstractController {
         ModelAndView result;
         User user;
         Servise servise;
+        Boolean IsSuscribed;
         Subscription subscription;
 
         try {
@@ -153,6 +156,7 @@ public class ServiseUserController extends AbstractController {
                 subscription.setServise(servise);
                 subscription.setCreditCard(creditCard);
                 subscribeService.save(subscription);
+                IsSuscribed= true;
             }
         } catch (final Throwable oops) {
             result = this.createEditModelAndView(subscribeServiseForm, "general.commit.error");
@@ -171,6 +175,30 @@ public class ServiseUserController extends AbstractController {
         result = new ModelAndView("user/subscribeServiseForm");
         result.addObject("subscribeServiseForm", subscribeServiseForm);
         result.addObject("message", messageCode);
+
+
+        return result;
+    }
+
+    // Display ----------------------------------------------------------------
+
+    @RequestMapping(value = "/display", method = RequestMethod.GET)
+    public ModelAndView display(@RequestParam final int serviseId) {
+        ModelAndView result;
+        Servise servise= null;
+        Double finalPrice;
+
+        servise=serviseService.findOne(serviseId);
+        servise = this.serviseService.findOne(serviseId);
+        finalPrice=serviseService.finalPrice(servise);
+
+
+
+        result = new ModelAndView("servise/display");
+        result.addObject("servise", servise);
+        result.addObject("cancelURI", "welcome/index.do");
+        result.addObject("finalPrice",finalPrice);
+
 
         return result;
     }

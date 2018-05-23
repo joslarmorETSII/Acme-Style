@@ -28,12 +28,12 @@
 
     <form:hidden path="id"/>
     <form:hidden path="version"/>
-    <form:hidden path="discount"/>
+
 
     <acme:textbox path="title" code="servise.title"/>
     <acme:textarea path="description" code="servise.description" />
     <acme:textbox path="picture" code="servise.picture"/>
-    <acme:textbox path="publicationDate" code="servise.publicationDate"/>
+    <acme:textbox path="discount" code="servise.discount"/>
     <acme:textbox path="price" code="servise.price"/>
 
 
