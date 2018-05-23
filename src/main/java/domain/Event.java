@@ -26,7 +26,7 @@ public class Event extends DomainEntity{
     private Date moment;
     private String tipo;
     private Double price;
-    private Date publicationDate;
+    private Date celebrationDate;
     private GpsCoordinates location;
 
     @NotBlank
@@ -77,14 +77,16 @@ public class Event extends DomainEntity{
         this.price = price;
     }
 
+    @NotNull
+    @Future
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
-    public Date getPublicationDate() {
-        return publicationDate;
+    public Date getCelebrationDate() {
+        return celebrationDate;
     }
 
-    public void setPublicationDate(Date publicationDate) {
-        this.publicationDate = publicationDate;
+    public void setCelebrationDate(Date celebrationDate) {
+        this.celebrationDate = celebrationDate;
     }
 
     @Valid
@@ -123,7 +125,6 @@ public class Event extends DomainEntity{
     }
 
     @Valid
-    @NotNull
     @ManyToOne
     public Store getStore() {
         return store;
