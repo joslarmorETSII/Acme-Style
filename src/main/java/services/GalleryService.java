@@ -45,6 +45,7 @@ public class GalleryService {
     }
 
     public Gallery save(Gallery gallery){
+        Assert.isTrue(gallery.getProfile().getActor().equals(actorService.findByPrincipal()));
         return galleryRepository.save(gallery);
     }
 

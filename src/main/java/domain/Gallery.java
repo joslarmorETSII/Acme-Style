@@ -2,6 +2,7 @@ package domain;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
+import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -21,6 +22,7 @@ public class Gallery extends DomainEntity{
 
     private String picture;
 
+    @URL
     @NotBlank
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
     public String getPicture() {

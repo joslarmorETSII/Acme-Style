@@ -89,6 +89,9 @@
 		<!-- Post -->
 		<security:intercept-url pattern="/post/actor/**" access="isAuthenticated()" />
 
+		<!-- following/follwers -->
+		<security:intercept-url pattern="/actor/**" access="isAuthenticated()" />
+
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 
 		<security:form-login 

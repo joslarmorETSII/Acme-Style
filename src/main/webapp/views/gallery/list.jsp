@@ -22,8 +22,9 @@
 
 </display:table>
 
-
+    <jstl:if test="${owner}">
         <acme:button code="general.create" url="gallery/actor/create.do"/>
+    </jstl:if>
         <acme:cancel url="${cancelURI}" code="general.cancel"/>
 
     </div>

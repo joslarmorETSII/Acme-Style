@@ -48,14 +48,26 @@
             <div class="row overview">
                 <div class="col-md-4 user-pad text-center">
                     <h3>FOLLOWERS</h3>
+                    <jstl:if test="${actor eq profile.actor}">
+                        <a href="actor/list-followers.do"><span class="glyphicon glyphicon-eye-open"></span></a>
+                    </jstl:if>
                     <h4>${followers_num}</h4>
                 </div>
                 <div class="col-md-4 user-pad text-center">
                     <h3>FOLLOWING</h3>
+                    <jstl:if test="${actor eq profile.actor}">
+                         <a href="actor/list-following.do"><span class="glyphicon glyphicon-eye-open"></span></a>
+                    </jstl:if>
                     <h4>${followings_num}</h4>
                 </div>
             </div>
         </div>
+        <jstl:if test="${!esSeguido && actor ne profile.actor}">
+            <acme:button code="actor.follow" url="actor/follow.do?actorId=${profile.actor.id}"/>
+        </jstl:if>
+        <jstl:if test="${esSeguido}">
+            <acme:button code="actor.unfollow" url="actor/unfollow.do?actorId=${profile.actor.id}"/>
+        </jstl:if>
     </div>
 </div>
 

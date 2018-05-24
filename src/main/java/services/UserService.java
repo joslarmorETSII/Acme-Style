@@ -135,45 +135,6 @@ public class UserService {
     }
 
 
-
-    public Collection<Actor> follow(int actorId){
-        Assert.notNull(actorId);
-        Actor principal;
-        Actor actorToFollow;
-
-        principal = actorService.findByPrincipal();
-        actorToFollow = actorService.findOne(actorId);
-        Assert.isTrue(!principal.getFollowings().contains(actorToFollow));
-
-        principal.getFollowings().add(actorToFollow);
-
-        Assert.isTrue(principal.getId() != actorId);
-
-        actorService.save(principal);
-        actorService.save(actorToFollow);
-
-        return principal.getFollowings();
-    }
-
-    public Collection<Actor> unfollow(int actorId){
-        Assert.notNull(actorId);
-        Actor principal;
-        Actor actorToUnFollow;
-
-        principal = findByPrincipal();
-        actorToUnFollow = userRepository.findOne(actorId);
-        Assert.isTrue(principal.getFollowings().contains(actorToUnFollow));
-        principal.getFollowings().remove(actorToUnFollow);
-        actorToUnFollow.getFollowers().remove(principal);
-
-        Assert.isTrue(principal.getId() != actorId);
-
-        actorService.save(principal);
-        actorService.save(actorToUnFollow);
-
-        return principal.getFollowings();
-    }
-
     public void flush() {
         userRepository.flush();
     }

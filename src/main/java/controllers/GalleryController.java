@@ -1,5 +1,7 @@
 package controllers;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import domain.Actor;
 import domain.Gallery;
 import domain.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,16 +96,22 @@ public class GalleryController extends AbstractController{
     public ModelAndView list(@RequestParam int profileId) {
         ModelAndView result;
         Profile profile;
+        Actor actor;
         Collection<Gallery> galleries;
+        Boolean owner;
 
+
+        actor = actorService.findByPrincipal();
         profile = profileService.findOne(profileId);
+        owner =actor.equals(profile.getActor());
         Assert.notNull(profile);
         galleries = profile.getGalleries();
         result = new ModelAndView("gallery/list");
         result.addObject("requestURI", "gallery/actor/list.do?profileId="+profileId);
         result.addObject("cancelURI", "profile/actor/display.do?profileId="+profileId);
-
         result.addObject("galleries", galleries);
+        result.addObject("owner", owner);
+
 
         return result;
     }

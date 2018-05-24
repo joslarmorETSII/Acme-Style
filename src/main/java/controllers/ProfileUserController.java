@@ -54,6 +54,24 @@ public class ProfileUserController extends AbstractController{
         return result;
     }
 
+    @RequestMapping(value = "/view", method = RequestMethod.GET)
+    public ModelAndView view(@RequestParam int profileId) {
+        ModelAndView result;
+        Profile profile;
+        Actor actor;
+
+        actor = actorService.findByPrincipal();
+        profile = profileService.findOne(profileId);
+        result = new ModelAndView("profile/display");
+        result.addObject("profile",profile);
+        result.addObject("actor",actor);
+        result.addObject("followings_num",actor.getFollowings().size());
+        result.addObject("followers_num",actor.getFollowers().size());
+        result.addObject("esSeguido", actor.getFollowings().contains(profile.getActor()));
+
+
+        return result;
+    }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public ModelAndView edit(@RequestParam int profileId) {

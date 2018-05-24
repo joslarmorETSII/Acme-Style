@@ -161,4 +161,36 @@ public class ActorService {
         return result;
     }
 
+    public void follow(int actorId){
+        Actor principal;
+        Actor userToFollow;
+
+        principal = findByPrincipal();
+        userToFollow = findOne(actorId);
+        Assert.notNull(userToFollow);
+        Assert.isTrue(!principal.getFollowings().contains(userToFollow),"You already follow this user");
+        Assert.isTrue(principal.getId() != actorId,"Can't follow yourself");
+        principal.getFollowings().add(userToFollow);
+
+        save(principal);
+
+    }
+
+    public void unfollow(int actorId){
+        Actor principal;
+        Actor userToUnFollow;
+
+        principal = findByPrincipal();
+        userToUnFollow = findOne(actorId);
+        Assert.notNull(userToUnFollow);
+        Assert.isTrue(principal.getFollowings().contains(userToUnFollow),"You don't follow this user");
+        principal.getFollowings().remove(userToUnFollow);
+        Assert.isTrue(principal.getId() != actorId);
+
+        userToUnFollow.getFollowers().remove(principal);
+
+
+        save(principal);
+
+    }
 }
