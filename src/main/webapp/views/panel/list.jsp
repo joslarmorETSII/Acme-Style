@@ -18,13 +18,11 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="jstt" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<security:authorize access="hasRole('USER')" >
 
-    <fieldset>
-        <b><spring:message code="panel.all"/></b>
+<div class="container">
+    <div class="col-md-10 col-md-offset-1">
 
-
-        <display:table name="panels" id="row" pagesize="5" class="displaytag" requestURI="${requestURI}">
+        <display:table name="panels" id="row" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}">
 
             <acme:column code="panel.name" value="${row.name}" />
 
@@ -35,9 +33,8 @@
             </display:column>
             
         </display:table>
-    </fieldset>
-</security:authorize>
 
-<security:authorize access="hasRole('USER')">
+
     <acme:button code="panel.create" url="panel/user/create.do"/>
-</security:authorize>
+    </div>
+</div>

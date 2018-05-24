@@ -24,32 +24,63 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="${actionURI}" modelAttribute="post">
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+<form:form action="${actionURI}" modelAttribute="post" class="form-horizontal">
 
     <form:hidden path="id"/>
     <form:hidden path="version"/>
+    <form:hidden path="actor"/>
 
-    <acme:textbox path="title" code="post.title"/>
-    <acme:textarea path="description" code="post.description" />
-    <acme:textbox path="picture" code="post.picture"/>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><spring:message code="post.title"/></label>
+        <div class="col-sm-9">
+            <form:input path="title" class="form-control"  />
+            <form:errors class="error" path="title" />
+        </div>
+    </div>
 
-    <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER')">
-        <acme:submit name="save" code="general.save"/>
-    </security:authorize>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><spring:message code="post.description"/></label>
+        <div class="col-sm-9">
+            <form:input path="description" class="form-control"  />
+            <form:errors class="error" path="description" />
+        </div>
+    </div>
 
-    <security:authorize access="hasRole('ADMINISTRATOR')">
-            <acme:submit name="delete" code="general.delete"/>
-    </security:authorize>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><spring:message code="post.picture"/></label>
+        <div class="col-sm-9">
+            <form:input path="picture" class="form-control"  />
+            <form:errors class="error" path="picture" />
+        </div>
+    </div>
 
-    <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER')">
-        <jstl:if test="${post.id !=0}">
-            <acme:submit name="delete" code="general.delete"/>
-        </jstl:if>
-    </security:authorize>
+    <div class="text-center">
 
-    <input type="button" name="cancel" value="<spring:message code="general.cancel" />" onclick="javascript: relativeRedir('${cancelURI}');" />
+        <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER')">
+            <acme:submit name="save" code="general.save"/>
+        </security:authorize>
+
+        <security:authorize access="hasRole('ADMINISTRATOR')">
+                <acme:submit name="delete" code="general.delete"/>
+        </security:authorize>
+
+        <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER')">
+            <jstl:if test="${post.id !=0}">
+                <input type="submit" class="btn btn-danger"  name="delete" id="saveButton" value="<spring:message code="general.delete"/>"/>
+            </jstl:if>
+        </security:authorize>
+
+        <acme:cancel code="general.cancel" url="${cancelURI}"/>
+    </div>
 
 </form:form>
+
+        </div>
+    </div>
+</div>
 
 
 

@@ -37,6 +37,7 @@
 		<value>/views/photo/messages</value>
 		<value>/views/gallery/messages</value>
 		<value>/views/event/messages</value>
+		<value>/views/store/messages</value>
 
 
 	</util:list>

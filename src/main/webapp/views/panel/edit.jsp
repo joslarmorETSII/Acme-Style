@@ -17,19 +17,34 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="jstt" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<form:form action="${actionURI}" modelAttribute="panel" >
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+    <form:form action="${actionURI}" modelAttribute="panel" class="form-horizontal">
 
-    <form:hidden path="id"/>
-    <form:hidden path="version"/>
+        <form:hidden path="id"/>
+        <form:hidden path="version"/>
 
-    <acme:textbox path="name" code="panel.name"/>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><spring:message code="panel.name"/></label>
+            <div class="col-sm-9">
+                <form:input path="name" class="form-control"  />
+                <form:errors class="error" path="name" />
+            </div>
+        </div>
 
-    <acme:submit name="save" code="panel.save"/>
+        <div class="text-center">
 
-    <jstl:if test="${panel.id != 0}" >
-        <acme:submit name="delete" code="panel.delete"/>
-    </jstl:if>
+        <acme:submit name="save" code="panel.save"/>
 
-    <input type="button" name="cancel" value="<spring:message code="general.cancel" />"
-           onclick="javascript: relativeRedir('${cancelUri}');" />
-</form:form>
+        <jstl:if test="${panel.id != 0}" >
+            <input type="submit" class="btn btn-danger"  name="delete" id="saveButton" value="<spring:message code="general.delete"/>"/>
+        </jstl:if>
+
+        <acme:cancel code="general.cancel" url="${cancelUri}"/>
+        </div>
+
+    </form:form>
+        </div>
+    </div>
+</div>

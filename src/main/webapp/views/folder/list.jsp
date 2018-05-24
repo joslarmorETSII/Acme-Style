@@ -12,7 +12,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-10 col-md-offset-1">
+
         <display:table name="folders" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}" id="row">
     <spring:message code="messageFolder.name" var="headerTag" />
     <display:column property="name" title="${headerTag}"/>

@@ -81,6 +81,8 @@
 		<security:intercept-url pattern="/participate/user/**" access="hasRole('USER')" />
 
 
+		<!-- Store -->
+		<security:intercept-url pattern="/store/manager/**" access="hasRole('MANAGER')" />
 
 
 

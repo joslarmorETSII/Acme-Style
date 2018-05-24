@@ -11,7 +11,7 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <div class="container">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-10 col-md-offset-1">
 
 <display:table name="galleries" pagesize="10" class="table table-striped table-hover" requestURI="${requestURI}" id="row">
 

@@ -24,38 +24,77 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="${actionURI}" modelAttribute="servise">
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            <form:form action="${actionURI}" modelAttribute="servise" class="form-horizontal" >
 
-    <form:hidden path="id"/>
-    <form:hidden path="version"/>
-
-
-    <acme:textbox path="title" code="servise.title"/>
-    <acme:textarea path="description" code="servise.description" />
-    <acme:textbox path="picture" code="servise.picture"/>
-    <acme:textbox path="discount" code="servise.discount"/>
-    <acme:textbox path="price" code="servise.price"/>
+                <form:hidden path="id"/>
+                <form:hidden path="version"/>
 
 
-    <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')">
-        <acme:submit name="save" code="general.save"/>
-    </security:authorize>
+                <div class="form-group">
+                    <label  class="col-sm-3 control-label"><spring:message code="servise.title"/> </label>
+                    <div class="col-sm-9">
+                        <form:input path="title" class="form-control" />
+                        <form:errors class="error" path="title"/>
+                    </div>
+                </div>
 
-    <security:authorize access="hasRole('ADMINISTRATOR')">
-        <jstl:if test="${ servise.taboo ne false }">
-            <acme:submit name="delete" code="general.delete"/>
-        </jstl:if>
-    </security:authorize>
+                <div class="form-group">
+                    <label  class="col-sm-3 control-label"><spring:message code="servise.description"/> </label>
+                    <div class="col-sm-9">
+                        <form:input path="description" class="form-control" />
+                        <form:errors class="error" path="description"/>
+                    </div>
+                </div>
 
-    <security:authorize access="hasRole('USER')">
-        <jstl:if test="${servise.id !=0}">
-            <acme:submit name="delete" code="newsPaper.delete"/>
-        </jstl:if>
-    </security:authorize>
+                <div class="form-group">
+                    <label  class="col-sm-3 control-label"><spring:message code="servise.picture"/> </label>
+                    <div class="col-sm-9">
+                        <form:input path="picture" class="form-control" />
+                        <form:errors class="error" path="picture"/>
+                    </div>
+                </div>
 
-    <input type="button" name="cancel" value="<spring:message code="general.cancel" />" onclick="javascript: relativeRedir('${cancelURI}');" />
+                <div class="form-group">
+                    <label  class="col-sm-3 control-label"><spring:message code="servise.discount"/> </label>
+                    <div class="col-sm-9">
+                        <form:input path="discount" class="form-control" />
+                        <form:errors class="error" path="discount"/>
+                    </div>
+                </div>
 
-</form:form>
+                <div class="form-group">
+                    <label  class="col-sm-3 control-label"><spring:message code="servise.price"/> </label>
+                    <div class="col-sm-9">
+                        <form:input path="price" class="form-control" />
+                        <form:errors class="error" path="price"/>
+                    </div>
+                </div>
 
+                <div class="text-center">
+                    <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')">
+                        <acme:submit name="save" code="general.save"/>
+                    </security:authorize>
+
+                    <security:authorize access="hasRole('ADMINISTRATOR')">
+                        <jstl:if test="${ servise.taboo ne false }">
+                            <acme:submit name="delete" code="general.delete"/>
+                        </jstl:if>
+                    </security:authorize>
+
+                    <security:authorize access="hasRole('USER')">
+                        <jstl:if test="${servise.id !=0}">
+                            <input type="submit" class="btn btn-danger"  name="delete" id="saveButton" value="<spring:message code="general.delete"/>"/>
+                        </jstl:if>
+                    </security:authorize>
+
+                    <acme:cancel code="general.cancel" url="${cancelURI}"/>
+                </div>
+            </form:form>
+        </div>
+    </div>
+</div>
 
 

@@ -82,7 +82,6 @@ public class Store extends DomainEntity{
     }
 
     @Valid
-    @NotNull
     @ManyToMany
     public Collection<Servise> getServises() {
         return servises;
@@ -91,8 +90,8 @@ public class Store extends DomainEntity{
     public void setServises(Collection<Servise> servises) {
         this.servises = servises;
     }
+
     @Valid
-    @NotNull
     @OneToMany
     public Collection<Event> getEvents() {
         return events;

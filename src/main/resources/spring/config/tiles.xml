@@ -36,6 +36,7 @@
 		<value>/views/post/tiles.xml</value>
 		<value>/views/gallery/tiles.xml</value>
 		<value>/views/event/tiles.xml</value>
+		<value>/views/store/tiles.xml</value>
 
 	</util:list>
 

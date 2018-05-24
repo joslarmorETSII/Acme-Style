@@ -74,15 +74,14 @@
             </div>
         </div>
     </div>
-    </body>
 
 
     </jstl:forEach>
 
 <br/>
-
-<security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER')">
-    <acme:button code="general.create" url="post/actor/create.do"/>
-</security:authorize>
-
-<acme:cancel code="general.cancel" url="${cancelUri}"/>
+<div class="text-center">
+    <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER')">
+        <acme:button code="general.create" url="post/actor/create.do"/>
+    </security:authorize>
+    <acme:cancel code="general.cancel" url="${cancelUri}"/>
+</div>

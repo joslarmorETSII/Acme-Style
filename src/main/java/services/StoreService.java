@@ -24,6 +24,9 @@ public class StoreService {
     @Autowired
     private ActorService actorService;
 
+    @Autowired
+    private ManagerService managerService;
+
 
     // Constructors -----------------------------------------------------------
 
@@ -39,6 +42,7 @@ public class StoreService {
         result = new Store();
         result.setServises(new ArrayList<Servise>());
         result.setEvents(new ArrayList<Event>());
+        result.setManager(managerService.findByPrincipal());
 
         return result;
     }
@@ -54,13 +58,13 @@ public class StoreService {
     public void delete(Store store){
         Assert.notNull(store);
 
-        Assert.isTrue( actorService.checkRole(Authority.MANAGER));
+        Assert.isTrue( store.getManager().equals(managerService.findByPrincipal()),"Not the manager of the store");
         storeRepository.delete(store);
     }
 
     public Store save(Store store){
         Assert.notNull(store);
-        Assert.isTrue(actorService.checkRole(Authority.MANAGER));
+        Assert.isTrue(store.getManager().equals(managerService.findByPrincipal()),"Not the manager of the store");
         return storeRepository.save(store);
     }
 

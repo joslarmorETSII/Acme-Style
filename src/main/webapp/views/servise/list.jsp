@@ -25,106 +25,114 @@
     <jstl:set value="{0,date,yyyy/MM/dd HH:mm}" var="formatDate"/>
 </jstl:if>
 
+<div class="container">
+    <div class="col-md-10 col-md-offset-1">
 
 <fieldset>
     <security:authorize access="hasRole('ADMINISTRATOR')" >
     <b><spring:message code="servise.allTaboo"/></b>
     </security:authorize>
 
-<display:table name="servises" id="row" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}">
+        <display:table name="servises" id="row" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}">
+
+            <display:column>
+                <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')" >
+                    <jstl:if test="${isPublished eq true}">
+                         <acme:button url="servise/artist/edit.do?serviseId=${row.id}" code="general.edit" />
+                    </jstl:if>
+                 </security:authorize>
+            </display:column>
+
+            <acme:column code="servise.creator" value="${row.creator.name} " />
+            <acme:column code="servise.title" value="${row.title}"/>
+            <acme:column code="servise.description" value="${row.description}"/>
+            <acme:column code="servise.price" value="${row.price}"/>
+            <spring:message code="servise.picture" var="pic"/>
+            <display:column title="${pic}"><img src="${row.picture}" alt="no image" width="130" height="100"></display:column>
+
+            <spring:message var="publicationDate" code="servise.publicationDate"/>
+            <spring:message var="formatDate" code="event.format.date"/>
+            <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
+
+            <security:authorize access="hasRole('USER')">
+
+                <display:column>
+                    <acme:button url="servise/user/subscribe.do?serviseId=${row.id}" code="servise.subscribe"/>
+                </display:column>
+
+            </security:authorize>
 
 
-    <display:column>
-        <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')" >
-            <jstl:if test="${isPublished eq true}">
-                 <acme:button url="servise/artist/edit.do?serviseId=${row.id}" code="general.edit" />
-            </jstl:if>
-         </security:authorize>
-    </display:column>
+            <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')" >
+            <display:column >
+                    <acme:button url="servise/artist/display.do?serviseId=${row.id}" code="general.display"/>
+            </display:column>
+            </security:authorize>
 
-    <acme:column code="servise.creator" value="${row.creator.name} " />
-    <acme:column code="servise.title" value="${row.title}"/>
-    <acme:column code="servise.description" value="${row.description}"/>
-    <acme:column code="servise.price" value="${row.price}"/>
-    <spring:message code="servise.picture" var="pic"/>
-    <display:column title="${pic}"><img src="${row.picture}" alt="no image" width="130" height="100"></display:column>
+            <security:authorize access="hasRole('USER')" >
+                <display:column>
 
-    <spring:message var="publicationDate" code="servise.publicationDate"/>
-    <spring:message var="formatDate" code="event.format.date"/>
-    <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
+                        <acme:button url="servise/user/display.do?serviseId=${row.id}" code="general.display"/>
 
-    <security:authorize access="hasRole('USER')">
+                </display:column>
+            </security:authorize>
 
-        <display:column>
-            <acme:button url="servise/user/subscribe.do?serviseId=${row.id}" code="servise.subscribe"/>
-        </display:column>
-
-    </security:authorize>
-
-
-    <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')" >
-    <display:column >
-            <acme:button url="servise/artist/display.do?serviseId=${row.id}" code="general.display"/>
-    </display:column>
-    </security:authorize>
-
-    <security:authorize access="hasRole('USER')" >
-        <display:column>
-
-                <acme:button url="servise/user/display.do?serviseId=${row.id}" code="general.display"/>
-
-        </display:column>
-    </security:authorize>
-
-    <security:authorize access="hasRole('ADMINISTRATOR')">
-        <display:column >
-            <acme:button url="servise/administrator/display.do?serviseId=${row.id}" code="general.display"/>
-        </display:column>
-    </security:authorize>
+            <security:authorize access="hasRole('ADMINISTRATOR')">
+                <display:column >
+                    <acme:button url="servise/administrator/display.do?serviseId=${row.id}" code="general.display"/>
+                </display:column>
+            </security:authorize>
 
 
 
-    <security:authorize access="hasRole('ADMINISTRATOR')" >
-        <display:column>
-            <acme:button url="servise/administrator/edit.do?serviseId=${row.id}" code="general.delete" />
-        </display:column>
-    </security:authorize>
+            <security:authorize access="hasRole('ADMINISTRATOR')" >
+                <display:column>
+                    <acme:button url="servise/administrator/edit.do?serviseId=${row.id}" code="general.delete" />
+                </display:column>
+            </security:authorize>
 
 </display:table>
 </fieldset>
+    </div>
+</div>
 <br/>
 
-<security:authorize access="hasRole('ADMINISTRATOR')">
-<fieldset>
-    <b><spring:message code="servise.all"/></b>
-<display:table name="allServises" id="row" pagesize="5" class="table table-striped table-hover" requestURI="${requestUri}">
+<div class="container">
+    <div class="col-md-10 col-md-offset-1">
+        <security:authorize access="hasRole('ADMINISTRATOR')">
+        <fieldset>
+            <b><spring:message code="servise.all"/></b>
+            <display:table name="allServises" id="row" pagesize="5" class="table table-striped table-hover" requestURI="${requestUri}">
 
-    <acme:column code="servise.creator" value="${row.creator.name} " />
-    <acme:column code="servise.title" value="${row.title}"/>
-    <acme:column code="servise.description" value="${row.description}"/>
-    <acme:column code="servise.price" value="${row.price}"/>
-    <spring:message code="servise.picture" var="pic"/>
-    <display:column title="${pic}"><img src="${row.picture}" alt="no image" width="130" height="100"></display:column>
+                <acme:column code="servise.creator" value="${row.creator.name} " />
+                <acme:column code="servise.title" value="${row.title}"/>
+                <acme:column code="servise.description" value="${row.description}"/>
+                <acme:column code="servise.price" value="${row.price}"/>
+                <spring:message code="servise.picture" var="pic"/>
+                <display:column title="${pic}"><img src="${row.picture}" alt="no image" width="130" height="100"></display:column>
 
-    <spring:message var="publicationDate" code="servise.publicationDate"/>
-    <spring:message var="formatDate" code="event.format.date"/>
-    <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
+                <spring:message var="publicationDate" code="servise.publicationDate"/>
+                <spring:message var="formatDate" code="event.format.date"/>
+                <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
 
-    <display:column >
-        <acme:button url="servise/administrator/display.do?serviseId=${row.id}" code="general.display"/>
-    </display:column>
+                <display:column >
+                    <acme:button url="servise/administrator/display.do?serviseId=${row.id}" code="general.display"/>
+                </display:column>
 
-    <display:column>
-        <acme:button url="servise/administrator/edit.do?serviseId=${row.id}" code="general.delete" />
-    </display:column>
+                <display:column>
+                    <acme:button url="servise/administrator/edit.do?serviseId=${row.id}" code="general.delete" />
+                </display:column>
 
-</display:table>
-</fieldset>
-</security:authorize>
+            </display:table>
+        </fieldset>
 
-<security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')">
-    <acme:button code="general.create" url="servise/artist/create.do"/>
-</security:authorize>
+        </security:authorize>
+    </div>
+</div>
 
-
-<acme:cancel code="general.cancel" url="${cancelURI}"/>
+<div class="text-center">
+    <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')">
+        <acme:button code="general.create" url="servise/artist/create.do"/>
+    </security:authorize>
+    <acme:cancel code="general.cancel" url="${cancelURI}"/>
+</div>

@@ -20,36 +20,39 @@
     <jstl:set value="{0,date,yyyy/MM/dd}" var="formatDate"/>
 </jstl:if>
 
+<div class="container">
+    <div class="col-md-10 col-md-offset-1">
+        <display:table id="servise" name="servises" class="table table-striped table-hover" requestURI="${requestURI}"
+                       pagesize="5">
 
-    <display:table id="servise" name="servises" class="table table-striped table-hover" requestURI="${requestURI}"
-                   pagesize="5">
+            <acme:column code="servise.creator" value="${servise.creator.name} " />
+            <acme:column code="servise.title" value="${servise.title}"/>
+            <acme:column code="servise.description" value="${servise.description}"/>
 
+            <spring:message code="servise.picture" var="pic"/>
+            <display:column title="${pic}"><img src="${servise.picture}" alt="no image" width="130" height="100"></display:column>
 
-        <acme:column code="servise.creator" value="${servise.creator.name} " />
-        <acme:column code="servise.title" value="${servise.title}"/>
-        <acme:column code="servise.description" value="${servise.description}"/>
+            <spring:message var="publicationDate" code="servise.publicationDate"/>
+            <spring:message var="formatDate" code="event.format.date"/>
+            <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
 
-        <spring:message code="servise.picture" var="pic"/>
-        <display:column title="${pic}"><img src="${servise.picture}" alt="no image" width="130" height="100"></display:column>
+            <security:authorize access="hasRole('USER')">
+                <display:column>
+                        <acme:button url="servise/user/unsubscribe.do?serviseId=${servise.id}" code="servise.unsubscribe"/>
+                </display:column>
+            </security:authorize>
 
-        <spring:message var="publicationDate" code="servise.publicationDate"/>
-        <spring:message var="formatDate" code="event.format.date"/>
-        <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
+            <security:authorize access="hasRole('USER')" >
+                <display:column >
+                    <acme:button url="servise/user/display.do?serviseId=${servise.id}" code="general.display"/>
+                </display:column>
+            </security:authorize>
 
+        </display:table>
 
+        <div class="text-center">
+            <acme:cancel code="general.cancel" url="${cancelUri}"/>
+        </div>
 
-        <security:authorize access="hasRole('USER')">
-            <display:column>
-                    <acme:button url="servise/user/unsubscribe.do?serviseId=${servise.id}" code="servise.unsubscribe"/>
-            </display:column>
-        </security:authorize>
-
-        <security:authorize access="hasRole('USER')" >
-            <display:column >
-                <acme:button url="servise/user/display.do?serviseId=${servise.id}" code="general.display"/>
-            </display:column>
-        </security:authorize>
-
-    </display:table>
-
-<acme:cancel code="general.cancel" url="${cancelUri}"/>
+    </div>
+</div>

@@ -22,7 +22,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-10">
                  <form:form  action="event/manager/edit.do" modelAttribute="event" class="form-horizontal">
                      <form:hidden path="id"/>
                      <form:hidden path="version"/>
@@ -90,7 +90,6 @@
                         <div class="col-sm-9">
                             <form:input path="location.latitude" class="form-control"  />
                             <form:errors class="error" path="location.latitude"/>
-                            <span class="help-block">Your phone number won't be disclosed anywhere </span>
                         </div>
                     </div>
 
@@ -102,11 +101,13 @@
                          </div>
                      </div>
 
-                    <input type="submit" class="btn btn-primary"  name="save" id="saveButton" value="<spring:message code="general.save"/>"/>
-                     <jstl:if test="${event.id != 0}">
-                     <input type="submit" class="btn btn-danger"  name="delete" id="saveButton" value="<spring:message code="general.delete"/>"/>
-                     </jstl:if>
-                     <acme:cancel url="event/manager/list.do" code="general.cancel"/>
+                     <div class="text-center">
+                        <input type="submit" class="btn btn-primary"  name="save" id="saveButton" value="<spring:message code="general.save"/>"/>
+                         <jstl:if test="${event.id != 0}">
+                         <input type="submit" class="btn btn-danger"  name="delete" id="saveButton" value="<spring:message code="general.delete"/>"/>
+                         </jstl:if>
+                         <acme:cancel url="event/manager/list.do" code="general.cancel"/>
+                     </div>
 
                  </form:form>
         </div>

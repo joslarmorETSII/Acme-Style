@@ -17,7 +17,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-10">
 
             <form:form action="${requestURI}" modelAttribute="profile" class="form-horizontal" >
                 <form:hidden path="id" />
@@ -33,6 +33,7 @@
                         <form:errors class="error" path="fullName"/>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label  class="col-sm-3 control-label"><spring:message code="profile.profilePhoto"/> </label>
                     <div class="col-sm-9">
@@ -40,6 +41,7 @@
                         <form:errors class="error" path="profilePhoto"/>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label  class="col-sm-3 control-label"><spring:message code="profile.education"/> </label>
                     <div class="col-sm-9">
@@ -48,12 +50,10 @@
                     </div>
                 </div>
 
-                <div class="form-group last">
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <acme:submit code="general.save" name="save" />&nbsp;
-                        <input type="button" name="cancel" class="btn btn-warning" value="<spring:message code="general.cancel" />"
-                               onclick="javascript: relativeRedir('profile/actor/display.do');" />
-                    </div>
+                <div class="text-center">
+                    <acme:submit code="general.save" name="save" />&nbsp;
+                    <input type="button" name="cancel" class="btn btn-warning" value="<spring:message code="general.cancel" />"
+                           onclick="javascript: relativeRedir('profile/actor/display.do');" />
                 </div>
 
             </form:form>

@@ -19,7 +19,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <span class="glyphicon glyphicon-lock"></span> <spring:message code="general.register"/></div>
@@ -111,9 +111,11 @@
                         </div>
                     </div>
 
-                    <input type="submit" class="btn btn-primary btn-block"  name="save" id="saveButton" value="<spring:message code="general.register"/>"/>
-                    <input type="button"   class="btn btn-warning btn-block" name="cancel" value="<spring:message code="general.cancel" />"
-                           onclick="javascript: relativeRedir('welcome/index.do');" />
+                     <div class="col-sm-9 col-sm-offset-3">
+                         <input type="submit" class="btn btn-primary btn-block"  name="save" id="saveButton" value="<spring:message code="general.register"/>"/>
+                         <input type="button"   class="btn btn-warning btn-block" name="cancel" value="<spring:message code="general.cancel" />"
+                            onclick="javascript: relativeRedir('welcome/index.do');" />
+                     </div>
                  </form:form> <!-- /form -->
                 </div>
             </div>

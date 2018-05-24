@@ -13,51 +13,53 @@
 
 
 <div class="container">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-10 col-md-offset-1">
 
-<display:table name="events" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}" id="row">
+        <display:table name="events" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}" id="row">
 
-    <security:authorize access="hasRole('MANAGER')">
-        <display:column>
-                <a href="event/manager/edit.do?eventId=${row.id}">
-                    <spring:message code="general.edit" />
-                </a>
-        </display:column>
-    </security:authorize>
+            <security:authorize access="hasRole('MANAGER')">
+                <display:column>
+                        <a href="event/manager/edit.do?eventId=${row.id}">
+                            <spring:message code="general.edit" />
+                        </a>
+                </display:column>
+            </security:authorize>
 
-    <spring:message code="event.title" var="headerTag" />
-    <display:column property="title" title="${headerTag}"/>
+            <spring:message code="event.title" var="headerTag" />
+            <display:column property="title" title="${headerTag}"/>
 
 
-    <spring:message code="event.description" var="headerTag" />
-    <display:column property="description" title="${headerTag}"/>
+            <spring:message code="event.description" var="headerTag" />
+            <display:column property="description" title="${headerTag}"/>
 
-    <spring:message code="event.celebrationDate" var="headerTag" />
-    <display:column property="celebrationDate" title="${headerTag}"/>
+            <spring:message code="event.celebrationDate" var="headerTag" />
+            <display:column property="celebrationDate" title="${headerTag}"/>
 
-    <spring:message code="event.tipo" var="headerTag" />
-    <display:column property="tipo" title="${headerTag}"/>
+            <spring:message code="event.tipo" var="headerTag" />
+            <display:column property="tipo" title="${headerTag}"/>
 
-    <spring:message code="event.price" var="headerTag" />
-    <display:column property="price" title="${headerTag}"/>
+            <spring:message code="event.price" var="headerTag" />
+            <display:column property="price" title="${headerTag}"/>
 
-    <spring:message code="event.location" var="headerTag" />
-    <display:column property="location.name" title="${headerTag}"/>
+            <spring:message code="event.location" var="headerTag" />
+            <display:column property="location.name" title="${headerTag}"/>
 
-    <security:authorize access="hasRole('USER')">
-        <display:column>
-            <c:if test="${notParticipated}">
-                <a href="participate/user/participate.do?eventId=${row.id}">
-                    <spring:message code="event.participate" />
-                </a>
-            </c:if>
-        </display:column>
-    </security:authorize>
-</display:table>
+            <security:authorize access="hasRole('USER')">
+                <display:column>
+                    <c:if test="${notParticipated}">
+                        <a href="participate/user/participate.do?eventId=${row.id}">
+                            <spring:message code="event.participate" />
+                        </a>
+                    </c:if>
+                </display:column>
+            </security:authorize>
+        </display:table>
 
-    <security:authorize access="hasRole('MANAGER')">
-        <acme:button code="general.create" url="event/manager/create.do"/>
-    </security:authorize>
-    <acme:button code="general.cancel" url="welcome/index.do"/>
+        <div class="text-center">
+            <security:authorize access="hasRole('MANAGER')">
+                <acme:button code="general.create" url="event/manager/create.do"/>
+            </security:authorize>
+            <acme:cancel code="general.cancel" url="welcome/index.do"/>
+        </div>
     </div>
 </div>
