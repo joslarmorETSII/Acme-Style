@@ -13,15 +13,21 @@ package controllers;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import services.EventService;
 
 @Controller
 @RequestMapping("/welcome")
 public class WelcomeController extends AbstractController {
 
+	// Services -----------------------------------------------------------
+
+	@Autowired
+	private EventService eventService;
 	// Constructors -----------------------------------------------------------
 
 	public WelcomeController() {
@@ -45,12 +51,12 @@ public class WelcomeController extends AbstractController {
 		momentEn = formatterEn.format(new Date());
 
 		result = new ModelAndView("welcome/index");
-		result.addObject("englishWelcome", "to our web of rendezvous");
-		result.addObject("spanishWelcome", "de nuestra web de citas");
+		result.addObject("englishWelcome", "to our web of fashion");
+		result.addObject("spanishWelcome", "de nuestra web de moda");
 		result.addObject("momentEs", momentEs);
 		result.addObject("momentEn", momentEn);
 		result.addObject("isIndex", true);
-
+		result.addObject("events",eventService.findAll());
 
 		return result;
 	}

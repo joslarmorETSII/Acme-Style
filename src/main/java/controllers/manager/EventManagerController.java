@@ -61,11 +61,13 @@ public class EventManagerController extends AbstractController{
     public ModelAndView edit(@RequestParam int eventId){
         ModelAndView result;
         Event event;
+        Manager manager;
 
+        manager = managerService.findByPrincipal();
         event = eventService.findOne(eventId);
         result = new ModelAndView("event/edit");
         result.addObject("event",event);
-        result.addObject("stores",storeService.findAll());
+        result.addObject("stores",manager.getStores());
 
         return result;
     }
@@ -124,13 +126,15 @@ public class EventManagerController extends AbstractController{
 
     protected ModelAndView createEditModelAndView(Event event ,  String text) {
         ModelAndView result;
+        Manager manager;
 
+        manager = managerService.findByPrincipal();
         result = new ModelAndView("event/edit");
         result.addObject("event", event);
         result.addObject("message", text);
         result.addObject("requestURI", "event/manager/edit.do");
         result.addObject("cancelURI","event/manager/list.do");
-        result.addObject("stores",storeService.findAll());
+        result.addObject("stores",manager.getStores());
 
         return result;
     }

@@ -2,6 +2,7 @@ package domain;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -28,6 +29,7 @@ public class Event extends DomainEntity{
     private Double price;
     private Date celebrationDate;
     private GpsCoordinates location;
+    private String image;
 
     @NotBlank
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
@@ -39,6 +41,7 @@ public class Event extends DomainEntity{
         this.title = title;
     }
 
+    @Column(length = 512)
     @NotBlank
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
     public String getDescription() {
@@ -97,6 +100,17 @@ public class Event extends DomainEntity{
 
     public void setLocation(GpsCoordinates location) {
         this.location = location;
+    }
+
+    @URL
+    @NotBlank
+    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     // Relationships ----------------------------------------------------------------------

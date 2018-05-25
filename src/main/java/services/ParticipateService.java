@@ -67,6 +67,10 @@ public class ParticipateService {
         return participateRepository.save(participate);
     }
 
+    public Participate participateByUserAndEvent(int actorId, int eventId) {
+        return participateRepository.participateByUserAndEvent(actorId,eventId);
+    }
+
     // Other business methods -------------------------------------------------
 
 }

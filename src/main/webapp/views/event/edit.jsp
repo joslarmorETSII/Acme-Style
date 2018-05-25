@@ -58,6 +58,13 @@
                              <form:errors class="error" path="tipo" />
                          </div>
                      </div>
+                     <div class="form-group">
+                         <label for="tipo" class="col-sm-3 control-label"><spring:message code="event.image"/>*</label>
+                         <div class="col-sm-9">
+                             <form:input path="image" class="form-control"  id="tipo" />
+                             <form:errors class="error" path="image" />
+                         </div>
+                     </div>
                     <div class="form-group">
                         <label for="price" class="col-sm-3 control-label"><spring:message code="event.price"/>*</label>
                         <div class="col-sm-9">

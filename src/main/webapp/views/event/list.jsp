@@ -38,6 +38,9 @@
             <spring:message code="event.tipo" var="headerTag" />
             <display:column property="tipo" title="${headerTag}"/>
 
+            <spring:message code="event.image" var="pic"/>
+            <display:column title="${pic}"><img src="${row.image}" alt="no image" width="130" height="100"></display:column>
+
             <spring:message code="event.price" var="headerTag" />
             <display:column property="price" title="${headerTag}"/>
 
@@ -49,6 +52,11 @@
                     <c:if test="${notParticipated}">
                         <a href="participate/user/participate.do?eventId=${row.id}">
                             <spring:message code="event.participate" />
+                        </a>
+                    </c:if>
+                    <c:if test="${!notParticipated }">
+                        <a href="participate/user/unparticipate.do?eventId=${row.id}">
+                            <spring:message code="event.unparticipate" />
                         </a>
                     </c:if>
                 </display:column>

@@ -19,16 +19,21 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 
+<div class="container">
+    <div class="col-md-10 col-md-offset-1">
 
-<display:table id="row" name="followers" requestURI="${requestURI}" pagesize="5">
+    <display:table id="row" name="followers" requestURI="${requestURI}" pagesize="10" class="table table-striped table-hover">
 
-    <acme:column code="user.name" value="${row.name}" />
-    <acme:column code="user.surname" value="${row.surname}" />
-    <acme:column code="user.email" value="${row.email}"/>
-    <acme:column code="user.phone" value="${row.phone}"/>
-    <acme:column code="user.postalAddresses" value="${row.postalAddresses}"/>
-    <acme:columnButton url="user/display.do?userId=${row.id}" codeButton="general.display"/>
+        <acme:column code="user.name" value="${row.name}" />
+        <acme:column code="user.surname" value="${row.surname}" />
+        <acme:column code="user.email" value="${row.email}"/>
+        <acme:column code="user.phone" value="${row.phone}"/>
+        <acme:column code="user.postalAddresses" value="${row.postalAddresses}"/>
+        <acme:columnButton url="/profile/actor/view.do?profileId=${row.profile.id}" codeButton="general.display"/>
 
-</display:table>
-
-<acme:cancel code="general.cancel" url="profile/actor/display.do"/>
+    </display:table>
+        <div class="text-center">
+            <acme:cancel code="general.cancel" url="profile/actor/display.do"/>
+        </div>
+    </div>
+</div>

@@ -10,22 +10,61 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
+<jstl:set var="x" value="1"/>
 <div class="container">
-    <div class="col-md-10 col-md-offset-1">
+<section>
+    <div class="container gal-container">
+        <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
+            <div class="box">
+                <a href="#" data-toggle="modal" data-target="#1">
+                    <img src=${profile.profilePhoto}>
+                </a>
+                <div class="modal fade" id="1" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <div class="modal-body">
+                                <img src=${profile.profilePhoto}>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<display:table name="galleries" pagesize="10" class="table table-striped table-hover" requestURI="${requestURI}" id="row">
+        <jstl:forEach var="gallery" items="${galleries}" >
+        <jstl:set var="x" value="${x +1}"/>
+            <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
 
-
-    <spring:message code="gallery.picture" var="pic"/>
-    <display:column title="${pic}"><img src="${row.picture}" alt="no image" width="130" height="100"></display:column>
-
-
-</display:table>
-
+                <div class="box">
+                    <a href="#" data-toggle="modal" data-target="#${x}">
+                        <img src="${gallery.picture}">
+                    </a>
+                    <div class="modal fade" id="${x}" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <div class="modal-body">
+                                    <img src="${gallery.picture}">
+                                </div>
+                                <div class="col-md-12 description">
+                                    <h4><jstl:if test="${owner}">
+                                        <acme:button code="general.delete"  url="gallery/actor/delete.do?galleryId=${gallery.id}"/>
+                                    </jstl:if>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </jstl:forEach>
+    </div>
+</section>
+</div>
+<div class="text-center" >
     <jstl:if test="${owner}">
         <acme:button code="general.create" url="gallery/actor/create.do"/>
     </jstl:if>
-        <acme:cancel url="${cancelURI}" code="general.cancel"/>
-
-    </div>
+    <acme:cancel url="${cancelURI}" code="general.cancel"/>
 </div>

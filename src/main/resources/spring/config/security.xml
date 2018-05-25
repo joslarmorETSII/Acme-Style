@@ -75,7 +75,9 @@
 		<!-- Event -->
 		<security:intercept-url pattern="/event/manager/**" access="hasRole('MANAGER')" />
 		<security:intercept-url pattern="/event/user/**" access="hasRole('USER')" />
+<!--
 		<security:intercept-url pattern="/event/**" access="isAuthenticated()" />
+-->
 
 		<!-- Participate -->
 		<security:intercept-url pattern="/participate/user/**" access="hasRole('USER')" />

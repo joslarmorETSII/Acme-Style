@@ -476,6 +476,8 @@
 				<ref bean="participate1" />
 			</list>
 		</property>
+		<property name="image" value="http://miracleaffairs.com/wp-content/uploads/2016/08/fashion-3.jpg"/>
+
 	</bean>
 
 	<!-- Participates -->

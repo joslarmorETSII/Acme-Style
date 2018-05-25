@@ -1,4 +1,4 @@
-package controllers;
+/*package controllers;
 
 import domain.Event;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,4 +40,4 @@ public class EventController extends AbstractController {
 
         return result;
     }
-}
+}*/

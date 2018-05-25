@@ -67,6 +67,7 @@ public class EventService {
     public Event save(Event event){
         Assert.notNull(event);
         Assert.isTrue(actorService.checkRole(Authority.MANAGER));
+        event.setMoment(new Date());
         return eventRepository.save(event);
     }
 

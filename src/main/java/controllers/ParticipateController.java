@@ -1,9 +1,9 @@
 package controllers;
 
-import controllers.AbstractController;
 import domain.CreditCard;
 import domain.Event;
 import domain.Participate;
+import domain.User;
 import forms.ParticipateToEventForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import services.EventService;
 import services.ParticipateService;
+import services.UserService;
 
 import javax.validation.Valid;
 @Controller
@@ -28,6 +29,9 @@ public class ParticipateController extends AbstractController {
 
     @Autowired
     private EventService eventService;
+
+    @Autowired
+    private UserService userService;
 
 
 
@@ -55,6 +59,23 @@ public class ParticipateController extends AbstractController {
         return result;
     }
 
+    @RequestMapping(value = "/unparticipate", method = RequestMethod.GET)
+    public ModelAndView unsubscribe(@RequestParam int eventId) {
+        ModelAndView result;
+        Event event;
+        User principal;
+
+        event = eventService.findOne(eventId);
+        Assert.notNull(event);
+        principal = userService.findByPrincipal();
+        Participate subscription = participateService.participateByUserAndEvent(principal.getId(),eventId);
+        participateService.delete(subscription);
+
+        result = new ModelAndView("redirect: ../../event/user/listParticipated.do");
+
+        return result;
+    }
+
     // Save ------------------------------------------------------------------------
 
     @RequestMapping(value = "/participate", method = RequestMethod.POST, params = "save")
@@ -69,7 +90,7 @@ public class ParticipateController extends AbstractController {
             if (binding.hasErrors())
                 result = this.createEditModelAndView2(participateToEventForm, null);
             else {
-                result = new ModelAndView("redirect: ../../event/list.do");
+                result = new ModelAndView("redirect: ../../event/user/list.do");
                 event = participateToEventForm.getEvent();
                 participate = participateService.create();
                 participate.setCreditCard(creditCard);

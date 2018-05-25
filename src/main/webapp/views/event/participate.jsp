@@ -20,32 +20,59 @@
     <form:form  action="participate/user/participate.do" modelAttribute="participateToEventForm" class="form-horizontal">
         <form:hidden path="event"/>
 
+
         <div class="form-group">
-            <acme:textbox code="user.holder" path="holder" />
-            <br/>
-
-            <div class="form-group">
-                <acme:textbox code="user.brand" path="brand" />
+            <label  class="col-sm-3 control-label"><spring:message code="user.holder"/>* </label>
+            <div class="col-sm-9">
+                <form:input path="holder" class="form-control"  />
+                <form:errors class="error" path="holder" />
             </div>
+        </div>
 
-            <div class="form-group">
-                <acme:textbox code="user.number" path="number" />
+        <div class="form-group">
+            <label  class="col-sm-3 control-label"><spring:message code="user.brand"/>* </label>
+            <div class="col-sm-9">
+                <form:input path="brand" class="form-control"  />
+                <form:errors class="error" path="brand" />
             </div>
-            <div class="form-group">
-                <acme:textbox code="user.expirationMonth" path="expirationMonth" />
-            </div>
-            <div class="form-group">
-                <acme:textbox code="user.expirationYear" path="expirationYear"/>
-            </div>
-            <div class="form-group">
-                <acme:textbox code="user.cvv" path="cvv"/>
-            </div>
+        </div>
 
+        <div class="form-group">
+            <label  class="col-sm-3 control-label"><spring:message code="user.number"/>* </label>
+            <div class="col-sm-9">
+                <form:input path="number" class="form-control"  />
+                <form:errors class="error" path="number" />
+            </div>
+        </div>
 
-            <input type="submit" name="save" value="<spring:message code="general.save"/>" />
+        <div class="form-group">
+            <label  class="col-sm-3 control-label"><spring:message code="user.expirationMonth"/>* </label>
+            <div class="col-sm-9">
+                <form:input path="expirationMonth" class="form-control"  />
+                <form:errors class="error" path="expirationMonth" />
+            </div>
+        </div>
 
-            <input type="button" name="cancel" value="<spring:message code="general.cancel" />"
-                   onclick="javascript: relativeRedir('event/list.do');" />
+        <div class="form-group">
+            <label  class="col-sm-3 control-label"><spring:message code="user.expirationYear"/>* </label>
+            <div class="col-sm-9">
+                <form:input path="expirationYear" class="form-control"  />
+                <form:errors class="error" path="expirationYear" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label  class="col-sm-3 control-label"><spring:message code="user.cvv"/>* </label>
+            <div class="col-sm-9">
+                <form:input path="cvv" class="form-control"  />
+                <form:errors class="error" path="cvv" />
+            </div>
+        </div>
+
+        <div class="text-center">
+            <input type="submit" class="btn btn-primary"  name="save" value="<spring:message code="general.save"/>" />
+            <input type="button" class="btn btn-warning"  name="cancel" value="<spring:message code="general.cancel" />"
+                   onclick="javascript: relativeRedir('event/user/list.do');" />
         </div>
     </form:form>
         </div>

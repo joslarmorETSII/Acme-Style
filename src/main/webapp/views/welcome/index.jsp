@@ -16,6 +16,35 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
+
+<div class="well">
+<jstl:forEach var="event" items="${events}">
+    <div class='container'>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="thumbnail">
+                    <img src="${event.image}" alt="..."  width="800" height="400">
+                    <div class="caption">
+                        <h3 class="text-center">${event.title}</h3>
+                        <p>${event.tipo}</p>
+                        <p>
+                            ${event.description}
+                        </p>
+                        <p class="pull-right">
+                                ${event.moment}
+                        </p>
+                        <p><a href="#" class="btn btn-info" role="button"><spring:message code="general.display"/> </a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</jstl:forEach>
+
+
+
+
+
 <jstl:if test="${pageContext.response.locale.language == 'es'}">
     <p><spring:message code="welcome.greeting.prefix" /><jstl:out value="${spanishWelcome}"></jstl:out><spring:message code="welcome.greeting.suffix" /></p>
     <p><b><spring:message code="welcome.greeting.current.time" />:&nbsp;</b>${momentEs} </p>
@@ -25,3 +54,4 @@
     <p><spring:message code="welcome.greeting.prefix" /><jstl:out value="${englishWelcome}"></jstl:out><spring:message code="welcome.greeting.suffix" /></p>
     <p><b><spring:message code="welcome.greeting.current.time" />:&nbsp;</b>${momentEn} </p>
 </jstl:if>
+</div>

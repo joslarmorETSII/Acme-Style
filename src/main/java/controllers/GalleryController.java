@@ -89,6 +89,19 @@ public class GalleryController extends AbstractController{
         return result;
     }
 
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public ModelAndView delete(@RequestParam int galleryId){
+        ModelAndView result;
+        Gallery gallery;
+
+        gallery = galleryService.findOne(galleryId);
+        Assert.isTrue(gallery.getProfile().getActor().equals(actorService.findByPrincipal()));
+        galleryService.delete(gallery);
+        result = new ModelAndView("redirect: list.do?profileId="+gallery.getProfile().getId());
+
+        return result;
+    }
+
 
     // Listing ----------------------------------------------------------------
 
@@ -111,6 +124,7 @@ public class GalleryController extends AbstractController{
         result.addObject("cancelURI", "profile/actor/display.do?profileId="+profileId);
         result.addObject("galleries", galleries);
         result.addObject("owner", owner);
+        result.addObject("profile", profile);
 
 
         return result;
