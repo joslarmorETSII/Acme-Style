@@ -30,19 +30,20 @@
                     </div>
                 </div>
 
-
-
                 <div class="form-group">
-                    <label for="points" class="col-sm-3 control-label"><spring:message code="feedback.points"/>*</label>
+                    <label for="points" class="col-sm-3 control-label"><spring:message code="feedback.points"/>*</label></label>
                     <div class="col-sm-9">
-                        <form:select path="points">
-                            <form:option label="----" value="0"/>
-                            <form:options class="form-control" items="${listPoints}"/>
+                        <form:select path="points" class="form-control" id="points">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
                         </form:select>
-                         <form:errors class="error" path="points" />
+                        <form:errors class="error" path="points" />
                     </div>
                 </div>
-
 
 
                 <div class="text-center">

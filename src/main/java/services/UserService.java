@@ -181,7 +181,7 @@ public class UserService {
 
 
         feedback.setPoints(feedbackForm.getPoints());
-        feedbackForm.setText(feedbackForm.getText());
+        feedback.setText(feedbackForm.getText());
 
         return feedback;
     }

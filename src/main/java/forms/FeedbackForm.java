@@ -17,7 +17,7 @@ public class FeedbackForm {
         super();
     }
 
-    private Servise servise;
+    private Servise     servise;
     private String	    text;
     private Integer		points;
 
@@ -41,14 +41,13 @@ public class FeedbackForm {
         this.text = text;
     }
 
-
     @NotNull
     @Range(min = 0, max = 5)
     public Integer getPoints() {
         return points;
     }
 
-    public void setPoints(Integer point) {
+    public void setPoints(Integer points) {
         this.points = points;
     }
 }
