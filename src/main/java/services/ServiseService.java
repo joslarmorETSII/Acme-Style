@@ -49,6 +49,9 @@ public class ServiseService {
     @Autowired
     private SubscribeService subscribeService;
 
+    @Autowired
+    private FeedbackService feedbackService;
+
 
     // Constructors -----------------------------------------------------------
 
@@ -97,6 +100,7 @@ public class ServiseService {
     public void delete(Servise servise){
         Assert.isTrue(checkByPrincipalAdmin(servise)||actorService.findByPrincipal().equals(servise.getCreator()),"Not the creator of this Service" );
         subscribeService.deleteAll(servise.getSubscriptions());
+        feedbackService.deleteAll(servise.getFeedbacks());
         serviseRepository.delete(servise);
     }
 

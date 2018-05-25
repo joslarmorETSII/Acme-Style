@@ -2,6 +2,7 @@ package services;
 
 
 import domain.Feedback;
+import domain.Subscription;
 import domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import org.springframework.util.Assert;
 import repositories.FeedbackRepository;
 import repositories.SubscriptionRepository;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -43,9 +45,10 @@ public class FeedbackService {
 
     public Feedback create(){
         Feedback res;
-
+        Collection<Integer> listpoints= new ArrayList<Integer>();
         res = new Feedback();
         res.setUser(userService.findByPrincipal());
+
 
         return res;
     }
@@ -67,8 +70,28 @@ public class FeedbackService {
 
         principal = userService.findByPrincipal();
         Assert.notNull(subscribeService.subscriptionByUserAndService(principal.getId(),feedback.getServise().getId()),"not subscribed ");
+        Collection<Integer> lisPoints= listPoints();
+
 
         return feedbackRepository.save(feedback);
+    }
+
+    public void deleteAll(Collection<Feedback> feedbacks){
+        feedbackRepository.delete(feedbacks);
+    }
+
+    public Feedback feedbackByUserAndService(int userId, int serviseId){
+        return feedbackRepository.feedbackByUserAndService(userId,serviseId);
+    }
+
+    public Collection<Integer> listPoints(){
+        Collection<Integer> listPoints= new ArrayList<Integer>();
+        Integer i;
+        for(i=0;i<=5;i++){
+            listPoints.add(i);
+        }
+
+        return listPoints;
     }
 
     public void flush() {

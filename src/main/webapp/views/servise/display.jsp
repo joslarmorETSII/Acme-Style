@@ -43,5 +43,8 @@
 <img src="${servise.picture}" width="500px" height="100%" />
 <br/>
 
+<b><spring:message code="servise.feedbacks"/>:&nbsp; </b><jstl:out value="${servise.feedbacks}"/>
+<br/>
+
 <input type="button" class="btn btn-warning" name="cancel" value="<spring:message code="general.cancel" />"
        onclick="javascript: relativeRedir('${cancelURI}');" />

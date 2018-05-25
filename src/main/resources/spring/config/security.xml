@@ -87,6 +87,11 @@
 		<security:intercept-url pattern="/store/manager/**" access="hasRole('MANAGER')" />
 
 
+		<!-- Feedback -->
+		<security:intercept-url pattern="/feedback/user/**" access="hasRole('USER')" />
+
+
+
 
 		<!-- Post -->
 		<security:intercept-url pattern="/post/actor/**" access="isAuthenticated()" />

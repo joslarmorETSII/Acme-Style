@@ -1,6 +1,7 @@
 package services;
 
 import domain.*;
+import forms.FeedbackForm;
 import forms.SubscribeServiseForm;
 import forms.UserForm;
 import org.apache.commons.lang.StringUtils;
@@ -173,5 +174,15 @@ public class UserService {
             binding.addError(error);
         }
         return result;
+    }
+
+    public Feedback reconstructFeedback(FeedbackForm feedbackForm, BindingResult binding) {
+        Feedback feedback = new Feedback();
+
+
+        feedback.setPoints(feedbackForm.getPoints());
+        feedbackForm.setText(feedbackForm.getText());
+
+        return feedback;
     }
 }

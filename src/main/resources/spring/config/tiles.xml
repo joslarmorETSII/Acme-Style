@@ -38,6 +38,7 @@
 		<value>/views/event/tiles.xml</value>
 		<value>/views/store/tiles.xml</value>
 		<value>/views/actor/tiles.xml</value>
+		<value>/views/feedback/tiles.xml</value>
 
 
 	</util:list>

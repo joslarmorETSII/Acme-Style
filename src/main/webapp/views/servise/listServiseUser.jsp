@@ -42,6 +42,12 @@
                 </display:column>
             </security:authorize>
 
+            <security:authorize access="hasRole('USER')">
+                <display:column>
+                    <acme:button url="feedback/user/evaluate.do?serviseId=${servise.id}" code="servise.evaluation"/>
+                </display:column>
+            </security:authorize>
+
             <security:authorize access="hasRole('USER')" >
                 <display:column >
                     <acme:button url="servise/user/display.do?serviseId=${servise.id}" code="general.display"/>
