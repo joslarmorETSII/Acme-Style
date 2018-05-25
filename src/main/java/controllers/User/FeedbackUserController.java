@@ -3,7 +3,7 @@ package controllers.User;
 import controllers.AbstractController;
 import domain.*;
 import forms.FeedbackForm;
-import forms.SubscribeServiseForm;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -80,15 +80,13 @@ public class FeedbackUserController extends AbstractController{
         servise=serviseService.findOne(serviseId);
         Assert.notNull(servise);
         Feedback feedback = feedbackService.feedbackByUserAndService(user.getId(),serviseId);
-        Assert.isTrue(feedback==null,"Already subscribed to this service");
+        Assert.isTrue(feedback==null,"Already left a feedback to this service");
 
         FeedbackForm feedbackForm = new FeedbackForm();
         feedbackForm.setServise(servise);
-        listPoints=feedbackService.listPoints();
 
         result = new ModelAndView("feedback/feedbackForm");
         result.addObject("feedbackForm", feedbackForm);
-        result.addObject("listPoints",listPoints);
 
         return result;
     }
@@ -106,14 +104,13 @@ public class FeedbackUserController extends AbstractController{
             if (binding.hasErrors())
                 result = createEditModelAndView(feedbackForm);
             else {
-                result = new ModelAndView("redirect: list.do");
-
-                feedback = feedbackService.create();
-                user = userService.findByPrincipal();
                 servise = feedbackForm.getServise();
+
+                result = new ModelAndView("redirect: list.do?serviseId="+servise.getId());
+
+                user = userService.findByPrincipal();
                 feedback.setUser(user);
                 feedback.setServise(servise);
-
                 feedbackService.save(feedback);
 
             }
@@ -132,7 +129,7 @@ public class FeedbackUserController extends AbstractController{
         ModelAndView result;
 
         result = new ModelAndView("feedback/feedbackForm");
-        result.addObject("feedbackFrom", feedbackForm);
+        result.addObject("feedbackForm", feedbackForm);
         result.addObject("message", messageCode);
 
 
