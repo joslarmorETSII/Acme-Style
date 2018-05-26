@@ -41,7 +41,7 @@
                     <p></p>
                     <form action="search/search.do"  method="get" role="search" target="vufind" name="searchForm">
                         <div class="input-group lrcInputs">
-                            <input type="text" name="keyword" value="${keyword}" />
+                            <input class="form-control" type="text" name="keyword" value="${keyword}" />
                             <div class="input-group-btn"><button class="btn btn-success lrcSearchButton" type="submit"><i class="glyphicon glyphicon-search"></i></button></div>
                         </div>
                     </form>
