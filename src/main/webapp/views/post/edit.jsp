@@ -37,6 +37,8 @@
         <label class="col-sm-3 control-label"><spring:message code="message.category" /></label>
         <div class="col-sm-9">
             <form:select class="form-control" path="categories" items="${allCategories}" itemLabel="name"/>
+            <form:errors class="error" path="categories" />
+
         </div>
     </div>
 
