@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import services.ConfigurationService;
 import services.EventService;
 
 @Controller
@@ -28,6 +29,10 @@ public class WelcomeController extends AbstractController {
 
 	@Autowired
 	private EventService eventService;
+
+	@Autowired
+	private ConfigurationService configurationService;
+
 	// Constructors -----------------------------------------------------------
 
 	public WelcomeController() {
@@ -51,8 +56,8 @@ public class WelcomeController extends AbstractController {
 		momentEn = formatterEn.format(new Date());
 
 		result = new ModelAndView("welcome/index");
-		result.addObject("englishWelcome", "to our web of fashion");
-		result.addObject("spanishWelcome", "de nuestra web de moda");
+		result.addObject("englishWelcome", configurationService.getCS().getEnglishWelcome());
+		result.addObject("spanishWelcome", configurationService.getCS().getSpanishWelcome());
 		result.addObject("momentEs", momentEs);
 		result.addObject("momentEn", momentEn);
 		result.addObject("isIndex", true);
