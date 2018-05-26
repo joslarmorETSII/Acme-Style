@@ -91,6 +91,10 @@
                 </display:column>
             </security:authorize>
 
+            <display:column>
+                <acme:button url="/question/actor/list.do?serviseId=${row.id}" code="servise.questions" />
+            </display:column>
+
 </display:table>
 </fieldset>
     </div>

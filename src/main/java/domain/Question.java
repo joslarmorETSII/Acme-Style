@@ -1,5 +1,6 @@
 package domain;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -21,7 +22,7 @@ public class Question extends DomainEntity{
     private String text;
     private Date moment;
 
-    @NotNull
+    @NotBlank
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
     public String getText() {
         return text;
@@ -53,6 +54,7 @@ public class Question extends DomainEntity{
     public void setServise(Servise servise) {
         this.servise = servise;
     }
+
     @OneToMany(mappedBy = "question")
     public Collection<Answer> getAnswers() {
         return answers;

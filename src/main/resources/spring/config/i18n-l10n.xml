@@ -42,7 +42,8 @@
 		<value>/views/feedback/messages</value>
 		<value>/views/termAndCondition/messages</value>
 		<value>/views/search/messages</value>
-
+		<value>/views/question/messages</value>
+		<value>/views/answer/messages</value>
 	</util:list>
 
 </beans>

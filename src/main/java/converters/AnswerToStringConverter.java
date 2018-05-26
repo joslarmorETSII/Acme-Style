@@ -9,22 +9,16 @@ import repositories.AnswerRepository;
 
 @Component
 @Transactional
-public class AnswerToStringConverter implements Converter<String, Answer> {
-
-    @Autowired
-    private AnswerRepository answerRepository;
+public class AnswerToStringConverter implements Converter<Answer, String>{
 
     @Override
-    public Answer convert(String text) {
-        Answer result;
-        int id;
+    public String convert(Answer entity) {
 
-        try {
-            id = Integer.valueOf(text);
-            result = answerRepository.findOne(id);
-        } catch (Throwable oops) {
-            throw new IllegalArgumentException(oops);
-        }
+        String result;
+        if (entity == null)
+            result = null;
+        else
+            result = String.valueOf(entity.getId());
 
         return result;
     }

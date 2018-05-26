@@ -1,6 +1,7 @@
 package services;
 
 import domain.Answer;
+import domain.Artist;
 import domain.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,9 @@ public class QuestionService {
 
     @Autowired
     private QuestionRepository questionRepository;
+
+    @Autowired
+    private ArtistService artistService;
 
     // Supporting services ----------------------------------------------------
 
@@ -57,6 +61,16 @@ public class QuestionService {
 
     public Collection<Question> findAll(){
         return questionRepository.findAll();
+    }
+
+    public Question findOneToEdit(int questionId) {
+        Question question;
+        Artist principal;
+
+        principal = artistService.findByPrincipal();
+        question = findOne(questionId);
+        Assert.isTrue(question.getServise().getCreator().equals(principal),"Not the owner");
+        return question;
     }
 
     // Other business methods -------------------------------------------------

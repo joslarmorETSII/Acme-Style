@@ -95,6 +95,17 @@
 		<!-- Feedback -->
 		<security:intercept-url pattern="/feedback/user/**" access="hasRole('USER')" />
 
+		<!-- Question -->
+		<security:intercept-url pattern="/question/actor/**" access="isAuthenticated()" />
+
+		<!-- Answer -->
+
+		<!-- Answer -->
+		<security:intercept-url pattern="/answer/artist/**" access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')" />
+		<security:intercept-url pattern="/answer/actor/**" access="isAuthenticated()" />
+
+
+
 
 
 

@@ -26,7 +26,6 @@
 		<div class="collapse navbar-collapse" id="navegacion-fm">
 			<ul class="nav navbar-nav">
 				<security:authorize access="isAnonymous()">
-					<li class="active"><a href="search/search.do?keyword="><spring:message code="master.page.search" /></a></li>
 					<li class="active"><a href="security/login.do"><spring:message code="master.page.login" /></a></li>
 					<li class="dorpdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >
@@ -41,7 +40,6 @@
 
 				<security:authorize access="isAuthenticated()">
 					<li class="dorpdown">
-					<li class="active"><a href="search/search.do?keyword="><spring:message code="master.page.search" /></a></li>
 
 					<security:authorize access="hasRole('USER')">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >
@@ -123,6 +121,10 @@
 				<security:authorize access="hasRole('ADMINISTRATOR')">
 					<li><a href="servise/listServisesPublished.do"><spring:message code="master.page.serviseAll" /></a></li>
 				</security:authorize>
+
+				<!-- Admin -->
+				<li><a href="search/search.do?keyword="><spring:message code="master.page.search" /></a></li>
+
 			</ul>
 
 
