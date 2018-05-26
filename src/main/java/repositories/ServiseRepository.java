@@ -14,4 +14,8 @@ public interface ServiseRepository  extends JpaRepository<Servise,Integer>{
 
     @Query("select s from Servise s where s.taboo =true")
     Collection<Servise> servisesTaboo();
+
+    //Search
+    @Query("select s from Servise s where (s.title like %?1%  or s.description like %?2%)")
+    Collection<Servise> searchServisesPerKeyword(String title, String description);
 }

@@ -41,7 +41,7 @@
 		<value>/views/actor/messages</value>
 		<value>/views/feedback/messages</value>
 		<value>/views/termAndCondition/messages</value>
-
+		<value>/views/search/messages</value>
 
 	</util:list>
 

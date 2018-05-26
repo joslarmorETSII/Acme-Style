@@ -114,6 +114,9 @@ public class EventService {
         return result;
     }
 
-
     // Other business methods -------------------------------------------------
+
+    public Collection<Event> searchEventsPerKeyword(String keyword){
+        return this.eventRepository.searchEventsPerKeyword(keyword);
+    }
 }

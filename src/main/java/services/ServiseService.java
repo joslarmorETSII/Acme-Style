@@ -202,4 +202,8 @@ public class ServiseService {
         return res;
 
     }
+
+    public Collection<Servise> searchServisesPerKeyword(String keyword){
+        return this.serviseRepository.searchServisesPerKeyword(keyword,keyword);
+    }
 }
