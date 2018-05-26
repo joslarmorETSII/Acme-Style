@@ -69,6 +69,9 @@
 		<!-- Profile -->
 		<security:intercept-url pattern="/profile/**" access="isAuthenticated()" />
 
+		<!-- TermAndConditions -->
+		<security:intercept-url pattern="/termAndCondition/**" access="permitAll()" />
+
 		<!-- Gallery -->
 		<security:intercept-url pattern="/gallery/**" access="isAuthenticated()" />
 

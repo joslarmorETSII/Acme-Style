@@ -40,6 +40,7 @@
 		<value>/views/store/messages</value>
 		<value>/views/actor/messages</value>
 		<value>/views/feedback/messages</value>
+		<value>/views/termAndCondition/messages</value>
 
 
 	</util:list>
