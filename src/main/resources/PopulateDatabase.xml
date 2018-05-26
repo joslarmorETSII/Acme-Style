@@ -1164,7 +1164,6 @@
 				<value>sexo</value>
 			</list>
 		</property>
-		<property name="discount" value="10.0"/>
 
 	</bean>
 

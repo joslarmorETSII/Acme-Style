@@ -59,7 +59,7 @@
 						</security:authorize>
 						<security:authorize access="hasRole('ADMINISTRATOR')">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >
-								<spring:message code="master.page.administrator" /> <span class="caret"/>
+							<spring:message code="master.page.administrator" /> <span class="caret"/>
 							</a>
 						</security:authorize>
 						<ul class="dropdown-menu" role="menu">
@@ -71,6 +71,7 @@
 							<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-off"/> <spring:message code="master.page.logout"/></a></li>
 						</ul>
 					</li>
+					<a href="configuration/administrator/edit.do"><spring:message code="master.page.configuration" /></a></li>
 				</security:authorize>
 
 					<!-- USER -->

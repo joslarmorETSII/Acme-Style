@@ -91,9 +91,11 @@
 		<!-- Store -->
 		<security:intercept-url pattern="/store/manager/**" access="hasRole('MANAGER')" />
 
-
 		<!-- Feedback -->
 		<security:intercept-url pattern="/feedback/user/**" access="hasRole('USER')" />
+
+		<!-- Configuration -->
+		<security:intercept-url pattern="/configuration/administrator/**" access="hasRole('ADMINISTRATOR')" />
 
 		<!-- Question -->
 		<security:intercept-url pattern="/question/actor/**" access="isAuthenticated()" />

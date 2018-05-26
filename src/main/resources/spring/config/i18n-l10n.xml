@@ -44,6 +44,8 @@
 		<value>/views/search/messages</value>
 		<value>/views/question/messages</value>
 		<value>/views/answer/messages</value>
+		<value>/views/configuration/messages</value>
+
 	</util:list>
 
 </beans>

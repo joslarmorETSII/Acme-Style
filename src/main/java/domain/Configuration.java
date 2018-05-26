@@ -27,8 +27,6 @@ public class Configuration extends DomainEntity {
     private String				englishWelcome;
     private String				spanishWelcome;
     private Collection<String>	tabooWords;
-    private Double discount;
-
 
     @NotBlank
     @URL
@@ -71,12 +69,5 @@ public class Configuration extends DomainEntity {
         this.tabooWords = tabooWords;
     }
 
-    public Double getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(Double discount) {
-        this.discount = discount;
-    }
 }
 
