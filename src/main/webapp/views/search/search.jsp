@@ -26,44 +26,76 @@
 </jstl:if>
 
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <ul class="nav nav-pills nav-justified">
+                <li class="active"><a data-toggle="pill" href="#home"><spring:message code="master.page.servise"/> </a></li>
+                <li><a data-toggle="pill" href="#menu1"><spring:message code="master.page.event"/> </a></li>
+                <li><a data-toggle="pill" href="#menu2"><spring:message code="user.listUsers"/></a></li>
+            </ul>
 
-<form action="search/search.do" method="get">
-    <input type="text" name="keyword" value="${keyword}" />
-    <input type="submit" value="<spring:message code="master.page.search"/>"/>
-</form>
-<br/>
-<br/>
-<fieldset>
-    <legend><spring:message code="servise.listServises"/> </legend>
-    <display:table name="servises" id="row" pagesize="5" class="displaytag" requestURI="${requestURI}">
+            <div class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+                    <p></p>
+                    <form action="search/search.do"  method="get" role="search" target="vufind" name="searchForm">
+                        <div class="input-group lrcInputs">
+                            <input type="text" name="keyword" value="${keyword}" />
+                            <div class="input-group-btn"><button class="btn btn-success lrcSearchButton" type="submit"><i class="glyphicon glyphicon-search"></i></button></div>
+                        </div>
+                    </form>
+                    <p></p>
+                    <fieldset>
+                        <legend><spring:message code="servise.listServises"/> </legend>
+                        <display:table name="servises" id="row" pagesize="5" class="displaytag" requestURI="${requestURI}">
 
-        <acme:column code="servise.title" value="${row.title}" />
+                            <acme:column code="servise.title" value="${row.title}" />
 
-    </display:table>
-</fieldset>
-<br/>
+                        </display:table>
+                    </fieldset>
 
-<br/>
-<fieldset>
-    <legend><spring:message code="event.listEvents"/> </legend>
-    <display:table name="events" id="event" pagesize="5" class="displaytag" requestURI="${requestURI}">
+                </div>
+                <div id="menu1" class="tab-pane fade">
+                    <p></p>
+                    <form action="search/search.do"  method="get" role="search" target="vufind" name="searchForm">
+                        <div class="input-group lrcInputs">
+                            <input type="text" name="keyword" value="${keyword}" />
+                            <div class="input-group-btn"><button class="btn btn-success lrcSearchButton" type="submit"><i class="glyphicon glyphicon-search"></i></button></div>
+                        </div>
+                    </form>
+                    <p></p>
+                    <fieldset>
+                        <legend><spring:message code="event.listEvents"/> </legend>
+                        <display:table name="events" id="event" pagesize="5" class="displaytag" requestURI="${requestURI}">
 
-        <acme:column code="event.title" value="${event.title} " />
+                            <acme:column code="event.title" value="${event.title} " />
 
-    </display:table>
-</fieldset>
-<br/>
+                        </display:table>
+                    </fieldset>
 
-<br/>
-<fieldset>
-    <legend><spring:message code="user.listUsers"/> </legend>
-    <display:table name="users" id="user" pagesize="5" class="displaytag" requestURI="${requestURI}">
+                </div>
+                <div id="menu2" class="tab-pane fade">
+                    <p></p>
+                    <form action="search/search.do"  method="get" role="search" target="vufind" name="searchForm">
+                        <div class="input-group lrcInputs">
+                            <input type="text" name="keyword" value="${keyword}" />
+                            <div class="input-group-btn"><button class="btn btn-success lrcSearchButton" type="submit"><i class="glyphicon glyphicon-search"></i></button></div>
+                        </div>
+                    </form>
+                    <p></p>
+                    <fieldset>
+                        <legend><spring:message code="user.listUsers"/> </legend>
+                        <display:table name="users" id="user" pagesize="5" class="displaytag" requestURI="${requestURI}">
 
-        <acme:column code="user.name" value="${user.name}" />
+                            <acme:column code="user.name" value="${user.name}" />
 
-    </display:table>
-</fieldset>
-<br/>
-<acme:cancel code="general.cancel" url="${cancelURI}"/>
+                        </display:table>
+                    </fieldset>
 
-
+                </div>
+            </div>
+                    <acme:cancel code="general.cancel" url="${cancelURI}"/>
+        </div>
+    </div>
+</div>
