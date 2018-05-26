@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import services.ActorService;
+import services.CategoryService;
 import services.PostService;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,6 +30,9 @@ public class PostActorController extends AbstractController{
 
     @Autowired
     private ActorService actorService;
+
+    @Autowired
+    private CategoryService categoryService;
 
     // Constructor --------------------------------------------
 
@@ -179,6 +183,7 @@ public class PostActorController extends AbstractController{
     protected ModelAndView createEditModelAndView(final Post post, final String messageCode) {
         ModelAndView result;
         result = new ModelAndView("post/edit");
+        result.addObject("allCategories", categoryService.findAll());
         result.addObject("post", post);
         result.addObject("message", messageCode);
         result.addObject("actionURI","post/actor/edit.do");

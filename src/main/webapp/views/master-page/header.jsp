@@ -26,6 +26,7 @@
 		<div class="collapse navbar-collapse" id="navegacion-fm">
 			<ul class="nav navbar-nav">
 				<security:authorize access="isAnonymous()">
+					<li class="active"><a href="search/search.do?keyword="><spring:message code="master.page.search" /></a></li>
 					<li class="active"><a href="security/login.do"><spring:message code="master.page.login" /></a></li>
 					<li class="dorpdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >
@@ -65,7 +66,7 @@
 							<li><a href="profile/actor/display.do"><span class="glyphicon glyphicon-user"/> <spring:message code="master.page.profile" /></a> </li>
 							<li><a href="folder/actor/list.do"><span class="glyphicon glyphicon-envelope"/> <spring:message code="master.page.mail" /></a> </li>
 							<li><a href="post/actor/list.do"><span class="glyphicon glyphicon-pushpin"/> <spring:message code="master.page.posts" /></a> </li>
-							<li><a href="user/search.do?keyword="><span class="glyphicon glyphicon-search"/> <spring:message code="master.page.search" /></a></li>
+							<li><a href="search/search.do?keyword="><span class="glyphicon glyphicon-search"/> <spring:message code="master.page.search" /></a></li>
 							<li class="divider"></li>
 							<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-off"/> <spring:message code="master.page.logout"/></a></li>
 						</ul>

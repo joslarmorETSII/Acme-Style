@@ -31,6 +31,9 @@ public class PostService {
     @Autowired
     private Validator validator;
 
+    @Autowired
+    private CategoryService categoryService;
+
     // Constructors -----------------------------------------------------------
 
     public PostService() {
@@ -70,6 +73,7 @@ public class PostService {
     public void delete(Post post){
         Assert.notNull(post);
         Assert.isTrue(actorService.findByPrincipal().equals(post.getActor()) || actorService.checkRole(Authority.ADMINISTRATOR));
+
         postRepository.delete(post);
     }
 
@@ -79,7 +83,9 @@ public class PostService {
 
         post.setMoment(new Date(System.currentTimeMillis() - 1000));
 
-        return postRepository.save(post);
+        Post res = postRepository.save(post);
+
+        return res;
     }
 
     // Other business methods -------------------------------------------------
@@ -100,6 +106,7 @@ public class PostService {
         res.setLik(postPruned.getLik());
         res.setDislike(postPruned.getDislike());
         res.setHeart(postPruned.getHeart());
+        res.setCategories(postPruned.getCategories());
 
         this.validator.validate(res,binding);
 

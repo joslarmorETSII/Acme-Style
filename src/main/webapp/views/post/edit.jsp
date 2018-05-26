@@ -32,6 +32,13 @@
     <form:hidden path="id"/>
     <form:hidden path="version"/>
     <form:hidden path="actor"/>
+    <
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><spring:message code="message.category" /></label>
+        <div class="col-sm-9">
+            <form:select class="form-control" path="categories" items="${allCategories}" itemLabel="name"/>
+        </div>
+    </div>
 
     <div class="form-group">
         <label class="col-sm-3 control-label"><spring:message code="post.title"/></label>

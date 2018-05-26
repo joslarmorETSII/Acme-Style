@@ -654,38 +654,22 @@
 
 	<bean id="category1" class="domain.Category">
 		<property name="name" value="WEDDING"/>
-		<property name="posts">
-			<list>
-				<null/>
-			</list>
-		</property>
 	</bean>
 
 	<bean id="category2" class="domain.Category">
 		<property name="name" value="BAPTISM"/>
-		<property name="posts">
-			<list>
-				<null/>
-			</list>
-		</property>
 	</bean>
 
 	<bean id="category3" class="domain.Category">
 		<property name="name" value="COMMUION"/>
-		<property name="posts">
-			<list>
-				<null/>
-			</list>
-		</property>
 	</bean>
 
 	<bean id="category4" class="domain.Category">
 		<property name="name" value="GRADUATION"/>
-		<property name="posts">
-			<list>
-				<null/>
-			</list>
-		</property>
+	</bean>
+
+	<bean id="category5" class="domain.Category">
+		<property name="name" value="OTHERS"/>
 	</bean>
 
 	<!-- Posts -->

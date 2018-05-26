@@ -32,18 +32,7 @@ public class Category extends DomainEntity{
     public void setName(String name) {
         this.name = name;
     }
+
     // Relationships ----------------------------------------------------------------------
-    private Collection<Post> posts;
 
-
-    @NotNull
-    @Valid
-    @ManyToMany
-    public Collection<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(Collection<Post> posts) {
-        this.posts = posts;
-    }
 }
