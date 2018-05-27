@@ -25,6 +25,13 @@
         <display:table id="servise" name="servises" class="table table-striped table-hover" requestURI="${requestURI}"
                        pagesize="5">
 
+            <jstl:set var="leftFeedback" value="true" />
+            <jstl:forEach var="feedback" items="${servise.feedbacks}" >
+                <jstl:if test="${ feedback.user eq user}" >
+                    <jstl:set var="leftFeedback" value="false" />
+                </jstl:if>
+            </jstl:forEach>
+
             <acme:column code="servise.creator" value="${servise.creator.name} " />
             <acme:column code="servise.title" value="${servise.title}"/>
             <acme:column code="servise.description" value="${servise.description}"/>
@@ -44,7 +51,9 @@
 
             <security:authorize access="hasRole('USER')">
                 <display:column>
-                    <acme:button url="feedback/user/evaluate.do?serviseId=${servise.id}" code="servise.evaluation"/>
+                    <jstl:if test="${leftFeedback eq true}">
+                        <acme:button url="feedback/user/evaluate.do?serviseId=${servise.id}" code="servise.evaluation"/>
+                    </jstl:if>
                 </display:column>
             </security:authorize>
 
