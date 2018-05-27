@@ -43,7 +43,21 @@
 <img src="${servise.picture}" width="500px" height="100%" />
 <br/>
 
-<b><spring:message code="servise.feedbacks"/>:&nbsp; </b><jstl:out value="${servise.feedbacks}"/>
+<%--TABLE OF CONTENT --%>
+<fieldset>
+    <legend>Feedbacks</legend>
+    <jstl:forEach items="${servise.feedbacks}" var="feedback">
+        <b> <spring:message code="feedback.points"/>:&nbsp;</b>
+
+            <jstl:out value="${feedback.points}"/>
+        <br/>
+        <b> <spring:message code="feedback.text"/>:&nbsp;</b>
+
+            <jstl:out value="${feedback.text}"/>
+        <br/>
+     </jstl:forEach>
+</fieldset>
+
 <br/>
 
 <input type="button" class="btn btn-warning" name="cancel" value="<spring:message code="general.cancel" />"

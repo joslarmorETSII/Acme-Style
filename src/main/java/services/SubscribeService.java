@@ -2,6 +2,7 @@ package services;
 
 import domain.Servise;
 import domain.Subscription;
+import domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,9 +64,9 @@ public class SubscribeService {
     }
 
     public Subscription save(Subscription subscription){
-        //Assert.isTrue(subscription.getServise().getPublicationDate().after(new Date()),"Service not published yet");
         subscription.setMoment(new Date());
-        return subscriptionRepository.save(subscription);
+        User user = userService.findByPrincipal();
+         return subscriptionRepository.save(subscription);
     }
 
     public void flush() {

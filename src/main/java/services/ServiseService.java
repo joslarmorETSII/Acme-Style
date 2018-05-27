@@ -92,7 +92,7 @@ public class ServiseService {
         if(isTabooServise(servise)){
             servise.setTaboo(true);
         }
-       // Assert.isTrue(servise.getPublicationDate().after(new Date()));
+
 
         return serviseRepository.save(servise);
     }
