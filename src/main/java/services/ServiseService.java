@@ -52,6 +52,12 @@ public class ServiseService {
     @Autowired
     private FeedbackService feedbackService;
 
+    @Autowired
+    private QuestionService questionService;
+
+    @Autowired
+    private StoreService storeService;
+
 
     // Constructors -----------------------------------------------------------
 
@@ -100,7 +106,15 @@ public class ServiseService {
     public void delete(Servise servise){
         Assert.isTrue(checkByPrincipalAdmin(servise)||actorService.findByPrincipal().equals(servise.getCreator()),"Not the creator of this Service" );
         subscribeService.deleteAll(servise.getSubscriptions());
+
+        Collection<Store> stores= servise.getStores();
+        for(Store s:stores){
+            Collection<Servise> servises=s.getServises();
+            servises.remove(servise);
+            s.setServises(servises);
+            }
         feedbackService.deleteAll(servise.getFeedbacks());
+        questionService.deleteAll(servise.getQuestions());
         serviseRepository.delete(servise);
     }
 

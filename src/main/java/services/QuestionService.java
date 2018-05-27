@@ -25,6 +25,9 @@ public class QuestionService {
     @Autowired
     private ArtistService artistService;
 
+    @Autowired
+    private AnswerService answerService;
+
     // Supporting services ----------------------------------------------------
 
 
@@ -53,6 +56,12 @@ public class QuestionService {
 
     public void delete(Question question){
         questionRepository.delete(question);
+    }
+    public void deleteAll(Collection<Question> questions){
+        for(Question q:questions){
+            answerService.deleteAll(q.getAnswers());
+            delete(q);
+        }
     }
 
     public Question findOne(int id){

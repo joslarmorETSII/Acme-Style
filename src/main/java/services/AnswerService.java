@@ -47,6 +47,10 @@ public class AnswerService {
         answerRepository.delete(answer);
     }
 
+    public void deleteAll(Collection<Answer> answers){
+        answerRepository.delete(answers);
+    }
+
     public Answer findOne(int id){
         return answerRepository.findOne(id);
     }
