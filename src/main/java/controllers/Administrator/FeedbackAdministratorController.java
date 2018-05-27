@@ -50,7 +50,7 @@ public class FeedbackAdministratorController extends AbstractController {
         try{
 
             feedbackService.delete(feedback);
-            result = new ModelAndView("redirect:display.do??serviseId="+servise.getId());
+            result = new ModelAndView("redirect:../../servise/administrator/display.do??serviseId="+servise.getId());
         }catch (Throwable oops){
             result = createEditModelAndView(feedback,"general.commit.error");
         }
