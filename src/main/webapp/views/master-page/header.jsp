@@ -78,6 +78,8 @@
 						</ul>
 					</li>
 
+					<li><a href="panel/user/list.do"><spring:message code="master.page.panel" /></a></li>
+
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><spring:message code="master.page.event" /> </a>
 						<ul class="dropdown-menu">
 							<li><a href="event/user/list.do"><spring:message code="master.page.event.toSubscribe" /></a></li>

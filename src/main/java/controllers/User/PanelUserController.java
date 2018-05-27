@@ -64,6 +64,7 @@ public class PanelUserController extends AbstractController {
         result = new ModelAndView("panel/list");
         result.addObject("panels", panels);
         result.addObject("requestURI","panel/user/list.do");
+        result.addObject("cancelURI","welcome/index.do");
 
         return result;
 

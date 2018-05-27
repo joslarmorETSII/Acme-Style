@@ -39,6 +39,7 @@
 
 
         </div>
+
     </div>
     </div>
     </body>
@@ -46,11 +47,14 @@
 
 </jstl:forEach>
 
+<div class="col-md-10 col-md-offset-1">
+<button type="button" class="btn btn-warning" onclick="javascript: relativeRedir('${cancelURI}')" >
+    <spring:message code="general.cancel" />
+</button>
+</div>
 <br/>
 
-    
 
-</fieldset>
-<input type="button" name="cancel" value="<spring:message code="general.cancel" />"
-       onclick="javascript: relativeRedir('${cancelURI}');" />
+
+
 

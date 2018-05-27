@@ -36,5 +36,7 @@
 
 
     <acme:button code="panel.create" url="panel/user/create.do"/>
+
+        <acme:cancel code="general.cancel" url="${cancelURI}" />
     </div>
 </div>
