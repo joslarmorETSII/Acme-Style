@@ -109,12 +109,7 @@
 
 				<!-- Admin -->
 				<security:authorize access="hasRole('ADMINISTRATOR')">
-					<li><a href="servise/listServisesPublished.do"><spring:message code="master.page.serviseAll" /></a></li>
-				</security:authorize>
-
-				<!-- Admin -->
-				<security:authorize access="hasRole('ADMINISTRATOR')">
-					<li><a href="servise/listServisesPublished.do"><spring:message code="master.page.serviseAll" /></a></li>
+					<li><a href="/servise/administrator/list.do"><spring:message code="master.page.serviseAll" /></a></li>
 					<li><a href="configuration/administrator/edit.do"><spring:message code="master.page.configuration" /></a></li>
 				</security:authorize>
 

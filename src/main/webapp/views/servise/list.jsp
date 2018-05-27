@@ -127,6 +127,10 @@
                     <acme:button url="servise/administrator/edit.do?serviseId=${row.id}" code="general.delete" />
                 </display:column>
 
+                <display:column>
+                    <acme:button url="/question/actor/list.do?serviseId=${row.id}" code="servise.questions" />
+                </display:column>
+
             </display:table>
         </fieldset>
 
