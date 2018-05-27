@@ -107,6 +107,7 @@ public class PostService {
         res.setDislike(postPruned.getDislike());
         res.setHeart(postPruned.getHeart());
         res.setCategories(postPruned.getCategories());
+        res.setRaffle(postPruned.getRaffle());
 
         this.validator.validate(res,binding);
 

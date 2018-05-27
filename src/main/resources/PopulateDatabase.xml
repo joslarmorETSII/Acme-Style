@@ -249,11 +249,6 @@
 				<null/>
 			</list>
 		</property>
-		<property name="raffles">
-			<list>
-				<ref bean="raffle1"/>
-			</list>
-		</property>
 		<property name="profile" ref="profile4"/>
 
 	</bean>
@@ -1140,11 +1135,6 @@
 		<property name="endDate" value="02/09/2018 12:00"/>
 		<property name="reward" value="Obten un aprobado en DP"/>
 		<property name="post" ref="post1"/>
-		<property name="users">
-			<list>
-				<ref bean="user1" />
-			</list>
-		</property>
 	</bean>
 
 	<!-- Configuration -->

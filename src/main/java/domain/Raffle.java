@@ -67,7 +67,6 @@ public class Raffle extends DomainEntity{
     // Relationships ----------------------------------------------------------------------
 
     private Post post;
-    private Collection<User> users;
 
     @Valid
     @OneToOne(optional = false)
@@ -79,14 +78,4 @@ public class Raffle extends DomainEntity{
         this.post = post;
     }
 
-    @Valid
-    @NotNull
-    @ManyToMany
-    public Collection<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Collection<User> users) {
-        this.users = users;
-    }
 }

@@ -1,5 +1,6 @@
-package controllers;
+package controllers.Actor;
 
+import controllers.AbstractController;
 import domain.Actor;
 import domain.Comment;
 import domain.Post;
@@ -22,7 +23,7 @@ import java.util.Date;
 
 @Controller
 @RequestMapping("/post/actor")
-public class PostActorController extends AbstractController{
+public class PostActorController extends AbstractController {
 
     // Services --------------------------------------------
 
@@ -60,7 +61,7 @@ public class PostActorController extends AbstractController{
     public ModelAndView list() {
         ModelAndView result;
         Actor actor;
-        Collection<Post> posts = new ArrayList<>();
+        Collection<Post> posts = new ArrayList<Post>();
 
         actor = actorService.findByPrincipal();
         posts = actor.getPosts();

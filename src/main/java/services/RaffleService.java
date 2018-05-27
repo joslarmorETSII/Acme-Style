@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import repositories.RaffleRepository;
 import security.Authority;
+import sun.tools.tree.VarDeclarationStatement;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,10 +28,13 @@ public class RaffleService {
     // Supporting services ----------------------------------------------------
 
     @Autowired
-    private UserService userService;
+    private Validator validator;
 
     @Autowired
     private ActorService actorService;
+
+    @Autowired
+    private PostService postService;
 
     // Constructors -----------------------------------------------------------
 
@@ -42,13 +48,21 @@ public class RaffleService {
         Raffle result;
 
         result = new Raffle();
-        result.setUsers(new ArrayList<User>());
+
 
         return result;
     }
 
     public Raffle findOne(int id){
         return raffleRepository.findOne(id);
+    }
+
+    public Raffle findOneToEdit(int id){
+        Raffle raffle = raffleRepository.findOne(id);
+
+        Assert.isTrue(raffle.getPost().getActor().equals(actorService.findByPrincipal()));
+
+        return raffle;
     }
 
     public Collection<Raffle> findAll(){
@@ -59,16 +73,43 @@ public class RaffleService {
         Assert.notNull(raffle);
         Post post= raffle.getPost();
         Assert.isTrue(actorService.findByPrincipal().equals(post.getActor()) || actorService.checkRole(Authority.ADMINISTRATOR));
+        post.setRaffle(null);
+        raffle.setPost(null);
+        this.postService.save(post);
         raffleRepository.delete(raffle);
     }
 
     public Raffle save(Raffle raffle){
         Assert.notNull(raffle);
+        Raffle res;
         Post post= raffle.getPost();
         Assert.isTrue(actorService.findByPrincipal().equals(post.getActor()));
-        return raffleRepository.save(raffle);
+        res = raffleRepository.save(raffle);
+        post.setRaffle(res);
+        this.postService.save(post);
+        return res;
     }
 
     // Other business methods -------------------------------------------------
+
+    public Raffle reconstructS(final Raffle rafflePruned, final BindingResult binding) {
+        Raffle res;
+
+        if (rafflePruned.getId() == 0) {
+            res = this.create();
+        } else {
+            res = this.findOne(rafflePruned.getId());
+        }
+
+        res.setTitle(rafflePruned.getTitle());
+        res.setDescription(rafflePruned.getDescription());
+        res.setEndDate(rafflePruned.getEndDate());
+        res.setReward(rafflePruned.getReward());
+        res.setPost(rafflePruned.getPost());
+
+        this.validator.validate(res,binding);
+
+        return res;
+    }
 
 }

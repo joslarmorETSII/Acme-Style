@@ -58,7 +58,6 @@ public class UserService {
         result.setParticipates(new ArrayList<Participate>());
         result.setFeedbacks(new ArrayList<Feedback>());
         result.setPanels(new ArrayList<Panel>());
-        result.setRaffles(new ArrayList<Raffle>());
         result.setSubscriptions(new ArrayList<Subscription>());
         result.setComments(new ArrayList<Comment>());
         result.setPosts(new ArrayList<Post>());

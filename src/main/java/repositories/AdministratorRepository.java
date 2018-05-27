@@ -49,6 +49,8 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
     Double avgQuestionPerServiseForAllPhotographer();
 
     //The ratio of questions about services by Stylists.
+    //@Query("select concat( 100 * ( select count(t) from User t where t.newsPapers is not empty )/ count(r), '%') from User r")
+    //String ratioQuestionsServicesByStylists();
 
     //The average and standard deviation of number of comments of a service per user.
 

@@ -1,5 +1,6 @@
-package controllers;
+package controllers.User;
 
+import controllers.AbstractController;
 import domain.Actor;
 import domain.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import java.util.Collection;
 
 @Controller
 @RequestMapping("/profile/actor")
-public class ProfileUserController extends AbstractController{
+public class ProfileUserController extends AbstractController {
     // Services --------------------------------------------
 
     @Autowired

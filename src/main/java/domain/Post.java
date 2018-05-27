@@ -135,7 +135,7 @@ public class Post extends DomainEntity{
     }
 
     @Valid
-    @OneToOne
+    @OneToOne(optional = true)
     public Raffle getRaffle() {
         return raffle;
     }

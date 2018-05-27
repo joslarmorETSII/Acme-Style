@@ -1,5 +1,6 @@
-package controllers;
+package controllers.User;
 
+import controllers.AbstractController;
 import domain.Event;
 import domain.User;
 import org.springframework.beans.factory.annotation.Autowired;

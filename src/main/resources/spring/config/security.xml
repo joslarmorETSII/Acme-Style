@@ -85,6 +85,9 @@
 		<!-- Participate -->
 		<security:intercept-url pattern="/participate/user/**" access="hasRole('USER')" />
 
+		<!-- Raffles -->
+		<security:intercept-url pattern="/raffle/actor/**" access="isAuthenticated()" />
+
 		<!-- Search -->
 		<security:intercept-url pattern="/search/**" access="permitAll()" />
 

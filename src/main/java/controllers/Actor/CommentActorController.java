@@ -1,5 +1,6 @@
-package controllers;
+package controllers.Actor;
 
+import controllers.AbstractController;
 import domain.Actor;
 import domain.Comment;
 import domain.Post;
@@ -21,7 +22,7 @@ import java.util.Collection;
 
 @Controller
 @RequestMapping("/comment/actor")
-public class CommentActorController extends AbstractController{
+public class CommentActorController extends AbstractController {
 
     // Services --------------------------------------------
 
