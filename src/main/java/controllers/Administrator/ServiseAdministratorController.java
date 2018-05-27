@@ -116,7 +116,7 @@ public class ServiseAdministratorController extends AbstractController {
 
         Collection<Servise> servises = this.serviseService.servisesPerCreator(creator.getId());
 
-        result = new ModelAndView("newsPaper/edit");
+        result = new ModelAndView("servise/edit");
         result.addObject("servise", servise);
         result.addObject("servises", servises);
         result.addObject("actionURI","servise/administrator/edit.do");

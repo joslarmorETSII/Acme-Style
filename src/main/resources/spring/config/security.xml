@@ -93,6 +93,8 @@
 
 		<!-- Feedback -->
 		<security:intercept-url pattern="/feedback/user/**" access="hasRole('USER')" />
+		<security:intercept-url pattern="/feedback/administrator/**" access="hasRole('ADMINISTRATOR')" />
+
 
 		<!-- Configuration -->
 		<security:intercept-url pattern="/configuration/administrator/**" access="hasRole('ADMINISTRATOR')" />

@@ -14,6 +14,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <h3><b><spring:message code="servise.title"/>:&nbsp; </b><jstl:out value="${servise.title}"/></h3>
@@ -55,6 +56,9 @@
 
             <jstl:out value="${feedback.text}"/>
         <br/>
+        <security:authorize access="hasRole('ADMINISTRATOR')" >
+                <acme:button url="feedback/administrator/edit.do?feedbackId=${feedback.id}" code="general.delete" />
+        </security:authorize>
      </jstl:forEach>
 </fieldset>
 
