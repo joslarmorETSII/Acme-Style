@@ -117,6 +117,10 @@ public class ActorService {
         return this.checkRole(Authority.USER);
     }
 
+    public boolean isManager() {
+        return this.checkRole(Authority.MANAGER);
+    }
+
 
     public Collection<Folder> generateFolders(Actor actor){
         Collection<Folder> folders = new ArrayList<>();

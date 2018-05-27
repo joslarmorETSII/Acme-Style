@@ -1,6 +1,7 @@
 package controllers;
 
 import domain.Actor;
+import domain.Comment;
 import domain.Post;
 import domain.Servise;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -167,6 +168,22 @@ public class PostActorController extends AbstractController{
         }catch (Throwable oops){
             result = createEditModelAndView(post,"general.commit.error");
         }
+
+        return result;
+    }
+
+    @RequestMapping(value = "/display", method = RequestMethod.GET)
+    public ModelAndView display(@RequestParam final int postId) {
+        ModelAndView result;
+        Post post;
+        post = this.postService.findOne(postId);
+        Collection<Comment> comments = post.getComments();
+
+        result = new ModelAndView("post/display");
+
+        result.addObject("row", post);
+        result.addObject("comments", comments);
+        result.addObject("cancelURI", "post/actor/list.do");
 
         return result;
     }

@@ -101,15 +101,11 @@
 		<security:intercept-url pattern="/question/actor/**" access="isAuthenticated()" />
 
 		<!-- Answer -->
-
-		<!-- Answer -->
 		<security:intercept-url pattern="/answer/artist/**" access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')" />
 		<security:intercept-url pattern="/answer/actor/**" access="isAuthenticated()" />
 
-
-
-
-
+		<!-- Comments -->
+		<security:intercept-url pattern="/comment/actor/**" access="isAuthenticated()" />
 
 		<!-- Post -->
 		<security:intercept-url pattern="/post/actor/**" access="isAuthenticated()" />

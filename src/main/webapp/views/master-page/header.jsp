@@ -96,8 +96,6 @@
 						</ul>
 					</li>
 					<li><a href="event/list.do"><spring:message code="master.page.event" /></a></li>
-
-
 				</security:authorize>
 
 				<!-- Manager -->
@@ -105,8 +103,6 @@
 					<li><a href="servise/listServisesPublished.do"><spring:message code="master.page.serviseAll" /></a></li>
 					<li><a href="store/manager/list.do"><spring:message code="master.page.stores" /></a></li>
 					<li><a href="event/manager/list.do"><spring:message code="master.page.event" /></a></li>
-
-
 				</security:authorize>
 
 				<!-- Admin -->
@@ -122,7 +118,6 @@
 
 				<!-- Search -->
 				<li><a href="search/search.do?keyword="><spring:message code="master.page.search" /></a></li>
-
 			</ul>
 
 

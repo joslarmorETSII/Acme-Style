@@ -25,9 +25,6 @@
     <jstl:set value="{0,date,yyyy/MM/dd HH:mm}" var="formatDate"/>
 </jstl:if>
 
-
-    <jstl:forEach var="row" items="${posts}">
-
     <div class="container">
         <div class="row">
             <div class="col-md-12"><br><br><br>
@@ -67,10 +64,6 @@
                                 <acme:button url="post/administrator/edit.do?postId=${row.id}" code="general.delete" />
                             </security:authorize>
 
-                            <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
-                                <acme:button code="general.create.display" url="post/actor/display.do?postId=${row.id}"/>
-                            </security:authorize>
-
                         </div>
                     </div>
                 </div>
@@ -78,18 +71,34 @@
 
             </div>
         </div>
+
+        <jstl:forEach var="comment" items="${comments}">
+
+            <div class="container">
+                <div class="comment">
+                    <div class="col-md-12"><br><br><br>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+
+                                <center>
+                                    <h4><jstl:out value="${comment.actor.name}"/></h4>
+                                </center>
+                                <p><jstl:out value="${comment.text}"/><br><br>
+
+                                <p><jstl:out value="${row.moment}"/><br><br>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </jstl:forEach>
     </div>
-
-
-    </jstl:forEach>
 
 <br/>
 <div class="text-center">
-    <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER')">
-        <acme:button code="general.create" url="post/actor/create.do"/>
-    </security:authorize>
 
-
-
-    <acme:cancel code="general.cancel" url="${cancelUri}"/>
+    <acme:cancel code="general.cancel" url="${cancelURI}"/>
 </div>

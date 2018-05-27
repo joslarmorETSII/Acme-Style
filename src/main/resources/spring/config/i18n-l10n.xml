@@ -45,6 +45,7 @@
 		<value>/views/question/messages</value>
 		<value>/views/answer/messages</value>
 		<value>/views/configuration/messages</value>
+		<value>/views/comment/messages</value>
 
 	</util:list>
 
