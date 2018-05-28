@@ -32,8 +32,6 @@
                         </p>
                         <p class="pull-right">
                                 ${event.moment}
-                        </p>
-                        <p><a href="#" class="btn btn-info" role="button"><spring:message code="general.display"/> </a></p>
                     </div>
                 </div>
             </div>
