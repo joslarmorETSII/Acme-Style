@@ -73,7 +73,7 @@ public class RaffleActorController extends AbstractController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
     public ModelAndView save(Raffle rafflePruned, final BindingResult binding) {
         ModelAndView result;
-
+        Raffle aux;
         try {
             Raffle raffle = this.raffleService.reconstructS(rafflePruned,binding);
 
@@ -81,8 +81,8 @@ public class RaffleActorController extends AbstractController {
                 result = this.createEditModelAndView(rafflePruned);
             }
             else {
-                this.raffleService.save(raffle);
-                result = new ModelAndView("redirect:/raffle/actor/display.do?raffleId=" + raffle.getId());
+                aux = this.raffleService.save(raffle);
+                result = new ModelAndView("redirect:/raffle/actor/display.do?raffleId=" + aux.getId());
             }
         } catch (final Throwable oops) {
             if (binding.hasErrors()){

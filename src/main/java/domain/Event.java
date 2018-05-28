@@ -26,7 +26,7 @@ public class Event extends DomainEntity{
     private String description;
     private Date moment;
     private String tipo;
-    private Double price;
+    private double price;
     private Date celebrationDate;
     private GpsCoordinates location;
     private String image;
@@ -72,11 +72,11 @@ public class Event extends DomainEntity{
         this.tipo = type;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
