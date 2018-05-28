@@ -30,8 +30,10 @@
                         <p>
                             ${event.description}
                         </p>
-                        <p class="pull-right">
+                        <p class="pull-left">
                                 ${event.moment}
+                        </p>
+                        <br>
                     </div>
                 </div>
             </div>
