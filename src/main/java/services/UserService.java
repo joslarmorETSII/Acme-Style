@@ -186,6 +186,6 @@ public class UserService {
     }
 
     public Collection<User> searchUsersPerKeyword(String keyword){
-        return this.userRepository.searchUsersPerKeyword(keyword,keyword,keyword);
+        return this.userRepository.searchUsersPerKeyword(keyword);
     }
 }

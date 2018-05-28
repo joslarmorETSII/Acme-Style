@@ -48,9 +48,19 @@
                     <p></p>
                     <fieldset>
                         <legend><spring:message code="servise.listServises"/> </legend>
-                        <display:table name="servises" id="row" pagesize="5" class="displaytag" requestURI="${requestURI}">
+                        <display:table name="servises" id="row" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}">
 
-                            <acme:column code="servise.title" value="${row.title}" />
+                            <acme:column code="servise.creator" value="${row.creator.name} " />
+                            <acme:column code="servise.title" value="${row.title}"/>
+                            <acme:column code="servise.description" value="${row.description}"/>
+                            <acme:column code="servise.price" value="${row.price}"/>
+                            <spring:message code="servise.picture" var="pic"/>
+                            <display:column title="${pic}"><img src="${row.picture}" alt="no image" width="130" height="100"></display:column>
+
+                            <spring:message var="publicationDate" code="servise.publicationDate"/>
+                            <spring:message var="formatDate" code="event.format.date"/>
+                            <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
+
 
                         </display:table>
                     </fieldset>
@@ -67,10 +77,27 @@
                     <p></p>
                     <fieldset>
                         <legend><spring:message code="event.listEvents"/> </legend>
-                        <display:table name="events" id="event" pagesize="5" class="displaytag" requestURI="${requestURI}">
+                        <display:table name="events" id="event" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}">
+                            <spring:message code="event.title" var="headerTag" />
+                            <display:column property="title" title="${headerTag}"/>
 
-                            <acme:column code="event.title" value="${event.title} " />
+                            <spring:message code="event.description" var="headerTag" />
+                            <display:column property="description" title="${headerTag}"/>
 
+                            <spring:message code="event.celebrationDate" var="headerTag" />
+                            <display:column property="celebrationDate" title="${headerTag}"/>
+
+                            <spring:message code="event.tipo" var="headerTag" />
+                            <display:column property="tipo" title="${headerTag}"/>
+
+                            <spring:message code="event.image" var="pic"/>
+                            <display:column title="${pic}"><img src="${row.image}" alt="no image" width="130" height="100"></display:column>
+
+                            <spring:message code="event.price" var="headerTag" />
+                            <display:column property="price" title="${headerTag}"/>
+
+                            <spring:message code="event.location" var="headerTag" />
+                            <display:column property="location.name" title="${headerTag}"/>
                         </display:table>
                     </fieldset>
 
@@ -86,10 +113,19 @@
                     <p></p>
                     <fieldset>
                         <legend><spring:message code="user.listUsers"/> </legend>
-                        <display:table name="users" id="user" pagesize="5" class="displaytag" requestURI="${requestURI}">
+                        <display:table name="users" id="user" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}">
 
                             <acme:column code="user.name" value="${user.name}" />
+                            <acme:column code="user.username" value="${user.userAccount.username}" />
+                            <acme:column code="user.email" value="${user.email}" />
 
+                            <security:authorize access="isAuthenticated()">
+                                <display:column>
+                                    <a href="profile/actor/display.do?profileId=${user.profile.id}">
+                                        <button class="btn btn-info"><spring:message code="master.page.profile"/></button>
+                                    </a>
+                                </display:column>
+                            </security:authorize>
                         </display:table>
                     </fieldset>
 

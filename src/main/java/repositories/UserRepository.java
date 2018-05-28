@@ -15,6 +15,6 @@ public interface UserRepository extends JpaRepository<User,Integer>{
     User findByUserAccountId(int userAccountId);
 
     //Search
-    @Query("select u from User u where (u.name like %?1%  or u.surname like %?2% or u.email like %?3%)")
-    Collection<User> searchUsersPerKeyword(String name, String surname, String email);
+    @Query("select u from User u where (u.name like %?1%  or u.surname like %?1% or u.email like %?1%)")
+    Collection<User> searchUsersPerKeyword(String keyword);
 }
