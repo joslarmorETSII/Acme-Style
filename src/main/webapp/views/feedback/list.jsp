@@ -38,10 +38,6 @@
 
         </display:table>
 
-        <div class="text-center">
-            <security:authorize access="hasRole('USER')">
-                <acme:button code="general.create" url="feedback/user/create.do"/>
-            </security:authorize>
             <acme:cancel code="general.cancel" url="welcome/index.do"/>
         </div>
     </div>

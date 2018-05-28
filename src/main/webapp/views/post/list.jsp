@@ -47,8 +47,24 @@
 
                             <img src="${row.picture}" width="500px" height="100%" class="img-responsive" /> <hr>
 
-                        <p><jstl:out value="${row.moment}"/><br><br>
+                        <p><jstl:out value="${row.moment}"/>
 
+                        <div class="pull-right">
+                        <form action="panel/user/add.do"  method="get" role="add">
+                            <div class="input-group">
+                                <select >
+                                    <jstl:forEach var="panel" items="${myPanels}">
+                                        <option>${panel.name}</option>
+                                        <input name="panelId" value="${panel.id}" hidden="true"/>
+                                    </jstl:forEach>
+                                </select>
+                                <input  name="postId" value="${row.id}" hidden="true">
+                                <div class="input-group-btn"><button class="btn btn-success" type="submit">Add</button></div>
+                            </div>
+                        </form>
+                        </div>
+
+                        <br><br>
                         <div class="pull-left">
                             <jstl:out value="${row.lik}"/><a href="post/actor/lik.do?postId=${row.id}"><button type="button" class="btn btn-outline"> <span class="btn-label"><i class="glyphicon glyphicon-thumbs-up"></i></span></button></a>
                             <jstl:out value="${row.dislike}"/><a href="post/actor/dislike.do?postId=${row.id}"><button type="button" class="btn btn-outline"> <span class="btn-label"><i class="glyphicon glyphicon-thumbs-down"></i></span></button></a>

@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Date;
@@ -72,6 +73,7 @@ public class Event extends DomainEntity{
         this.tipo = type;
     }
 
+    @Min(value = 0)
     public double getPrice() {
         return price;
     }

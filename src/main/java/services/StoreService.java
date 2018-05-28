@@ -5,11 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import repositories.StoreRepository;
 import security.Authority;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 
 @Service
 @Transactional
@@ -69,6 +73,38 @@ public class StoreService {
     }
 
     // Other business methods -------------------------------------------------
+
+    public Store findOneToedit(int id){
+        Store store;
+        Manager manager;
+
+        manager = managerService.findByPrincipal();
+        store = findOne(id);
+        Assert.isTrue(store.getManager().equals(manager),"Not the Manager of the store");
+        return store;
+    }
+
+    public boolean checkMonth(Integer month, Integer year, BindingResult binding) {
+        FieldError error;
+        String[] codigos;
+        boolean result;
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        Integer actualMonth = c.get(Calendar.MONTH)+1;
+        Integer actualYear = c.get(Calendar.YEAR);
+
+        if (month!=null && year!=null)
+            result = actualYear.equals(year) && month<actualMonth;
+        else
+            result = false;
+        if (result) {
+            codigos = new String[1];
+            codigos[0] = "creditCard.month.invalid";
+            error = new FieldError("store", "creditCard.expirationMonth", month, false, codigos, null, "should not be in the past");
+            binding.addError(error);
+        }
+        return result;
+    }
 
 }
 

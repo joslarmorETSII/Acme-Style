@@ -91,7 +91,7 @@
                             <display:column property="tipo" title="${headerTag}"/>
 
                             <spring:message code="event.image" var="pic"/>
-                            <display:column title="${pic}"><img src="${row.image}" alt="no image" width="130" height="100"></display:column>
+                            <display:column title="${pic}"><img src="${event.image}" alt="no image" width="130" height="100"></display:column>
 
                             <spring:message code="event.price" var="headerTag" />
                             <display:column property="price" title="${headerTag}"/>

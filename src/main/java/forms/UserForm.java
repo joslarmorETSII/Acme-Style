@@ -42,6 +42,7 @@ public class UserForm {
     }
 
     @Size(min = 5, max = 32)
+    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
     public String getPassword() {
         return this.password;
     }
@@ -49,6 +50,8 @@ public class UserForm {
         this.password = password;
     }
 
+    @Size(min = 5, max = 32)
+    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
     public String getRepeatPassword() {
         return this.repeatPassword;
     }

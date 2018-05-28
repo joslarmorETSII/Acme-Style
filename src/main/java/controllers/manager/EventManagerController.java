@@ -64,7 +64,7 @@ public class EventManagerController extends AbstractController{
         Manager manager;
 
         manager = managerService.findByPrincipal();
-        event = eventService.findOne(eventId);
+        event = eventService.findOneToEdit(eventId);
         result = new ModelAndView("event/edit");
         result.addObject("event",event);
         result.addObject("stores",manager.getStores());

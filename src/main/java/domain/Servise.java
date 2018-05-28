@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Date;
@@ -80,6 +81,7 @@ public class Servise extends DomainEntity{
     }
 
     @NotNull
+    @Min(value = 0)
     public Double getPrice() {
         return price;
     }

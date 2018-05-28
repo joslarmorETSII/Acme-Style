@@ -1,10 +1,8 @@
 package controllers.User;
 
 import controllers.AbstractController;
+import domain.*;
 import domain.Panel;
-import domain.Panel;
-import domain.Photo;
-import domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -14,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import services.PanelService;
+import services.PhotoService;
+import services.PostService;
 import services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +31,12 @@ public class PanelUserController extends AbstractController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PostService postService;
+
+    @Autowired
+    private PhotoService photoService;
 
     // Constructor -----------------------------------------
 
@@ -54,12 +60,13 @@ public class PanelUserController extends AbstractController {
     // Listing -------------------------------------------------------
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ModelAndView list(HttpServletRequest request) {
+    public ModelAndView list() {
         ModelAndView result;
-
+        User principal;
         Collection<Panel> panels= new ArrayList<Panel>();
 
-        panels=this.panelService.findAll();
+        principal = userService.findByPrincipal();
+        panels = principal.getPanels();
 
         result = new ModelAndView("panel/list");
         result.addObject("panels", panels);
@@ -130,7 +137,7 @@ public class PanelUserController extends AbstractController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
-    public ModelAndView edit(Panel panel, HttpServletRequest request) {
+    public ModelAndView edit(Panel panel) {
         ModelAndView result;
 
         try {
@@ -141,6 +148,28 @@ public class PanelUserController extends AbstractController {
         }
 
         return result;
+    }
+
+    // Add photo        -------------------------------------------------------
+
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public ModelAndView add(@RequestParam int postId,@RequestParam int panelId) {
+        final ModelAndView result;
+        Panel panel;
+        Post post;
+        Photo photo;
+
+        panel = this.panelService.findOneToEdit(panelId);
+        post = postService.findOne(postId);
+        photo = photoService.create();
+        photo.setUrl(post.getPicture());
+        photo.setPanel(panel);
+        Photo saved = photoService.save(photo);
+        panel.getPhotos().add(saved);
+        panelService.save(panel);
+
+        return list();
     }
 
     // Ancillary methods ------------------------------------------------------

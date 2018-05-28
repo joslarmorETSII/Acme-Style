@@ -1,10 +1,7 @@
 package controllers.Actor;
 
 import controllers.AbstractController;
-import domain.Actor;
-import domain.Comment;
-import domain.Post;
-import domain.Servise;
+import domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -16,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import services.ActorService;
 import services.CategoryService;
 import services.PostService;
+import services.UserService;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,6 +34,9 @@ public class PostActorController extends AbstractController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private UserService userService;
 
     // Constructor --------------------------------------------
 
@@ -62,14 +64,20 @@ public class PostActorController extends AbstractController {
         ModelAndView result;
         Actor actor;
         Collection<Post> posts = new ArrayList<Post>();
+        Collection<Panel> panels= new ArrayList<Panel>();
 
         actor = actorService.findByPrincipal();
         posts = actor.getPosts();
+
+        if(actorService.isUser()){
+            panels = userService.findByPrincipal().getPanels();
+        }
 
         result = new ModelAndView("post/list");
         result.addObject("posts", posts);
         result.addObject("actor", actor);
         result.addObject("requestURI","post/actor/list.do");
+        result.addObject("myPanels",panels);
 
         return result;
 

@@ -119,4 +119,15 @@ public class EventService {
     public Collection<Event> searchEventsPerKeyword(String keyword){
         return this.eventRepository.searchEventsPerKeyword(keyword);
     }
+
+
+    public Event findOneToEdit(int id){
+        Event event;
+        Manager principal;
+
+        event = eventRepository.findOne(id);
+        principal = managerService.findByPrincipal();
+        Assert.isTrue(principal.equals(event.getManager()),"Not the creator of the event");
+        return event;
+    }
 }

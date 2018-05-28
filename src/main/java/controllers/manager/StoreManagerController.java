@@ -6,6 +6,7 @@ import domain.Manager;
 import domain.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -66,7 +67,7 @@ public class StoreManagerController extends AbstractController{
         Manager manager;
 
         manager = managerService.findByPrincipal();
-        store = storeService.findOne(storeId);
+        store = storeService.findOneToedit(storeId);
         result = new ModelAndView("store/edit");
         result.addObject("store",store);
         result.addObject("events",manager.getEvents());
@@ -78,12 +79,13 @@ public class StoreManagerController extends AbstractController{
     @RequestMapping(value = "/edit", method = RequestMethod.POST,params = "save")
     public ModelAndView edit(@Valid Store store, BindingResult binding){
         ModelAndView result;
+        storeService.checkMonth(store.getCreditCard().getExpirationMonth(),store.getCreditCard().getExpirationYear(),binding);
         if (binding.hasErrors()) {
             result = createEditModelAndView(store);
         } else
             try {
                 storeService.save(store);
-                result = new ModelAndView("redirect: store/manager/list.do");
+                result = new ModelAndView("redirect: list.do");
             } catch (Throwable oops) {
                 result = createEditModelAndView(store, "general.commit.error");
             }
