@@ -2,6 +2,7 @@ package services;
 
 import domain.Actor;
 import domain.Folder;
+import domain.Post;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -196,5 +197,9 @@ public class ActorService {
 
         save(principal);
 
+    }
+
+    public Collection<Post> postByFollowings(int actorid){
+        return this.actorRepository.postByFollowings(actorid);
     }
 }

@@ -61,6 +61,7 @@ public class Post extends DomainEntity{
 
     @URL
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+    @NotBlank
     public String getPicture() {
         return picture;
     }
@@ -99,7 +100,7 @@ public class Post extends DomainEntity{
     private Collection<Comment> comments;
     private Collection<Category> categories;
     private Raffle raffle;
-
+    private Collection<Action> actions;
 
     @Valid
     @NotNull
@@ -142,5 +143,16 @@ public class Post extends DomainEntity{
 
     public void setRaffle(Raffle raffle) {
         this.raffle = raffle;
+    }
+
+    @Valid
+    @NotNull
+    @OneToMany(mappedBy = "post")
+    public Collection<Action> getActions() {
+        return actions;
+    }
+
+    public void setActions(Collection<Action> actions) {
+        this.actions = actions;
     }
 }

@@ -65,16 +65,20 @@ public class PostActorController extends AbstractController {
         Actor actor;
         Collection<Post> posts = new ArrayList<Post>();
         Collection<Panel> panels= new ArrayList<Panel>();
+        Collection<Post> postRes = new ArrayList<Post>();
 
         actor = actorService.findByPrincipal();
         posts = actor.getPosts();
+
+        postRes.addAll(this.actorService.postByFollowings(actor.getId()));
+        postRes.addAll(posts);
 
         if(actorService.isUser()){
             panels = userService.findByPrincipal().getPanels();
         }
 
         result = new ModelAndView("post/list");
-        result.addObject("posts", posts);
+        result.addObject("posts", postRes);
         result.addObject("actor", actor);
         result.addObject("requestURI","post/actor/list.do");
         result.addObject("myPanels",panels);

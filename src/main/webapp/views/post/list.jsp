@@ -109,11 +109,11 @@
                                 <acme:button code="general.create.comment" url="comment/actor/create.do?postId=${row.id}"/>
                             </security:authorize>
 
-                            <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST', 'USER')" >
+                            <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST', 'USER', 'MANAGER')" >
                                 <acme:button url="post/actor/edit.do?postId=${row.id}" code="general.edit" />
                             </security:authorize>
 
-                            <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST', 'USER')" >
+                            <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST', 'USER', 'MANAGER')" >
                                 <acme:button url="post/actor/edit.do?postId=${row.id}" code="general.delete" />
                             </security:authorize>
 
@@ -139,7 +139,7 @@
 
 <br/>
 <div class="text-center">
-    <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER')">
+    <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
         <acme:button code="general.create" url="post/actor/create.do"/>
     </security:authorize>
 

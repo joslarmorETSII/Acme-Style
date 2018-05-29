@@ -1,5 +1,7 @@
 package domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -66,5 +68,4 @@ public class User extends Actor{
     public void setPanels(Collection<Panel> panels) {
         this.panels = panels;
     }
-
 }

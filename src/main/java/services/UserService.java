@@ -62,7 +62,7 @@ public class UserService {
         result.setComments(new ArrayList<Comment>());
         result.setPosts(new ArrayList<Post>());
         result.setUserAccount(this.userAccountService.create("USER"));
-
+        result.setActions(new ArrayList<Action>());
         return result;
     }
 

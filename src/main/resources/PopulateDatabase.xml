@@ -134,7 +134,11 @@
 			</list>
 		</property>
 		<property name="profile" ref="profile6"/>
-
+		<property name="actions">
+			<list>
+				<null/>
+			</list>
+		</property>
 	</bean>
 
 	<!-- Manager -->
@@ -186,7 +190,11 @@
 			</list>
 		</property>
 		<property name="profile" ref="profile5"/>
-
+		<property name="actions">
+			<list>
+				<null/>
+			</list>
+		</property>
 	</bean>
 
 	<!-- User -->
@@ -250,7 +258,11 @@
 			</list>
 		</property>
 		<property name="profile" ref="profile4"/>
-
+		<property name="actions">
+			<list>
+				<ref bean="action1"/>
+			</list>
+		</property>
 	</bean>
 
 	<!-- Stylist -->
@@ -290,6 +302,11 @@
 		</property>
 		<property name="servises">
 			<list>
+			</list>
+		</property>
+		<property name="actions">
+			<list>
+				<null/>
 			</list>
 		</property>
 	</bean>
@@ -371,7 +388,11 @@
 				<ref bean="servise1"/>
 			</list>
 		</property>
-
+		<property name="actions">
+			<list>
+				<null/>
+			</list>
+		</property>
 	</bean>
 
 	<!-- MakeUpArtist -->
@@ -412,6 +433,11 @@
 		</property>
 		<property name="comments">
 			<list>
+			</list>
+		</property>
+		<property name="actions">
+			<list>
+				<null/>
 			</list>
 		</property>
 	</bean>
@@ -690,7 +716,22 @@
 				<ref bean="category2" />
 			</list>
 		</property>
+		<property name="actions">
+			<list>
+				<ref bean="action1"/>
+			</list>
+		</property>
 	</bean>
+
+	<!-- Actions -->
+	<bean id="action1" class="domain.Action">
+		<property name="lik" value="false"/>
+		<property name="dislike" value="false"/>
+		<property name="heart" value="false"/>
+		<property name="actor" ref="user1"/>
+		<property name="post" ref="post1"/>
+	</bean>
+
 
 	<!-- Comments -->
 

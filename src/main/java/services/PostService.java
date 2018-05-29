@@ -1,6 +1,7 @@
 package services;
 
 import domain.*;
+import org.hibernate.annotations.AttributeAccessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +35,12 @@ public class PostService {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private CommentService commentService;
+
+    @Autowired
+    private RaffleService raffleService;
+
     // Constructors -----------------------------------------------------------
 
     public PostService() {
@@ -49,6 +56,7 @@ public class PostService {
         result.setActor(actorService.findByPrincipal());
         result.setCategories(new ArrayList<Category>());
         result.setComments(new ArrayList<Comment>());
+        result.setActions(new ArrayList<Action>());
 
         return result;
     }
@@ -73,6 +81,20 @@ public class PostService {
     public void delete(Post post){
         Assert.notNull(post);
         Assert.isTrue(actorService.findByPrincipal().equals(post.getActor()) || actorService.checkRole(Authority.ADMINISTRATOR));
+
+        post.setCategories(new ArrayList<Category>());
+        for(Comment c : post.getComments()){
+            Actor a = c.getActor();
+            a.setComments(new ArrayList<Comment>());
+            this.actorService.save(a);
+        }
+        this.commentService.deleteAll(post);
+
+        //TODO: Comprobar que el raffle no tiene participantes
+        if(post.getRaffle() != null)
+            this.raffleService.delete(post.getRaffle());
+
+        post.setActions(new ArrayList<Action>());
 
         postRepository.delete(post);
     }
@@ -100,14 +122,10 @@ public class PostService {
         }
 
         res.setTitle(postPruned.getTitle());
-        res.setMoment(postPruned.getMoment());
         res.setDescription(postPruned.getDescription());
         res.setPicture(postPruned.getPicture());
-        res.setLik(postPruned.getLik());
-        res.setDislike(postPruned.getDislike());
-        res.setHeart(postPruned.getHeart());
         res.setCategories(postPruned.getCategories());
-        res.setRaffle(postPruned.getRaffle());
+
 
         this.validator.validate(res,binding);
 

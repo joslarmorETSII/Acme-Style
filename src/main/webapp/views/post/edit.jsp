@@ -67,7 +67,7 @@
 
     <div class="text-center">
 
-        <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER')">
+        <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
             <acme:submit name="save" code="general.save"/>
         </security:authorize>
 
@@ -75,7 +75,7 @@
                 <acme:submit name="delete" code="general.delete"/>
         </security:authorize>
 
-        <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER')">
+        <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
             <jstl:if test="${post.id !=0}">
                 <input type="submit" class="btn btn-danger"  name="delete" id="saveButton" value="<spring:message code="general.delete"/>"/>
             </jstl:if>

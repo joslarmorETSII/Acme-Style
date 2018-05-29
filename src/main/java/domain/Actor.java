@@ -90,8 +90,7 @@ public abstract class Actor extends DomainEntity {
     private Collection<Actor> followers;
     private Collection<Post> posts;
     private Collection<Comment> comments;
-
-
+    private Collection<Action> actions;
 
     @NotNull
     @OneToOne(cascade = CascadeType.ALL, optional = false)
@@ -165,5 +164,16 @@ public abstract class Actor extends DomainEntity {
 
     public void setComments(Collection<Comment> comments) {
         this.comments = comments;
+    }
+
+    @Valid
+    @NotNull
+    @OneToMany(mappedBy = "actor")
+    public Collection<Action> getActions() {
+        return actions;
+    }
+
+    public void setActions(Collection<Action> actions) {
+        this.actions = actions;
     }
 }

@@ -71,7 +71,6 @@ public class CommentActorController extends AbstractController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
     public ModelAndView save(Comment commentPruned, final BindingResult binding) {
         ModelAndView result;
-
         try {
             Comment comment = this.commentService.reconstructS(commentPruned,binding);
 

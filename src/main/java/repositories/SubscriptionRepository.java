@@ -11,10 +11,10 @@ import java.util.Collection;
 @Repository
 public interface SubscriptionRepository extends JpaRepository<Subscription,Integer> {
 
-
     @Query("select s from Subscription s where s.user.id = ?1 and s.servise.id =?2")
     Subscription subscriptionByUserAndService(int userId,int serviseId);
 
     @Query("select s.servise from Subscription s where s.user.id=?1")
     Collection<Servise> servisesSubscribedPerUser(int userId);
+
 }

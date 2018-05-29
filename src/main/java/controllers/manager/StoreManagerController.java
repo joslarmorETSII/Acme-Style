@@ -1,7 +1,6 @@
 package controllers.manager;
 
 import controllers.AbstractController;
-import domain.Event;
 import domain.Manager;
 import domain.Store;
 import org.springframework.beans.factory.annotation.Autowired;

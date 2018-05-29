@@ -22,9 +22,7 @@
 
     <form:hidden path="id"/>
     <form:hidden path="version"/>
-    <form:hidden path="actor"/>
     <form:hidden path="post"/>
-    <form:hidden path="moment"/>
 
     <acme:textbox path="text" code="comment.text"/>
 

@@ -50,6 +50,7 @@ public class CommentService {
 
         comment.setActor(actor);
         comment.setMoment(new Date(System.currentTimeMillis() - 1000));
+
         actor.getComments().add(comment);
 
         return comment;
@@ -69,6 +70,9 @@ public class CommentService {
         commentRepository.delete(comment);
     }
 
+    public void deleteAll(Post post){
+        this.commentRepository.delete(post.getComments());
+    }
     public Comment findOne(int id){
         return commentRepository.findOne(id);
     }
@@ -89,8 +93,6 @@ public class CommentService {
         }
 
         res.setText(commentPruned.getText());
-        res.setMoment(commentPruned.getMoment());
-        res.setActor(commentPruned.getActor());
         res.setPost(commentPruned.getPost());
 
         this.validator.validate(res,binding);
