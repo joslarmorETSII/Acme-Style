@@ -10,6 +10,8 @@ import org.springframework.validation.Validator;
 import repositories.PanelRepository;
 
 import org.springframework.transaction.annotation.Transactional;
+import repositories.PhotoRepository;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -30,7 +32,8 @@ public class PanelService {
     @Autowired
     private Validator validator;
 
-
+    @Autowired
+    private PhotoService photoService;
 
     // Constructors -----------------------------------------------------------
 
@@ -89,6 +92,8 @@ public class PanelService {
 
     public void delete(Panel panel){
         Assert.isTrue(panel.getUser().equals(userService.findByPrincipal()));
+        Collection<Photo> photos = panel.getPhotos();
+        this.photoService.deleteAll(panel.getPhotos());
         panelRepository.delete(panel);
     }
 

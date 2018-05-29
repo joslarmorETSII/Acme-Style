@@ -60,7 +60,7 @@ public class PhotoUserController extends AbstractController {
     // Listing -------------------------------------------------------
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ModelAndView list(HttpServletRequest request) {
+    public ModelAndView list() {
         ModelAndView result;
 
         Collection<Photo> photos= new ArrayList<Photo>();
@@ -103,13 +103,14 @@ public class PhotoUserController extends AbstractController {
         return result;
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
-    public ModelAndView edit(Photo photo,HttpServletRequest request) {
-        ModelAndView result;
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public ModelAndView delete(@RequestParam int photoId) {
 
+        ModelAndView result;
+        Photo photo = photoService.findOne(photoId);
         try {
             photoService.delete(photo);
-            result = new ModelAndView("redirect:list.do");
+            result = new ModelAndView("redirect:../../panel/user/display.do?panelId="+photo.getPanel().getId());
         } catch (Throwable oops) {
             result = createEditModelAndView(photo, "general.commit.error");
         }

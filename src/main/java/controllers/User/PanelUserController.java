@@ -93,6 +93,7 @@ public class PanelUserController extends AbstractController {
         result = new ModelAndView("panel/display");
         result.addObject("photos", photos);
         result.addObject("panel",panel);
+        result.addObject("redirURI","post/actor/list.do");
         result.addObject("cancelURI", "panel/user/list.do");
 
         return result;

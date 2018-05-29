@@ -15,6 +15,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 
 <jstl:forEach var="row" items="${photos}">
@@ -31,7 +32,9 @@
                         <p><jstl:out value="${row.description}"/><br><br>
 
                             <img src="${row.url}" width="500px" height="100%" class="img-responsive" /> <hr>
-                        
+
+                        <acme:button url="photo/user/delete.do?photoId=${row.id}" code="general.delete" />
+
                     </div>
                     
                 </div>
@@ -51,7 +54,12 @@
 <button type="button" class="btn btn-warning" onclick="javascript: relativeRedir('${cancelURI}')" >
     <spring:message code="general.cancel" />
 </button>
+    <button type="button" class="btn btn-info" onclick="javascript: relativeRedir('${redirURI}')" >
+        <spring:message code="post.user" />
+    </button>
+
 </div>
+
 <br/>
 
 

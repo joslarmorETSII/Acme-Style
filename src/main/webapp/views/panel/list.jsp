@@ -39,6 +39,10 @@
                 <acme:button url="panel/user/display.do?panelId=${row.id}" code="panel.display" />
 
             </display:column>
+
+            <display:column>
+                <acme:button url="panel/user/edit.do?panelId=${row.id}" code="general.delete" />
+            </display:column>
             
         </display:table>
 

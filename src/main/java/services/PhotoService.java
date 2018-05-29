@@ -64,6 +64,10 @@ public class PhotoService {
         this.photoRepository.delete(photo);
     }
 
+    public void deleteAll(Collection<Photo> photos){
+        this.photoRepository.delete(photos);
+    }
+
     public Photo save(Photo photo){
         Assert.isTrue(photo.getPanel().getUser().equals(userService.findByPrincipal()));
         return photoRepository.save(photo);
