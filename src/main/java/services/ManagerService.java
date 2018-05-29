@@ -115,4 +115,8 @@ public class ManagerService {
 
         return result;
     }
+
+    public void flush() {
+        managerRepository.flush();
+    }
 }

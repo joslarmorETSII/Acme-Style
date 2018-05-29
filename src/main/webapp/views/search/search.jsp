@@ -121,7 +121,7 @@
 
                             <security:authorize access="isAuthenticated()">
                                 <display:column>
-                                    <a href="profile/actor/display.do?profileId=${user.profile.id}">
+                                    <a href="profile/actor/view.do?profileId=${user.profile.id}">
                                         <button class="btn btn-info"><spring:message code="master.page.profile"/></button>
                                     </a>
                                 </display:column>

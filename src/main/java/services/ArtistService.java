@@ -123,4 +123,7 @@ public class ArtistService {
     }
 
 
+    public void flush() {
+        artistRepository.flush();
+    }
 }

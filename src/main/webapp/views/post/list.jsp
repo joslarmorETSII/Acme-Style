@@ -43,9 +43,10 @@
                         <center>
                             <h4><jstl:out value="${row.title}"/></h4>
                         </center>
-                        <p><jstl:out value="${row.description}"/><br><br><p>
+                        <p><jstl:out value="${row.description}"/><br><p>
+                        <div class="thumbnail">
+                            <img src="${row.picture}" width="500px" height="100%" class="img-responsive" />
 
-                            <img src="${row.picture}" width="500px" height="100%" class="img-responsive" /> <hr>
                         <security:authorize access="hasRole('USER')">
                         <div class="container">
                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#${row.id}">Add to Panel</button>
@@ -88,6 +89,7 @@
                             </div>
                         </div>
                         </security:authorize>
+                    </div>
 
                         <jstl:out value="${row.moment}"/>
 
