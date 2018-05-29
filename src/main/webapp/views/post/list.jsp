@@ -43,26 +43,46 @@
                         <center>
                             <h4><jstl:out value="${row.title}"/></h4>
                         </center>
-                        <p><jstl:out value="${row.description}"/><br><br>
+                        <p><jstl:out value="${row.description}"/><br><br><p>
 
                             <img src="${row.picture}" width="500px" height="100%" class="img-responsive" /> <hr>
+                        <div class="container">
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#${row.id}">Add to Panel</button>
 
-                        <p><jstl:out value="${row.moment}"/>
+                            <!-- Modal -->
+                            <div class="modal fade" id="${row.id}" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Select a Panel</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>My panels</p>
+                                            <form action="panel/user/add.do"  method="get" role="add">
+                                                <div class="input-group">
+                                                    <select name="panelId">
+                                                        <jstl:forEach var="panel" items="${myPanels}" >
+                                                            <option value="${panel.id}" >${panel.name}</option>
+                                                        </jstl:forEach>
+                                                    </select>
 
-                        <div class="pull-right">
-                        <form action="panel/user/add.do"  method="get" role="add">
-                            <div class="input-group">
-                                <select >
-                                    <jstl:forEach var="panel" items="${myPanels}">
-                                        <option>${panel.name}</option>
-                                        <input name="panelId" value="${panel.id}" hidden="true"/>
-                                    </jstl:forEach>
-                                </select>
-                                <input  name="postId" value="${row.id}" hidden="true">
-                                <div class="input-group-btn"><button class="btn btn-success" type="submit">Add</button></div>
+                                                    <input  name="postId" value="${row.id}" hidden="true">
+                                                    <div class="input-group-btn"><button class="btn btn-success" type="submit">Add</button></div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </form>
                         </div>
+
+                        <jstl:out value="${row.moment}"/>
+
 
                         <br><br>
                         <div class="pull-left">

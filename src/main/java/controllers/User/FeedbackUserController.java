@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import services.FeedbackService;
 import services.ServiseService;
+import services.SubscribeService;
 import services.UserService;
 
 import javax.validation.Valid;
@@ -34,6 +35,9 @@ public class FeedbackUserController extends AbstractController{
 
     @Autowired
     private ServiseService serviseService;
+
+    @Autowired
+    private SubscribeService subscribeService;
 
     // Constructor --------------------------------------------
 
@@ -81,6 +85,7 @@ public class FeedbackUserController extends AbstractController{
         Assert.notNull(servise);
         Feedback feedback = feedbackService.feedbackByUserAndService(user.getId(),serviseId);
         Assert.isTrue(feedback==null,"Already left a feedback to this service");
+        Assert.isTrue(subscribeService.subscriptionByUserAndService(user.getId(),serviseId)!=null,"Not subscribed ");
 
         FeedbackForm feedbackForm = new FeedbackForm();
         feedbackForm.setServise(servise);
