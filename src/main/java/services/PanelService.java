@@ -95,7 +95,7 @@ public class PanelService {
     // Other business methods -------------------------------------------------
 
 
-    public Panel reconstructS(final Panel panelPruned, final BindingResult binding) {
+    public Panel reconstructS( Panel panelPruned,  BindingResult binding) {
         Panel res;
         if (panelPruned.getId() == 0) {
             res = this.create();

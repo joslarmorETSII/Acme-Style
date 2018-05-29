@@ -137,8 +137,11 @@ public class PanelUserController extends AbstractController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
-    public ModelAndView edit(Panel panel) {
+    public ModelAndView edit(Panel panelPruned) {
         ModelAndView result;
+        Panel panel;
+
+        panel = this.panelService.findOne(panelPruned.getId());
 
         try {
             panelService.delete(panel);

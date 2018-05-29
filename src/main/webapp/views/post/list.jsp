@@ -46,9 +46,9 @@
                         <p><jstl:out value="${row.description}"/><br><br><p>
 
                             <img src="${row.picture}" width="500px" height="100%" class="img-responsive" /> <hr>
+                        <security:authorize access="hasRole('USER')">
                         <div class="container">
                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#${row.id}">Add to Panel</button>
-
                             <!-- Modal -->
                             <div class="modal fade" id="${row.id}" role="dialog">
                                 <div class="modal-dialog">
@@ -60,6 +60,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <p>My panels</p>
+                                            <jstl:if test="${not empty myPanels}">
                                             <form action="panel/user/add.do"  method="get" role="add">
                                                 <div class="input-group">
                                                     <select name="panelId">
@@ -69,10 +70,16 @@
                                                     </select>
 
                                                     <input  name="postId" value="${row.id}" hidden="true">
-                                                    <div class="input-group-btn"><button class="btn btn-success" type="submit">Add</button></div>
+
+                                                        <div class="input-group-btn"><button class="btn btn-success" type="submit">Add</button></div>
                                                 </div>
                                             </form>
                                         </div>
+                                        </jstl:if>
+                                        <jstl:if test="${ empty myPanels}">
+                                            <spring:message code="panels.add"/>
+                                        </jstl:if>
+
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                         </div>
@@ -80,6 +87,7 @@
                                 </div>
                             </div>
                         </div>
+                        </security:authorize>
 
                         <jstl:out value="${row.moment}"/>
 

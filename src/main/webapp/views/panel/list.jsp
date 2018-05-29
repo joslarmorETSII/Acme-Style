@@ -24,6 +24,14 @@
 
         <display:table name="panels" id="row" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}">
 
+            <security:authorize access="hasRole('USER')">
+                <display:column>
+                    <a href="panel/user/edit.do?panelId=${row.id}">
+                        <spring:message code="general.edit" />
+                    </a>
+                </display:column>
+            </security:authorize>
+
             <acme:column code="panel.name" value="${row.name}" />
 
             <display:column>
