@@ -2,6 +2,7 @@ package controllers.Actor;
 
 import controllers.AbstractController;
 import domain.*;
+import forms.SubscribeServiseForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -10,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import services.ActorService;
-import services.CategoryService;
-import services.PostService;
-import services.UserService;
+import services.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,6 +32,9 @@ public class PostActorController extends AbstractController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private ActionService actionService;
 
     @Autowired
     private UserService userService;
@@ -144,9 +145,42 @@ public class PostActorController extends AbstractController {
     public ModelAndView lik(@RequestParam int postId){
         ModelAndView result;
         Post post= postService.findOne(postId);
+        Actor actor = this.actorService.findByPrincipal();
 
-        try{
-            postService.likePost(post);
+        Assert.notNull(post);
+
+
+        Action action = this.actionService.actionByActorAndPost(actor.getId(), postId);
+        if(action == null){
+            Action aux = this.actionService.create();
+            aux.setPost(post);
+            aux.setLik(true);
+            this.actionService.save(aux);
+            this.postService.likePost(post);
+        }else {
+            if(action.isLik()){
+                action.setLik(false);
+                this.actionService.save(action);
+                this.postService.substractLikePost(post);
+            }else if(action.isDislike()){
+                action.setDislike(false);
+                action.setLik(true);
+                this.actionService.save(action);
+                this.postService.substractDislikePost(post);
+                this.postService.likePost(post);
+            }else if(action.isHeart()){
+                action.setHeart(false);
+                action.setLik(true);
+                this.actionService.save(action);
+                this.postService.substractHeartPost(post);
+                this.postService.likePost(post);
+            }
+            else{
+                action.setLik(true);
+                this.actionService.save(action);
+                this.postService.likePost(post);
+            }
+        }try{
             result = new ModelAndView("redirect:list.do");
         }catch (Throwable oops){
             result = createEditModelAndView(post,"general.commit.error");
@@ -159,9 +193,42 @@ public class PostActorController extends AbstractController {
     public ModelAndView dislike(@RequestParam int postId){
         ModelAndView result;
         Post post= postService.findOne(postId);
+        Actor actor = this.actorService.findByPrincipal();
 
-        try{
-            postService.dislikePost(post);
+        Assert.notNull(post);
+
+        Action action = this.actionService.actionByActorAndPost(actor.getId(), postId);
+        if(action == null){
+            Action aux = this.actionService.create();
+            aux.setPost(post);
+            aux.setDislike(true);
+            this.actionService.save(aux);
+            this.postService.dislikePost(post);
+        }else {
+            if(action.isLik()){
+                action.setLik(false);
+                action.setDislike(true);
+                this.actionService.save(action);
+                this.postService.substractLikePost(post);
+                this.postService.dislikePost(post);
+            }else if(action.isDislike()){
+                action.setDislike(false);
+                this.actionService.save(action);
+                this.postService.substractDislikePost(post);
+            }else if(action.isHeart()){
+                action.setHeart(false);
+                action.setDislike(true);
+                this.actionService.save(action);
+                this.postService.substractHeartPost(post);
+                this.postService.dislikePost(post);
+            }
+            else{
+                action.setDislike(true);
+                this.actionService.save(action);
+                this.postService.dislikePost(post);
+            }
+
+        }try{
             result = new ModelAndView("redirect:list.do");
         }catch (Throwable oops){
             result = createEditModelAndView(post,"general.commit.error");
@@ -174,9 +241,39 @@ public class PostActorController extends AbstractController {
     public ModelAndView heart(@RequestParam int postId){
         ModelAndView result;
         Post post= postService.findOne(postId);
+        Actor actor = this.actorService.findByPrincipal();
 
+        Action action = this.actionService.actionByActorAndPost(actor.getId(), postId);
+        if(action == null){
+            Action aux = this.actionService.create();
+            aux.setPost(post);
+            aux.setHeart(true);
+            this.actionService.save(aux);
+            this.postService.heartPost(post);
+        }else {
+            if (action.isLik()) {
+                action.setLik(false);
+                action.setHeart(true);
+                this.actionService.save(action);
+                this.postService.substractLikePost(post);
+                this.postService.heartPost(post);
+            } else if (action.isDislike()) {
+                action.setDislike(false);
+                action.setHeart(true);
+                this.actionService.save(action);
+                this.postService.substractDislikePost(post);
+                this.postService.heartPost(post);
+            } else if (action.isHeart()) {
+                action.setHeart(false);
+                this.actionService.save(action);
+                this.postService.substractHeartPost(post);
+            } else {
+                action.setHeart(true);
+                this.actionService.save(action);
+                this.postService.heartPost(post);
+            }
+        }
         try{
-            postService.heartPost(post);
             result = new ModelAndView("redirect:list.do");
         }catch (Throwable oops){
             result = createEditModelAndView(post,"general.commit.error");

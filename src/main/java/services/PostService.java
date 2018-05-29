@@ -33,7 +33,7 @@ public class PostService {
     private Validator validator;
 
     @Autowired
-    private CategoryService categoryService;
+    private ActionService actionService;
 
     @Autowired
     private CommentService commentService;
@@ -90,10 +90,17 @@ public class PostService {
         }
         this.commentService.deleteAll(post);
 
-        //TODO: Comprobar que el raffle no tiene participantes
+        //TODO: Mirar en los requisitos la condicion de raffle de borrado.
         if(post.getRaffle() != null)
             this.raffleService.delete(post.getRaffle());
 
+        for(Action a : post.getActions()){
+            Actor aux = a.getActor();
+            aux.getActions().remove(a);
+            this.actorService.save(aux);
+
+        }
+        actionService.deleteAll(post.getActions());
         post.setActions(new ArrayList<Action>());
 
         postRepository.delete(post);
@@ -137,8 +144,19 @@ public class PostService {
         this.postRepository.save(post);
     }
 
+
+    public void substractLikePost(Post post){
+        post.setLik(post.getLik() - 1);
+        this.postRepository.save(post);
+    }
+
     public void dislikePost(Post post){
         post.setDislike(post.getDislike() + 1);
+        this.postRepository.save(post);
+    }
+
+    public void substractDislikePost(Post post){
+        post.setDislike(post.getDislike() - 1);
         this.postRepository.save(post);
     }
 
@@ -147,4 +165,8 @@ public class PostService {
         this.postRepository.save(post);
     }
 
+    public void substractHeartPost(Post post){
+        post.setHeart(post.getHeart() - 1);
+        this.postRepository.save(post);
+    }
 }
