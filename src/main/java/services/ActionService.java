@@ -74,12 +74,14 @@ public class ActionService {
 
     // Other business methods -------------------------------------------------
 
-    //public Action actionByActorAndPost(int actorId,int postId){
-    //    return actionRepository.actionByActorAndPost(actorId,postId);
-    //}
+    public Action actionByActorAndPost(int actorId,int postId){
+        return actionRepository.actionByActorAndPost(actorId,postId);
+    }
 
-    //public Collection<Post> postsActionPerActor(int actorId){
-    //    return actionRepository.postsActionPerActor(actorId);
-    //}
+    public Collection<Post> postsActionPerActor(int actorId){
+        return actionRepository.postsActionPerActor(actorId);
+    }
+
+
 
 }
