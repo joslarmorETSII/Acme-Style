@@ -53,6 +53,7 @@ public class ArtistService {
         result.setPosts(new ArrayList<Post>());
         result.setFollowers(new ArrayList<Actor>());
         result.setFollowings(new ArrayList<Actor>());
+        result.setActions(new ArrayList<Action>());
 
         return result;
     }

@@ -49,7 +49,6 @@ public class RaffleService {
 
         result = new Raffle();
 
-
         return result;
     }
 

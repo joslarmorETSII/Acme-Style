@@ -52,6 +52,7 @@ public class ManagerService {
         result.setStores(new ArrayList<Store>());
         result.setEvents(new ArrayList<Event>());
         result.setUserAccount(new UserAccountService().create("MANAGER"));
+        result.setActions(new ArrayList<Action>());
 
         return result;
     }
