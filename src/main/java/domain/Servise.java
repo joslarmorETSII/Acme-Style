@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.util.Collection;
 import java.util.Date;
 
@@ -51,7 +52,7 @@ public class Servise extends DomainEntity{
         this.description = description;
     }
 
-
+    @Past
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     public Date getPublicationDate() {

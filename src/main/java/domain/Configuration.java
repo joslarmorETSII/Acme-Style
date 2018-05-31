@@ -23,22 +23,10 @@ public class Configuration extends DomainEntity {
 
     // Attributes -----------------------------------------------
 
-    private String				banner;
     private String				englishWelcome;
     private String				spanishWelcome;
     private Collection<String>	tabooWords;
     private Collection<String>  photos;
-
-    @NotBlank
-    @URL
-    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
-    public String getBanner() {
-        return this.banner;
-    }
-
-    public void setBanner(final String banner) {
-        this.banner = banner;
-    }
 
     @NotBlank
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)

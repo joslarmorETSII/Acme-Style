@@ -50,7 +50,7 @@ public class QuestionService {
 
     public Question save(Question question){
         Assert.notNull(question);
-        question.setMoment(new Date());
+        question.setMoment(new Date(System.currentTimeMillis() - 1000));
         return questionRepository.save(question);
     }
 

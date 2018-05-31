@@ -7,7 +7,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.util.Collection;
 import java.util.Date;
 
@@ -28,6 +30,10 @@ public class Post extends DomainEntity{
     private int lik;
     private int dislike;
     private int heart;
+    private boolean raffle;
+    private Date endDate;
+    private String reward;
+    private boolean finalMode;
 
     @NotBlank
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
@@ -39,6 +45,7 @@ public class Post extends DomainEntity{
         this.title = title;
     }
 
+    @Past
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     public Date getMoment() {
@@ -92,6 +99,43 @@ public class Post extends DomainEntity{
 
     public void setHeart(int heart) {
         this.heart = heart;
+    }
+
+    public boolean isRaffle() {
+        return raffle;
+    }
+
+    public void setRaffle(boolean raffle) {
+        this.raffle = raffle;
+    }
+
+    //TODO: Comprobar en elos servicios que esta fecha sea futura
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    //TODO: Comprobar que no sea nulo en el servicio si se marca raffle
+    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+    public String getReward() {
+        return reward;
+    }
+
+    public void setReward(String reward) {
+        this.reward = reward;
+    }
+
+    public boolean isFinalMode() {
+        return finalMode;
+    }
+
+    public void setFinalMode(boolean finalMode) {
+        this.finalMode = finalMode;
     }
 
     // Relationships ---------------------------------------------------------------------

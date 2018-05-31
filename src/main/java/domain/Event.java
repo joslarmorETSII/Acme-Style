@@ -53,6 +53,7 @@ public class Event extends DomainEntity{
         this.description = description;
     }
 
+    //TODO: Comprobar en los servicios que sea futuro
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     public Date getMoment() {
@@ -82,8 +83,8 @@ public class Event extends DomainEntity{
         this.price = price;
     }
 
+    //TODO: Comprobar en los servicios que sea futuro
     @NotNull
-    @Future
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     public Date getCelebrationDate() {

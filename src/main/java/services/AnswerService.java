@@ -39,7 +39,7 @@ public class AnswerService {
 
     public Answer save(Answer answer){
         Assert.notNull(answer);
-        answer.setMoment(new Date());
+        answer.setMoment(new Date(System.currentTimeMillis() - 1000));
         return answerRepository.save(answer);
     }
 

@@ -94,7 +94,7 @@ public class ServiseService {
 
     public Servise save(Servise servise){
         Assert.notNull(servise);
-        servise.setPublicationDate(new Date(System.currentTimeMillis()-1000));
+        servise.setPublicationDate(new Date(System.currentTimeMillis() - 1000));
         if(isTabooServise(servise)){
             servise.setTaboo(true);
         }

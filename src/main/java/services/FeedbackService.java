@@ -70,7 +70,7 @@ public class FeedbackService {
 
         principal = userService.findByPrincipal();
         Assert.notNull(subscribeService.subscriptionByUserAndService(principal.getId(),feedback.getServise().getId()),"not subscribed ");
-        feedback.setMoment(new Date());
+        feedback.setMoment(new Date(System.currentTimeMillis() - 1000));
 
         return feedbackRepository.save(feedback);
     }
