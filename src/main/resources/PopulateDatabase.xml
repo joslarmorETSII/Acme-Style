@@ -535,7 +535,7 @@
 	<bean id="servise1" class="domain.Servise">
 		<property name="title" value="Service1"/>
 		<property name="description" value="Description1"/>
-		<property name="publicationDate" value="01/01/2019 15:30"/>
+		<property name="publicationDate" value="2018/01/01 15:30"/>
 		<property name="picture" value="http://www.image.com"/>
 		<property name="taboo" value="false"/>
 		<property name="price" value="90.0"/>
@@ -566,7 +566,7 @@
 	<bean id="servise2" class="domain.Servise">
 		<property name="title" value="Service2"/>
 		<property name="description" value="Description2"/>
-		<property name="publicationDate" value="01/01/2019 15:30"/>
+		<property name="publicationDate" value="2018/01/01 15:30"/>
 		<property name="picture" value="http://www.image.com"/>
 		<property name="taboo" value="false"/>
 		<property name="price" value="80.0"/>
@@ -597,7 +597,7 @@
 	<bean id="servise3" class="domain.Servise">
 		<property name="title" value="Service3"/>
 		<property name="description" value="Description3"/>
-		<property name="publicationDate" value="01/01/2019 15:30"/>
+		<property name="publicationDate" value="2018/01/01 15:30"/>
 		<property name="picture" value="http://www.image.com"/>
 		<property name="taboo" value="false"/>
 		<property name="price" value="150.0"/>
@@ -694,7 +694,7 @@
 
 	<bean id="post1" class="domain.Post" >
 		<property name="title" value="Esto es un post de prueba"/>
-		<property name="moment" value="13/03/2018 12:00"/>
+		<property name="moment" value="2018/03/01 12:00"/>
 		<property name="description" value="Esto es una descripcion de prueba para el post 1"/>
 		<property name="picture"  value="https://about.canva.com/wp-content/uploads/sites/3/2017/02/congratulations_-banner.png"/>
 		<property name="lik" value="0"/>
@@ -816,7 +816,7 @@
 
 	<bean id="subscription1" class="domain.Subscription">
 		<property name="creditCard" ref="creditCard2"/>
-		<property name="moment" value="02/01/2019 15:30"/>
+		<property name="moment" value="2018/01/02 15:30"/>
 		<property name="user" ref="user1"/>
 		<property name="servise" ref="servise1"/>
 	</bean>
