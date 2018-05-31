@@ -311,40 +311,6 @@
 		</property>
 	</bean>
 
-	<!-- Galleries -->
-
-	<bean id="gallery1" class="domain.Gallery" >
-		<property name="picture" value="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" />
-		<property name="profile" ref="profile1" />
-	</bean>
-
-	<bean id="gallery2" class="domain.Gallery" >
-		<property name="picture" value="https://image.freepik.com/free-icon/male-user-profile-picture_318-37825.jpg" />
-		<property name="profile" ref="profile1" />
-	</bean>
-
-	<bean id="gallery3" class="domain.Gallery" >
-		<property name="picture" value="http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png" />
-		<property name="profile" ref="profile1" />
-	</bean>
-
-	<bean id="gallery4" class="domain.Gallery" >
-		<property name="picture" value="https://www.profilegroup.co.nz/wp-content/uploads/2015/12/au.png" />
-		<property name="profile" ref="profile1" />
-	</bean>
-
-	<bean id="gallery5" class="domain.Gallery" >
-		<property name="picture" value="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" />
-		<property name="profile" ref="profile1" />
-	</bean>
-
-	<bean id="gallery6" class="domain.Gallery" >
-		<property name="picture" value="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" />
-		<property name="profile" ref="profile1" />
-	</bean>
-
-
-
 	<!-- Photographer -->
 
 	<bean id="photographer1" class="domain.Artist">
@@ -356,8 +322,6 @@
 		<property name="postalAddresses" value="C\ Reina Mercedes Bloque 25"/>
 		<property name="userAccount" ref="userAccount6"/>
 		<property name="profile" ref="profile1"/>
-
-
 		<property name="posts">
 			<list>
 			</list>
@@ -443,6 +407,7 @@
 	</bean>
 
 	<!-- Store -->
+
 	<bean id="store1" class="domain.Store">
 		<property name="banner" value="https://www.zara.es"/>
 		<property name="creditCard" ref="creditCard1"/>
@@ -479,6 +444,38 @@
 			</list>
 		</property>
 
+	</bean>
+
+	<!-- Galleries -->
+
+	<bean id="gallery1" class="domain.Gallery" >
+		<property name="picture" value="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" />
+		<property name="profile" ref="profile1" />
+	</bean>
+
+	<bean id="gallery2" class="domain.Gallery" >
+		<property name="picture" value="https://image.freepik.com/free-icon/male-user-profile-picture_318-37825.jpg" />
+		<property name="profile" ref="profile1" />
+	</bean>
+
+	<bean id="gallery3" class="domain.Gallery" >
+		<property name="picture" value="http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png" />
+		<property name="profile" ref="profile1" />
+	</bean>
+
+	<bean id="gallery4" class="domain.Gallery" >
+		<property name="picture" value="https://www.profilegroup.co.nz/wp-content/uploads/2015/12/au.png" />
+		<property name="profile" ref="profile1" />
+	</bean>
+
+	<bean id="gallery5" class="domain.Gallery" >
+		<property name="picture" value="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" />
+		<property name="profile" ref="profile1" />
+	</bean>
+
+	<bean id="gallery6" class="domain.Gallery" >
+		<property name="picture" value="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" />
+		<property name="profile" ref="profile1" />
 	</bean>
 
 	<!-- Events -->
@@ -1183,7 +1180,13 @@
 				<value>sexo</value>
 			</list>
 		</property>
-
+		<property name="photos">
+			<list>
+				<value>http://cdn.bukisa.com/wp-content/uploads/2017/09/F-13.jpg</value>
+				<value>http://www.stylewati.com/wp-content/uploads/2018/02/7-combinations-will-never-run-style.jpg</value>
+				<value>https://fashionista.com/.image/t_share/MTUyODU0NTkxODI0NzMzNDY3/hp-milan-fashion-week-mens-fall-2018-street-style.jpg</value>
+			</list>
+		</property>
 	</bean>
 
 	<!-- CreditCard -->

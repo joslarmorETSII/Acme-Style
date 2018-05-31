@@ -27,6 +27,7 @@ public class Configuration extends DomainEntity {
     private String				englishWelcome;
     private String				spanishWelcome;
     private Collection<String>	tabooWords;
+    private Collection<String>  photos;
 
     @NotBlank
     @URL
@@ -69,5 +70,14 @@ public class Configuration extends DomainEntity {
         this.tabooWords = tabooWords;
     }
 
+    @NotEmpty
+    @ElementCollection
+    public Collection<String> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(Collection<String> photos) {
+        this.photos = photos;
+    }
 }
 
