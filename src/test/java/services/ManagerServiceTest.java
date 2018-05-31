@@ -1,7 +1,6 @@
 package services;
 
 import domain.Manager;
-import domain.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +50,7 @@ public class ManagerServiceTest extends AbstractTest {
             result.setEmail(email);
             result.setPostalAddresses(postalAddress);
 
+
             result.getUserAccount().setPassword(new Md5PasswordEncoder().encodePassword(password, null));
 
             this.managerService.save(result);
@@ -78,7 +78,7 @@ public class ManagerServiceTest extends AbstractTest {
         final Object testingData[][] = {
                 // Alguien sin registrar/logueado como manager -> true
                 {
-                        "manager33", "manager33", "manager33", "manager33TestName", "manager33TestSurname", "+34 123456789", "manager33Test@manager33Test.com", "addressManager33",  null
+                        "manager33", "manager33", "manager33", "managerTestName", "managerTestSurname", "+34 123456789", "managerTest@Test.com", "addressManager",  null
                 },
                 // Todos los campos como null --> false
                 {

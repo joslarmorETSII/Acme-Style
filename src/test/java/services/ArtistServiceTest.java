@@ -1,7 +1,7 @@
 package services;
 
 import domain.Artist;
-import domain.User;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,8 @@ import utilities.AbstractTest;
 
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
+import javax.validation.constraints.Null;
+
 
 @Transactional
 @ContextConfiguration(locations = {
@@ -25,6 +27,9 @@ public class ArtistServiceTest extends AbstractTest {
 
     @Autowired
     private ArtistService artistService;
+
+    @Autowired
+    private UserAccountService userAccountService;
 
     // Tests
     // ====================================================
@@ -45,6 +50,7 @@ public class ArtistServiceTest extends AbstractTest {
 
             result = this.artistService.create();
 
+            result.setUserAccount(this.userAccountService.create("STYLIST"));
             result.getUserAccount().setUsername(username);
             result.setName(name);
             result.setSurname(surname);
@@ -82,22 +88,22 @@ public class ArtistServiceTest extends AbstractTest {
                 {
                         "stylist33", "stylist33", "stylist33", "stylist33TestName", "stylist33TestSurname", "+34 123456789", "stylist33Test@stylist33Test.com", "addressStylist33",  null
                 },
-                // Alguien sin registrar/logueado como makeup artist -> true
-                {
-                        "makeup33", "makeup33", "makeup33", "makeup33TestName", "makeup33TestSurname", "+34 123456789", "makeup33Test@makeup33Test.com", "addressMakeup33",  null
-                },
-                // Alguien sin registrar/logueado como photographer -> true
-                {
-                        "photographer33", "photographer33", "photographer33", "photographer33TestName", "photographer33TestSurname", "+34 123456789", "photographer33Test@photographer33Test.com", "addressPhotographer33",  null
-                },
+//                // Alguien sin registrar/logueado como makeup artist -> true
+//                {
+//                        "makeup33", "makeup33", "makeup33", "makeup33TestName", "makeup33TestSurname", "+34 123456789", "makeup33Test@makeup33Test.com", "addressMakeup33",  null
+//                },
+//                // Alguien sin registrar/logueado como photographer -> true
+//                {
+//                        "photographer33", "photographer33", "photographer33", "photographer33TestName", "photographer33TestSurname", "+34 123456789", "photographer33Test@photographer33Test.com", "addressPhotographer33",  null
+//                },
                 // Todos los campos como null --> false
                 {
                         null, null, null, null, null, null, null, null, ConstraintViolationException.class
                 },
                 // Todos los campos completados, introduciendo un <script> en el nombre -> false
                 {
-                        "user343", "user343", "user343", "<script>", "userTestSurname43","+34123456789", "userTest@userTest.com", "",  ConstraintViolationException.class
-                },
+                        "stylist33", "stylist33", "stylist33", "<script>", "stylist33TestSurname43","+34 123456789", "stylist33Test@stylist33Test.com", "adressStylist",  ConstraintViolationException.class
+                }
 
         };
         for (int i = 0; i < testingData.length; i++)
