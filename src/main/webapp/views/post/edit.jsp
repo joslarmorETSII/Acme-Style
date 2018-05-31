@@ -106,16 +106,20 @@
     <div class="text-center">
 
         <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
-            <acme:submit name="save" code="general.save"/>
-        </security:authorize>
-
-        <security:authorize access="hasRole('ADMINISTRATOR')">
-                <acme:submit name="delete" code="general.delete"/>
+            <jstl:if test="${post.raffle eq true && post.finalMode eq false || post.id == 0 }" >
+                <acme:submit name="save" code="general.save"/>
+            </jstl:if>
         </security:authorize>
 
         <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
-            <jstl:if test="${post.id !=0}">
+            <jstl:if test="${post.id !=0 && post.raffle eq false}">
                 <input type="submit" class="btn btn-danger"  name="delete" id="saveButton" value="<spring:message code="general.delete"/>"/>
+            </jstl:if>
+        </security:authorize>
+
+        <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
+            <jstl:if test="${post.id !=0 && post.raffle eq true && empty post.comments || post.hasWinner eq true}">
+                <input type="submit" class="btn btn-danger"  name="delete" id="saveButton2" value="<spring:message code="general.delete"/>"/>
             </jstl:if>
         </security:authorize>
 
@@ -128,8 +132,8 @@
     </div>
 </div>
 
+<jstl:if test="${post.raffle eq false}">
 <script>
-
     document.getElementById("checkRaffle").checked = false;
     document.getElementById("checkReward").disabled = true;
     document.getElementById("checkEndDate").disabled = true;
@@ -150,5 +154,29 @@
         }
     }
 </script>
+</jstl:if>
 
+<jstl:if test="${post.raffle eq true}">
+    <script>
+        document.getElementById("checkRaffle").checked = true;
+        document.getElementById("checkReward").disabled = false;
+        document.getElementById("checkEndDate").disabled = false;
+        document.getElementById("checkFinalMode").disabled = false;
+
+        function comprobar() {
+
+            var aux = document.getElementById("checkRaffle").checked;
+
+            if(aux == true) {
+                document.getElementById("checkReward").disabled = false;
+                document.getElementById("checkEndDate").disabled = false;
+                document.getElementById("checkFinalMode").disabled = false;
+            }else{
+                document.getElementById("checkReward").disabled = true;
+                document.getElementById("checkEndDate").disabled = true;
+                document.getElementById("checkFinalMode").disabled = true;
+            }
+        }
+    </script>
+</jstl:if>
 

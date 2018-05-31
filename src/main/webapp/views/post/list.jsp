@@ -25,6 +25,8 @@
     <jstl:set value="{0,date,yyyy/MM/dd HH:mm}" var="formatDate"/>
 </jstl:if>
 
+
+
     <jstl:forEach var="row" items="${posts}">
 
     <div class="container">
@@ -109,7 +111,15 @@
                             </security:authorize>
 
                             <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST', 'USER', 'MANAGER')" >
+                                <jstl:if test="${row.raffle eq true && empty row.comments || row.hasWinner eq true}">
                                     <acme:button url="post/actor/edit.do?postId=${row.id}" code="general.delete" />
+                                </jstl:if>
+                            </security:authorize>
+
+                            <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST', 'USER', 'MANAGER')" >
+                                <jstl:if test="${row.raffle eq false}">
+                                    <acme:button url="post/actor/edit.do?postId=${row.id}" code="general.delete" />
+                                </jstl:if>
                             </security:authorize>
 
                             <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
@@ -122,7 +132,6 @@
             </div>
         </div>
     </div>
-
 
     </jstl:forEach>
 

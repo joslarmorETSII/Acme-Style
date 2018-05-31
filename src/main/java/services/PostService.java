@@ -83,24 +83,29 @@ public class PostService {
         Assert.notNull(post);
         Assert.isTrue(actorService.findByPrincipal().equals(post.getActor()) || actorService.checkRole(Authority.ADMINISTRATOR));
 
+        if(post.isRaffle() && post.getEndDate().after(new Date()))
+            Assert.isTrue(post.getComments().isEmpty());
+
+        if(post.isRaffle() && post.getEndDate().before(new Date()))
+            Assert.isTrue(post.isHasWinner(), "Raffle must have winner");
+
         post.setCategories(new ArrayList<Category>());
+
         for(Comment c : post.getComments()){
             Actor a = c.getActor();
             a.setComments(new ArrayList<Comment>());
             this.actorService.save(a);
         }
+
         this.commentService.deleteAll(post);
 
-        //TODO: Mirar en los requisitos la condicion de raffle de borrado.
-        if( post.isRaffle()){
-
-        }
         for(Action a : post.getActions()){
             Actor aux = a.getActor();
             aux.getActions().remove(a);
             this.actorService.save(aux);
 
         }
+
         actionService.deleteAll(post.getActions());
         post.setActions(new ArrayList<Action>());
 

@@ -120,6 +120,8 @@ public class PostActorController extends AbstractController {
         Post post;
         post = this.postService.findOneToEdit(postId);
         Assert.notNull(post);
+        if(post.isRaffle() && !post.getComments().isEmpty())
+            Assert.isTrue(post.isFinalMode());
         result = this.createEditModelAndView(post);
         return result;
     }
@@ -139,7 +141,11 @@ public class PostActorController extends AbstractController {
             }
             else {
                 this.postService.save(post);
-                result = new ModelAndView("redirect:list.do");
+                if(post.isRaffle()){
+                    result = new ModelAndView("redirect:listRaffle.do");
+                }else{
+                    result = new ModelAndView("redirect:list.do");
+                }
             }
         } catch (final Throwable oops) {
             if (binding.hasErrors()){
@@ -156,12 +162,25 @@ public class PostActorController extends AbstractController {
         ModelAndView result;
 
         Post post = this.postService.findOneToEdit(postPruned.getId());
+        if(post.isRaffle() && post.getEndDate().after(new Date()))
+            Assert.isTrue(post.getComments().isEmpty());
         try{
             postService.delete(post);
             result = new ModelAndView("redirect:list.do");
         }catch (Throwable oops){
-            result = createEditModelAndView(post,"general.commit.error");
+            result = createEditModelAndView(postPruned,"general.commit.error");
         }
+
+        return result;
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public ModelAndView delete(@RequestParam int postId){
+        ModelAndView result;
+
+        Post post = this.postService.findOneToEdit(postId);
+        postService.delete(post);
+        result = new ModelAndView("redirect:list.do");
 
         return result;
     }
