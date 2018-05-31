@@ -56,8 +56,6 @@
 		<bean class="converters.StringToQuestionConverter" />
 		<bean class="converters.PhotoToStringConverter" />
 		<bean class="converters.StringToPhotoConverter" />
-		<bean class="converters.RaffleToStringConverter" />
-		<bean class="converters.StringToRaffleConverter" />
 		<bean class="converters.ServiseToStringConverter" />
 		<bean class="converters.StringToServiseConverter" />
 		<bean class="converters.AnswerToStringConverter" />

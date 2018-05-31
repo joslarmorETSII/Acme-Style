@@ -46,8 +46,6 @@
 		<value>/views/answer/messages</value>
 		<value>/views/configuration/messages</value>
 		<value>/views/comment/messages</value>
-		<value>/views/raffle/messages</value>
-
 	</util:list>
 
 </beans>

@@ -29,11 +29,6 @@
 
     <jstl:forEach var="row" items="${posts}">
 
-        <jstl:set var="hasRaffle" value="true" />
-            <jstl:if test="${ row.raffle == null}" >
-                <jstl:set var="hasRaffle" value="false" />
-            </jstl:if>
-
     <div class="container">
         <div class="row">
             <div class="col-md-12"><br><br><br>
@@ -102,18 +97,6 @@
                         </div>
 
                         <div class="pull-right">
-
-                            <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
-                                <jstl:if test="${row.actor eq actor && hasRaffle eq false}">
-                                <acme:button code="general.create.raffle" url="raffle/actor/create.do?postId=${row.id}"/>
-                                </jstl:if>
-                            </security:authorize>
-
-                            <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
-                                <jstl:if test="${hasRaffle eq true}">
-                                    <acme:button code="general.create.displayRaffle" url="raffle/actor/display.do?raffleId=${row.raffle.id}"/>
-                                </jstl:if>
-                            </security:authorize>
 
                             <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
                                 <acme:button code="general.create.comment" url="comment/actor/create.do?postId=${row.id}"/>

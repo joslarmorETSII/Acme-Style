@@ -704,7 +704,6 @@
 		<property name="dislike" value="0"/>
 		<property name="heart" value="0"/>
 		<property name="actor" ref="stylist1" />
-		<property name="raffle" ref="raffle1" />
 		<property name="comments">
 			<list>
 				<ref bean="comment1"/>
@@ -1165,17 +1164,6 @@
 		<property name="url" value="https://st-listas.20minutos.es/images/2013-01/352618/3872086_640px.jpg?1358196852"/>
 		<property name="description" value="Esto es una foto de prueba para el panel 1"/>
 		<property name="panel" ref="panel1"/>
-	</bean>
-
-	<!-- Raffles -->
-
-	<bean id="raffle1" class="domain.Raffle">
-
-		<property name="title" value="Titulo 1 para raffle 1"/>
-		<property name="description" value="Esto es una descripcion de prueba para el rafle 1"/>
-		<property name="endDate" value="02/09/2018 12:00"/>
-		<property name="reward" value="Obten un aprobado en DP"/>
-		<property name="post" ref="post1"/>
 	</bean>
 
 	<!-- Configuration -->

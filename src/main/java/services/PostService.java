@@ -38,9 +38,6 @@ public class PostService {
     @Autowired
     private CommentService commentService;
 
-    @Autowired
-    private RaffleService raffleService;
-
     // Constructors -----------------------------------------------------------
 
     public PostService() {
@@ -91,8 +88,6 @@ public class PostService {
         this.commentService.deleteAll(post);
 
         //TODO: Mirar en los requisitos la condicion de raffle de borrado.
-        if(post.getRaffle() != null)
-            this.raffleService.delete(post.getRaffle());
 
         for(Action a : post.getActions()){
             Actor aux = a.getActor();

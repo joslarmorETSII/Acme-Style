@@ -9,7 +9,6 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import repositories.EventRepository;
-import repositories.RaffleRepository;
 import security.Authority;
 
 import java.util.ArrayList;
