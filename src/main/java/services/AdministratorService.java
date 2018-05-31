@@ -71,6 +71,10 @@ public class AdministratorService {
         return result;
     }
 
+    public Administrator findOne(){
+        return administratorRepository.findAll().get(0);
+    }
+
     public Collection<Double> avgMinMaxServicesPerPhotographer(){
         return this.administratorRepository.avgMinMaxServicesPerPhotographer();
     }

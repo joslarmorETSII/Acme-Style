@@ -131,36 +131,35 @@
 		<!-- Indicators -->
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			<li data-target="#myCarousel" data-slide-to="1"></li>
-			<li data-target="#myCarousel" data-slide-to="2"></li>
+			<jstl:set var="i" value="1"/>
+			<jstl:forEach var="foto" items="${fotos}">
+				<li data-target="#myCarousel" data-slide-to="${i}"></li>
+				<jstl:set var="i" value="${i+1}"/>
+			</jstl:forEach>
 
 		</ol>
 
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner" role="listbox">
 			<div class="item active">
-				<img src="http://cdn.bukisa.com/wp-content/uploads/2017/09/F-13.jpg" alt="...">
+				<img src="${image}" alt="...">
 				<div class="carousel-caption">
 					<h3>Acme Style</h3>
 					<p>Stay fashionable </p>
 				</div>
 			</div>
 
-			<div class="item">
-				<img src="http://www.stylewati.com/wp-content/uploads/2018/02/7-combinations-will-never-run-style.jpg" alt="Image">
-				<div class="carousel-caption">
-					<h3>Acme Style</h3>
-					<p></p>
+			<jstl:forEach var="foto" items="${fotos}">
+				<div class="item">
+					<img src="${foto}" alt="Image">
+					<div class="carousel-caption">
+						<h3>Acme Style</h3>
+						<p></p>
+					</div>
 				</div>
-			</div>
+			</jstl:forEach>
 
-			<div class="item">
-				<img src="https://fashionista.com/.image/t_share/MTUyODU0NTkxODI0NzMzNDY3/hp-milan-fashion-week-mens-fall-2018-street-style.jpg" alt="Image">
-				<div class="carousel-caption">
-					<h3>Acme Style</h3>
-					<p></p>
-				</div>
-			</div>
+
 		</div>
 
 		<!-- Left and right controls -->

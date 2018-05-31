@@ -27,6 +27,9 @@ public class ParticipateService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private MessageService messageService;
+
     // Constructors -----------------------------------------------------------
 
     public ParticipateService() {
@@ -61,10 +64,14 @@ public class ParticipateService {
     }
 
     public Participate save(Participate participate){
+        Participate result;
 
         Assert.notNull(participate);
         participate.setMoment(new Date());
-        return participateRepository.save(participate);
+        result =  participateRepository.save(participate);
+        messageService.notifyParticipationToUser(userService.findByPrincipal(),participate.getEvent());
+
+        return  result;
     }
 
     public Participate participateByUserAndEvent(int actorId, int eventId) {

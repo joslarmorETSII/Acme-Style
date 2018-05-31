@@ -1,9 +1,11 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+import domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,10 +14,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
 import repositories.MessageRepository;
-import domain.Actor;
-import domain.Configuration;
-import domain.Folder;
-import domain.Message;
 
 @Service
 @Transactional
@@ -35,6 +33,8 @@ public class MessageService {
     private ActorService				actorService;
     @Autowired
     private ConfigurationService	    configurationSystemService;
+    @Autowired
+    private AdministratorService administratorService;
 
     // Constructors -----------------------------------------------------------
 
@@ -171,6 +171,26 @@ public class MessageService {
                 this.messageRepository.save(msg);
                 break;
             }
+    }
+
+    public  void notifyParticipationToUser(User user,Event event){
+        Message notification;
+        Collection<Actor> recievers;
+        Folder notificationBox;
+
+        recievers = new ArrayList<>();
+        recievers.add(user);
+        notificationBox = folderService.findActorAndFolder(user.getId(),"notificationbox");
+
+        notification = new Message();
+        notification.setPriority("HIGH");
+        notification.setActorReceivers(recievers);
+        notification.setFolder(notificationBox);
+        notification.setSubject("Confirmation");
+        notification.setBody("Your participation to "+event.getTitle()+" has been confirmed");
+        notification.setActorSender(administratorService.findOne());
+        notification.setMoment(new Date());
+        messageRepository.save(notification);
     }
 
     public void flush() {

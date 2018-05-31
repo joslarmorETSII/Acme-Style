@@ -14,6 +14,7 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <div class="container well">
@@ -36,12 +37,12 @@
                 </div>
                 <div class="col-md-6 no-pad">
                     <div class="user-image">
-                        <jstl:if test="${profile.profilePhoto ne null}">
+                        <jstl:if test="${not empty profile.profilePhoto}">
                             <img src="${profile.profilePhoto}" class="img-responsive thumbnail" />
                         </jstl:if>
-                        <jstl:if test="${profile.profilePhoto eq null}">
+                        <c:if test="${empty profile.profilePhoto}">
                             <img src="http://nwsid.net/wp-content/uploads/2015/05/dummy-profile-pic-300x300.png" class="img-responsive thumbnail" />
-                        </jstl:if>
+                        </c:if>
                     </div>
                 </div>
             </div>
