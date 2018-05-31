@@ -34,6 +34,7 @@ public class Post extends DomainEntity{
     private Date endDate;
     private String reward;
     private boolean finalMode;
+    private boolean hasWinner;
 
     @NotBlank
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
@@ -109,7 +110,7 @@ public class Post extends DomainEntity{
         this.raffle = raffle;
     }
 
-    //TODO: Comprobar en elos servicios que esta fecha sea futura
+    //TODO: Comprobar en los servicios que esta fecha sea futura
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     public Date getEndDate() {
@@ -136,6 +137,14 @@ public class Post extends DomainEntity{
 
     public void setFinalMode(boolean finalMode) {
         this.finalMode = finalMode;
+    }
+
+    public boolean isHasWinner() {
+        return hasWinner;
+    }
+
+    public void setHasWinner(boolean hasWinner) {
+        this.hasWinner = hasWinner;
     }
 
     // Relationships ---------------------------------------------------------------------

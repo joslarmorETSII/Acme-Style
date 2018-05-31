@@ -65,6 +65,44 @@
         </div>
     </div>
 
+    <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
+
+    <div class="thumbnail">
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><spring:message code="post.raffle"/></label>
+            <div class="col-sm-9">
+                <form:checkbox id="checkRaffle" onclick="comprobar();" path="raffle" class="form-control"/>
+                <form:errors class="error" path="raffle" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><spring:message code="post.reward"/></label>
+            <div class="col-sm-9">
+                <form:input path="reward" class="form-control" id="checkReward"/>
+                <form:errors class="error" path="reward" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><spring:message code="post.endDate"/></label>
+            <div class="col-sm-9">
+                <form:input path="endDate" class="form-control" id="checkEndDate" />
+                <form:errors class="error" path="endDate" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><spring:message code="post.finalMode"/></label>
+            <div class="col-sm-9">
+                <form:checkbox path="finalMode" class="form-control" id="checkFinalMode" />
+                <form:errors class="error" path="finalMode" />
+            </div>
+    </div>
+    </security:authorize>
+
+    </div>
+
     <div class="text-center">
 
         <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
@@ -90,5 +128,27 @@
     </div>
 </div>
 
+<script>
+
+    document.getElementById("checkRaffle").checked = false;
+    document.getElementById("checkReward").disabled = true;
+    document.getElementById("checkEndDate").disabled = true;
+    document.getElementById("checkFinalMode").disabled = true;
+
+    function comprobar() {
+
+        var aux = document.getElementById("checkRaffle").checked;
+
+        if(aux == true) {
+            document.getElementById("checkReward").disabled = false;
+            document.getElementById("checkEndDate").disabled = false;
+            document.getElementById("checkFinalMode").disabled = false;
+        }else{
+            document.getElementById("checkReward").disabled = true;
+            document.getElementById("checkEndDate").disabled = true;
+            document.getElementById("checkFinalMode").disabled = true;
+        }
+    }
+</script>
 
 

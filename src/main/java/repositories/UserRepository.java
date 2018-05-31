@@ -1,5 +1,6 @@
 package repositories;
 
+import domain.Actor;
 import domain.Servise;
 import domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,6 +16,6 @@ public interface UserRepository extends JpaRepository<User,Integer>{
     User findByUserAccountId(int userAccountId);
 
     //Search
-    @Query("select u from User u where (u.name like %?1%  or u.surname like %?1% or u.email like %?1%)")
-    Collection<User> searchUsersPerKeyword(String keyword);
+    @Query("select a from Actor a where (a.name like %?1%  or a.surname like %?1% or a.email like %?1%)")
+    Collection<Actor> searchUsersPerKeyword(String keyword);
 }

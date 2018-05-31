@@ -40,54 +40,9 @@
                         <div class="thumbnail">
                             <img src="${row.picture}" width="500px" height="100%" class="img-responsive" />
 
-                        <security:authorize access="hasRole('USER')">
-                        <div class="container">
-                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#${row.id}">Add to Panel</button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="${row.id}" role="dialog">
-                                <div class="modal-dialog">
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Select a Panel</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>My panels</p>
-                                            <form action="panel/user/add.do"  method="get" role="add">
-                                                <div class="input-group">
-                                                    <jstl:if test="${not empty myPanels}">
-                                                        <select name="panelId">
-                                                                <jstl:forEach var="panel" items="${myPanels}">
-                                                                    <option value="${panel.id}" >${panel.name}</option>
-                                                                </jstl:forEach>
-
-                                                        </select>
-                                                    </jstl:if>
-                                                    <input  name="postId" value="${row.id}" hidden="true">
-                                                    <jstl:if test="${not empty myPanels}">
-                                                        <div class="input-group-btn"><button class="btn btn-success" type="submit">Add</button></div>
-                                                    </jstl:if>
-
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <jstl:if test="${ empty myPanels}">
-                                            <spring:message code="panels.add"/>
-                                        </jstl:if>
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </security:authorize>
                     </div>
 
                         <jstl:out value="${row.moment}"/>
-
 
                         <br><br>
                         <div class="pull-left">
@@ -98,11 +53,7 @@
 
                         <div class="pull-right">
 
-                            <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
-                                <acme:button code="general.create.comment" url="comment/actor/create.do?postId=${row.id}"/>
-                            </security:authorize>
-
-                            <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST', 'USER', 'MANAGER')" >
+                            <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST', 'MANAGER')" >
                                 <jstl:if test="${row.finalMode eq false}">
                                     <acme:button url="post/actor/edit.do?postId=${row.id}" code="general.edit" />
                                 </jstl:if>
@@ -123,12 +74,11 @@
         </div>
     </div>
 
-
     </jstl:forEach>
 
 <br/>
 <div class="text-center">
-    <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
+    <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST', 'MANAGER')">
         <acme:button code="general.create" url="post/actor/create.do"/>
     </security:authorize>
 

@@ -185,7 +185,7 @@ public class UserService {
         return feedback;
     }
 
-    public Collection<User> searchUsersPerKeyword(String keyword){
+    public Collection<Actor> searchUsersPerKeyword(String keyword){
         return this.userRepository.searchUsersPerKeyword(keyword);
     }
 }

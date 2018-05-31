@@ -701,6 +701,11 @@
 		<property name="dislike" value="0"/>
 		<property name="heart" value="0"/>
 		<property name="actor" ref="stylist1" />
+		<property name="raffle" value="false" />
+		<property name="endDate"><null/></property>
+		<property name="reward"><null/></property>
+		<property name="finalMode" value="true"/>
+		<property name="hasWinner" value="false" />
 		<property name="comments">
 			<list>
 				<ref bean="comment1"/>

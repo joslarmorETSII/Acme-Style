@@ -73,15 +73,39 @@ public class PostActorController extends AbstractController {
 
         postRes.addAll(this.actorService.postByFollowings(actor.getId()));
         postRes.addAll(posts);
+        postRes.removeAll(this.postService.postFinalModeFalse());
 
         if(actorService.isUser()){
             panels = userService.findByPrincipal().getPanels();
         }
-
         result = new ModelAndView("post/list");
         result.addObject("posts", postRes);
         result.addObject("actor", actor);
         result.addObject("requestURI","post/actor/list.do");
+        result.addObject("myPanels",panels);
+
+        return result;
+
+    }
+
+    @RequestMapping(value = "/listRaffle", method = RequestMethod.GET)
+    public ModelAndView listRaffle() {
+        ModelAndView result;
+        Actor actor;
+        Collection<Post> posts = new ArrayList<Post>();
+        Collection<Panel> panels= new ArrayList<Panel>();
+        Collection<Post> postRes = new ArrayList<Post>();
+
+        actor = actorService.findByPrincipal();
+        posts = postService.postRaffleByActor(actor.getId());
+
+        if(actorService.isUser()){
+            panels = userService.findByPrincipal().getPanels();
+        }
+        result = new ModelAndView("post/listRaffle");
+        result.addObject("posts", posts);
+        result.addObject("actor", actor);
+        result.addObject("requestURI","post/actor/listRaffle.do");
         result.addObject("myPanels",panels);
 
         return result;
@@ -103,7 +127,10 @@ public class PostActorController extends AbstractController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
     public ModelAndView save(Post postPruned, final BindingResult binding) {
         ModelAndView result;
-
+        if(postPruned.isRaffle()){
+            postService.checkReward(postPruned.getReward(),binding);
+            postService.checkEndDate(postPruned.getEndDate(), binding);
+        }
         try {
             Post post = this.postService.reconstructS(postPruned,binding);
 

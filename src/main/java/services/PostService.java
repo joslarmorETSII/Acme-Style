@@ -1,17 +1,21 @@
 package services;
 
 import domain.*;
+import javafx.geometry.Pos;
 import org.hibernate.annotations.AttributeAccessor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.Validator;
 import repositories.PostRepository;
 import security.Authority;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 
@@ -88,7 +92,9 @@ public class PostService {
         this.commentService.deleteAll(post);
 
         //TODO: Mirar en los requisitos la condicion de raffle de borrado.
+        if( post.isRaffle()){
 
+        }
         for(Action a : post.getActions()){
             Actor aux = a.getActor();
             aux.getActions().remove(a);
@@ -106,7 +112,8 @@ public class PostService {
         Assert.isTrue(actorService.findByPrincipal().equals(post.getActor()));
 
         post.setMoment(new Date(System.currentTimeMillis() - 1000));
-
+        if(!post.isRaffle())
+            post.setFinalMode(true);
         Post res = postRepository.save(post);
 
         return res;
@@ -123,11 +130,14 @@ public class PostService {
             res = this.findOne(postPruned.getId());
         }
 
+        res.setCategories(postPruned.getCategories());
         res.setTitle(postPruned.getTitle());
         res.setDescription(postPruned.getDescription());
         res.setPicture(postPruned.getPicture());
-        res.setCategories(postPruned.getCategories());
-
+        res.setRaffle(postPruned.isRaffle());
+        res.setReward(postPruned.getReward());
+        res.setEndDate(postPruned.getEndDate());
+        res.setFinalMode(postPruned.isFinalMode());
 
         this.validator.validate(res,binding);
 
@@ -163,5 +173,50 @@ public class PostService {
     public void substractHeartPost(Post post){
         post.setHeart(post.getHeart() - 1);
         this.postRepository.save(post);
+    }
+
+    public boolean checkReward(String reward, BindingResult binding) {
+        FieldError error;
+        String[] codigos;
+        boolean result;
+
+        if (reward.isEmpty())
+            result = true;
+        else
+            result = false;
+        if (result) {
+            codigos = new String[1];
+            codigos[0] = "post.reward.invalid";
+            error = new FieldError("post", "reward", reward, false, codigos, null, "Must not be blank");
+            binding.addError(error);
+        }
+        return result;
+    }
+
+    public boolean checkEndDate(Date endDate, BindingResult binding) {
+        FieldError error;
+        String[] codigos;
+        Date date = new Date();
+        boolean result;
+
+        if (endDate != null)
+            result = endDate.after(date);
+        else
+            result = true;
+        if (!result) {
+            codigos = new String[1];
+            codigos[0] = "post.endDate.invalid";
+            error = new FieldError("post", "endDate", endDate, false, codigos, null, "Must be in the future");
+            binding.addError(error);
+        }
+        return result;
+    }
+
+    public Collection<Post> postFinalModeFalse(){
+        return this.postRepository.postFinalModeFalse();
+    }
+
+    public Collection<Post> postRaffleByActor( int actorId){
+        return this.postRepository.postRaffleByActor(actorId);
     }
 }
