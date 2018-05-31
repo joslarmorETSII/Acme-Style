@@ -11,8 +11,10 @@
 package controllers;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,7 +47,7 @@ public class WelcomeController extends AbstractController {
 	@RequestMapping(value = "/index")
 	public ModelAndView index() {
 		ModelAndView result;
-        Collection<String> fotos;
+        List<String> fotos;
         String image;
 
 		SimpleDateFormat formatterEs;
@@ -58,8 +60,8 @@ public class WelcomeController extends AbstractController {
 		formatterEn = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 		momentEn = formatterEn.format(new Date());
 
-		fotos = configurationService.getCS().getPhotos();
-		image = fotos.iterator().next();
+		fotos = new ArrayList<>(configurationService.getCS().getPhotos());
+		image = fotos.get(0);
 		fotos.remove(image);
 
 		result = new ModelAndView("welcome/index");

@@ -56,22 +56,24 @@
                                         </div>
                                         <div class="modal-body">
                                             <p>My panels</p>
-                                            <jstl:if test="${not empty myPanels}">
                                             <form action="panel/user/add.do"  method="get" role="add">
                                                 <div class="input-group">
-                                                    <select name="panelId">
-                                                        <jstl:forEach var="panel" items="${myPanels}" >
-                                                            <option value="${panel.id}" >${panel.name}</option>
-                                                        </jstl:forEach>
-                                                    </select>
+                                                    <jstl:if test="${not empty myPanels}">
+                                                        <select name="panelId">
+                                                                <jstl:forEach var="panel" items="${myPanels}">
+                                                                    <option value="${panel.id}" >${panel.name}</option>
+                                                                </jstl:forEach>
 
+                                                        </select>
+                                                    </jstl:if>
                                                     <input  name="postId" value="${row.id}" hidden="true">
-
+                                                    <jstl:if test="${not empty myPanels}">
                                                         <div class="input-group-btn"><button class="btn btn-success" type="submit">Add</button></div>
+                                                    </jstl:if>
+
                                                 </div>
                                             </form>
                                         </div>
-                                        </jstl:if>
                                         <jstl:if test="${ empty myPanels}">
                                             <spring:message code="panels.add"/>
                                         </jstl:if>

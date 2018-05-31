@@ -72,7 +72,7 @@
                     <div class="form-group">
                         <label for="phone" class="col-sm-3 control-label"><spring:message code="user.phone"/> </label>
                         <div class="col-sm-9">
-                            <form:input path="phone" class="form-control"  id="phone" placeholder="Phone"/>
+                            <form:input path="phone" class="form-control"  id="phone" placeholder="+55 5555"/>
                             <form:errors class="error" path="phone"/>
                             <span class="help-block">Your phone number won't be disclosed anywhere </span>
                         </div>

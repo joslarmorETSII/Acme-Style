@@ -114,6 +114,7 @@ public class EventManagerController extends AbstractController{
         events = manager.getEvents();
         result = new ModelAndView("event/list");
         result.addObject("events",events);
+        result.addObject("requestURI","event/manager/list.do");
 
         return  result;
     }

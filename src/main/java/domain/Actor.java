@@ -51,7 +51,7 @@ public abstract class Actor extends DomainEntity {
         this.surname = surname;
     }
 
-    @Pattern(regexp = "^\\+([3][4])( )(\\d{9})|()$")
+    @Pattern(regexp = "^\\+(\\d{2})( )(\\d{4,9})|()$")
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
     public String getPhone() {
         return phone;

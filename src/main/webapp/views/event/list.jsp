@@ -11,6 +11,13 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+    <jstl:if test="${pageContext.response.locale.language == 'es' }">
+        <jstl:set value="{0,date,dd/MM/yyyy HH:mm}" var="formatDate"/>
+    </jstl:if>
+
+    <jstl:if test="${pageContext.response.locale.language == 'en' }">
+        <jstl:set value="{0,date,yyyy/MM/dd HH:mm}" var="formatDate"/>
+    </jstl:if>
 
 <div class="container">
     <div class="col-md-10 col-md-offset-1">
@@ -33,7 +40,7 @@
             <display:column property="description" title="${headerTag}"/>
 
             <spring:message code="event.celebrationDate" var="headerTag" />
-            <display:column property="celebrationDate" title="${headerTag}"/>
+            <display:column property="celebrationDate" title="${headerTag}" format="${formatDate}" />
 
             <spring:message code="event.tipo" var="headerTag" />
             <display:column property="tipo" title="${headerTag}"/>
@@ -42,7 +49,7 @@
             <display:column title="${pic}"><img src="${row.image}" alt="no image" width="130" height="100"></display:column>
 
             <spring:message code="event.price" var="headerTag" />
-            <display:column property="price" title="${headerTag}"/>
+            <display:column property="price" title="${headerTag}" sortable="true"/>
 
             <spring:message code="event.location" var="headerTag" />
             <display:column property="location.name" title="${headerTag}"/>
