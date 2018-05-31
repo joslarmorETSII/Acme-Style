@@ -224,4 +224,8 @@ public class PostService {
     public Collection<Post> postRaffleByActor( int actorId){
         return this.postRepository.postRaffleByActor(actorId);
     }
+
+    public void flush() {
+        postRepository.flush();
+    }
 }

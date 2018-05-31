@@ -202,4 +202,8 @@ public class ActorService {
     public Collection<Post> postByFollowings(int actorid){
         return this.actorRepository.postByFollowings(actorid);
     }
+
+    public void flush() {
+        actorRepository.flush();
+    }
 }
