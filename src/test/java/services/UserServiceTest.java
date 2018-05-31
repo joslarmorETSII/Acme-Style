@@ -31,9 +31,6 @@ public class UserServiceTest extends AbstractTest {
      /*  FUNCTIONAL REQUIREMENT:
             * An actor who is not authenticated must be able to:
                -. Register to the system as a user.
-               -. Register to the system as a stylist.
-               -. Register to the system as a makeup artist.
-               -. Register to the system as a photographer.
                -. Login to the system using his/her credentials.
     */
 
@@ -89,22 +86,6 @@ public class UserServiceTest extends AbstractTest {
                 // Todos los campos completados, introduciendo un <script> en el nombre -> false
                 {
                         "user343", "user343", "user343", "<script>", "userTestSurname43","+34123456789", "userTest@userTest.com", "",  ConstraintViolationException.class
-                },
-                // Alguien sin registrar/logueado como stylist -> true
-                {
-                        "stylist33", "stylist33", "stylist33", "stylist33TestName", "stylist33TestSurname", "+34 123456789", "stylist33Test@stylist33Test.com", "addressStylist33",  null
-                },
-                // Alguien sin registrar/logueado como makeup artist -> true
-                {
-                        "makeup33", "makeup33", "makeup33", "makeup33TestName", "makeup33TestSurname", "+34 123456789", "makeup33Test@makeup33Test.com", "addressMakeup33",  null
-                },
-                // Alguien sin registrar/logueado como photographer -> true
-                {
-                        "photographer33", "photographer33", "photographer33", "photographer33TestName", "photographer33TestSurname", "+34 123456789", "photographer33Test@photographer33Test.com", "addressPhotographer33",  null
-                },
-                // Alguien sin registrar/logueado como manager -> true
-                {
-                        "manager33", "manager33", "manager33", "manager33TestName", "manager33TestSurname", "+34 123456789", "manager33Test@manager33Test.com", "addressManager33",  null
                 },
         };
         for (int i = 0; i < testingData.length; i++)

@@ -1,46 +1,41 @@
 package services;
 
-import domain.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import utilities.AbstractTest;
 
 import javax.transaction.Transactional;
-import javax.validation.ConstraintViolationException;
 
 @Transactional
 @ContextConfiguration(locations = {
         "classpath:spring/junit.xml"
 })
 @RunWith(SpringJUnit4ClassRunner.class)
-public class ServiseServiceTest extends AbstractTest {
+public class EventServiceTest extends AbstractTest {
 
     // The SUT
     // ====================================================
 
     @Autowired
-    private ServiseService serviseService;
+    private EventService eventService;
 
     // Tests
     // ====================================================
 
      /*  FUNCTIONAL REQUIREMENT:
             * An actor who is not authenticated must be able to:
-               -. Browse the list of published services and navigate to the corresponding
-               creators profile which must include personal data.
-
+               -. Browse the list of events and navigate to the corresponding store if any.
     */
 
-    public void listServiseTest(final String username,  final Class<?> expected) {
+    public void listEventTest(final String username,  final Class<?> expected) {
         Class<?> caught = null;
         startTransaction();
         try {
 
-            this.serviseService.findAll();
+            this.eventService.findAll();
 
         } catch (final Throwable oops) {
 
@@ -57,7 +52,7 @@ public class ServiseServiceTest extends AbstractTest {
     // ===================================================
 
     @Test
-    public void driverListServiseTest() {
+    public void driverListEventTest() {
 
         final Object testingData[][] = {
                 // Alguien sin registrar/logueado -> true
@@ -67,6 +62,6 @@ public class ServiseServiceTest extends AbstractTest {
 
         };
         for (int i = 0; i < testingData.length; i++)
-            this.listServiseTest((String) testingData[i][0],  (Class<?>) testingData[i][1]);
+            this.listEventTest((String) testingData[i][0],  (Class<?>) testingData[i][1]);
     }
 }
