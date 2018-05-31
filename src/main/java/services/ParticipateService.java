@@ -63,7 +63,7 @@ public class ParticipateService {
     public Participate save(Participate participate){
 
         Assert.notNull(participate);
-        participate.setMoment(new Date());
+        participate.setMoment(new Date(System.currentTimeMillis() - 1000));
         return participateRepository.save(participate);
     }
 

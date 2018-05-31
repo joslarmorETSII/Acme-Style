@@ -1166,8 +1166,6 @@
 	<!-- Configuration -->
 
 	<bean id="configuration1" class="domain.Configuration">
-		<property name="banner"
-				  value="https://i.pinimg.com/originals/da/c7/2a/dac72a62cdd9ea4fe12edcc178525c5b.jpg" />
 		<property name="englishWelcome"
 				  value="Your web of Style!" />
 		<property name="spanishWelcome"

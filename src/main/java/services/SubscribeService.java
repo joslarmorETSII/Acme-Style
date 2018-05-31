@@ -64,7 +64,7 @@ public class SubscribeService {
     }
 
     public Subscription save(Subscription subscription){
-        subscription.setMoment(new Date());
+        subscription.setMoment(new Date(System.currentTimeMillis() - 1000));
         User user = userService.findByPrincipal();
          return subscriptionRepository.save(subscription);
     }
