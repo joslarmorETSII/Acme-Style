@@ -22,18 +22,13 @@
     </definition>
 
     <definition name="post/listRaffle" extends="master.page">
-        <put-attribute name="title" value="List of my raffles" />
+        <put-attribute name="title" value="List of raffles not published" />
         <put-attribute name="body" value="/views/post/listRaffle.jsp" />
     </definition>
 
     <definition name="post/edit" extends="master.page">
         <put-attribute name="title" value="Edit post" />
         <put-attribute name="body" value="/views/post/edit.jsp" />
-    </definition>
-
-    <definition name="post/editRaffle" extends="master.page">
-        <put-attribute name="title" value="Edit raffle" />
-        <put-attribute name="body" value="/views/post/editRaffle.jsp" />
     </definition>
 
     <definition name="post/display" extends="master.page">

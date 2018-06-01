@@ -17,14 +17,6 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="jstt" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<jstl:if test="${pageContext.response.locale.language == 'es' }">
-    <jstl:set value="{0,date,dd/MM/yyyy HH:mm}" var="formatDate"/>
-</jstl:if>
-
-<jstl:if test="${pageContext.response.locale.language == 'en' }">
-    <jstl:set value="{0,date,yyyy/MM/dd HH:mm}" var="formatDate"/>
-</jstl:if>
-
         <div class="container">
                 <div class="row">
                     <div class="col-md-12"><br><br><br>
@@ -41,7 +33,16 @@
                                     <img src="${row.picture}" width="500px" height="100%" class="img-responsive" />
                                 </div>
 
-                                <jstl:out value="${row.moment}"/>
+                                <jstl:if test="${row.raffle eq true}">
+                                    <br/>
+                                    <b><spring:message code="post.reward"/>:&nbsp;</b> <jstl:out value="${row.reward}" />
+                                    <br/>
+                                    <b><spring:message code="post.endDate"/>:&nbsp;</b> <jstl:out value="${row.endDate}" />
+                                    <br/>
+                                </jstl:if>
+
+                                <spring:message var="patternDate" code="event.pattern.date" />
+                                <b><spring:message code="post.moment"/>:&nbsp;</b> <fmt:formatDate value="${row.moment}" pattern="${patternDate}"/>
 
                                 <br><br>
 

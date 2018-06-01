@@ -27,93 +27,92 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-<form:form action="${actionURI}" modelAttribute="post" class="form-horizontal">
+            <form:form action="${actionURI}" modelAttribute="post" class="form-horizontal">
 
-    <form:hidden path="id"/>
-    <form:hidden path="version"/>
+                <form:hidden path="id"/>
+                <form:hidden path="version"/>
 
-    <div class="form-group">
-        <label class="col-sm-3 control-label"><spring:message code="message.category" /></label>
-        <div class="col-sm-9">
-            <form:select class="form-control" path="categories" items="${allCategories}" itemLabel="name"/>
-            <form:errors class="error" path="categories" />
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><spring:message code="message.category" /></label>
+                    <div class="col-sm-9">
+                        <form:select class="form-control" path="categories" items="${allCategories}" itemLabel="name"/>
+                        <form:errors class="error" path="categories" />
+                    </div>
+                </div>
 
-        </div>
-    </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><spring:message code="post.title"/></label>
+                    <div class="col-sm-9">
+                        <form:input path="title" class="form-control"  />
+                        <form:errors class="error" path="title" />
+                    </div>
+                </div>
 
-    <div class="form-group">
-        <label class="col-sm-3 control-label"><spring:message code="post.title"/></label>
-        <div class="col-sm-9">
-            <form:input path="title" class="form-control"  />
-            <form:errors class="error" path="title" />
-        </div>
-    </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><spring:message code="post.description"/></label>
+                    <div class="col-sm-9">
+                        <form:input path="description" class="form-control"  />
+                        <form:errors class="error" path="description" />
+                    </div>
+                </div>
 
-    <div class="form-group">
-        <label class="col-sm-3 control-label"><spring:message code="post.description"/></label>
-        <div class="col-sm-9">
-            <form:input path="description" class="form-control"  />
-            <form:errors class="error" path="description" />
-        </div>
-    </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><spring:message code="post.picture"/></label>
+                    <div class="col-sm-9">
+                        <form:input path="picture" class="form-control"  />
+                        <form:errors class="error" path="picture" />
+                    </div>
+                </div>
 
-    <div class="form-group">
-        <label class="col-sm-3 control-label"><spring:message code="post.picture"/></label>
-        <div class="col-sm-9">
-            <form:input path="picture" class="form-control"  />
-            <form:errors class="error" path="picture" />
-        </div>
-    </div>
+                <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST', 'MANAGER')">
+                    <div class="thumbnail">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><spring:message code="post.raffle"/></label>
+                            <div class="col-sm-9">
+                                <form:checkbox id="checkRaffle" onclick="comprobar();" path="raffle" class="form-control"/>
+                                <form:errors class="error" path="raffle" />
+                            </div>
+                        </div>
 
-    <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><spring:message code="post.reward"/></label>
+                            <div class="col-sm-9">
+                                <form:input path="reward" class="form-control" id="checkReward"/>
+                                <form:errors class="error" path="reward" />
+                            </div>
+                        </div>
 
-    <div class="thumbnail">
-        <div class="form-group">
-            <label class="col-sm-3 control-label"><spring:message code="post.raffle"/></label>
-            <div class="col-sm-9">
-                <form:checkbox id="checkRaffle" onclick="comprobar();" path="raffle" class="form-control"/>
-                <form:errors class="error" path="raffle" />
-            </div>
-        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><spring:message code="post.endDate"/></label>
+                            <div class="col-sm-9">
+                                <form:input path="endDate" class="form-control" id="checkEndDate" />
+                                <form:errors class="error" path="endDate" />
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            <label class="col-sm-3 control-label"><spring:message code="post.reward"/></label>
-            <div class="col-sm-9">
-                <form:input path="reward" class="form-control" id="checkReward"/>
-                <form:errors class="error" path="reward" />
-            </div>
-        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><spring:message code="post.finalMode"/></label>
+                            <div class="col-sm-9">
+                                <form:checkbox path="finalMode" class="form-control" id="checkFinalMode" />
+                                <form:errors class="error" path="finalMode" />
+                            </div>
+                        </div>
+                    </div>
+                </security:authorize>
 
-        <div class="form-group">
-            <label class="col-sm-3 control-label"><spring:message code="post.endDate"/></label>
-            <div class="col-sm-9">
-                <form:input path="endDate" class="form-control" id="checkEndDate" />
-                <form:errors class="error" path="endDate" />
-            </div>
-        </div>
+                <div class="text-center">
 
-        <div class="form-group">
-            <label class="col-sm-3 control-label"><spring:message code="post.finalMode"/></label>
-            <div class="col-sm-9">
-                <form:checkbox path="finalMode" class="form-control" id="checkFinalMode" />
-                <form:errors class="error" path="finalMode" />
-            </div>
-    </div>
-    </security:authorize>
+                    <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
+                        <acme:submit name="save" code="general.save"/>
+                    </security:authorize>
 
-    </div>
+                    <acme:cancel code="general.cancel" url="${cancelURI}"/>
 
-    <div class="text-center">
+                </div>
 
-        <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
-                <acme:submit name="save" code="general.save"/>
-        </security:authorize>
+            </form:form>
 
-        <acme:cancel code="general.cancel" url="${cancelURI}"/>
 
-    </div>
-
-</form:form>
 
         </div>
     </div>

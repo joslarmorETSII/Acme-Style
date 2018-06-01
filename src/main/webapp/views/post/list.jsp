@@ -16,8 +16,9 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="jstt" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fnt" uri="http://www.springframework.org/tags/form" %>
 
-    <jstl:forEach var="row" items="${posts}">
+<jstl:forEach var="row" items="${posts}">
 
     <div class="container">
         <div class="row">
@@ -78,10 +79,13 @@
                         </security:authorize>
                     </div>
 
+                    <jstl:if test="${row.raffle}">
+                        <b><spring:message code="post.raffle"/>:&nbsp;</b> <spring:message code="post.thisIsARaffle"/>
+                        <br/>
+                    </jstl:if>
+
                     <spring:message var="patternDate" code="event.pattern.date" />
-                    <fmt:formatDate value="${row.moment}" pattern="${patternDate}"/>
-
-
+                    <b><spring:message code="post.moment"/>:&nbsp;</b> <fmt:formatDate value="${row.moment}" pattern="${patternDate}"/>
 
                         <br><br>
                         <div class="pull-left">
