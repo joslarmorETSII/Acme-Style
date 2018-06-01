@@ -120,7 +120,20 @@ public class Event extends DomainEntity{
     private Manager manager;
     private Collection<Participate> participates;
     private Store store;
+    private Collection<Artist> artists;
 
+    @Valid
+    @NotNull
+    @ManyToMany
+    public Collection<Artist> getArtists() {
+        return artists;
+    }
+
+    public void setArtists(Collection<Artist> artists) {
+        this.artists = artists;
+    }
+
+    @Valid
     @ManyToOne(optional = false)
     public Manager getManager() {
         return manager;

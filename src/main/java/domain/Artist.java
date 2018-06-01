@@ -1,5 +1,7 @@
 package domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -20,7 +22,18 @@ public class Artist extends Actor{
     // Relationships ----------------------------------------------------------------------
 
     private Collection<Servise> servises;
+    private Collection<Event> events;
 
+    @Valid
+    @NotNull
+    @ManyToMany(mappedBy = "artists")
+    public Collection<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Collection<Event> events) {
+        this.events = events;
+    }
 
     @NotNull
     @Valid
