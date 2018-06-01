@@ -1,5 +1,6 @@
 package services;
 
+import domain.Actor;
 import domain.Post;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,6 +25,9 @@ public class PostServiceTest extends AbstractTest {
 
     @Autowired
     private PostService postService;
+
+    @Autowired
+    private ActorService actorService;
 
     // Tests
     // ====================================================
@@ -69,6 +73,36 @@ public class PostServiceTest extends AbstractTest {
 
     }
 
+    /*  FUNCTIONAL REQUIREMENT:
+            * An actor who is authenticated must be able to:
+               -. Display the posts of all the actors that he or she follows.
+    */
+
+    public void displayPostTest(final String username, String actorBean, final Class<?> expected) {
+        Class<?> caught = null;
+        startTransaction();
+        try {
+
+            this.authenticate(username);
+
+            Actor result;
+
+            result = actorService.findOne(getEntityId(actorBean));
+            actorService.postByFollowings(result.getId());
+
+        } catch (final Throwable oops) {
+
+            caught = oops.getClass();
+
+        }
+
+        this.checkExceptions(expected, caught);
+        rollbackTransaction();
+
+    }
+
+
+
     //Drivers
     // ===================================================
 
@@ -96,5 +130,19 @@ public class PostServiceTest extends AbstractTest {
             this.managePostTest((String) testingData[i][0], (String) testingData[i][1], (Date) testingData[i][2],
                     (String) testingData[i][3], (String) testingData[i][4], (int) testingData[i][5],
                     (int) testingData[i][6], (int) testingData[i][7], (Class<?>) testingData[i][8]);
+    }
+
+    @Test
+    public void driverDisplayPostTest() {
+
+        final Object testingData[][] = {
+                // User con tod o correcto -> true
+                {
+                        "user1", "user1", null
+                }
+        };
+        for (int i = 0; i < testingData.length; i++)
+            this.displayPostTest((String) testingData[i][0], (String) testingData[i][1],
+                    (Class<?>) testingData[i][2]);
     }
 }

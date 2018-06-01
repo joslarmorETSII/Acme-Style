@@ -10,6 +10,8 @@ import org.springframework.validation.Validator;
 
 import org.springframework.transaction.annotation.Transactional;
 import security.Authority;
+import security.LoginService;
+import security.UserAccount;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -57,6 +59,10 @@ public class ServiseService {
 
     @Autowired
     private StoreService storeService;
+
+    @Autowired
+    private UserService userService;
+
 
 
     // Constructors -----------------------------------------------------------
@@ -219,5 +225,9 @@ public class ServiseService {
 
     public Collection<Servise> searchServisesPerKeyword(String keyword){
         return this.serviseRepository.searchServisesPerKeyword(keyword,keyword);
+    }
+
+    public void flush() {
+        serviseRepository.flush();
     }
 }

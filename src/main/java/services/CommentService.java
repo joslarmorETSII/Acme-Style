@@ -31,8 +31,8 @@ public class CommentService {
     @Autowired
     private ActorService actorService;
 
-    @Autowired
-    private Validator validator;
+//    @Autowired
+//    private Validator validator;
 
     // Constructors -----------------------------------------------------------
 
@@ -95,7 +95,7 @@ public class CommentService {
         res.setText(commentPruned.getText());
         res.setPost(commentPruned.getPost());
 
-        this.validator.validate(res,binding);
+//        this.validator.validate(res,binding);
 
         return res;
     }
