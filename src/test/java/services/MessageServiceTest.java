@@ -13,6 +13,8 @@ import utilities.AbstractTest;
 
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 @Transactional
@@ -31,6 +33,9 @@ public class MessageServiceTest extends AbstractTest {
     @Autowired
     private FolderService folderService;
 
+    @Autowired
+    private ActorService actorService;
+
 
     // Tests
     // ====================================================
@@ -40,60 +45,67 @@ public class MessageServiceTest extends AbstractTest {
                -. Manages his or her messages including sending deleting and listing them.
     */
 
-    public void manageMessageTest(final String username, String messageBean, Folder folder, final Class<?> expected) {
+    public void manageMessageTest( String username, String subject, String body,String priority, String folder,
+                                   String beanRecipient,String beanMessage, Class<?> expected) {
         Class<?> caught = null;
         startTransaction();
+        Collection<Actor> recipients = new ArrayList<>();
         try {
-
             this.authenticate(username);
 
-            Message message1 = messageService.findOne(getEntityId(messageBean));
-            Message message2 = messageService.findOne(getEntityId(messageBean));
+            Actor recipient = actorService.findOne(getEntityId(beanRecipient));
+            Message messageTodelete = messageService.findOne(getEntityId(beanMessage));
+            Message message1 = messageService.create();
 
-            messageService.moveMessage(folder, message1);
-            messageService.delete(message1);
+            message1.setSubject(subject);
+            message1.setBody(body);
+            message1.setPriority(priority);
+            recipients.add(recipient);
+            message1.setActorReceivers(recipients);
 
-            messageService.sendMessage(message2);
+            messageService.sendMessage(message1);
+            messageService.delete(messageTodelete);
 
-            messageService.findAll();
+            Folder folder1 = folderService.findOne(getEntityId(folder));
+            messageTodelete.setFolder(folder1);
+            messageService.save(messageTodelete);
+
+
+            messageService.flush();
 
             this.unauthenticate();
 
         } catch (final Throwable oops) {
-
             caught = oops.getClass();
 
         }
-
         this.checkExceptions(expected, caught);
         rollbackTransaction();
-
     }
-
     //Drivers
     // ===================================================
 
     @Test
-    public void driverManagePostTest() {
+    public void driverManageMessageTest() {
 
-        Folder folder = new Folder();
+
         final Object testingData[][] = {
-                // User con tod o correcto -> true
+                // Mandar un Message estando logueado como Stylist1 y cambiar la carpeta a la trashbox del Photographer -> true
                 {
-                        "user1","message1",folder,null
+                        "photographer", "subject", "Body1", "LOW",  "trashbox5", "stylist1", "message2", null
                 },
-//                // Url incorrecta -> true
-//                {
-//                        "user1", moment, "description1", "images", 0, 0, 0, ConstraintViolationException.class
-//                },
-//                // Descripcion en blanco -> true
-//                {
-//                        "user1", moment, "", "http://www.images.com", 0, 0, 0, ConstraintViolationException.class
-//                },
+                // Mandar un Message estando logueado como photographer y borrar el mensaje de otro actor -> false
+                {
+                        "photographer", "subject", "Body1","HIGH", "trashbox5","stylist1","message1", IllegalArgumentException.class
+                },
+                // Mandar un Message estando logueado como photographer seleccionando photographer como recipient -> false
+                {
+                        "photographer", "subject", "Body1","HIGH", "trashbox5","photographer1","message2", IllegalArgumentException.class
+                },
 
         };
         for (int i = 0; i < testingData.length; i++)
-            this.manageMessageTest((String) testingData[i][0],(String) testingData[i][1], (Folder) testingData[i][2]
-                    , (Class<?>) testingData[i][3]);
+            this.manageMessageTest((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (String) testingData[i][3], (String) testingData[i][4], (String) testingData[i][5],
+                    (String) testingData[i][6],(Class<?>) testingData[i][7]);
     }
 }

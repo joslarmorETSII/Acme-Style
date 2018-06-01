@@ -82,5 +82,11 @@ public class QuestionService {
         return question;
     }
 
+
+
     // Other business methods -------------------------------------------------
+
+    public void flush() {
+        questionRepository.flush();
+    }
 }

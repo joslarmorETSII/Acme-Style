@@ -80,4 +80,7 @@ public class ParticipateService {
 
     // Other business methods -------------------------------------------------
 
+    public void flush() {
+        participateRepository.flush();
+    }
 }

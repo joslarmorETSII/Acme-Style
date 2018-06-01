@@ -46,7 +46,7 @@ public class ProfileServiceTest extends AbstractTest {
                -. Edit his or her personal data information.
     */
 
-    public void actorEditTest(final String username, final String password, final String passwordRepeat,
+    public void actorEditTest(final String username, String actorBean, final String password, final String passwordRepeat,
                               final String name, final String surname, final String phone, final String email,
                               final String postalAddress, final String fullName, final String profilePhoto,
                               final String education,final Class<?> expected) {
@@ -55,10 +55,10 @@ public class ProfileServiceTest extends AbstractTest {
         startTransaction();
         try {
 
-            User result;
+            Actor result;
             Profile profile;
-            result = userService.create();
-            profile = profileService.create();
+            result = actorService.findOne(getEntityId(actorBean));
+            profile = result.getProfile();
 
             result.getUserAccount().setUsername(username);
             result.setName(name);
@@ -74,7 +74,7 @@ public class ProfileServiceTest extends AbstractTest {
 
             result.setProfile(profile);
 
-            this.userService.save(result);
+            this.actorService.save(result);
             userService.flush();
 
 
@@ -98,22 +98,24 @@ public class ProfileServiceTest extends AbstractTest {
 
                 // Algun actor logueado con to do correcto-> true
                 {
-                        "user3", "user3", "user3", "userTestName", "userTestSurname", "+34 123456789", "userTest@userTest.com", "addressTest", "fullNameTest", "http://www.images.com", "educationTest", null
+                        "user1","user1", "user1", "user1", "userTestName", "userTestSurname", "+34 123456789", "userTest@userTest.com", "addressTest", "fullNameTest", "http://www.images.com", "educationTest", null
                 },
                 // Patrón del telefono erroneo -> false
                 {
-                        "userTest3", "userTest3", "userTest3", "userTestName3", "userTestSurname3", "635", "managerTest@managerTest.com", "12345", "fullNameTest", "http://www.images.com", "educationTest", ConstraintViolationException.class
+                        "user1", "user1",  "user1", "user1", "userTestName3", "userTestSurname3", "635", "managerTest@managerTest.com", "12345", "fullNameTest", "http://www.images.com", "educationTest", ConstraintViolationException.class
                 },
-                // Todos los campos como null --> false
+                // User con tod o a null--> false
                 {
-                        null, null, null, null, null, null, null, null, null, null, null, ConstraintViolationException.class
+                        "user1", "user1", "user1", "user1", null, null, null, null, null, null, null, null, ConstraintViolationException.class
                 },
 
         };
         for (int i = 0; i < testingData.length; i++)
-            this.actorEditTest((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (String) testingData[i][3], (String) testingData[i][4], (String) testingData[i][5], (String) testingData[i][6],
-                    (String) testingData[i][7],(String) testingData[i][8],
-                    (String) testingData[i][9], (String) testingData[i][10], (Class<?>) testingData[i][11]);
+            this.actorEditTest((String) testingData[i][0], (String) testingData[i][1] , (String) testingData[i][2],
+                    (String) testingData[i][3], (String) testingData[i][4], (String) testingData[i][5],
+                    (String) testingData[i][6], (String) testingData[i][7], (String) testingData[i][8],
+                    (String) testingData[i][9], (String) testingData[i][10], (String) testingData[i][11],
+                    (Class<?>) testingData[i][12]);
     }
 
 }

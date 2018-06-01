@@ -32,6 +32,12 @@ public class EventService {
     @Autowired
     private ManagerService managerService;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ArtistService artistService;
+
     // Constructors -----------------------------------------------------------
 
     public EventService() {
@@ -72,10 +78,10 @@ public class EventService {
     }
 
     public Collection<Event> participatedEvents(int userId) {
+        Assert.isTrue(userId == userService.findByPrincipal().getId() ||
+                userId == artistService.findByPrincipal().getId());
         return eventRepository.participatedEvents(userId);
     }
-
-
 
     public CreditCard reconstructParticipate(ParticipateToEventForm participateToEventForm, BindingResult binding) {
         CreditCard creditCard = new CreditCard();
@@ -129,5 +135,9 @@ public class EventService {
         principal = managerService.findByPrincipal();
         Assert.isTrue(principal.equals(event.getManager()),"Not the creator of the event");
         return event;
+    }
+
+    public void flush() {
+        eventRepository.flush();
     }
 }

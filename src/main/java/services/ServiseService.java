@@ -105,7 +105,6 @@ public class ServiseService {
             servise.setTaboo(true);
         }
 
-
         return serviseRepository.save(servise);
     }
 

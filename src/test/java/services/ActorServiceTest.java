@@ -38,7 +38,7 @@ public class ActorServiceTest extends AbstractTest {
                -. List the actor of the system and follow  them.
     */
 
-    public void followUserTest(final String username, String actorBean, final Class<?> expected) {
+    public void followActorTest(final String username, String actorBean, final Class<?> expected) {
 
         Class<?> caught = null;
         startTransaction();
@@ -70,7 +70,7 @@ public class ActorServiceTest extends AbstractTest {
                -. List the actor of the system and unfollow them.
     */
 
-    public void unFollowUserTest(final String username, String actorBean, final Class<?> expected) {
+    public void unFollowActorTest(final String username, String actorBean, final Class<?> expected) {
 
         Class<?> caught = null;
         startTransaction();
@@ -100,7 +100,7 @@ public class ActorServiceTest extends AbstractTest {
     // ===================================================
 
     @Test
-    public void driverFollowUserTest() {
+    public void driverFollowActorTest() {
 
         final Object testingData[][] = {
                 // User1 follow user2 -> true
@@ -118,12 +118,12 @@ public class ActorServiceTest extends AbstractTest {
 
         };
         for (int i = 0; i < testingData.length; i++)
-            this.followUserTest((String) testingData[i][0],(String) testingData[i][1],
+            this.followActorTest((String) testingData[i][0],(String) testingData[i][1],
                     (Class<?>) testingData[i][2]);
     }
 
     @Test
-    public void driverUnFollowUserTest() {
+    public void driverUnFollowActorTest() {
 
         final Object testingData[][] = {
                 // User1 follow user2 -> true
@@ -141,7 +141,7 @@ public class ActorServiceTest extends AbstractTest {
 
         };
         for (int i = 0; i < testingData.length; i++)
-            this.unFollowUserTest((String) testingData[i][0],(String) testingData[i][1],
+            this.unFollowActorTest((String) testingData[i][0],(String) testingData[i][1],
                     (Class<?>) testingData[i][2]);
     }
 

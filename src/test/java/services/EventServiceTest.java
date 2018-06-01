@@ -1,8 +1,7 @@
 package services;
 
-import domain.Actor;
-import domain.Event;
-import domain.User;
+import com.sun.xml.internal.bind.v2.TODO;
+import domain.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import utilities.AbstractTest;
 
 import javax.transaction.Transactional;
+import javax.validation.ConstraintViolationException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Transactional
 @ContextConfiguration(locations = {
@@ -27,6 +29,9 @@ public class EventServiceTest extends AbstractTest {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ParticipateService participateService;
 
     // Tests
     // ====================================================
@@ -60,18 +65,47 @@ public class EventServiceTest extends AbstractTest {
                   participating.
     */
 
-    public void listEventUserParticipateTest(final String username, String actorBean,  final Class<?> expected) {
+    public void listEventUserParticipateTest(final String username, Integer CVV, Integer expirationMonth,
+                                             Integer expirationYear, String brand, String holder, String number,
+                                             String eventBean, final Class<?> expected) {
         Class<?> caught = null;
         startTransaction();
+        Collection<Participate> participates = new ArrayList<Participate>();
         try {
 
-            this.eventService.findAll();
+           this.authenticate(username);
 
-            User result;
+           User user;
+           Participate participate;
+           Event event;
 
-            result = userService.findOne(getEntityId(actorBean));
+           event = eventService.findOne(getEntityId(eventBean));
+           CreditCard creditCard = new CreditCard();
+           participate = participateService.create();
+           user = userService.findByPrincipal();
 
-            eventService.participatedEvents(result.getId());
+           creditCard.setCvv(CVV);
+           creditCard.setExpirationMonth(expirationMonth);
+           creditCard.setExpirationYear(expirationYear);
+           creditCard.setBrand(brand);
+           creditCard.setHolder(holder);
+           creditCard.setNumber(number);
+
+           participate.setCreditCard(creditCard);
+           participate.setEvent(event);
+           participateService.save(participate);
+           participates.add(participate);
+
+           user.setParticipates(participates);
+
+           eventService.participatedEvents(user.getId());
+
+           eventService.flush();;
+           participateService.flush();
+           userService.flush();;
+
+           this.unauthenticate();
+
 
         } catch (final Throwable oops) {
 
@@ -107,17 +141,25 @@ public class EventServiceTest extends AbstractTest {
         final Object testingData[][] = {
                 // Alguien logueado como user con tod o correcto -> true
                 {
-                        "user1", "event1", null
+                        "user1", 123, 12, 2018, "Holder 2", "visa", "4785530860520625","event1", null
+
                 },
-                // Alguien logueado como stylist con tod o correcto -> false
+                // Actor a null -> false
                 {
-                        "manager1", "", NullPointerException.class
+                        null, 123, 12, 2018, "Holder 2", "visa", "4785530860520625","event1", IllegalArgumentException.class
+                },
+
+                //  Alguien logueado como user con cvv incorrecto-> false
+                {
+                        "user1", 99, 12, 2018, "Holder 2", "visa", "4785530860520625", "event1", ConstraintViolationException.class
                 },
 
 
         };
         for (int i = 0; i < testingData.length; i++)
-            this.listEventUserParticipateTest((String) testingData[i][0], (String) testingData[i][1],
-                    (Class<?>) testingData[i][2]);
+            this.listEventUserParticipateTest((String) testingData[i][0],
+                    (Integer) testingData[i][1], (Integer) testingData[i][2],
+                    (Integer) testingData[i][3], (String) testingData[i][4], (String) testingData[i][5],
+                    (String) testingData[i][6],(String) testingData[i][7], (Class<?>) testingData[i][8]);
     }
 }
