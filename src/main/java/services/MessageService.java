@@ -193,6 +193,39 @@ public class MessageService {
         messageRepository.save(notification);
     }
 
+    public  void notifyRaffleWinner(Actor actor,Post post){
+        Message notification;
+        Collection<Actor> recievers;
+        Collection<Actor> recievers2;
+
+        Folder notificationBox;
+
+        recievers = new ArrayList<>();
+        recievers.add(actor);
+
+        recievers2 = new ArrayList<>();
+        recievers2.add(post.getActor());
+
+        notificationBox = folderService.findActorAndFolder(actor.getId(),"notificationbox");
+
+        notification = new Message();
+        notification.setPriority("HIGH");
+        notification.setActorReceivers(recievers);
+        notification.setFolder(notificationBox);
+        notification.setSubject("Congratulations");
+        notification.setBody("Your are the winner of the raffle " +post.getTitle()+". Please contact with: " + post.getActor().getUserAccount().getUsername() +
+            " to get your reward. \n Thanks for using Acme Style.");
+        notification.setActorSender(administratorService.findOne());
+        notification.setMoment(new Date());
+        Message saved = messageRepository.save(notification);
+        Message clone = saved.clone();
+        clone.setActorReceivers(recievers2);
+        clone.setFolder(folderService.findActorAndFolder(post.getActor().getId(),"notificationbox"));
+        clone.setSubject("Raffle has finished");
+        clone.setBody("The winner of the raffle " + post.getTitle() + " is " + actor.getUserAccount().getUsername() + " \n .Thanks for using Acme Style.");
+        this.messageRepository.save(clone);
+    }
+
     public void flush() {
         messageRepository.flush();
     }

@@ -49,6 +49,8 @@ public class CommentActorController extends AbstractController {
         Comment comment;
         Post post = this.postService.findOne(postId);
 
+        Assert.isTrue(post.isFinalMode(), "Post isn't in final mode");
+
         comment = this.commentService.create();
         comment.setPost(post);
         result = this.createEditModelAndView(comment);
@@ -90,27 +92,6 @@ public class CommentActorController extends AbstractController {
         }
         return result;
     }
-
-    /*// Listing -------------------------------------------------------
-
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ModelAndView list() {
-        ModelAndView result;
-        Actor actor;
-        Collection<Comment> comments = new ArrayList<>();
-
-        actor = actorService.findByPrincipal();
-        comments = actor.getComments();
-
-        result = new ModelAndView("comment/list");
-        result.addObject("comments", comments);
-        result.addObject("actor", actor);
-        result.addObject("requestURI","comment/actor/list.do");
-        result.addObject("cancelURI", "welcome/index.do");
-
-        return result;
-
-    }*/
 
     // Ancillary methods ------------------------------------------------------
 

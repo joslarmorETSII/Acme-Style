@@ -120,8 +120,10 @@ public class PostActorController extends AbstractController {
         Post post;
         post = this.postService.findOneToEdit(postId);
         Assert.notNull(post);
-        if(post.isRaffle() && !post.getComments().isEmpty())
-            Assert.isTrue(post.isFinalMode());
+
+        Assert.isTrue(post.isRaffle(), "Can't edit a post");
+        Assert.isTrue(!post.isFinalMode(), "The raffle is at final mode");
+
         result = this.createEditModelAndView(post);
         return result;
     }
@@ -157,23 +159,6 @@ public class PostActorController extends AbstractController {
         return result;
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST,params = "delete")
-    public ModelAndView edit(Post postPruned){
-        ModelAndView result;
-
-        Post post = this.postService.findOneToEdit(postPruned.getId());
-        if(post.isRaffle() && post.getEndDate().after(new Date()))
-            Assert.isTrue(post.getComments().isEmpty());
-        try{
-            postService.delete(post);
-            result = new ModelAndView("redirect:list.do");
-        }catch (Throwable oops){
-            result = createEditModelAndView(postPruned,"general.commit.error");
-        }
-
-        return result;
-    }
-
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public ModelAndView delete(@RequestParam int postId){
         ModelAndView result;
@@ -182,6 +167,30 @@ public class PostActorController extends AbstractController {
         postService.delete(post);
         result = new ModelAndView("redirect:list.do");
 
+        return result;
+    }
+
+    // Get winner ----------------------------------------------------------------
+
+    @RequestMapping(value = "/getWinner", method = RequestMethod.GET)
+    public ModelAndView getWinner(@RequestParam int postId){
+        ModelAndView result;
+
+        Post post = this.postService.findOneToEdit(postId);
+        try{
+            postService.getWinner(post);
+            result = new ModelAndView("redirect:display.do?postId=" + postId);
+        }catch (Throwable oops){
+            if(oops.getMessage().contains("Index: 0, Size: 0" )) {
+                result = display(postId);
+                result.addObject("message", "general.commit.post.notWinner");
+                post.setHasWinner(true);
+                this.postService.save(post);
+            }else {
+                result = display(postId);
+                result.addObject("message", "general.commit.error");
+            }
+        }
         return result;
     }
 
@@ -338,6 +347,9 @@ public class PostActorController extends AbstractController {
         result = new ModelAndView("post/display");
 
         result.addObject("row", post);
+        result.addObject("actor", actorService.findByPrincipal());
+        if(post.isRaffle())
+            result.addObject("hasFinished", post.getEndDate().before(new Date()));
         result.addObject("comments", comments);
         result.addObject("cancelURI", "post/actor/list.do");
 

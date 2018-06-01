@@ -106,7 +106,9 @@
     <div class="text-center">
 
         <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
+            <jstl:if test="${post.finalVersion eq false}" >
                 <acme:submit name="save" code="general.save"/>
+            </jstl:if>
         </security:authorize>
 
         <acme:cancel code="general.cancel" url="${cancelURI}"/>

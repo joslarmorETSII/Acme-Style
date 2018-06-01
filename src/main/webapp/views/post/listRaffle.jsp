@@ -59,10 +59,6 @@
                                 </jstl:if>
                             </security:authorize>
 
-                            <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST', 'USER', 'MANAGER')" >
-                                    <acme:button url="post/actor/edit.do?postId=${row.id}" code="general.delete" />
-                            </security:authorize>
-
                             <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
                                 <acme:button code="general.create.display" url="post/actor/display.do?postId=${row.id}"/>
                             </security:authorize>

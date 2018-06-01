@@ -57,25 +57,23 @@
                                     </security:authorize>
 
                                     <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST', 'USER', 'MANAGER')" >
-                                        <jstl:if test="${row.finalMode eq false}">
-                                            <acme:button url="post/actor/edit.do?postId=${row.id}" code="general.edit" />
+                                        <jstl:if test="${(row.raffle eq false) || (row.raffle eq true && row.finalMode eq false) || row.hasWinner eq true ||
+                                                (row.raffle eq true && row.finalMode eq true && empty row.comments)}">
+                                            <a href="post/actor/delete.do?postId=${row.id}">
+                                                <input name="delete" class="btn btn-danger"
+                                                       value="<spring:message code="general.delete" />"
+                                                       onclick="return confirm('<spring:message code="post.confirm.delete" />')" />
+                                            </a>
                                         </jstl:if>
                                     </security:authorize>
 
                                     <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST', 'USER', 'MANAGER')" >
-                                        <jstl:if test="${row.raffle eq true && notParticipates eq false}">
-                                            <acme:button url="post/actor/edit.do?postId=${row.id}" code="general.delete" />
+                                        <jstl:if test="${row.actor eq actor && hasFinished eq true && row.raffle eq true && row.hasWinner eq false}">
+                                            <acme:button url="post/actor/getWinner.do?postId=${row.id}" code="general.winner" />
                                         </jstl:if>
-                                    </security:authorize>
-
-                                    <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST', 'USER', 'MANAGER')" >
-                                        <jstl:if test="${row.raffle eq false}">
-                                            <acme:button url="post/actor/edit.do?postId=${row.id}" code="general.delete" />
+                                        <jstl:if test="${row.hasWinner eq true}">
+                                            <spring:message code="raffle.hasWinner"  />
                                         </jstl:if>
-                                    </security:authorize>
-
-                                    <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
-                                        <acme:button code="general.create.display" url="post/actor/display.do?postId=${row.id}"/>
                                     </security:authorize>
 
                                 </div>

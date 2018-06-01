@@ -63,7 +63,9 @@
 							<li><a href="profile/actor/display.do"><span class="glyphicon glyphicon-user"/> <spring:message code="master.page.profile" /></a> </li>
 							<li><a href="folder/actor/list.do"><span class="glyphicon glyphicon-envelope"/> <spring:message code="master.page.mail" /></a> </li>
 							<li><a href="post/actor/list.do"><span class="glyphicon glyphicon-pushpin"/> <spring:message code="master.page.posts" /></a> </li>
-							<li><a href="post/actor/listRaffle.do"><span class="glyphicon glyphicon-gift"/> <spring:message code="master.page.posts.raffle" /></a> </li>
+							<security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','MANAGER')">
+								<li><a href="post/actor/listRaffle.do"><span class="glyphicon glyphicon-gift"/> <spring:message code="master.page.posts.raffle" /></a> </li>
+							</security:authorize>
 							<li class="divider"></li>
 							<li><a href="j_spring_security_logout"><span class="glyphicon glyphicon-off"/> <spring:message code="master.page.logout"/></a></li>
 						</ul>

@@ -59,7 +59,6 @@ public class ActorService {
 
         Assert.notNull(actor);
         Assert.notNull(actor.getUserAccount());
-        Assert.isTrue(this.findByPrincipal().getId() == actor.getId());
 
         Actor result;
 

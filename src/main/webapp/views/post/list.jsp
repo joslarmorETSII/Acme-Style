@@ -17,16 +17,6 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="jstt" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<jstl:if test="${pageContext.response.locale.language == 'es' }">
-    <jstl:set value="{0,date,dd/MM/yyyy HH:mm}" var="formatDate"/>
-</jstl:if>
-
-<jstl:if test="${pageContext.response.locale.language == 'en' }">
-    <jstl:set value="{0,date,yyyy/MM/dd HH:mm}" var="formatDate"/>
-</jstl:if>
-
-
-
     <jstl:forEach var="row" items="${posts}">
 
     <div class="container">
@@ -88,7 +78,9 @@
                         </security:authorize>
                     </div>
 
-                        <jstl:out value="${row.moment}"/>
+                    <spring:message var="patternDate" code="event.pattern.date" />
+                    <fmt:formatDate value="${row.moment}" pattern="${patternDate}"/>
+
 
 
                         <br><br>
@@ -101,24 +93,14 @@
                         <div class="pull-right">
 
                             <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
-                                <acme:button code="general.create.comment" url="comment/actor/create.do?postId=${row.id}"/>
+                                <jstl:if test="${row.finalMode eq true}">
+                                    <acme:button code="general.create.comment" url="comment/actor/create.do?postId=${row.id}"/>
+                                </jstl:if>
                             </security:authorize>
 
                             <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST', 'USER', 'MANAGER')" >
                                 <jstl:if test="${row.finalMode eq false}">
                                     <acme:button url="post/actor/edit.do?postId=${row.id}" code="general.edit" />
-                                </jstl:if>
-                            </security:authorize>
-
-                            <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST', 'USER', 'MANAGER')" >
-                                <jstl:if test="${row.raffle eq true && empty row.comments || row.hasWinner eq true}">
-                                    <acme:button url="post/actor/edit.do?postId=${row.id}" code="general.delete" />
-                                </jstl:if>
-                            </security:authorize>
-
-                            <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST', 'USER', 'MANAGER')" >
-                                <jstl:if test="${row.raffle eq false}">
-                                    <acme:button url="post/actor/edit.do?postId=${row.id}" code="general.delete" />
                                 </jstl:if>
                             </security:authorize>
 

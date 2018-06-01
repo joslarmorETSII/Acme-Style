@@ -14,10 +14,7 @@ import org.springframework.validation.Validator;
 import repositories.PostRepository;
 import security.Authority;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
+import java.util.*;
 
 @Service
 @Transactional
@@ -41,6 +38,9 @@ public class PostService {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private MessageService messageService;
 
     // Constructors -----------------------------------------------------------
 
@@ -83,11 +83,14 @@ public class PostService {
         Assert.notNull(post);
         Assert.isTrue(actorService.findByPrincipal().equals(post.getActor()) || actorService.checkRole(Authority.ADMINISTRATOR));
 
-        if(post.isRaffle() && post.getEndDate().after(new Date()))
-            Assert.isTrue(post.getComments().isEmpty());
+        if(post.isRaffle()){
+            if(post.getEndDate().after(new Date())){
+                Assert.isTrue(post.getComments().isEmpty(), "Raffle have participants");
+            }else if(post.getEndDate().before(new Date()) && !post.getComments().isEmpty() &&  !post.isHasWinner()) {
+                Assert.isTrue(post.isHasWinner(), "Raffle must have winner");
+            }
 
-        if(post.isRaffle() && post.getEndDate().before(new Date()))
-            Assert.isTrue(post.isHasWinner(), "Raffle must have winner");
+        }
 
         post.setCategories(new ArrayList<Category>());
 
@@ -103,7 +106,6 @@ public class PostService {
             Actor aux = a.getActor();
             aux.getActions().remove(a);
             this.actorService.save(aux);
-
         }
 
         actionService.deleteAll(post.getActions());
@@ -208,7 +210,7 @@ public class PostService {
             result = endDate.after(date);
         else
             result = true;
-        if (!result) {
+        if (!result || endDate == null) {
             codigos = new String[1];
             codigos[0] = "post.endDate.invalid";
             error = new FieldError("post", "endDate", endDate, false, codigos, null, "Must be in the future");
@@ -227,5 +229,25 @@ public class PostService {
 
     public void flush() {
         postRepository.flush();
+    }
+
+    public void getWinner(Post post) {
+        Assert.isTrue(post.getEndDate().before(new Date()), "Raffe is still active");
+        Assert.isTrue(post.isRaffle());
+        List<Actor> res = new ArrayList<>();
+
+        List<Actor> actors = new ArrayList<>(this.postRepository.actorLikeRaffle(post.getId()));
+        actors.retainAll(this.postRepository.actorCommentRaffle(post.getId()));
+
+        for (Actor a : actors) {
+            if (a.getUserAccount().getAuthorities().equals(Authority.USER)) ;
+            res.add(a);
+        }
+        Integer indexWinner = (int) (Math.random() * res.size());
+        Actor actorWinner = res.get(indexWinner);
+        post.setHasWinner(true);
+        this.save(post);
+        this.messageService.notifyRaffleWinner(actorWinner, post);
+
     }
 }
