@@ -45,7 +45,6 @@ public class StoreService {
 
         result = new Store();
         result.setServises(new ArrayList<Servise>());
-        result.setEvents(new ArrayList<Event>());
         result.setManager(managerService.findByPrincipal());
 
         return result;

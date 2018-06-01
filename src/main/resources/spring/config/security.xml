@@ -52,7 +52,7 @@
 		<!-- Servise -->
 
 		<security:intercept-url pattern="/servise/artist/**" access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')"/>
-		<security:intercept-url pattern="/servise/**" access="isAuthenticated()"/>
+		<security:intercept-url pattern="/servise/**" access="permitAll()"/>
 
 		<!-- Message / Folder -->
 		<security:intercept-url pattern="/message/admin/**" access="hasRole('ADMINISTRATOR')" />
@@ -67,7 +67,10 @@
 		<security:intercept-url pattern="/photo/user/**" access="hasRole('USER')" />
 
 		<!-- Profile -->
+
+		<security:intercept-url pattern="/profile/view.do" access="permitAll()" />
 		<security:intercept-url pattern="/profile/**" access="isAuthenticated()" />
+
 
 		<!-- TermAndConditions -->
 		<security:intercept-url pattern="/termAndCondition/**" access="permitAll()" />
@@ -78,9 +81,8 @@
 		<!-- Event -->
 		<security:intercept-url pattern="/event/manager/**" access="hasRole('MANAGER')" />
 		<security:intercept-url pattern="/event/user/**" access="hasRole('USER')" />
-<!--
-		<security:intercept-url pattern="/event/**" access="isAuthenticated()" />
--->
+		<security:intercept-url pattern="/event/**" access="permitAll()" />
+
 
 		<!-- Participate -->
 		<security:intercept-url pattern="/participate/user/**" access="hasRole('USER')" />
@@ -90,6 +92,8 @@
 
 		<!-- Store -->
 		<security:intercept-url pattern="/store/manager/**" access="hasRole('MANAGER')" />
+		<security:intercept-url pattern="/store/**" access="permitAll()" />
+
 
 		<!-- Feedback -->
 		<security:intercept-url pattern="/feedback/user/**" access="hasRole('USER')" />

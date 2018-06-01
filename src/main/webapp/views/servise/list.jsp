@@ -43,7 +43,19 @@
                  </security:authorize>
             </display:column>
 
-            <acme:column code="servise.creator" value="${row.creator.name} " />
+            <spring:message code="servise.creator" var="titleTag" />
+            <display:column title="${titleTag}">
+                <security:authorize access="isAnonymous()">
+                    <a href="profile/view.do?profileId=${row.creator.profile.id}">
+                        <jstl:out value="${row.creator.name}"/>
+                    </a>
+                </security:authorize>
+                <security:authorize access="isAuthenticated()">
+                    <a href="profile/actor/view.do?profileId=${row.creator.profile.id}">
+                        <jstl:out value="${row.creator.name}"/>
+                    </a>
+                </security:authorize>
+            </display:column>
             <acme:column code="servise.title" value="${row.title}"/>
             <acme:column code="servise.description" value="${row.description}"/>
             <acme:column code="servise.price" value="${row.price}"/>
@@ -51,15 +63,12 @@
             <display:column title="${pic}"><img src="${row.picture}" alt="no image" width="130" height="100"></display:column>
 
             <spring:message var="publicationDate" code="servise.publicationDate"/>
-            <spring:message var="formatDate" code="event.format.date"/>
             <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
 
             <security:authorize access="hasRole('USER')">
-
                 <display:column>
                     <acme:button url="servise/user/subscribe.do?serviseId=${row.id}" code="servise.subscribe"/>
                 </display:column>
-
             </security:authorize>
 
 
@@ -83,17 +92,17 @@
                 </display:column>
             </security:authorize>
 
-
-
             <security:authorize access="hasRole('ADMINISTRATOR')" >
                 <display:column>
                     <acme:button url="servise/administrator/edit.do?serviseId=${row.id}" code="general.delete" />
                 </display:column>
             </security:authorize>
 
-            <display:column>
-                <acme:button url="/question/actor/list.do?serviseId=${row.id}" code="servise.questions" />
-            </display:column>
+            <security:authorize access="isAuthenticated()" >
+                <display:column>
+                    <acme:button url="/question/actor/list.do?serviseId=${row.id}" code="servise.questions" />
+                </display:column>
+            </security:authorize>
 
 </display:table>
 </fieldset>
@@ -116,7 +125,6 @@
                 <display:column title="${pic}"><img src="${row.picture}" alt="no image" width="130" height="100"></display:column>
 
                 <spring:message var="publicationDate" code="servise.publicationDate"/>
-                <spring:message var="formatDate" code="event.format.date"/>
                 <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
 
                 <display:column >

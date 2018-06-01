@@ -32,6 +32,12 @@
                 </display:column>
             </security:authorize>
 
+            <spring:message code="event.creator" var="titleTag" />
+            <display:column title="${titleTag}">
+                        <jstl:out value="${row.manager.name}"/>
+                    </a>
+            </display:column>
+
             <spring:message code="event.title" var="headerTag" />
             <display:column property="title" title="${headerTag}"/>
 
@@ -68,7 +74,15 @@
                     </c:if>
                 </display:column>
             </security:authorize>
+
+            <spring:message code="event.store" var="titleTag" />
+            <display:column title="${titleTag}">
+                <a href="store/display.do?storeId=${row.store.id}">
+                    <jstl:out value="${row.store.title}"/>
+                </a>
+            </display:column>
         </display:table>
+
 
         <div class="text-center">
             <security:authorize access="hasRole('MANAGER')">

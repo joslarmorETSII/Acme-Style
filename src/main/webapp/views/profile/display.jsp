@@ -15,6 +15,9 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+
 
 
 <div class="container well">
@@ -30,9 +33,11 @@
                             <span class="btn-label"><i class="fa fa-pencil"></i></span><spring:message code="general.edit"/>
                         </a>
                         </jstl:if>
+                        <security:authorize access="isAuthenticated()">
                         <a  class="btn btn-labeled btn-info" href="gallery/actor/list.do?profileId=${profile.id}">
                             <span class="glyphicon glyphicon-picture"></span> <spring:message code="master.page.gallery"/>
                         </a>
+                        </security:authorize>
                     </div>
                 </div>
                 <div class="col-md-6 no-pad">
@@ -63,12 +68,14 @@
                 </div>
             </div>
         </div>
+        <security:authorize access="isAuthenticated()">
         <jstl:if test="${!esSeguido && actor ne profile.actor}">
             <acme:button code="actor.follow" url="actor/follow.do?actorId=${profile.actor.id}"/>
         </jstl:if>
         <jstl:if test="${esSeguido}">
             <acme:button code="actor.unfollow" url="actor/unfollow.do?actorId=${profile.actor.id}"/>
         </jstl:if>
+        </security:authorize>
     </div>
 </div>
 

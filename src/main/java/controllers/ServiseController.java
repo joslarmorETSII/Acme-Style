@@ -56,10 +56,8 @@ public class ServiseController extends AbstractController {
         Servise servise= null;
         Double finalPrice;
 
-        servise=serviseService.findOne(serviseId);
         servise = this.serviseService.findOne(serviseId);
         finalPrice=serviseService.finalPrice(servise);
-
 
 
         result = new ModelAndView("servise/displayAll");

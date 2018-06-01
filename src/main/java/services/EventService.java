@@ -46,6 +46,7 @@ public class EventService {
         result= new Event();
         result.setParticipates(new ArrayList<Participate>());
         result.setManager(managerService.findByPrincipal());
+        result.setArtists(new ArrayList<Artist>());
         return result;
     }
 

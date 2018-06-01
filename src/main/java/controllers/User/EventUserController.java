@@ -60,7 +60,7 @@ public class EventUserController extends AbstractController {
         events = eventService.participatedEvents(user.getId());
         result = new ModelAndView("event/list");
         result.addObject("events",events);
-        result.addObject("requestURI","event/user/list.do");
+        result.addObject("requestURI","event/user/listParticipated.do");
 
         return result;
     }

@@ -34,6 +34,8 @@
 							<li><a href="managr/register.do"><spring:message code="master.page.manager" /></a> </li>
 						</ul>
 					</li>
+					<li><a href="servise/listServisesPublished.do"><spring:message code="master.page.serviseAll" /></a></li>
+					<li><a href="event/listAll.do"><spring:message code="master.page.event" /></a></li>
 				</security:authorize>
 
 				<security:authorize access="isAuthenticated()">

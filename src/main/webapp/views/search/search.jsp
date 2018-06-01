@@ -57,7 +57,6 @@
                             <display:column title="${pic}"><img src="${row.picture}" alt="no image" width="130" height="100"></display:column>
 
                             <spring:message var="publicationDate" code="servise.publicationDate"/>
-                            <spring:message var="formatDate" code="event.format.date"/>
                             <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
 
 
@@ -84,7 +83,7 @@
                             <display:column property="description" title="${headerTag}"/>
 
                             <spring:message code="event.celebrationDate" var="headerTag" />
-                            <display:column property="celebrationDate" title="${headerTag}"/>
+                            <display:column property="celebrationDate" title="${headerTag}" format="${formatDate}" sortable="true"/>
 
                             <spring:message code="event.tipo" var="headerTag" />
                             <display:column property="tipo" title="${headerTag}"/>

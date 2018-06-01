@@ -69,7 +69,6 @@ public class Store extends DomainEntity{
     // Relationships ----------------------------------------------------------------------
     private Manager manager;
     private Collection<Servise> servises;
-    private Collection<Event> events;
 
     @Valid
     @ManyToOne(optional = false)
@@ -91,13 +90,4 @@ public class Store extends DomainEntity{
         this.servises = servises;
     }
 
-    @Valid
-    @OneToMany
-    public Collection<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(Collection<Event> events) {
-        this.events = events;
-    }
 }

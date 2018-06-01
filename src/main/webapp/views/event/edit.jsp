@@ -28,6 +28,7 @@
                      <form:hidden path="version"/>
                      <form:hidden path="manager"/>
                      <form:hidden path="participates"/>
+                     <form:hidden path="artists"/>
 
 
                     <div class="form-group">
@@ -47,7 +48,7 @@
                     <div class="form-group">
                         <label for="celebrationDate" class="col-sm-3 control-label"><spring:message code="event.celebrationDate"/>* </label>
                         <div class="col-sm-9">
-                            <form:input path="celebrationDate" class="form-control"  id="celebrationDate"/>
+                            <form:input path="celebrationDate" class="form-control"  placeholder="dd/mm/yyyy HH:mm" id="celebrationDate"/>
                             <form:errors class="error" path="celebrationDate" />
                         </div>
                     </div>

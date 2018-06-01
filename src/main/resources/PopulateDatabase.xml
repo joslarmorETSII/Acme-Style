@@ -434,12 +434,6 @@
 				<null/>
 			</list>
 		</property>
-		<property name="events">
-			<list>
-				<null/>
-			</list>
-		</property>
-
 	</bean>
 
 	<bean id="store2" class="domain.Store">
@@ -453,12 +447,6 @@
 				<ref bean="servise2"/>
 			</list>
 		</property>
-		<property name="events">
-			<list>
-				<ref bean="event1"/>
-			</list>
-		</property>
-
 	</bean>
 
 	<!-- Galleries -->
@@ -515,6 +503,8 @@
 			</list>
 		</property>
 		<property name="image" value="http://miracleaffairs.com/wp-content/uploads/2016/08/fashion-3.jpg"/>
+		<property name="store" ref="store2"/>
+
 
 	</bean>
 

@@ -45,17 +45,6 @@
                     </div>
 
 
-
-                     <div class="form-group">
-                         <label class="col-sm-3 control-label"><spring:message code="store.event" /></label>
-                         <div class="col-sm-9">
-                             <form:select path="events" class="form-control" multiple="true">
-                             <form:options class="form-control" items="${events}" itemLabel="title"/>
-                             </form:select>
-                             <form:errors path="events" cssClass="error" />
-                         </div>
-                     </div>
-
                      <div class="form-group">
                          <label class="col-sm-3 control-label"><spring:message code="store.servise" /></label>
                          <div class="col-sm-9">
@@ -65,7 +54,6 @@
                              <form:errors path="servises" cssClass="error" />
                          </div>
                      </div>
-
 
 
                     <div class="form-group">

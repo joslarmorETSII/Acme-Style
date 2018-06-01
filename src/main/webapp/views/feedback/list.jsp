@@ -33,7 +33,6 @@
             <display:column property="text" title="${headerTag}"/>
 
             <spring:message var="moment" code="feedback.moment"/>
-            <spring:message var="formatDate" code="event.format.date"/>
             <display:column property="moment" title="${moment}" format="${formatDate}" sortable="true" />
 
         </display:table>

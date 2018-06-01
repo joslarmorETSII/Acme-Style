@@ -40,7 +40,6 @@
             <display:column title="${pic}"><img src="${servise.picture}" alt="no image" width="130" height="100"></display:column>
 
             <spring:message var="publicationDate" code="servise.publicationDate"/>
-            <spring:message var="formatDate" code="event.format.date"/>
             <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
 
             <security:authorize access="hasRole('USER')">
