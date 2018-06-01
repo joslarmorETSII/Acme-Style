@@ -35,11 +35,15 @@
             <spring:message code="event.creator" var="titleTag" />
             <display:column title="${titleTag}">
                         <jstl:out value="${row.manager.name}"/>
-                    </a>
             </display:column>
 
-            <spring:message code="event.title" var="headerTag" />
-            <display:column property="title" title="${headerTag}"/>
+
+            <spring:message code="event.title" var="titleTag" />
+            <display:column title="${titleTag}">
+                <a href="event/display.do?eventId=${row.id}">
+                    <jstl:out value="${row.title}"/>
+                </a>
+            </display:column>
 
 
             <spring:message code="event.description" var="headerTag" />

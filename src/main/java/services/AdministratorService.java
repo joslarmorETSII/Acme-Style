@@ -55,10 +55,10 @@ public class AdministratorService {
         UserAccount userAccount;
 
         userAccount = LoginService.getPrincipal();
-        Assert.notNull(userAccount);
+        //Assert.notNull(userAccount);
 
         result = this.findByUserAccount(userAccount);
-        Assert.notNull(result);
+        //Assert.notNull(result);
 
         return result;
     }

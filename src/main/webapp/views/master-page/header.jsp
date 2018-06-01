@@ -102,7 +102,7 @@
 							<li><a href="servise/listServisesPublished.do"><spring:message code="master.page.serviseAll" /></a></li>
 						</ul>
 					</li>
-					<li><a href="event/list.do"><spring:message code="master.page.event" /></a></li>
+					<li><a href="event/listAll.do"><spring:message code="master.page.event" /></a></li>
 				</security:authorize>
 
 				<!-- Manager -->

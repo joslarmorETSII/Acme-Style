@@ -37,7 +37,7 @@
 
             <display:column>
                 <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')" >
-                    <jstl:if test="${isPublished eq true}">
+                    <jstl:if test="${isPublished eq true and empty row.subscriptions}">
                          <acme:button url="servise/artist/edit.do?serviseId=${row.id}" code="general.edit" />
                     </jstl:if>
                  </security:authorize>

@@ -84,7 +84,7 @@
                         </jstl:if>
                     </security:authorize>
 
-                    <security:authorize access="hasRole('USER')">
+                    <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')">
                         <jstl:if test="${servise.id !=0}">
                             <input type="submit" class="btn btn-danger"  name="delete" id="saveButton" value="<spring:message code="general.delete"/>"/>
                         </jstl:if>
