@@ -37,7 +37,7 @@
                 <div class="form-group">
                     <label  class="col-sm-3 control-label"><spring:message code="profile.profilePhoto"/> </label>
                     <div class="col-sm-9">
-                        <form:input path="profilePhoto" class="form-control"/>
+                        <form:input path="profilePhoto" placeHolder="http://www.pinterest.com/pic.jpg" class="form-control"/>
                         <form:errors class="error" path="profilePhoto"/>
                     </div>
                 </div>

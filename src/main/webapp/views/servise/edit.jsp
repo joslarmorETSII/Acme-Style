@@ -52,7 +52,7 @@
                 <div class="form-group">
                     <label  class="col-sm-3 control-label"><spring:message code="servise.picture"/> </label>
                     <div class="col-sm-9">
-                        <form:input path="picture" class="form-control" />
+                        <form:input path="picture"  placeHolder="http://www.pinteres.com/pic.jpg" class="form-control" />
                         <form:errors class="error" path="picture"/>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                 <div class="form-group">
                     <label  class="col-sm-3 control-label"><spring:message code="servise.discount"/> </label>
                     <div class="col-sm-9">
-                        <form:input path="discount" class="form-control" />
+                        <form:input path="discount" placeHolder="Enter a discount [0,100]" class="form-control" />
                         <form:errors class="error" path="discount"/>
                     </div>
                 </div>

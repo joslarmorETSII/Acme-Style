@@ -59,7 +59,7 @@
             <display:column title="${pic}"><img src="${row.image}" alt="no image" width="130" height="100"></display:column>
 
             <spring:message code="event.price" var="headerTag" />
-            <display:column property="price" title="${headerTag}" sortable="true"/>
+            <display:column property="price" title="${headerTag}" />
 
             <spring:message code="event.location" var="headerTag" />
             <display:column property="location.name" title="${headerTag}"/>

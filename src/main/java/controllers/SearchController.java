@@ -52,7 +52,7 @@ public class SearchController extends AbstractController {
 		result.addObject("keyword", keyword);
 		result.addObject("servises", serviseService.searchServisesPerKeyword(keyword));
 		result.addObject("events",eventService.searchEventsPerKeyword(keyword));
-		result.addObject("users",userService.searchUsersPerKeyword(keyword));
+		result.addObject("actors",userService.searchActorsPerKeyword(keyword));
 		result.addObject("requestURI", "search/search.do");
 		result.addObject("cancelURI", "welcome/index.do");
 

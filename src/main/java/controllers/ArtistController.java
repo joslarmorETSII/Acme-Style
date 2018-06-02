@@ -54,9 +54,7 @@ public class ArtistController extends AbstractController{
                 result = createEditModelAndView(userForm);
             else {
                 result = new ModelAndView("redirect:/security/login.do");
-
                 artistService.save(artist);
-
             }
         } catch (final Throwable oops) {
             if(oops.getCause().getCause().getMessage().contains("Duplicate entry"))

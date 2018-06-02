@@ -83,7 +83,7 @@
                     <div class="form-group">
                         <label for="phone" class="col-sm-3 control-label"><spring:message code="artist.phone"/> </label>
                         <div class="col-sm-9">
-                            <form:input path="phone" class="form-control"  id="phone" placeholder="+55 5555"/>
+                            <form:input path="phone" class="form-control"  id="phone" placeholder="+XX XXXX [4,9]"/>
                             <form:errors class="error" path="phone"/>
                             <span class="help-block">Your phone number won't be disclosed anywhere </span>
                         </div>
@@ -111,11 +111,9 @@
                         </div>
                     </div>
 
-                     <div class="col-sm-9 col-sm-offset-3">
                          <input type="submit" class="btn btn-primary btn-block"  name="save" id="saveButton" value="<spring:message code="general.register"/>"/>
                          <input type="button"   class="btn btn-warning btn-block" name="cancel" value="<spring:message code="general.cancel" />"
                             onclick="javascript: relativeRedir('welcome/index.do');" />
-                     </div>
                  </form:form> <!-- /form -->
                 </div>
             </div>
