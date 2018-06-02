@@ -32,6 +32,9 @@ public class EventService {
     @Autowired
     private ManagerService managerService;
 
+    @Autowired
+    private UserService userService;
+
     // Constructors -----------------------------------------------------------
 
     public EventService() {
@@ -80,6 +83,7 @@ public class EventService {
     public CreditCard reconstructParticipate(ParticipateToEventForm participateToEventForm, BindingResult binding) {
         CreditCard creditCard = new CreditCard();
 
+
         creditCard.setBrand(participateToEventForm.getBrand());
         creditCard.setCvv(participateToEventForm.getCvv());
         creditCard.setExpirationMonth(participateToEventForm.getExpirationMonth());
@@ -90,6 +94,11 @@ public class EventService {
         checkMonth(participateToEventForm.getExpirationMonth(),participateToEventForm.getExpirationYear(),binding);
 
         return creditCard;
+    }
+
+    public Participate checkParticipation(Event event) {
+       Participate participation = eventRepository.getParticipation(event.getId(),userService.findByPrincipal().getId());
+        return participation;
     }
 
     private boolean checkMonth(Integer month, Integer year, BindingResult binding) {

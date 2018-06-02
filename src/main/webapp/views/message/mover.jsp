@@ -17,14 +17,18 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="${requestURI}" modelAttribute="msg">
 
-    <form:hidden path="id" />
+<div class="container">
+    <div class="col-md-6 col-md-offset-5">
+            <form:form action="${requestURI}" modelAttribute="msg" class="form-horizontal">
 
-    <acme:select code="message.mover" path="folder" items="${destinyFolders}" itemLabel="name"/>
-    <br />
+                <form:hidden path="id" />
 
-    <acme:submit code="message.mover" name="mover" />&nbsp;
-    <br />
+                <acme:select code="message.mover" path="folder" items="${destinyFolders}" itemLabel="name"/>
 
-</form:form>
+                <acme:submit code="message.mover" name="mover" />
+
+            </form:form>
+
+    </div>
+</div>

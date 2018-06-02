@@ -17,27 +17,25 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
+<!-- todo: Cambiar el display-->
+<div class="container">
+        <div class="col-md-6 col-md-offset-5">
+                <display:table name="msg.actorReceivers" pagesize="${msg.actorReceivers.size()}" class="displaytag" requestURI="message/actor/details.do" id="row">
+                    <spring:message code="message.recipient" var="title"/>
+                    <display:column property="name" title="${title}"/>
+                </display:table>
+                <acme:textbox code="message.sender" path="msg.actorSender.name" readonly="true"/>
+                <acme:textbox code="message.priority" path="msg.priority" readonly="true"/>
+                <acme:textbox code="message.subject" path="msg.subject" readonly="true"/>
+                <acme:textbox code="message.momentSent" path="msg.moment" readonly="true"/>
+                <acme:textarea code="message.body" path="msg.body" readonly="true"/>
+            <!-- boton para volver atrás -->
+            <input type="button" class="btn btn-warning" name="volver" onclick="history.back()"
+                   value="<spring:message code="message.volver"/>" />
 
-<fieldset>
-    <div>
-        <display:table name="msg.actorReceivers" pagesize="${msg.actorReceivers.size()}" class="displaytag" requestURI="message/actor/details.do" id="row">
-            <spring:message code="message.recipient" var="title"></spring:message>
-            <display:column property="name" title="${title}"></display:column>
-        </display:table>
-        <acme:textbox code="message.sender" path="msg.actorSender.name" readonly="true"/>
-        <acme:textbox code="message.priority" path="msg.priority" readonly="true"/>
-        <acme:textbox code="message.subject" path="msg.subject" readonly="true"/>
-        <acme:textbox code="message.momentSent" path="msg.moment" readonly="true"/>
-        <acme:textarea code="message.body" path="msg.body" readonly="true"/>
-    </div>
-</fieldset>
-<br/>
+            <div>
+                <%-- 		<acme:back code="message.cancel"/> --%>
+            </div>
 
-<!-- boton para volver atrás -->
-<input type="button" name="volver" onclick="history.back()"
-       value="<spring:message code="message.volver"/>" />
-
-<div>
-    <%-- 		<acme:back code="message.cancel"/> --%>
+        </div>
 </div>
-

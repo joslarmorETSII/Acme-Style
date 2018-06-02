@@ -48,6 +48,8 @@ public class ParticipateController extends AbstractController {
         Event event;
 
         event = eventService.findOne(eventId);
+        Participate participate1 = eventService.checkParticipation(event);
+        Assert.isNull(participate1,"already participating in this event");
         Assert.notNull(event);
 
         ParticipateToEventForm participateToEventForm = new ParticipateToEventForm();
@@ -90,6 +92,9 @@ public class ParticipateController extends AbstractController {
             if (binding.hasErrors())
                 result = this.createEditModelAndView2(participateToEventForm, null);
             else {
+
+
+
                 result = new ModelAndView("redirect: ../../event/user/list.do");
                 event = participateToEventForm.getEvent();
                 participate = participateService.create();
