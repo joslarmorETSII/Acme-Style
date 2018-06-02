@@ -240,9 +240,10 @@ public class PostService {
         actors.retainAll(this.postRepository.actorCommentRaffle(post.getId()));
 
         for (Actor a : actors) {
-            if (a.getUserAccount().getAuthorities().equals(Authority.USER)) ;
-            res.add(a);
+            if (a.getUserAccount().getAuthorities().equals(Authority.USER))
+                res.add(a);
         }
+
         Integer indexWinner = (int) (Math.random() * res.size());
         Actor actorWinner = res.get(indexWinner);
         post.setHasWinner(true);
