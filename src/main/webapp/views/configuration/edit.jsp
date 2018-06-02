@@ -13,11 +13,6 @@
 
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
-
-	<form:label path="banner"><spring:message code="configuration.banner"/></form:label>
-	<form:input path="banner" />
-	<form:errors path="banner" cssClass="error"/>
-	<br/>
 	
 	<form:label path="englishWelcome"><spring:message code="configuration.englishWelcome"/></form:label>
 	<form:input path="englishWelcome"/>
@@ -32,6 +27,15 @@
 	<form:label path="tabooWords"><spring:message code="configuration.tabooWords"/></form:label>
 	<form:textarea path="tabooWords" />
 	<form:errors path="tabooWords" cssClass="error"/>
+	<br/>
+
+	<spring:message code="configuration.enterPhotos" />
+	<br/>
+	<spring:message code="configuration.sizePhoto" />
+	<br/>
+	<form:label path="photos"><spring:message code="configuration.photos"/></form:label>
+	<form:textarea path="photos" />
+	<form:errors path="photos" cssClass="error"/>
 	<br/>
 
 	<input type="submit" name="save"  class="btn btn-primary" value="<spring:message code="general.save" />" />
