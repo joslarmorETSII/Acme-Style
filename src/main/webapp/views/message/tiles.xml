@@ -32,7 +32,7 @@
 	</definition>
 
 	<definition name="message/mover" extends="master.page">
-		<put-attribute name="title" value="Mover" />
+		<put-attribute name="title" value="Move" />
 		<put-attribute name="body" value="/views/message/mover.jsp" />
 	</definition>
 

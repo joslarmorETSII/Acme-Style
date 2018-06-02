@@ -17,17 +17,17 @@
 <tiles-definitions>
 
 	<definition name="store/edit" extends="master.page">
-		<put-attribute name="title" value="Editar Tienda" />
+		<put-attribute name="title" value="Editar tienda" />
 		<put-attribute name="body" value="/views/store/edit.jsp" />
 	</definition>
 
 	<definition name="store/list" extends="master.page">
-		<put-attribute name="title" value="Lista de Tiendas" />
+		<put-attribute name="title" value="Lista de tiendas" />
 		<put-attribute name="body" value="/views/store/list.jsp" />
 	</definition>
 
 	<definition name="store/display" extends="master.page">
-		<put-attribute name="title" value="Desplegado de tienda" />
+		<put-attribute name="title" value="Mostrar tienda" />
 		<put-attribute name="body" value="/views/store/display.jsp" />
 	</definition>
 

@@ -17,7 +17,7 @@
 <tiles-definitions>
 
 	<definition name="manager/register" extends="master.page">
-		<put-attribute name="title" value="Register of a Manager" />
+		<put-attribute name="title" value="Register of a manager" />
 		<put-attribute name="body" value="/views/manager/register.jsp" />
 	</definition>
 

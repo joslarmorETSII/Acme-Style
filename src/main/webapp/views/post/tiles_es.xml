@@ -32,7 +32,7 @@
     </definition>
 
     <definition name="post/display" extends="master.page">
-        <put-attribute name="title" value="Mostrar post" />
+        <put-attribute name="title" value="Mostrar publicación" />
         <put-attribute name="body" value="/views/post/display.jsp" />
     </definition>
 
