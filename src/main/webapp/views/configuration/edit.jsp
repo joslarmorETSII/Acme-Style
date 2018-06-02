@@ -28,6 +28,8 @@
 				<form:errors path="spanishWelcome" cssClass="error"/>
 				<br/>
 
+				<b><spring:message code="configuration.enterTabooWords" /></b> <spring:message code="configuration.enterTabooWords2" />
+				<br/>
 				<form:label path="tabooWords"><spring:message code="configuration.tabooWords"/></form:label>
 				<form:textarea path="tabooWords" />
 				<form:errors path="tabooWords" cssClass="error"/>

@@ -487,7 +487,7 @@
 		<property name="title" value="Titulo 1 de evento de prueba"/>
 		<property name="description" value="Descripcion 1 de evento de prueba"/>
 		<property name="moment" value="01/01/2019 15:30"/>
-		<property name="tipo" value="MASTERCLASS"/>
+		<property name="tipo" value="MEETUP"/>
 		<property name="price" value="200.0" />
 		<property name="celebrationDate" value="01/01/2019 15:30" />
 		<property name="location" ref="gpsCoordinates3"/>

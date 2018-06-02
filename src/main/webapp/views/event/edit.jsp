@@ -52,13 +52,20 @@
                             <form:errors class="error" path="celebrationDate" />
                         </div>
                     </div>
+
                      <div class="form-group">
-                         <label for="tipo" class="col-sm-3 control-label"><spring:message code="event.tipo"/>*</label>
+                         <label class="col-sm-3 control-label"><spring:message code="event.tipo" /></label>
                          <div class="col-sm-9">
-                             <form:input path="tipo" class="form-control"  id="tipo" />
-                             <form:errors class="error" path="tipo" />
+                             <form:select class="form-control" id="tipo" path="tipo">
+                                 <spring:message code="event.tipo.meetup" var="meetup"/><form:option value="MEETUP" label="${meetup}" />
+                                 <spring:message code="event.tipo.masterclass" var="masterclass"/><form:option value="MASTERCLASS" label="${masterclass}" />
+                                 <spring:message code="event.tipo.fashionShow" var="fashionShow"/><form:option value="FASHION_SHOW" label="${fashionShow}" />
+                                 <spring:message code="event.tipo.exposition" var="exposition"/><form:option value="EXPOSITION" label="${exposition}" />
+                             </form:select>
+                             <form:errors path="tipo" cssClass="error" />
                          </div>
                      </div>
+
                      <div class="form-group">
                          <label for="tipo" class="col-sm-3 control-label"><spring:message code="event.image"/>*</label>
                          <div class="col-sm-9">
