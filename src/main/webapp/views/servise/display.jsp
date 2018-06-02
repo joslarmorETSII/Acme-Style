@@ -17,52 +17,69 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<h3><b><spring:message code="servise.title"/>:&nbsp; </b><jstl:out value="${servise.title}"/></h3>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12"><br><br><br>
+            <div class="panel panel-default">
+                <div class="panel-body">
 
-<b><spring:message code="servise.description"/>:&nbsp; </b><jstl:out value="${servise.description}"/>
-<br/>
+                    <center>
+                        <h4><jstl:out value="${servise.title}"/></h4>
+                    </center>
 
-<b><spring:message code="servise.creator.name"/>:&nbsp; </b><jstl:out value="${servise.creator.name}"/>
-<br/>
+                    <div class="thumbnail">
+                        <img src="${servise.picture}" width="500px" height="100%" class="img-responsive" />
+                    </div>
 
-<b><spring:message code="servise.price"/>:&nbsp; </b><jstl:out value="${servise.price}"/>
-<br/>
+                    <b><spring:message code="servise.description" /></b><jstl:out value="${servise.description}"/><br>
 
-<b><spring:message code="servise.discount"/>:&nbsp; </b><jstl:out value="${servise.discount}"/>
-<br/>
+                    <b><spring:message code="servise.creator.name" /></b> <jstl:out value="${servise.creator.name}"/><br>
 
+                    <b><spring:message code="servise.price" /> </b> <jstl:out value="${servise.price}"/><br>
 
+                    <b><spring:message code="servise.discount" /></b> <jstl:out value="${servise.discount}"/><br>
 
+                    <b><spring:message code="servise.finalPrice" /></b> <jstl:out value="${finalPrice}"/><br>
 
+                    <br><br>
 
-<b><spring:message code="servise.finalPrice"/>:&nbsp; </b><jstl:out value="${finalPrice}"/>
-<br/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<br/>
-
-<img src="${servise.picture}" width="500px" height="100%" />
-<br/>
-
-<%--TABLE OF CONTENT --%>
 <fieldset>
-    <legend>Feedbacks</legend>
-    <jstl:forEach items="${servise.feedbacks}" var="feedback">
-        <b> <spring:message code="feedback.points"/>:&nbsp;</b>
+    <center>
+        <legend><spring:message code="servise.feedback" /> </legend>
+    </center>
+    <jstl:forEach var="feedback" items="${servise.feedbacks}">
+    <div class="container">
+        <div class="comment">
+            <div class="col-md-12"><br><br><br>
+                <div class="panel panel-default">
+                    <div class="panel-body">
 
-            <jstl:out value="${feedback.points}"/>
-        <br/>
-        <b> <spring:message code="feedback.text"/>:&nbsp;</b>
+                        <center>
+                            <h4><jstl:out value="${feedback.user.name}"/></h4>
+                        </center>
+                        <b><spring:message code="feedback.points" /></b> <jstl:out value="${feedback.points}"/><br>
 
-            <jstl:out value="${feedback.text}"/>
-        <br/>
-        <security:authorize access="hasRole('ADMINISTRATOR')" >
-                <acme:button url="feedback/administrator/edit.do?feedbackId=${feedback.id}" code="general.delete" />
-        </security:authorize>
-     </jstl:forEach>
+                        <b><spring:message code="feedback.text" /></b> <jstl:out value="${feedback.text}"/><br>
+
+                        <security:authorize access="hasRole('ADMINISTRATOR')" >
+                            <acme:button url="feedback/administrator/edit.do?feedbackId=${feedback.id}" code="general.delete" />
+                        </security:authorize>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</jstl:forEach>
 </fieldset>
 
-<br/>
 
 <input type="button" class="btn btn-warning" name="cancel" value="<spring:message code="general.cancel" />"
        onclick="javascript: relativeRedir('${cancelURI}');" />

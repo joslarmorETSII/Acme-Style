@@ -67,14 +67,10 @@
             <security:authorize access="hasRole('USER')">
                 <display:column>
                     <c:if test="${notParticipated}">
-                        <a href="participate/user/participate.do?eventId=${row.id}">
-                            <spring:message code="event.participate" />
-                        </a>
+                        <acme:button url="participate/user/participate.do?eventId=${row.id}" code="event.participate"/>
                     </c:if>
                     <c:if test="${!notParticipated }">
-                        <a href="participate/user/unparticipate.do?eventId=${row.id}">
-                            <spring:message code="event.unparticipate" />
-                        </a>
+                        <acme:button url="participate/user/unparticipate.do?eventId=${row.id}" code="event.unparticipate"/>
                     </c:if>
                 </display:column>
             </security:authorize>

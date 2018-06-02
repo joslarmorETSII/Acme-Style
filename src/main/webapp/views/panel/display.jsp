@@ -49,17 +49,17 @@
 
 
 </jstl:forEach>
+    <center>
+    <div class="col-md-10 col-md-offset-1">
+        <button type="button" class="btn btn-info" onclick="javascript: relativeRedir('${redirURI}')" >
+            <spring:message code="post.user" />
+        </button>
 
-<div class="col-md-10 col-md-offset-1">
-<button type="button" class="btn btn-warning" onclick="javascript: relativeRedir('${cancelURI}')" >
-    <spring:message code="general.cancel" />
-</button>
-    <button type="button" class="btn btn-info" onclick="javascript: relativeRedir('${redirURI}')" >
-        <spring:message code="post.user" />
-    </button>
-
-</div>
-
+        <button type="button" class="btn btn-warning" onclick="javascript: relativeRedir('${cancelURI}')" >
+            <spring:message code="general.cancel" />
+        </button>
+    </div>
+    </center>
 <br/>
 
 

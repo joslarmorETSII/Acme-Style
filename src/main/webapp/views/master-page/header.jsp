@@ -80,6 +80,8 @@
 						<ul class="dropdown-menu">
 							<li><a href="servise/user/listServisesToSubscribe.do"><spring:message code="master.page.listServisesToSubscribe" /></a></li>
 							<li><a href="servise/user/list.do"><spring:message code="master.page.list" /></a></li>
+							<li><a href="servise/listServisesPublished.do"><spring:message code="master.page.listPublished" /></a></li>
+
 						</ul>
 					</li>
 

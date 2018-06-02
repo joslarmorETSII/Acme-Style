@@ -52,6 +52,7 @@
 		<!-- Servise -->
 
 		<security:intercept-url pattern="/servise/artist/**" access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')"/>
+		<security:intercept-url pattern="/servise/user/**" access="hasAnyRole('USER')"/>
 		<security:intercept-url pattern="/servise/**" access="permitAll()"/>
 
 		<!-- Message / Folder -->
