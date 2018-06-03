@@ -12,9 +12,13 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
+
 <div class="container">
     <div class="col-md-10 col-md-offset-1">
-        <display:table id="category" name="categories" class="table table-striped table-hover" requestURI="${requestURI}"
+        <fieldset>
+        <b><spring:message code="category.associated"/></b>
+
+        <display:table id="category" name="categoriesAssociated" class="table table-striped table-hover" requestURI="${requestURI}"
                        pagesize="5">
 
             <acme:column code="category.name" value="${category.name} " />
@@ -25,24 +29,45 @@
                 </display:column>
             </security:authorize>
 
+        </display:table>
+        </fieldset>
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-md-10 col-md-offset-1">
+        <fieldset>
+        <b><spring:message code="category.notAssociated"/></b>
+
+        <display:table id="row" name="categories" class="table table-striped table-hover" requestURI="${requestURI}"
+                       pagesize="5">
+
+            <acme:column code="category.name" value="${row.name} " />
+
             <security:authorize access="hasRole('ADMINISTRATOR')">
                 <display:column>
-                    <jstl:if test="${canDelete eq true}">
-                        <acme:button url="category/administrator/delete.do?categoryId=${category.id}" code="general.delete"/>
-                    </jstl:if>
+                    <acme:button url="category/administrator/edit.do?categoryId=${row.id}" code="general.edit"/>
+                </display:column>
+            </security:authorize>
+
+            <security:authorize access="hasRole('ADMINISTRATOR')">
+                <display:column>
+                    <acme:button url="category/administrator/delete.do?categoryId=${row.id}" code="general.delete"/>
                 </display:column>
             </security:authorize>
 
         </display:table>
-
-        <div class="text-center">
-
-            <security:authorize access="hasRole('ADMINISTRATOR')">
-                <acme:button code="general.create" url="category/administrator/create.do"/>
-            </security:authorize>
-
-            <acme:cancel code="general.cancel" url="${cancelURI}"/>
-        </div>
+        </fieldset>
 
     </div>
+</div>
+
+<div class="text-center">
+
+    <security:authorize access="hasRole('ADMINISTRATOR')">
+        <acme:button code="general.create" url="category/administrator/create.do"/>
+    </security:authorize>
+
+    <acme:cancel code="general.cancel" url="${cancelURI}"/>
 </div>

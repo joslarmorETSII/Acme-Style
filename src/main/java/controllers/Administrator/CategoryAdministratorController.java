@@ -63,13 +63,15 @@ public class CategoryAdministratorController extends AbstractController {
 		ModelAndView result;
 
 		Collection<Category> categories = categoryService.findAll();
-		Collection<Post> posts = postService.findAll();
+		Collection<Category> categoriesAssociated = categoryService.categoriesAssociated();
+
+		categories.removeAll(categoriesAssociated);
 
 		result = new ModelAndView("category/list");
 		result.addObject("categories", categories);
+		result.addObject("categoriesAssociated", categoriesAssociated);
 		result.addObject("requestURI","category/administrator/list.do");
 		result.addObject("cancelURI", "welcome/index.do");
-		result.addObject("posts", posts);
 
 		return result;
 
@@ -101,7 +103,7 @@ public class CategoryAdministratorController extends AbstractController {
 		else
 			try {
 				this.categoryService.save(category);
-				result = new ModelAndView("redirect:../list.do");
+				result = new ModelAndView("redirect:../administrator/list.do");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(category, "general.commit.error");
 			}
@@ -116,7 +118,7 @@ public class CategoryAdministratorController extends AbstractController {
 
 		Category category = this.categoryService.findOneToEdit(categoryId);
 		categoryService.delete(category);
-		result = new ModelAndView("redirect:list.do");
+		result = new ModelAndView("redirect:../administrator/list.do");
 
 		return result;
 	}

@@ -7,7 +7,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <div class="container">
 	<div class="row">
@@ -25,15 +25,12 @@
 					</div>
 				</div>
 
-				<div class="text-center">
-
-					<security:authorize access="hasRole('ADMINISTRATOR')">
-						<acme:submit name="save" code="general.save"/>
-					</security:authorize>
+				<center>
+					<acme:submit name="save" code="general.save"/>
 
 					<acme:cancel code="general.cancel" url="${cancelURI}"/>
+				</center>
 
-				</div>
 			</form:form>
 		</div>
 	</div>

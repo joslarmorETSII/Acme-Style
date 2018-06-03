@@ -51,7 +51,7 @@
 <input type="button" class="btn btn-warning" name="cancel" value="<spring:message code="general.cancel" />" onclick="javascript: relativeRedir('welcome/index.do');" />
 
 <security:authorize access="hasRole('ADMINISTRATOR')">
-    <acme:button code="message.notify" url="message/admin/create.do"/>
+    <acme:button code="message.notify" url="message/administrator/create.do"/>
 </security:authorize>
         </div>
     </div>

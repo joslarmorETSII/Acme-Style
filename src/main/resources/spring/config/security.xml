@@ -58,7 +58,7 @@
 		<security:intercept-url pattern="/servise/**" access="permitAll()"/>
 
 		<!-- Message / Folder -->
-		<security:intercept-url pattern="/message/admin/**" access="hasRole('ADMINISTRATOR')" />
+		<security:intercept-url pattern="/message/administrator/**" access="hasRole('ADMINISTRATOR')" />
 		<security:intercept-url pattern="/message/actor/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/folder/**" access="isAuthenticated()" />
 

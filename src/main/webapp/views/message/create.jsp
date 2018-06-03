@@ -58,14 +58,16 @@
                     </div>
         </div>
 
+        <div class="center">
         <div class="form-group last">
             <div class="col-sm-offset-3 col-sm-9">
                 <acme:submit code="message.send" name="send" />&nbsp;
                 <input type="button" name="cancel" class="btn btn-warning" value="<spring:message code="general.cancel" />"
                        onclick="javascript: relativeRedir('folder/actor/list.do');" />
+
             </div>
         </div>
-
+        </div>
     </form:form>
         </div>
     </div>
