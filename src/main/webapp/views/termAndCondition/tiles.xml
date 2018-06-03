@@ -16,8 +16,8 @@
        
 <tiles-definitions>
 
-	<definition name="termAndCondition/termAndCondition" extends="master.page">	
-		<put-attribute name="title" value="Term and Conditions" />
+	<definition name="termAndCondition/termAndCondition" extends="master.page">
+		<put-attribute name="title" value="Term and conditions" />
 		<put-attribute name="body" value="/views/termAndCondition/termAndCondition.jsp" />
 	</definition>
 	
