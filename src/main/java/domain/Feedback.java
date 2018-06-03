@@ -12,6 +12,9 @@ import java.util.Date;
 
 @Entity
 @Access(AccessType.PROPERTY)
+@Table(indexes = {
+        @Index(columnList = "servise_id")
+})
 public class Feedback extends DomainEntity {
 
     // Constructors ----------------------------------------------------------------------

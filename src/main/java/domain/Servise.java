@@ -17,6 +17,9 @@ import java.util.Date;
 
 @Entity
 @Access(AccessType.PROPERTY)
+@Table(indexes = {
+        @Index(columnList = "creator_id")
+})
 public class Servise extends DomainEntity{
     // Constructors ----------------------------------------------------------------------
 
