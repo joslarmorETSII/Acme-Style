@@ -39,9 +39,15 @@
                             <b><spring:message code="event.moment" /></b><jstl:out value="${event.moment}"/><br>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<div class="text-center">
+<input type="button" class="btn btn-warning" name="cancel" value="<spring:message code="general.cancel" />"
+       onclick="javascript: relativeRedir('${cancelURI}');" />
+</div>
