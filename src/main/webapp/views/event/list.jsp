@@ -26,9 +26,7 @@
 
             <security:authorize access="hasRole('MANAGER')">
                 <display:column>
-                        <a href="event/manager/edit.do?eventId=${row.id}">
-                            <spring:message code="general.edit" />
-                        </a>
+                    <acme:button url="event/manager/edit.do?eventId=${row.id}" code="general.edit"/>
                 </display:column>
             </security:authorize>
 

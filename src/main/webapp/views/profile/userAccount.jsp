@@ -16,7 +16,6 @@
 
 
 <fieldset>
-    <legend><spring:message code="actor.userAccount"/> </legend>
     <div class="container">
         <div class="row">
             <div class="col-md-10">
