@@ -30,6 +30,12 @@
                 </display:column>
             </security:authorize>
 
+            <security:authorize access="hasRole('ADMINISTRATOR')">
+                <display:column>
+                    <acme:button url="event/administrator/edit.do?eventId=${row.id}" code="general.delete"/>
+                </display:column>
+            </security:authorize>
+
             <spring:message code="event.creator" var="titleTag" />
             <display:column title="${titleTag}">
                         <jstl:out value="${row.manager.name}"/>

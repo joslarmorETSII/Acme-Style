@@ -133,7 +133,7 @@ public class EventManagerController extends AbstractController{
         result = new ModelAndView("event/edit");
         result.addObject("event", event);
         result.addObject("message", text);
-        result.addObject("requestURI", "event/manager/edit.do");
+
         result.addObject("cancelURI","event/manager/list.do");
         result.addObject("stores",manager.getStores());
 
