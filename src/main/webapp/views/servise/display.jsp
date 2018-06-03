@@ -50,7 +50,6 @@
     </div>
 </div>
 
-<fieldset>
     <center>
         <legend><spring:message code="servise.feedback" /> </legend>
     </center>
@@ -78,8 +77,54 @@
         </div>
     </div>
 </jstl:forEach>
-</fieldset>
+<div class="well">
+    <center>
+        <legend><spring:message code="servise.questions" /> </legend>
+    </center>
+    <jstl:forEach var="question" items="${servise.questions}">
+        <div class="container">
+            <div class="comment">
+                <div class="col-md-12"><br><br><br>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
 
+                            <b><spring:message code="question.text" /></b> <jstl:out value="${question.text}"/><br>
 
+                            <b><spring:message code="question.moment" /></b> <jstl:out value="${question.moment}"/><br>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </jstl:forEach>
+
+   <center>
+        <legend><spring:message code="question.answers" /> </legend>
+    </center>
+    <jstl:forEach var="question" items="${servise.questions}">
+        <jstl:forEach var="answer" items="${question.answers}">
+
+            <div class="container">
+                <div class="comment">
+                    <div class="col-md-12"><br><br><br>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+
+                                <b><spring:message code="answer.text" /></b> <jstl:out value="${answer.text}"/><br>
+
+                                <b><spring:message code="answer.moment" /></b> <jstl:out value="${answer.moment}"/><br>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </jstl:forEach>
+
+    </jstl:forEach>
+</div>
+<center>
 <input type="button" class="btn btn-warning" name="cancel" value="<spring:message code="general.cancel" />"
        onclick="javascript: relativeRedir('${cancelURI}');" />
+</center>

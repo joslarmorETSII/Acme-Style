@@ -25,58 +25,63 @@
             <div class="col-md-12"><br><br><br>
                 <div class="panel panel-default">
                     <div class="panel-body">
+                            <div class="pull-right">
+                            <jstl:if test="${row.raffle}">
+                                <img src="http://1.bp.blogspot.com/-bkJooiCloYQ/UrsYojHuF3I/AAAAAAAAIGY/aWFiQRGWzGE/s1600/Imagen-animada-Regalos-de-navidad-64.gif" width="150px" height="100%" class="img-responsive" />
+                            </jstl:if>
+                            </div>
+                            <center>
+                                <h4><jstl:out value="${row.title}"/></h4>
+                            </center>
 
-                        <center>
-                            <h4><jstl:out value="${row.title}"/></h4>
-                        </center>
-                        <p><jstl:out value="${row.description}"/><br><p>
-                        <div class="thumbnail">
-                            <img src="${row.picture}" width="500px" height="100%" class="img-responsive" />
+                            <p><jstl:out value="${row.description}"/><br><p>
+                            <div class="thumbnail">
+                                <img src="${row.picture}" width="500px" height="100%" class="img-responsive" />
 
-                        <security:authorize access="hasRole('USER')">
-                        <div class="container">
-                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#${row.id}">Add to Panel</button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="${row.id}" role="dialog">
-                                <div class="modal-dialog">
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Select a Panel</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>My panels</p>
-                                            <form action="panel/user/add.do"  method="get" role="add">
-                                                <div class="input-group">
-                                                    <jstl:if test="${not empty myPanels}">
-                                                        <select name="panelId">
-                                                                <jstl:forEach var="panel" items="${myPanels}">
-                                                                    <option value="${panel.id}" >${panel.name}</option>
-                                                                </jstl:forEach>
+                            <security:authorize access="hasRole('USER')">
+                            <div class="container">
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#${row.id}">Add to Panel</button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="${row.id}" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Select a Panel</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>My panels</p>
+                                                <form action="panel/user/add.do"  method="get" role="add">
+                                                    <div class="input-group">
+                                                        <jstl:if test="${not empty myPanels}">
+                                                            <select name="panelId">
+                                                                    <jstl:forEach var="panel" items="${myPanels}">
+                                                                        <option value="${panel.id}" >${panel.name}</option>
+                                                                    </jstl:forEach>
 
-                                                        </select>
-                                                    </jstl:if>
-                                                    <input  name="postId" value="${row.id}" hidden="true">
-                                                    <jstl:if test="${not empty myPanels}">
-                                                        <div class="input-group-btn"><button class="btn btn-success" type="submit">Add</button></div>
-                                                    </jstl:if>
+                                                            </select>
+                                                        </jstl:if>
+                                                        <input  name="postId" value="${row.id}" hidden="true">
+                                                        <jstl:if test="${not empty myPanels}">
+                                                            <div class="input-group-btn"><button class="btn btn-success" type="submit">Add</button></div>
+                                                        </jstl:if>
 
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <jstl:if test="${ empty myPanels}">
-                                            <spring:message code="panels.add"/>
-                                        </jstl:if>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <jstl:if test="${ empty myPanels}">
+                                                <spring:message code="panels.add"/>
+                                            </jstl:if>
 
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        </security:authorize>
+                            </security:authorize>
                     </div>
 
                     <jstl:if test="${row.raffle}">
