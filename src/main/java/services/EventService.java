@@ -153,6 +153,8 @@ public class EventService {
         event = eventRepository.findOne(id);
         principal = managerService.findByPrincipal();
         Assert.isTrue(principal.equals(event.getManager()),"Not the creator of the event");
+        Assert.isTrue(event.getParticipates().isEmpty(),"Event has participaitons");
+
         return event;
     }
     public Event findOneToEditAdmin(int id){

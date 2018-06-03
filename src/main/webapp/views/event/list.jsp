@@ -26,7 +26,9 @@
 
             <security:authorize access="hasRole('MANAGER')">
                 <display:column>
-                    <acme:button url="event/manager/edit.do?eventId=${row.id}" code="general.edit"/>
+                    <jstl:if test="${empty row.participates}">
+                        <acme:button url="event/manager/edit.do?eventId=${row.id}" code="general.edit"/>
+                    </jstl:if>
                 </display:column>
             </security:authorize>
 
@@ -70,11 +72,14 @@
 
             <security:authorize access="hasRole('USER')">
                 <display:column>
-                    <c:if test="${notParticipated}">
+                    <c:if test="${notParticipated and row.celebrationDate >= currentDate}">
                         <acme:button url="participate/user/participate.do?eventId=${row.id}" code="event.participate"/>
                     </c:if>
-                    <c:if test="${!notParticipated }">
+                    <c:if test="${!notParticipated and row.celebrationDate >= currentDate}">
                         <acme:button url="participate/user/unparticipate.do?eventId=${row.id}" code="event.unparticipate"/>
+                    </c:if>
+                    <c:if test="${row.celebrationDate < currentDate}">
+                        <spring:message code="event.started"/>
                     </c:if>
                 </display:column>
             </security:authorize>
@@ -85,6 +90,7 @@
                     <jstl:out value="${row.store.title}"/>
                 </a>
             </display:column>
+
         </display:table>
 
 

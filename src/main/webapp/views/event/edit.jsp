@@ -28,7 +28,6 @@
                      <form:hidden path="version"/>
                      <form:hidden path="manager"/>
                      <form:hidden path="participates"/>
-                     <form:hidden path="artists"/>
 
 
                     <div class="form-group">
@@ -84,11 +83,22 @@
                      <div class="form-group">
                          <label class="col-sm-3 control-label"><spring:message code="event.store" /></label>
                          <div class="col-sm-9">
-                             <form:select path="store">
+                             <form:select class="form-control" path="store">
                              <form:option label="----" value="0"/>
                              <form:options class="form-control" items="${stores}" itemLabel="title"/>
                              </form:select>
                              <form:errors path="store" cssClass="error" />
+                         </div>
+                     </div>
+
+                     <div class="form-group">
+                         <label class="col-sm-3 control-label"><spring:message code="event.artists" /></label>
+                         <div class="col-sm-9">
+                             <form:select class="form-control" path="artists">
+                                 <form:option label="----" value="0"/>
+                                 <form:options class="form-control" items="${artists}" itemLabel="name"/>
+                             </form:select>
+                             <form:errors path="artists" cssClass="error" />
                          </div>
                      </div>
 

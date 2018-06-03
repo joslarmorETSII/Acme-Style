@@ -17,7 +17,13 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="jstt" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fnt" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="for" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<div class="container">
+    <input id="myInput" type="text" placeholder="Search..">
+</div>
+
+<br><br>
 <jstl:forEach var="row" items="${posts}">
 
     <div class="container">
@@ -90,9 +96,16 @@
                     </jstl:if>
 
                     <spring:message var="patternDate" code="event.pattern.date" />
-                    <b><spring:message code="post.moment"/>:&nbsp;</b> <fmt:formatDate value="${row.moment}" pattern="${patternDate}"/>
+                    <b><spring:message code="post.moment"/>:&nbsp;</b> <fmt:formatDate value="${row.moment}" pattern="${patternDate}"/><br/>
 
-                        <br><br>
+                    <b><spring:message code="post.catrgories"/>:&nbsp;</b>
+                    <div class="well">
+                        <for:forEach var="category" items="${row.categories}">
+                            <p>#<jstl:out value="${category.name}"/>, <p>
+                        </for:forEach>
+                    </div>
+
+            <br><br>
                         <div class="pull-left">
                             <jstl:out value="${row.lik}"/><a href="post/actor/lik.do?postId=${row.id}"><button type="button" class="btn btn-outline"> <span class="btn-label"><i class="glyphicon glyphicon-thumbs-up"></i></span></button></a>
                             <jstl:out value="${row.dislike}"/><a href="post/actor/dislike.do?postId=${row.id}"><button type="button" class="btn btn-outline"> <span class="btn-label"><i class="glyphicon glyphicon-thumbs-down"></i></span></button></a>
@@ -134,3 +147,14 @@
 
     <acme:cancel code="general.cancel" url="${cancelUri}"/>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $(".panel").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
