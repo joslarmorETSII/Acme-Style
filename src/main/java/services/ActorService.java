@@ -200,14 +200,13 @@ public class ActorService {
         save(principal);
 
     }
-
+    public void flush() {
+        actorRepository.flush();
+    }
     public Collection<Post> postByFollowings(int actorid){
         return this.actorRepository.postByFollowings(actorid);
     }
 
-    public void flush() {
-        actorRepository.flush();
-    }
 
     public Actor reconstruct(ActorForm actorForm, BindingResult binding) {
         Actor result;
@@ -243,4 +242,5 @@ public class ActorService {
 
         return result;
     }
+
 }

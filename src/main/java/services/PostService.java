@@ -11,6 +11,7 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.Validator;
+import repositories.AdministratorRepository;
 import repositories.PostRepository;
 import security.Authority;
 
@@ -24,6 +25,9 @@ public class PostService {
 
     @Autowired
     private PostRepository postRepository;
+
+    @Autowired
+    private AdministratorRepository administratorRepository;
 
     // Supporting services ----------------------------------------------------
 
@@ -106,6 +110,7 @@ public class PostService {
             Actor aux = a.getActor();
             aux.getActions().remove(a);
             this.actorService.save(aux);
+
         }
 
         actionService.deleteAll(post.getActions());
@@ -210,7 +215,7 @@ public class PostService {
             result = endDate.after(date);
         else
             result = true;
-        if (!result || endDate == null) {
+        if (!result) {
             codigos = new String[1];
             codigos[0] = "post.endDate.invalid";
             error = new FieldError("post", "endDate", endDate, false, codigos, null, "Must be in the future");
@@ -250,5 +255,15 @@ public class PostService {
         this.save(post);
         this.messageService.notifyRaffleWinner(actorWinner, post);
 
+    }
+
+    public Collection<Post> topTenServiseWithSubscriptions(){
+        List<Post> result;
+        result = new ArrayList<>(this.administratorRepository.topTenPostsWithLikesLoves());
+
+        if (result.size() > 10)
+            result.subList(0, 9);
+
+        return result;
     }
 }
