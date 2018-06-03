@@ -41,9 +41,8 @@
 
 		<security:intercept-url pattern="/welcome/index.do" access="permitAll" />
 
-		<!-- Administrator -->
-		<security:intercept-url pattern="/answer/administrator/**" access="hasRole('ADMINISTRATOR')" />
-		<security:intercept-url pattern="/question/administrator/**" access="hasRole('ADMINISTRATOR')" />
+		<!-- Category -->
+		<security:intercept-url pattern="/category/administrator/**" access="hasRole('ADMINISTRATOR')" />
 
 		<!-- Registration -->
 		<security:intercept-url pattern="/user/register.do" access="isAnonymous()" />
@@ -105,9 +104,11 @@
 
 		<!-- Question -->
 		<security:intercept-url pattern="/question/actor/**" access="isAuthenticated()" />
+		<security:intercept-url pattern="/question/administrator/**" access="hasRole('ADMINISTRATOR')" />
 
 		<!-- Answer -->
 		<security:intercept-url pattern="/answer/artist/**" access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')" />
+		<security:intercept-url pattern="/answer/administrator/**" access="hasRole('ADMINISTRATOR')" />
 		<security:intercept-url pattern="/answer/actor/**" access="isAuthenticated()" />
 
 		<!-- Comments -->

@@ -119,8 +119,10 @@
 
 				<!-- Admin -->
 				<security:authorize access="hasRole('ADMINISTRATOR')">
-					<li><a href="/servise/administrator/list.do"><spring:message code="master.page.serviseAll" /></a></li>
+					<li><a href="servise/administrator/list.do"><spring:message code="master.page.serviseAll" /></a></li>
 					<li><a href="configuration/administrator/edit.do"><spring:message code="master.page.configuration" /></a></li>
+					<li><a href="category/administrator/list.do"><spring:message code="master.page.category" /></a></li>
+
 				</security:authorize>
 
 				<!-- Search -->

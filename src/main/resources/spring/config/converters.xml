@@ -74,6 +74,8 @@
 		<bean class="converters.StringToParticipateConverter"/>
 		<bean class="converters.ActionToStringConverter"/>
 		<bean class="converters.StringToActionConverter"/>
+		<bean class="converters.CategoryToStringConverter"/>
+		<bean class="converters.StringToCategoryConverter"/>
 	</util:list>
 	
 </beans>
