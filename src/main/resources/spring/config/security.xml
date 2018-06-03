@@ -120,6 +120,12 @@
 		<!-- following/follwers -->
 		<security:intercept-url pattern="/actor/**" access="isAuthenticated()" />
 
+		<!-- Personal Data -->
+		<security:intercept-url pattern="/personalData/**" access="isAuthenticated()" />
+
+		<!-- UserAccount -->
+		<security:intercept-url pattern="/userAccount/**" access="isAuthenticated()" />
+
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 
 		<security:form-login 

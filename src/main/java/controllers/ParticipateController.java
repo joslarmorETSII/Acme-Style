@@ -37,6 +37,7 @@ public class ParticipateController extends AbstractController {
 
     // Constructor ----------------------------------------------
 
+    public ParticipateController() { super(); }
 
 
     // Subscribe ---------------------------------------------------------------

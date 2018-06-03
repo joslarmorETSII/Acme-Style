@@ -25,7 +25,6 @@
                 <form:hidden path="actor" />
                 <form:hidden path="galleries" />
 
-
                 <div class="form-group">
                     <label  class="col-sm-3 control-label"><spring:message code="profile.fullName"/> </label>
                     <div class="col-sm-9">
@@ -51,7 +50,7 @@
                 </div>
 
                 <div class="text-center">
-                    <acme:submit code="general.save" name="save" />&nbsp;
+                    <acme:submit code="general.save" name="save" />
                     <input type="button" name="cancel" class="btn btn-warning" value="<spring:message code="general.cancel" />"
                            onclick="javascript: relativeRedir('profile/actor/display.do');" />
                 </div>

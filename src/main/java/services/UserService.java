@@ -4,7 +4,6 @@ import domain.*;
 import forms.FeedbackForm;
 import forms.SubscribeServiseForm;
 import forms.UserForm;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
