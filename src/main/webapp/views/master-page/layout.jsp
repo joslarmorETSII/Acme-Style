@@ -82,7 +82,7 @@
 			</div>
 			<div class="col-sm-4">
 				<h6>About Us</h6>
-				<p>Acme-style hackathon developed by group 8 D&T</p>
+				<p>Acme-style hackathon developed by group 13 D&T</p>
 			</div>
 			<div class="col-sm-2">
 				<h6>Navigation</h6>
