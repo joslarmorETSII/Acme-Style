@@ -995,6 +995,7 @@
 		<property name="system" value="true" />
 		<property name="messages">
 			<list>
+				<ref bean="message1"></ref>
 			</list>
 		</property>
 		<property name="actor" ref="stylist1" />
@@ -1032,7 +1033,8 @@
 		<property name="name" value="inbox" />
 		<property name="system" value="true" />
 		<property name="messages">
-			<list />
+			<list >
+			</list>
 		</property>
 		<property name="actor" ref="photographer1" />
 	</bean>
@@ -1127,7 +1129,7 @@
 		<property name="subject" value="Mensaje de prueba" />
 		<property name="body" value ="Hola buenas tardes, esta aplicacion es una maquina."/>
 		<property name="priority" value="HIGH"/>
-		<property name="folder" ref="outbox6"/>
+		<property name="folder" ref="outbox4"/>
 		<property name="actorSender" ref="stylist1"/>
 		<property name="actorReceivers" >
 			<list>

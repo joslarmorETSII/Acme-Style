@@ -179,4 +179,8 @@ public class EventService {
         return res;
 
     }
+
+    public void flush(){
+        eventRepository.flush();
+    }
 }
