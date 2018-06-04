@@ -40,7 +40,7 @@
                         <center>
                             <h4><jstl:out value="${row.title}"/></h4>
                         </center>
-                        <p><jstl:out value="${row.description}"/><br><p>
+                        <b><spring:message code="service.description" /></b> <jstl:out value="${row.description}"/><br>
                         <div class="thumbnail">
                             <center>
                                 <img src="${row.picture}" width="500px" height="100%" class="img-responsive" />
