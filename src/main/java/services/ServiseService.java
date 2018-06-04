@@ -13,6 +13,7 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -197,9 +198,12 @@ public class ServiseService {
 
 
 
-    public Double finalPrice(Servise servise){
-        return servise.getPrice()-(servise.getPrice()*(servise.getDiscount()/100));
+    public String finalPrice(Servise servise){
+        Double finalPrice;
+        DecimalFormat df = new DecimalFormat("#.00");
 
+        finalPrice= (servise.getPrice()-(servise.getPrice()*(servise.getDiscount()/100)));
+        return df.format(finalPrice);
     }
 
     public Collection<Servise> servisesPerCreator(int creatorId){

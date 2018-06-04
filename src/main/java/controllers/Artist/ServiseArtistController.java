@@ -137,7 +137,7 @@ public class ServiseArtistController extends AbstractController{
     public ModelAndView display(@RequestParam final int serviseId) {
         ModelAndView result;
         Servise servise= null;
-        Double finalPrice;
+        String finalPrice;
 
 
 
