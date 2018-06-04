@@ -110,7 +110,7 @@ public class Post extends DomainEntity{
         this.raffle = raffle;
     }
 
-    //TODO: Comprobar en los servicios que esta fecha sea futura
+
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     public Date getEndDate() {
@@ -121,7 +121,7 @@ public class Post extends DomainEntity{
         this.endDate = endDate;
     }
 
-    //TODO: Comprobar que no sea nulo en el servicio si se marca raffle
+
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
     public String getReward() {
         return reward;

@@ -234,7 +234,7 @@ public class PostService {
     }
 
     public void getWinner(Post post) {
-        Assert.isTrue(post.getEndDate().before(new Date()), "Raffe is still active");
+        Assert.isTrue(post.getEndDate().before(new Date()), "Raffle is still active");
         Assert.isTrue(post.isRaffle());
         List<Actor> res = new ArrayList<>();
 

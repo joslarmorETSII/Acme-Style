@@ -86,7 +86,7 @@ public class EventService {
     public Event save(Event event){
         Assert.notNull(event);
         Assert.isTrue(actorService.checkRole(Authority.MANAGER));
-        event.setMoment(new Date());
+        event.setMoment(new Date(System.currentTimeMillis() - 1000));
         return eventRepository.save(event);
     }
 
@@ -182,5 +182,24 @@ public class EventService {
 
     public void flush(){
         eventRepository.flush();
+    }
+
+    public boolean checkCelebrationDate(Date celebrationDate, BindingResult binding) {
+        FieldError error;
+        String[] codigos;
+        Date date = new Date();
+        boolean result;
+
+        if (celebrationDate != null)
+            result = celebrationDate.after(date);
+        else
+            result = true;
+        if (!result) {
+            codigos = new String[1];
+            codigos[0] = "event.celebrationDate.invalid";
+            error = new FieldError("event", "celebrationDate", celebrationDate, false, codigos, null, "Must be in the future");
+            binding.addError(error);
+        }
+        return result;
     }
 }
