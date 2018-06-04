@@ -122,6 +122,7 @@
 					<li><a href="event/administrator/list.do"><spring:message code="master.page.event" /></a></li>
 
 					<li><a href="category/administrator/list.do"><spring:message code="master.page.category" /></a></li>
+					<li><a href="dashboard/administrator/dashboard.do"><spring:message code="master.page.dashboard" /></a></li>
 
 				</security:authorize>
 

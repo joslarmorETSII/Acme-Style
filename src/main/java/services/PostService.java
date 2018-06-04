@@ -26,9 +26,6 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
-    @Autowired
-    private AdministratorRepository administratorRepository;
-
     // Supporting services ----------------------------------------------------
 
     @Autowired
@@ -257,13 +254,4 @@ public class PostService {
 
     }
 
-    public Collection<Post> topTenServiseWithSubscriptions(){
-        List<Post> result;
-        result = new ArrayList<>(this.administratorRepository.topTenPostsWithLikesLoves());
-
-        if (result.size() > 10)
-            result.subList(0, 9);
-
-        return result;
-    }
 }

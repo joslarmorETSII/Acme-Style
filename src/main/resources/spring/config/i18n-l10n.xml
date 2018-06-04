@@ -46,6 +46,7 @@
 		<value>/views/configuration/messages</value>
 		<value>/views/comment/messages</value>
 		<value>/views/category/messages</value>
+		<value>/views/administrator/messages</value>
 
 	</util:list>
 

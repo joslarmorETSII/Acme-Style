@@ -15,27 +15,27 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
     @Query("select a from Administrator a where a.userAccount.id = ?1")
     Administrator findByUserAccountId(int userAccountId);
 
-    /*----------------------------------------- Querys -----------------------------------------*/
+    /*----------------------------------------- Queries -----------------------------------------*/
 
     //The average, the minimum, and the maximum number of service per Photographer.
     @Query("select avg(p.servises.size),min(p.servises.size),max(p.servises.size) from Artist p join p.userAccount.authorities a where a.authority = 'PHOTOGRAPHER' ")
-    Collection<Double> avgMinMaxServicesPerPhotographer();
+    Object[] avgMinMaxServicesPerPhotographer();
 
     //The average, the minimum, and the maximum number of service per Makeup Artist.
     @Query("select avg(m.servises.size),min(m.servises.size),max(m.servises.size) from Artist m join m.userAccount.authorities a where a.authority = 'MAKEUPARTIST' ")
-    Collection<Double> avgMinMaxServicesPerMakeupArtist();
+    Object[] avgMinMaxServicesPerMakeupArtist();
 
     //The average, the minimum, and the maximum number of service per Stylist.
     @Query("select avg(s.servises.size),min(s.servises.size),max(s.servises.size) from Artist s join s.userAccount.authorities a where a.authority = 'STYLIST' ")
-    Collection<Double> avgMinMaxServicesPerStylist();
+    Object[] avgMinMaxServicesPerStylist();
 
     //The number of service with a discount over 5%.
-    @Query("select s from Servise s where s.discount >= 5 ")
+    @Query("select count(s) from Servise s where s.discount >= 5 ")
     Integer numberServiseWithDiscountOverFive();
 
-    //The servise with more suscriptions
-    @Query("select s1 from Servise s1 where s1.subscriptions.size >= (select max(s.subscriptions.size) from Servise s)")
-    Collection<Servise> serviseBestSuscription();
+    //The name of servise with more suscriptions and the sum of suscriptions of this servise
+    @Query("select s1.title, count(s1) from Servise s1 where s1.subscriptions.size >= (select max(s.subscriptions.size) from Servise s)")
+    Object[] serviseBestSuscription();
 
     //Top 5 services with more subscriptions.
     @Query("select s from Servise s order by s.subscriptions.size desc")
@@ -81,15 +81,15 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 
     //The number of like of a post per Category.
     @Query("select count(p.lik), c.name from Post p join p.categories c where p.lik > 0 group by c")
-    Object[] NumberOfLikePostPerCategory();
+    Object[] numberOfLikePostPerCategory();
 
-    //A listing of posts in descending order by moment.
+    //A listing of posts in descending order by moment of creation.
     @Query("select p.title, p.moment from Post p order by p.moment desc")
-    Object[] listingPostByMoment();
+    Collection <Post> listingPostByMomentOfCreation();
 
     //The number of hearts of a post per Category.
     @Query("select count(p.heart), c.name from Post p join p.categories c where p.heart > 0 group by c")
-    Object[] NumberOfHeartPostPerCategory();
+    Object[] numberOfHeartPostPerCategory();
 
     //Top 10 post, posts with more likes, loves.
     @Query("select p.title, p.lik, p.heart from Post p order by p.lik, p.heart")
@@ -111,7 +111,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
     @Query("select avg(p) from Post p where p.reward <> null")
     Double avgPostWithReward();
 
-    //A listing of posts in ascendant order by date of finished.
+    //A listing of posts in ascendant order by end of raffle.
     @Query("select p from Post p order by p.endDate asc")
     Collection<Post> listingPostByEndDate();
 }

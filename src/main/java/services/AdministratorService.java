@@ -1,6 +1,7 @@
 package services;
 
 import domain.Administrator;
+import domain.Post;
 import domain.Servise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,15 +76,15 @@ public class AdministratorService {
         return administratorRepository.findAll().get(0);
     }
 
-    public Collection<Double> avgMinMaxServicesPerPhotographer(){
+    public Object[] avgMinMaxServicesPerPhotographer(){
         return this.administratorRepository.avgMinMaxServicesPerPhotographer();
     }
 
-    public Collection<Double> avgMinMaxServicesPerMakeupArtist(){
+    public Object[] avgMinMaxServicesPerMakeupArtist(){
         return this.administratorRepository.avgMinMaxServicesPerMakeupArtist();
     }
 
-    public Collection<Double> avgMinMaxServicesPerStylist(){
+    public Object[] avgMinMaxServicesPerStylist(){
         return this.administratorRepository.avgMinMaxServicesPerStylist();
     }
 
@@ -91,7 +92,7 @@ public class AdministratorService {
         return this.administratorRepository.numberServiseWithDiscountOverFive();
     }
 
-    public Collection<Servise> serviseBestSuscription(){
+    public Object[] serviseBestSuscription(){
         return this.administratorRepository.serviseBestSuscription();
     }
 
@@ -113,5 +114,87 @@ public class AdministratorService {
             result.subList(0, 9);
 
         return result;
+    }
+
+    public Double avgQuestionPerServiseForAllPhotographer(){
+        return this.administratorRepository.avgQuestionPerServiseForAllPhotographer();
+    }
+
+    public Double ratioQuestionsServicesByStylists(){
+        return this.administratorRepository.ratioQuestionsServicesByStylists();
+    }
+
+    public Object[] avgAndSqrtCommentsPerUser(){
+        return this.administratorRepository.avgAndSqrtCommentsPerUser();
+    }
+
+    public Double servicesMoreAnsThan60PercentAboutQuestiosn(){
+        return this.administratorRepository.servicesMoreAnsThan60PercentAboutQuestiosn();
+    }
+
+    public Object[] avgSqrtEventsPerManager(){
+        return this.administratorRepository.avgSqrtEventsPerManager();
+    }
+
+    public Object[] avgSqrtParticipatersParticipateAEventStore(){
+        return this.administratorRepository.avgSqrtParticipatersParticipateAEventStore();
+    }
+
+    public Double ratioEventsStoreVSEvents(){
+        return this.administratorRepository.ratioEventsStoreVSEvents();
+    }
+
+    public Object[] NumberOfLikePostPerCategory(){
+        return this.administratorRepository.numberOfLikePostPerCategory();
+    }
+
+    public Collection <Post> listingPostByMomentOfCreation(){
+        return this.administratorRepository.listingPostByMomentOfCreation();
+    }
+
+    public Object[] NumberOfHeartPostPerCategory(){
+        return this.administratorRepository.numberOfHeartPostPerCategory();
+    }
+
+    public Collection<Post> topTenPostsWithLikesLoves(){
+        List<Post> result;
+        result = new ArrayList<>(this.administratorRepository.topTenPostsWithLikesLoves());
+
+        if (result.size() > 10)
+            result.subList(0, 9);
+
+        return result;
+    }
+
+    public Object[] avgMinMaxStoresPerService(){
+        return this.administratorRepository.avgMinMaxStoresPerService();
+    }
+
+    public Object[] numberOfLikePostPerCategory(){
+        return this.administratorRepository.numberOfLikePostPerCategory();
+    }
+
+    public Object[] numberOfHeartPostPerCategory(){
+        return this.administratorRepository.numberOfHeartPostPerCategory();
+    }
+
+    public Object[] avgMaxMinSqrtPhotosPerPanel(){
+        return this.administratorRepository.avgMaxMinSqrtPhotosPerPanel();
+    }
+
+    public Object[] avgMaxMinSqrtPanelsPerUser(){
+        return this.administratorRepository.avgMaxMinSqrtPanelsPerUser();
+    }
+
+    public Double ratioPostsWithRaffles(){
+        return this.administratorRepository.ratioPostsWithRaffles();
+    }
+
+    public Double avgPostWithReward(){
+        return this.administratorRepository.avgPostWithReward();
+    }
+
+    public Collection<Post> listingPostByEndDate(){
+        return this.administratorRepository.listingPostByEndDate();
     }
 }

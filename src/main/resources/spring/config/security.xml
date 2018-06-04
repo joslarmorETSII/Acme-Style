@@ -107,6 +107,10 @@
 		<security:intercept-url pattern="/question/actor/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/question/administrator/**" access="hasRole('ADMINISTRATOR')" />
 
+		<!-- Administrator -->
+
+		<security:intercept-url pattern="/dashboard/administrator/**" access="hasRole('ADMINISTRATOR')" />
+
 		<!-- Answer -->
 		<security:intercept-url pattern="/answer/artist/**" access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')" />
 		<security:intercept-url pattern="/answer/administrator/**" access="hasRole('ADMINISTRATOR')" />
@@ -120,12 +124,6 @@
 
 		<!-- following/follwers -->
 		<security:intercept-url pattern="/actor/**" access="isAuthenticated()" />
-
-		<!-- Personal Data -->
-		<security:intercept-url pattern="/personalData/**" access="isAuthenticated()" />
-
-		<!-- UserAccount -->
-		<security:intercept-url pattern="/userAccount/**" access="isAuthenticated()" />
 
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 
