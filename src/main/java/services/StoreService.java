@@ -70,10 +70,12 @@ public class StoreService {
         Assert.notNull(store);
         Assert.isTrue(store.getManager().equals(managerService.findByPrincipal()),"Not the manager of the store");
         Store saved = storeRepository.save(store);
-        for(Servise s: store.getServises()){
-            Collection<Store> stores=s.getStores();
-            stores.add(saved);
-            s.setStores(stores);
+        if(store.getServises() != null) {
+            for (Servise s : store.getServises()) {
+                Collection<Store> stores = s.getStores();
+                stores.add(saved);
+                s.setStores(stores);
+            }
         }
 
         return saved;

@@ -87,7 +87,7 @@ public class ServiseUserController extends AbstractController {
 
         result = new ModelAndView("servise/list");
         result.addObject("servises", servisesPublished);
-        result.addObject("requestURI","servise/listServisesToSubscribe.do");
+        result.addObject("requestURI","servise/user/listServisesToSubscribe.do");
 
         return result;
 
@@ -188,10 +188,8 @@ public class ServiseUserController extends AbstractController {
         Servise servise= null;
         Double finalPrice;
 
-        servise=serviseService.findOne(serviseId);
         servise = this.serviseService.findOne(serviseId);
         finalPrice=serviseService.finalPrice(servise);
-
 
 
         result = new ModelAndView("servise/display");

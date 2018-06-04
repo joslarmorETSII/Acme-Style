@@ -8,6 +8,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 
 @Embeddable
 @Access(AccessType.PROPERTY)
@@ -29,6 +30,7 @@ public class GpsCoordinates {
         this.name = name;
     }
 
+    @NotNull
     @Digits(integer = 3, fraction = 5)
     @Range(min = (long) -180.0, max = (long) 180.0)
     public Double getLongitude() {
@@ -39,6 +41,7 @@ public class GpsCoordinates {
         this.longitude = longitude;
     }
 
+    @NotNull
     @Digits(integer = 2, fraction = 5)
     @Range(min = (long) -90.0, max = (long) 90.0)
     public Double getLatitude() {

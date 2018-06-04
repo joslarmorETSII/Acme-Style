@@ -30,7 +30,7 @@
 
 
                     <div class="form-group">
-                        <label for="title" class="col-sm-3 control-label"><spring:message code="store.title"/>*</label>
+                        <label for="title" class="col-sm-3 control-label"><spring:message code="store.title"/></label>
                         <div class="col-sm-9">
                             <form:input path="title" class="form-control"  id="title"/>
                             <form:errors class="error" path="title" />
@@ -57,7 +57,7 @@
 
 
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><spring:message code="event.location"/>*</label>
+                        <label class="col-sm-3 control-label"><spring:message code="event.location"/></label>
                         <div class="col-sm-9">
                             <form:input path="gpsCoordinates.name" placeHolder="Sevilla" class="form-control" />
                             <form:errors class="error" path="gpsCoordinates.name"/>

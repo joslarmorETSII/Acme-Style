@@ -31,21 +31,21 @@
 
 
                     <div class="form-group">
-                        <label for="title" class="col-sm-3 control-label"><spring:message code="event.title"/>*</label>
+                        <label for="title" class="col-sm-3 control-label"><spring:message code="event.title"/></label>
                         <div class="col-sm-9">
                             <form:input path="title" class="form-control"  id="title"/>
                             <form:errors class="error" path="title" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="description" class="col-sm-3 control-label"><spring:message code="event.description"/>*</label>
+                        <label for="description" class="col-sm-3 control-label"><spring:message code="event.description"/></label>
                         <div class="col-sm-9">
                             <form:input path="description" class="form-control"  id="description"/>
                             <form:errors class="error" path="description" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="celebrationDate" class="col-sm-3 control-label"><spring:message code="event.celebrationDate"/>* </label>
+                        <label for="celebrationDate" class="col-sm-3 control-label"><spring:message code="event.celebrationDate"/></label>
                         <div class="col-sm-9">
                             <form:input path="celebrationDate" class="form-control"  placeholder="dd/MM/yyyy HH:mm" id="celebrationDate"/>
                             <form:errors class="error" path="celebrationDate" />
@@ -66,14 +66,14 @@
                      </div>
 
                      <div class="form-group">
-                         <label for="tipo" class="col-sm-3 control-label"><spring:message code="event.image"/>*</label>
+                         <label for="tipo" class="col-sm-3 control-label"><spring:message code="event.image"/></label>
                          <div class="col-sm-9">
                              <form:input path="image" class="form-control"  id="tipo" />
                              <form:errors class="error" path="image" />
                          </div>
                      </div>
                     <div class="form-group">
-                        <label for="price" class="col-sm-3 control-label"><spring:message code="event.price"/>*</label>
+                        <label for="price" class="col-sm-3 control-label"><spring:message code="event.price"/></label>
                         <div class="col-sm-9">
                             <form:input path="price" class="form-control"  id="price" />
                             <form:errors class="error" path="price" />
@@ -103,7 +103,7 @@
                      </div>
 
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><spring:message code="event.location"/>*</label>
+                        <label class="col-sm-3 control-label"><spring:message code="event.location"/></label>
                         <div class="col-sm-9">
                             <form:input path="location.name" class="form-control" />
                             <form:errors class="error" path="location.name"/>
@@ -113,7 +113,7 @@
                     <div class="form-group">
                         <label  class="col-sm-3 control-label"><spring:message code="location.latitude"/> </label>
                         <div class="col-sm-9">
-                            <form:input path="location.latitude" class="form-control"  />
+                            <form:input path="location.latitude" class="form-control"  placeHolder="[-90.0, 90.0]"/>
                             <form:errors class="error" path="location.latitude"/>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                      <div class="form-group">
                          <label class="col-sm-3 control-label"><spring:message code="location.longitude"/> </label>
                          <div class="col-sm-9">
-                             <form:input path="location.longitude" class="form-control"  />
+                             <form:input path="location.longitude" class="form-control" placeHolder="[-180.0, 180.0]"/>
                              <form:errors class="error" path="location.longitude"/>
                          </div>
                      </div>

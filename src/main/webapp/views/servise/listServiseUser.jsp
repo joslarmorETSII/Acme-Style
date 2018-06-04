@@ -62,6 +62,12 @@
                 </display:column>
             </security:authorize>
 
+            <security:authorize access="isAuthenticated()" >
+                <display:column>
+                    <acme:button url="/question/actor/list.do?serviseId=${servise.id}" code="servise.questions" />
+                </display:column>
+            </security:authorize>
+
         </display:table>
 
         <div class="text-center">

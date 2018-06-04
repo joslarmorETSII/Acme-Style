@@ -49,6 +49,7 @@ public class AnswerController extends AbstractController{
         result.addObject("answers", answers);
         result.addObject("question", question);
         result.addObject("owner",actor.equals(question.getServise().getCreator()));
+        result.addObject("requestURI","answer/actor/list.do?questionId="+questionId);
 
         return result;
     }

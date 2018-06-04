@@ -64,7 +64,7 @@
                     </fieldset>
 
                 </div>
-                <div id="menu1" class="tab-pane fade">
+                <div id="menu1" class="tab-pane fade active" >
                     <p></p>
                     <form action="search/search.do"  method="get" role="search" target="vufind" name="searchForm">
                         <div class="input-group lrcInputs">

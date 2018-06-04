@@ -115,7 +115,7 @@
         <security:authorize access="hasRole('ADMINISTRATOR')">
         <fieldset>
             <b><spring:message code="servise.all"/></b>
-            <display:table name="allServises" id="row" pagesize="5" class="table table-striped table-hover" requestURI="${requestUri}">
+            <display:table name="allServises" id="row" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}">
 
                 <acme:column code="servise.creator" value="${row.creator.name} " />
                 <acme:column code="servise.title" value="${row.title}"/>

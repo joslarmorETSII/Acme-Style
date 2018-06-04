@@ -22,7 +22,7 @@
 
 
         <div class="form-group">
-            <label  class="col-sm-3 control-label"><spring:message code="user.holder"/>* </label>
+            <label  class="col-sm-3 control-label"><spring:message code="user.holder"/> </label>
             <div class="col-sm-9">
                 <form:input path="holder" class="form-control"  />
                 <form:errors class="error" path="holder" />
@@ -30,7 +30,7 @@
         </div>
 
         <div class="form-group">
-            <label  class="col-sm-3 control-label"><spring:message code="user.brand"/>* </label>
+            <label  class="col-sm-3 control-label"><spring:message code="user.brand"/> </label>
             <div class="col-sm-9">
                 <form:input path="brand" class="form-control"  />
                 <form:errors class="error" path="brand" />
@@ -38,7 +38,7 @@
         </div>
 
         <div class="form-group">
-            <label  class="col-sm-3 control-label"><spring:message code="user.number"/>* </label>
+            <label  class="col-sm-3 control-label"><spring:message code="user.number"/> </label>
             <div class="col-sm-9">
                 <form:input path="number" class="form-control"  />
                 <form:errors class="error" path="number" />
@@ -46,7 +46,7 @@
         </div>
 
         <div class="form-group">
-            <label  class="col-sm-3 control-label"><spring:message code="user.expirationMonth"/>* </label>
+            <label  class="col-sm-3 control-label"><spring:message code="user.expirationMonth"/> </label>
             <div class="col-sm-9">
                 <form:input path="expirationMonth" placeHolder="MM" class="form-control"  />
                 <form:errors class="error" path="expirationMonth" />
@@ -54,7 +54,7 @@
         </div>
 
         <div class="form-group">
-            <label  class="col-sm-3 control-label"><spring:message code="user.expirationYear"/>* </label>
+            <label  class="col-sm-3 control-label"><spring:message code="user.expirationYear"/> </label>
             <div class="col-sm-9">
                 <form:input path="expirationYear" placeholder="yyyy" class="form-control"  />
                 <form:errors class="error" path="expirationYear" />
@@ -62,7 +62,7 @@
         </div>
 
         <div class="form-group">
-            <label  class="col-sm-3 control-label"><spring:message code="user.cvv"/>* </label>
+            <label  class="col-sm-3 control-label"><spring:message code="user.cvv"/> </label>
             <div class="col-sm-9">
                 <form:input path="cvv" placeHolder="XXX" class="form-control"  />
                 <form:errors class="error" path="cvv" />
