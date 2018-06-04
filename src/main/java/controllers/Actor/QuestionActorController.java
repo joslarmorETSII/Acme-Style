@@ -1,5 +1,6 @@
-package controllers;
+package controllers.Actor;
 
+import controllers.AbstractController;
 import domain.Actor;
 import domain.Question;
 import domain.Servise;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import security.Authority;
 import services.ActorService;
 import services.QuestionService;
 import services.ServiseService;
@@ -20,7 +22,7 @@ import java.util.Collection;
 
 @Controller
 @RequestMapping("/question/actor")
-public class QuestionController extends AbstractController{
+public class QuestionActorController extends AbstractController {
 
     // Services --------------------------------------------
 
@@ -35,7 +37,7 @@ public class QuestionController extends AbstractController{
 
     // Constructor -----------------------------------------
 
-    public QuestionController() {
+    public QuestionActorController() {
         super();
     }
 
@@ -64,12 +66,19 @@ public class QuestionController extends AbstractController{
     @RequestMapping(value = "/edit", method = RequestMethod.POST,params = "save")
     public ModelAndView edit(@Valid Question question, BindingResult binding){
         ModelAndView result;
+        Actor actor = actorService.findByPrincipal();
+
         if (binding.hasErrors()) {
             result = createEditModelAndView(question);
         } else
             try {
                 questionService.save(question);
-                result = new ModelAndView("redirect: /servise/listServisesPublished.do");
+                if(actor.getUserAccount().getAuthorities().equals(Authority.USER)) {
+                    result = new ModelAndView("redirect: /servise/user/list.do");
+                }else{
+                    result = new ModelAndView("redirect: /servise/artist/list.do");
+
+                }
             } catch (Throwable oops) {
                 result = createEditModelAndView(question, "general.commit.error");
             }

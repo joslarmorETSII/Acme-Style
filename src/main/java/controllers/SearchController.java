@@ -57,7 +57,7 @@ public class SearchController extends AbstractController {
 		result = new ModelAndView("search/search");
 
 		for(Actor a : actors){
-			if(!a.getUserAccount().getAuthorities().contains(Authority.ADMINISTRATOR))
+			if(!a.getUserAccount().getAuthorities().equals(Authority.ADMINISTRATOR))
 				res.add(a);
 		}
 

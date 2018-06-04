@@ -15,7 +15,8 @@ import domain.Actor;
 @Component
 @Transactional
 public class StringToActorConverter implements Converter<String, Actor>{
-@Autowired ActorRepository actorRepository;
+
+	@Autowired ActorRepository actorRepository;
 
 	@Override
 	public Actor convert(String text) {
