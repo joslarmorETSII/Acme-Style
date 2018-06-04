@@ -12,6 +12,7 @@ import services.EventService;
 import services.UserService;
 
 import java.util.Collection;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/event/user")
@@ -47,6 +48,7 @@ public class EventUserController extends AbstractController {
         result.addObject("events",events);
         result.addObject("requestURI","event/user/list.do");
         result.addObject("notParticipated",true);
+        result.addObject("currentDate",new Date());
 
         return result;
     }
@@ -61,6 +63,8 @@ public class EventUserController extends AbstractController {
         result = new ModelAndView("event/list");
         result.addObject("events",events);
         result.addObject("requestURI","event/user/listParticipated.do");
+        result.addObject("currentDate",new Date());
+
 
         return result;
     }

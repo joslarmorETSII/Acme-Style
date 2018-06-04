@@ -28,7 +28,6 @@
                      <form:hidden path="version"/>
                      <form:hidden path="manager"/>
                      <form:hidden path="participates"/>
-                     <form:hidden path="artists"/>
 
 
                     <div class="form-group">
@@ -48,17 +47,24 @@
                     <div class="form-group">
                         <label for="celebrationDate" class="col-sm-3 control-label"><spring:message code="event.celebrationDate"/>* </label>
                         <div class="col-sm-9">
-                            <form:input path="celebrationDate" class="form-control"  placeholder="dd/mm/yyyy HH:mm" id="celebrationDate"/>
+                            <form:input path="celebrationDate" class="form-control"  placeholder="dd/MM/yyyy HH:mm" id="celebrationDate"/>
                             <form:errors class="error" path="celebrationDate" />
                         </div>
                     </div>
+
                      <div class="form-group">
-                         <label for="tipo" class="col-sm-3 control-label"><spring:message code="event.tipo"/>*</label>
+                         <label class="col-sm-3 control-label"><spring:message code="event.tipo" /></label>
                          <div class="col-sm-9">
-                             <form:input path="tipo" class="form-control"  id="tipo" />
-                             <form:errors class="error" path="tipo" />
+                             <form:select class="form-control" id="tipo" path="tipo">
+                                 <spring:message code="event.tipo.meetup" var="meetup"/><form:option value="MEETUP" label="${meetup}" />
+                                 <spring:message code="event.tipo.masterclass" var="masterclass"/><form:option value="MASTERCLASS" label="${masterclass}" />
+                                 <spring:message code="event.tipo.fashionShow" var="fashionShow"/><form:option value="FASHION_SHOW" label="${fashionShow}" />
+                                 <spring:message code="event.tipo.exposition" var="exposition"/><form:option value="EXPOSITION" label="${exposition}" />
+                             </form:select>
+                             <form:errors path="tipo" cssClass="error" />
                          </div>
                      </div>
+
                      <div class="form-group">
                          <label for="tipo" class="col-sm-3 control-label"><spring:message code="event.image"/>*</label>
                          <div class="col-sm-9">
@@ -77,11 +83,22 @@
                      <div class="form-group">
                          <label class="col-sm-3 control-label"><spring:message code="event.store" /></label>
                          <div class="col-sm-9">
-                             <form:select path="store">
+                             <form:select class="form-control" path="store">
                              <form:option label="----" value="0"/>
                              <form:options class="form-control" items="${stores}" itemLabel="title"/>
                              </form:select>
                              <form:errors path="store" cssClass="error" />
+                         </div>
+                     </div>
+
+                     <div class="form-group">
+                         <label class="col-sm-3 control-label"><spring:message code="event.artists" /></label>
+                         <div class="col-sm-9">
+                             <form:select class="form-control" path="artists">
+                                 <form:option label="----" value="0"/>
+                                 <form:options class="form-control" items="${artists}" itemLabel="name"/>
+                             </form:select>
+                             <form:errors path="artists" cssClass="error" />
                          </div>
                      </div>
 

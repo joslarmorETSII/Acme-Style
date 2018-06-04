@@ -19,9 +19,11 @@
 
         <security:authorize access="hasRole('MANAGER')">
             <display:column>
+                <jstl:if test="${ empty row.servises}">
                     <a href="store/manager/edit.do?storeId=${row.id}">
                         <spring:message code="general.edit" />
                     </a>
+                </jstl:if>
             </display:column>
         </security:authorize>
 

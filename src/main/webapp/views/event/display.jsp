@@ -19,24 +19,35 @@
 
 
 
-<div class='container'>
+<div class="container">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="thumbnail">
-                <img src="${event.image}" alt="..."  width="800" height="400">
-                <div class="caption">
+        <div class="col-md-12"><br><br><br>
+            <div class="panel panel-default">
+                <div class="panel-body">
                     <h3 class="text-center">${event.title}</h3>
-                    <p>${event.tipo}</p>
-                    <p>
-                        ${event.description}
-                    </p>
-                    <p class="pull-left">
-                        ${event.moment}
-                    </p>
-                    <br>
+
+                    <div class="thumbnail">
+                        <img src="${event.image}" alt="..."  width="800" height="400">
+                    </div>
+
+                    <div class="caption">
+                        <b><spring:message code="event.tipo" /></b><jstl:out value="${event.tipo}"/><br>
+
+                        <b><spring:message code="event.description" /></b><jstl:out value="${event.description}"/><br>
+
+                        <div class="pull-left">
+                            <b><spring:message code="event.moment" /></b><jstl:out value="${event.moment}"/><br>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<div class="text-center">
+<input type="button" class="btn btn-warning" name="cancel" value="<spring:message code="general.cancel" />"
+       onclick="javascript: relativeRedir('${cancelURI}');" />
+</div>

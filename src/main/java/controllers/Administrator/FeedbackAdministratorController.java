@@ -22,13 +22,6 @@ public class FeedbackAdministratorController extends AbstractController {
     @Autowired
     private FeedbackService feedbackService;
 
-    @Autowired
-    private ServiseService serviseService;
-
-
-
-
-
     // Constructor --------------------------------------------
 
     public FeedbackAdministratorController() {
@@ -36,9 +29,6 @@ public class FeedbackAdministratorController extends AbstractController {
     }
 
     // Edition --------------------------------------------
-
-
-
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public ModelAndView edit(@RequestParam int feedbackId){
@@ -48,7 +38,6 @@ public class FeedbackAdministratorController extends AbstractController {
         Feedback feedback= feedbackService.findOne(feedbackId);
         Servise servise=feedback.getServise();
         try{
-
             feedbackService.delete(feedback);
             result = new ModelAndView("redirect:../../servise/administrator/display.do?serviseId="+servise.getId());
         }catch (Throwable oops){
@@ -57,8 +46,6 @@ public class FeedbackAdministratorController extends AbstractController {
 
         return result;
     }
-
-
 
     // Ancillary methods ------------------------------------------------------
 

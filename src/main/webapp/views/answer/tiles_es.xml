@@ -22,7 +22,7 @@
 	</definition>
 
 	<definition name="answer/add" extends="master.page">
-		<put-attribute name="title" value="añadir prespuesta" />
+		<put-attribute name="title" value="Añadir respuesta" />
 		<put-attribute name="body" value="/views/answer/add.jsp" />
 	</definition>
 

@@ -3,8 +3,11 @@ package services;
 import domain.Actor;
 import domain.Folder;
 import domain.Post;
+import forms.ActorForm;
+import forms.UserAccountForm;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -197,12 +200,47 @@ public class ActorService {
         save(principal);
 
     }
-
+    public void flush() {
+        actorRepository.flush();
+    }
     public Collection<Post> postByFollowings(int actorid){
         return this.actorRepository.postByFollowings(actorid);
     }
 
-    public void flush() {
-        actorRepository.flush();
+
+    public Actor reconstruct(ActorForm actorForm, BindingResult binding) {
+        Actor result;
+
+        result = findByPrincipal();
+        result.setName(actorForm.getName());
+        result.setSurname(actorForm.getSurname());
+        result.setPhone(actorForm.getPhone());
+        result.setEmail(actorForm.getEmail());
+        result.setPostalAddresses(actorForm.getPostalAddresses());
+
+        return result;
     }
+
+    public UserAccount reconstructUserAccountForm(UserAccountForm userAccountForm, BindingResult binding) {
+        UserAccount result;
+        FieldError error;
+        String[] codigos;
+        String password;
+
+        result = findByPrincipal().getUserAccount();
+        password = new Md5PasswordEncoder().encodePassword(userAccountForm.getOldPassword(),null);
+        comprobarContrasena(userAccountForm.getNewPassword(),userAccountForm.getRepeatPassword(),binding);
+        if (!result.getPassword().equals(password)) {
+            codigos = new String[1];
+            codigos[0] = "userAccount.password.error";
+            error = new FieldError("userAccountForm", "oldPassword", null, false, codigos, null, "Wrong password");
+            binding.addError(error);
+        }else {
+            result.setUsername(userAccountForm.getUsername());
+            result.setPassword(new Md5PasswordEncoder().encodePassword(userAccountForm.getNewPassword(),null));
+        }
+
+        return result;
+    }
+
 }

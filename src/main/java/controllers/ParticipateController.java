@@ -18,6 +18,8 @@ import services.ParticipateService;
 import services.UserService;
 
 import javax.validation.Valid;
+import java.util.Date;
+
 @Controller
 @RequestMapping("/participate/user")
 public class ParticipateController extends AbstractController {
@@ -37,6 +39,7 @@ public class ParticipateController extends AbstractController {
 
     // Constructor ----------------------------------------------
 
+    public ParticipateController() { super(); }
 
 
     // Subscribe ---------------------------------------------------------------
@@ -48,7 +51,10 @@ public class ParticipateController extends AbstractController {
         Event event;
 
         event = eventService.findOne(eventId);
+        Participate participate1 = eventService.checkParticipation(event);
+        Assert.isNull(participate1,"already participating in this event");
         Assert.notNull(event);
+        Assert.isTrue(event.getCelebrationDate().after(new Date()),"The Event has Started");
 
         ParticipateToEventForm participateToEventForm = new ParticipateToEventForm();
         participateToEventForm.setEvent(event);
@@ -67,6 +73,8 @@ public class ParticipateController extends AbstractController {
 
         event = eventService.findOne(eventId);
         Assert.notNull(event);
+        Assert.isTrue(event.getCelebrationDate().after(new Date()),"The Event has Started");
+
         principal = userService.findByPrincipal();
         Participate subscription = participateService.participateByUserAndEvent(principal.getId(),eventId);
         participateService.delete(subscription);
@@ -90,6 +98,9 @@ public class ParticipateController extends AbstractController {
             if (binding.hasErrors())
                 result = this.createEditModelAndView2(participateToEventForm, null);
             else {
+
+
+
                 result = new ModelAndView("redirect: ../../event/user/list.do");
                 event = participateToEventForm.getEvent();
                 participate = participateService.create();

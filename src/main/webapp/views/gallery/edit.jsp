@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <label  class="col-sm-3 control-label"><spring:message code="gallery.picture"/> </label>
                     <div class="col-sm-9">
-                        <form:input path="picture" class="form-control" />
+                        <form:input path="picture" placeHolder="http://www.pinterest.com/picture.jpg" class="form-control" />
                         <form:errors class="error" path="picture"/>
                     </div>
                 </div>

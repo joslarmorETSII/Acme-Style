@@ -17,12 +17,12 @@
 <tiles-definitions>
 
 	<definition name="feedback/feedbackForm" extends="master.page">
-		<put-attribute name="title" value="Edit Feedback" />
+		<put-attribute name="title" value="Edit feedback" />
 		<put-attribute name="body" value="/views/feedback/feedbackForm.jsp" />
 	</definition>
 
 	<definition name="feedback/list" extends="master.page">
-		<put-attribute name="title" value="List of Feedbacks" />
+		<put-attribute name="title" value="List of feedbacks" />
 		<put-attribute name="body" value="/views/feedback/list.jsp" />
 	</definition>
 

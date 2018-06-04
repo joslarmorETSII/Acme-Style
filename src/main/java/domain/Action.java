@@ -9,6 +9,9 @@ import java.util.Date;
 
 @Entity
 @Access(AccessType.PROPERTY)
+@Table(indexes = {
+        @Index(columnList = "actor_id"),@Index(columnList = "post_id")
+})
 public class Action extends DomainEntity{
 
     // Constructors ----------------------------------------------------------------------

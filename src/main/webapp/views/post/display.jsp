@@ -58,8 +58,8 @@
                                     </security:authorize>
 
                                     <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST', 'USER', 'MANAGER')" >
-                                        <jstl:if test="${(row.raffle eq false) || (row.raffle eq true && row.finalMode eq false) || row.hasWinner eq true ||
-                                                (row.raffle eq true && row.finalMode eq true && empty row.comments)}">
+                                        <jstl:if test="${row.actor eq actor && ((row.raffle eq false) || (row.raffle eq true && row.finalMode eq false) || row.hasWinner eq true ||
+                                                (row.raffle eq true && row.finalMode eq true && empty row.comments)) }">
                                             <a href="post/actor/delete.do?postId=${row.id}">
                                                 <input name="delete" class="btn btn-danger"
                                                        value="<spring:message code="general.delete" />"

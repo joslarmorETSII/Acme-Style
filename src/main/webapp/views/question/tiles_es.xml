@@ -22,7 +22,7 @@
 	</definition>
 
 	<definition name="question/add" extends="master.page">
-		<put-attribute name="title" value="añadir preguntas" />
+		<put-attribute name="title" value="Añadir preguntas" />
 		<put-attribute name="body" value="/views/question/add.jsp" />
 	</definition>
 

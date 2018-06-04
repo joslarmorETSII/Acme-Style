@@ -17,20 +17,30 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
 
-<form:form action="${actionURI}" modelAttribute="comment">
+            <form:form action="${actionURI}" modelAttribute="comment">
 
-    <form:hidden path="id"/>
-    <form:hidden path="version"/>
-    <form:hidden path="post"/>
+                <form:hidden path="id"/>
+                <form:hidden path="version"/>
+                <form:hidden path="post"/>
 
-    <acme:textbox path="text" code="comment.text"/>
+                <center>
+                <br/>
+                <acme:textbox path="text" code="comment.text"/>
 
-    <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
-        <acme:submit name="save" code="general.save"/>
-    </security:authorize>
+                <br/>
+                <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
+                    <acme:submit name="save" code="general.save"/>
+                </security:authorize>
 
-    <acme:cancel code="general.cancel" url="${cancelURI}"/>
+                <acme:cancel code="general.cancel" url="${cancelURI}"/>
+                </center>
+            </form:form>
 
+        </div>
+    </div>
+</div>
 
-</form:form>

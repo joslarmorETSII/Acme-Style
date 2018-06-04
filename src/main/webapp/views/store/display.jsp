@@ -32,17 +32,21 @@
                         </center>
                     </div>
                     <div class="panel-footer">
-                        <jstl:out value="${store.gpsCoordinates.name}"/>
+                        <b><spring:message code="store.gpsCoodenates.name"/></b> <jstl:out value="${store.gpsCoordinates.name}"/><br/>
+                        <b><spring:message code="store.gpsCoodenates.longitude"/></b><jstl:out value="${store.gpsCoordinates.longitude}"/><br/>
+                        <b><spring:message code="store.gpsCoodenates.latitude"/></b><jstl:out value="${store.gpsCoordinates.latitude}"/><br/>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
+    <center>
     <div class="col-md-10 col-md-offset-1">
         <button type="button" class="btn btn-warning" onclick="javascript: relativeRedir('${cancelURI}')" >
             <spring:message code="general.cancel" />
         </button>
     </div>
+    </center>
 

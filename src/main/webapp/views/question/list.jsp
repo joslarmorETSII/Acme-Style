@@ -34,7 +34,9 @@
             </security:authorize>
         </display:table>
         <div class="text-center">
-            <acme:button url="/question/actor/add.do?serviseId=${servise.id}" code="question.add" />
+            <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
+                <acme:button url="/question/actor/add.do?serviseId=${servise.id}" code="question.add" />
+            </security:authorize>
             <acme:cancel code="general.cancel" url="/servise/listServisesPublished.do"/>
         </div>
     </div>

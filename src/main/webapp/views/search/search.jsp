@@ -32,7 +32,7 @@
             <ul class="nav nav-pills nav-justified">
                 <li class="active"><a data-toggle="pill" href="#home"><spring:message code="master.page.servise"/> </a></li>
                 <li><a data-toggle="pill" href="#menu1"><spring:message code="master.page.event"/> </a></li>
-                <li><a data-toggle="pill" href="#menu2"><spring:message code="user.listUsers"/></a></li>
+                <li><a data-toggle="pill" href="#menu2"><spring:message code="actor.listActors"/></a></li>
             </ul>
 
             <div class="tab-content">
@@ -40,7 +40,7 @@
                     <p></p>
                     <form action="search/search.do"  method="get" role="search" target="vufind" name="searchForm">
                         <div class="input-group lrcInputs">
-                            <input class="form-control" type="text" name="keyword" value="${keyword}" >
+                            <input class="form-control" type="text" placeHolder="Search by title" name="keyword" value="${keyword}" >
                             <div class="input-group-btn"><button class="btn btn-success lrcSearchButton" type="submit"><i class="glyphicon glyphicon-search"></i></button></div>
                         </div>
                     </form>
@@ -57,7 +57,7 @@
                             <display:column title="${pic}"><img src="${row.picture}" alt="no image" width="130" height="100"></display:column>
 
                             <spring:message var="publicationDate" code="servise.publicationDate"/>
-                            <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
+                            <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" />
 
 
                         </display:table>
@@ -68,7 +68,7 @@
                     <p></p>
                     <form action="search/search.do"  method="get" role="search" target="vufind" name="searchForm">
                         <div class="input-group lrcInputs">
-                            <input class="form-control" type="text" name="keyword" value="${keyword}" >
+                            <input class="form-control" type="text" placeHolder="Search by title" name="keyword" value="${keyword}" >
                             <div class="input-group-btn"><button class="btn btn-success lrcSearchButton" type="submit"><i class="glyphicon glyphicon-search"></i></button></div>
                         </div>
                     </form>
@@ -83,7 +83,7 @@
                             <display:column property="description" title="${headerTag}"/>
 
                             <spring:message code="event.celebrationDate" var="headerTag" />
-                            <display:column property="celebrationDate" title="${headerTag}" format="${formatDate}" sortable="true"/>
+                            <display:column property="celebrationDate" title="${headerTag}" format="${formatDate}" />
 
                             <spring:message code="event.tipo" var="headerTag" />
                             <display:column property="tipo" title="${headerTag}"/>
@@ -104,22 +104,22 @@
                     <p></p>
                     <form action="search/search.do"  method="get" role="search" target="vufind" name="searchForm">
                         <div class="input-group lrcInputs">
-                            <input class="form-control" type="text" name="keyword" value="${keyword}" >
+                            <input class="form-control" type="text" placeHolder="Search by name, surname or username" name="keyword" value="${keyword}" >
                             <div class="input-group-btn"><button class="btn btn-success lrcSearchButton" type="submit"><i class="glyphicon glyphicon-search"></i></button></div>
                         </div>
                     </form>
                     <p></p>
                     <fieldset>
-                        <legend><spring:message code="user.listUsers"/> </legend>
-                        <display:table name="users" id="user" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}">
+                        <legend><spring:message code="actor.listActors"/> </legend>
+                        <display:table name="actors" id="actor" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}">
 
-                            <acme:column code="user.name" value="${user.name}" />
-                            <acme:column code="user.username" value="${user.userAccount.username}" />
-                            <acme:column code="user.email" value="${user.email}" />
+                            <acme:column code="actor.name" value="${actor.name}" />
+                            <acme:column code="actor.surname" value="${actor.email}" />
+                            <acme:column code="actor.username" value="${actor.userAccount.username}" />
 
                             <security:authorize access="isAuthenticated()">
                                 <display:column>
-                                    <a href="profile/actor/view.do?profileId=${user.profile.id}">
+                                    <a href="profile/actor/view.do?profileId=${actor.profile.id}">
                                         <button class="btn btn-info"><spring:message code="master.page.profile"/></button>
                                     </a>
                                 </display:column>

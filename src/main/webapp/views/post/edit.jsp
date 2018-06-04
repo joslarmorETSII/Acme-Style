@@ -59,7 +59,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><spring:message code="post.picture"/></label>
                     <div class="col-sm-9">
-                        <form:input path="picture" class="form-control"  />
+                        <form:input path="picture"  placeHolder="http://www.pinterest.com/pic.jpg" class="form-control"  />
                         <form:errors class="error" path="picture" />
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><spring:message code="post.endDate"/></label>
                             <div class="col-sm-9">
-                                <form:input path="endDate" class="form-control" id="checkEndDate" />
+                                <form:input path="endDate" placeHolder="dd/MM/yyyy HH:mm" class="form-control" id="checkEndDate" />
                                 <form:errors class="error" path="endDate" />
                             </div>
                         </div>

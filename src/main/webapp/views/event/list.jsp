@@ -26,11 +26,13 @@
 
             <security:authorize access="hasRole('MANAGER')">
                 <display:column>
-                        <a href="event/manager/edit.do?eventId=${row.id}">
-                            <spring:message code="general.edit" />
-                        </a>
+                    <jstl:if test="${empty row.participates}">
+                        <acme:button url="event/manager/edit.do?eventId=${row.id}" code="general.edit"/>
+                    </jstl:if>
                 </display:column>
             </security:authorize>
+
+
 
             <spring:message code="event.creator" var="titleTag" />
             <display:column title="${titleTag}">
@@ -59,22 +61,21 @@
             <display:column title="${pic}"><img src="${row.image}" alt="no image" width="130" height="100"></display:column>
 
             <spring:message code="event.price" var="headerTag" />
-            <display:column property="price" title="${headerTag}" sortable="true"/>
+            <display:column property="price" title="${headerTag}" />
 
             <spring:message code="event.location" var="headerTag" />
             <display:column property="location.name" title="${headerTag}"/>
 
             <security:authorize access="hasRole('USER')">
                 <display:column>
-                    <c:if test="${notParticipated}">
-                        <a href="participate/user/participate.do?eventId=${row.id}">
-                            <spring:message code="event.participate" />
-                        </a>
+                    <c:if test="${notParticipated and row.celebrationDate >= currentDate}">
+                        <acme:button url="participate/user/participate.do?eventId=${row.id}" code="event.participate"/>
                     </c:if>
-                    <c:if test="${!notParticipated }">
-                        <a href="participate/user/unparticipate.do?eventId=${row.id}">
-                            <spring:message code="event.unparticipate" />
-                        </a>
+                    <c:if test="${!notParticipated and row.celebrationDate >= currentDate}">
+                        <acme:button url="participate/user/unparticipate.do?eventId=${row.id}" code="event.unparticipate"/>
+                    </c:if>
+                    <c:if test="${row.celebrationDate < currentDate}">
+                        <spring:message code="event.started"/>
                     </c:if>
                 </display:column>
             </security:authorize>
@@ -85,6 +86,19 @@
                     <jstl:out value="${row.store.title}"/>
                 </a>
             </display:column>
+
+            <security:authorize access="hasRole('ADMINISTRATOR')">
+                <display:column>
+                    <acme:button url="event/administrator/edit.do?eventId=${row.id}" code="general.delete"/>
+                </display:column>
+            </security:authorize>
+
+            <security:authorize access="hasRole('ADMINISTRATOR')" >
+                <display:column >
+                    <acme:button url="event/administrator/display.do?eventId=${row.id}" code="general.display"/>
+                </display:column>
+            </security:authorize>
+
         </display:table>
 
 

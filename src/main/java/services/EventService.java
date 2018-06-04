@@ -33,10 +33,14 @@ public class EventService {
     private ManagerService managerService;
 
     @Autowired
+    private AdministratorService administratorService;
+
+    @Autowired
     private UserService userService;
 
     @Autowired
-    private ArtistService artistService;
+    private ParticipateService participateService;
+
 
     // Constructors -----------------------------------------------------------
 
@@ -67,6 +71,15 @@ public class EventService {
     public void delete(Event event){
         Assert.notNull(event);
         Assert.isTrue(actorService.checkRole(Authority.MANAGER));
+
+        eventRepository.delete(event);
+    }
+
+    public void deleteAdmin(Event event){
+        Assert.notNull(event);
+        Assert.isTrue(checkByPrincipalAdmin(event));
+        participateService.deleteAll(event.getParticipates());
+        event.setStore(null);
         eventRepository.delete(event);
     }
 
@@ -78,13 +91,14 @@ public class EventService {
     }
 
     public Collection<Event> participatedEvents(int userId) {
-        Assert.isTrue(userId == userService.findByPrincipal().getId() ||
-                userId == artistService.findByPrincipal().getId());
         return eventRepository.participatedEvents(userId);
     }
 
+
+
     public CreditCard reconstructParticipate(ParticipateToEventForm participateToEventForm, BindingResult binding) {
         CreditCard creditCard = new CreditCard();
+
 
         creditCard.setBrand(participateToEventForm.getBrand());
         creditCard.setCvv(participateToEventForm.getCvv());
@@ -96,6 +110,11 @@ public class EventService {
         checkMonth(participateToEventForm.getExpirationMonth(),participateToEventForm.getExpirationYear(),binding);
 
         return creditCard;
+    }
+
+    public Participate checkParticipation(Event event) {
+       Participate participation = eventRepository.getParticipation(event.getId(),userService.findByPrincipal().getId());
+        return participation;
     }
 
     private boolean checkMonth(Integer month, Integer year, BindingResult binding) {
@@ -134,10 +153,30 @@ public class EventService {
         event = eventRepository.findOne(id);
         principal = managerService.findByPrincipal();
         Assert.isTrue(principal.equals(event.getManager()),"Not the creator of the event");
+        Assert.isTrue(event.getParticipates().isEmpty(),"Event has participaitons");
+
+        return event;
+    }
+    public Event findOneToEditAdmin(int id){
+        Event event;
+        Manager principal;
+
+        event = eventRepository.findOne(id);
+
+        Assert.isTrue(checkByPrincipalAdmin(event),"Not the admin of the app");
         return event;
     }
 
-    public void flush() {
-        eventRepository.flush();
+
+    public boolean checkByPrincipalAdmin(Event event){
+        Boolean res= false;
+        Administrator administrator = administratorService.findByPrincipal();
+        if(administrator!=null) {
+            Collection<Authority> authorities = administrator.getUserAccount().getAuthorities();
+            String authority = authorities.toArray()[0].toString();
+            res = authority.equals("ADMINISTRATOR");
+        }
+        return res;
+
     }
 }

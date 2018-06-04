@@ -2,6 +2,7 @@ package controllers.manager;
 
 
 import controllers.AbstractController;
+import domain.Artist;
 import domain.Event;
 import domain.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import services.ArtistService;
 import services.EventService;
 import services.ManagerService;
 import services.StoreService;
 
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/event/manager")
@@ -31,7 +34,7 @@ public class EventManagerController extends AbstractController{
     private EventService eventService;
 
     @Autowired
-    private StoreService storeService;
+    private ArtistService artistService;
 
     // Constructor -----------------------------------------
 
@@ -65,9 +68,11 @@ public class EventManagerController extends AbstractController{
 
         manager = managerService.findByPrincipal();
         event = eventService.findOneToEdit(eventId);
+
         result = new ModelAndView("event/edit");
         result.addObject("event",event);
         result.addObject("stores",manager.getStores());
+        result.addObject("artists",artistService.findAll());
 
         return result;
     }
@@ -133,9 +138,11 @@ public class EventManagerController extends AbstractController{
         result = new ModelAndView("event/edit");
         result.addObject("event", event);
         result.addObject("message", text);
-        result.addObject("requestURI", "event/manager/edit.do");
+
         result.addObject("cancelURI","event/manager/list.do");
         result.addObject("stores",manager.getStores());
+        result.addObject("artists",artistService.findAll());
+
 
         return result;
     }

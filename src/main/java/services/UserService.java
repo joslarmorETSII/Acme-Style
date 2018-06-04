@@ -4,7 +4,6 @@ import domain.*;
 import forms.FeedbackForm;
 import forms.SubscribeServiseForm;
 import forms.UserForm;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -185,7 +184,7 @@ public class UserService {
         return feedback;
     }
 
-    public Collection<Actor> searchUsersPerKeyword(String keyword){
-        return this.userRepository.searchUsersPerKeyword(keyword);
+    public Collection<Actor> searchActorsPerKeyword(String keyword){
+        return this.userRepository.searchActorsPerKeyword(keyword);
     }
 }

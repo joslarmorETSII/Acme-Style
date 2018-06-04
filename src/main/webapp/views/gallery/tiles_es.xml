@@ -17,17 +17,17 @@
 <tiles-definitions>
 
 	<definition name="gallery/edit" extends="master.page">
-		<put-attribute name="title" value="Edita tu Galeria" />
+		<put-attribute name="title" value="Editar tu galería" />
 		<put-attribute name="body" value="/views/gallery/edit.jsp" />
 	</definition>
 
 	<definition name="gallery/display" extends="master.page">
-		<put-attribute name="title" value="Galery" />
+		<put-attribute name="title" value="Galería" />
 		<put-attribute name="body" value="/views/gallery/display.jsp" />
 	</definition>
 
 	<definition name="gallery/list" extends="master.page">
-		<put-attribute name="title" value="Lista de Galerias" />
+		<put-attribute name="title" value="Lista de galerias" />
 		<put-attribute name="body" value="/views/gallery/list.jsp" />
 	</definition>
 	

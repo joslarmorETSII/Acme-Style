@@ -39,7 +39,7 @@
                     <div class="form-group">
                         <label for="banner" class="col-sm-3 control-label"><spring:message code="store.banner"/></label>
                         <div class="col-sm-9">
-                            <form:input path="banner" class="form-control"  id="banner"/>
+                            <form:input path="banner" placeHolder="http://www.google.com/pic.jpg" class="form-control"  id="banner"/>
                             <form:errors class="error" path="banner" />
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label"><spring:message code="event.location"/>*</label>
                         <div class="col-sm-9">
-                            <form:input path="gpsCoordinates.name" class="form-control" />
+                            <form:input path="gpsCoordinates.name" placeHolder="Sevilla" class="form-control" />
                             <form:errors class="error" path="gpsCoordinates.name"/>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                     <div class="form-group">
                         <label  class="col-sm-3 control-label"><spring:message code="location.latitude"/> </label>
                         <div class="col-sm-9">
-                            <form:input path="gpsCoordinates.latitude" class="form-control"  />
+                            <form:input path="gpsCoordinates.latitude" placeHolder="[-90.0, 90.0]" class="form-control"  />
                             <form:errors class="error" path="gpsCoordinates.latitude"/>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                      <div class="form-group">
                          <label class="col-sm-3 control-label"><spring:message code="location.longitude"/> </label>
                          <div class="col-sm-9">
-                             <form:input path="gpsCoordinates.longitude" class="form-control"  />
+                             <form:input path="gpsCoordinates.longitude" placeHolder="[-180.0, 180.0]" class="form-control"  />
                              <form:errors class="error" path="gpsCoordinates.longitude"/>
                          </div>
                      </div>
@@ -107,7 +107,7 @@
                      <div class="form-group">
                          <label class="col-sm-3 control-label"><spring:message code="user.expirationMonth"/> </label>
                          <div class="col-sm-9">
-                             <form:input path="creditCard.expirationMonth" class="form-control"  />
+                             <form:input path="creditCard.expirationMonth" placeHolder="MM" class="form-control"  />
                              <form:errors class="error" path="creditCard.expirationMonth"/>
                          </div>
                      </div>
@@ -115,7 +115,7 @@
                      <div class="form-group">
                          <label class="col-sm-3 control-label"><spring:message code="user.expirationYear"/> </label>
                          <div class="col-sm-9">
-                             <form:input path="creditCard.expirationYear" class="form-control"  />
+                             <form:input path="creditCard.expirationYear" placeHolder="yyyy" class="form-control"  />
                              <form:errors class="error" path="creditCard.expirationYear"/>
                          </div>
                      </div>
@@ -123,7 +123,7 @@
                      <div class="form-group">
                          <label class="col-sm-3 control-label"><spring:message code="user.cvv"/> </label>
                          <div class="col-sm-9">
-                             <form:input path="creditCard.cvv" class="form-control"  />
+                             <form:input path="creditCard.cvv" placeHolder="XXX" class="form-control"  />
                              <form:errors class="error" path="creditCard.cvv"/>
                          </div>
                      </div>

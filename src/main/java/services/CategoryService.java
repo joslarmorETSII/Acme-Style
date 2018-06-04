@@ -30,6 +30,9 @@ public class CategoryService {
     // Supporting services ----------------------------------------------------
 
     @Autowired
+    private PostService postService;
+
+    @Autowired
     private ActorService actorService;
 
     // Constructors -----------------------------------------------------------
@@ -67,15 +70,25 @@ public class CategoryService {
     public void delete(Category category){
         Assert.notNull(category);
         Assert.isTrue(actorService.isAdministrator());
+
+        for(Post p : postService.findAll()){
+            Assert.isTrue(!p.getCategories().contains(category), "This category contains posts");
+        }
+
         categoryRepository.delete(category);
     }
 
     public Category save( Category category){
         Assert.notNull(category);
+        Assert.isTrue(actorService.isAdministrator());
 
         return categoryRepository.save(category);
     }
 
     // Other business methods -------------------------------------------------
+
+    public Collection<Category> categoriesAssociated(){
+        return this.categoryRepository.categoriesAssociated();
+    }
 
 }

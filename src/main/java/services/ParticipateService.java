@@ -63,6 +63,10 @@ public class ParticipateService {
         participateRepository.delete(participate);
     }
 
+    public void deleteAll(Collection<Participate> participates){
+        participateRepository.delete(participates);
+    }
+
     public Participate save(Participate participate){
         Participate result;
 

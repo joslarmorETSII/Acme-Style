@@ -62,13 +62,21 @@ public class StoreService {
         Assert.notNull(store);
 
         Assert.isTrue( store.getManager().equals(managerService.findByPrincipal()),"Not the manager of the store");
+        Assert.isTrue(store.getServises().isEmpty(),"The store has Servises");
         storeRepository.delete(store);
     }
 
     public Store save(Store store){
         Assert.notNull(store);
         Assert.isTrue(store.getManager().equals(managerService.findByPrincipal()),"Not the manager of the store");
-        return storeRepository.save(store);
+        Store saved = storeRepository.save(store);
+        for(Servise s: store.getServises()){
+            Collection<Store> stores=s.getStores();
+            stores.add(saved);
+            s.setStores(stores);
+        }
+
+        return saved;
     }
 
     // Other business methods -------------------------------------------------
@@ -80,6 +88,9 @@ public class StoreService {
         manager = managerService.findByPrincipal();
         store = findOne(id);
         Assert.isTrue(store.getManager().equals(manager),"Not the Manager of the store");
+        Assert.isTrue(store.getServises().isEmpty(),"The store has Servises");
+
+
         return store;
     }
 

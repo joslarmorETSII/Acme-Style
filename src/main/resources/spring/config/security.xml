@@ -41,6 +41,9 @@
 
 		<security:intercept-url pattern="/welcome/index.do" access="permitAll" />
 
+		<!-- Category -->
+		<security:intercept-url pattern="/category/administrator/**" access="hasRole('ADMINISTRATOR')" />
+
 		<!-- Registration -->
 		<security:intercept-url pattern="/user/register.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/user/save.do" access="isAnonymous()" />
@@ -50,24 +53,22 @@
 		<security:intercept-url pattern="/managr/save.do" access="isAnonymous()" />
 
 		<!-- Servise -->
-
 		<security:intercept-url pattern="/servise/artist/**" access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')"/>
+		<security:intercept-url pattern="/servise/user/**" access="hasAnyRole('USER')"/>
 		<security:intercept-url pattern="/servise/**" access="permitAll()"/>
 
 		<!-- Message / Folder -->
-		<security:intercept-url pattern="/message/admin/**" access="hasRole('ADMINISTRATOR')" />
+		<security:intercept-url pattern="/message/administrator/**" access="hasRole('ADMINISTRATOR')" />
 		<security:intercept-url pattern="/message/actor/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/folder/**" access="isAuthenticated()" />
 
 		<!-- Panel -->
-
 		<security:intercept-url pattern="/panel/user/**" access="hasRole('USER')" />
 
 		<!-- Photo -->
 		<security:intercept-url pattern="/photo/user/**" access="hasRole('USER')" />
 
 		<!-- Profile -->
-
 		<security:intercept-url pattern="/profile/view.do" access="permitAll()" />
 		<security:intercept-url pattern="/profile/**" access="isAuthenticated()" />
 
@@ -81,8 +82,8 @@
 		<!-- Event -->
 		<security:intercept-url pattern="/event/manager/**" access="hasRole('MANAGER')" />
 		<security:intercept-url pattern="/event/user/**" access="hasRole('USER')" />
+		<security:intercept-url pattern="/event/administrator/**" access="hasRole('ADMINISTRATOR')" />
 		<security:intercept-url pattern="/event/**" access="permitAll()" />
-
 
 		<!-- Participate -->
 		<security:intercept-url pattern="/participate/user/**" access="hasRole('USER')" />
@@ -99,15 +100,16 @@
 		<security:intercept-url pattern="/feedback/user/**" access="hasRole('USER')" />
 		<security:intercept-url pattern="/feedback/administrator/**" access="hasRole('ADMINISTRATOR')" />
 
-
 		<!-- Configuration -->
 		<security:intercept-url pattern="/configuration/administrator/**" access="hasRole('ADMINISTRATOR')" />
 
 		<!-- Question -->
 		<security:intercept-url pattern="/question/actor/**" access="isAuthenticated()" />
+		<security:intercept-url pattern="/question/administrator/**" access="hasRole('ADMINISTRATOR')" />
 
 		<!-- Answer -->
 		<security:intercept-url pattern="/answer/artist/**" access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST')" />
+		<security:intercept-url pattern="/answer/administrator/**" access="hasRole('ADMINISTRATOR')" />
 		<security:intercept-url pattern="/answer/actor/**" access="isAuthenticated()" />
 
 		<!-- Comments -->
@@ -118,6 +120,12 @@
 
 		<!-- following/follwers -->
 		<security:intercept-url pattern="/actor/**" access="isAuthenticated()" />
+
+		<!-- Personal Data -->
+		<security:intercept-url pattern="/personalData/**" access="isAuthenticated()" />
+
+		<!-- UserAccount -->
+		<security:intercept-url pattern="/userAccount/**" access="isAuthenticated()" />
 
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 

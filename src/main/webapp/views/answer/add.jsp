@@ -23,7 +23,7 @@
                 <form:hidden path="question" />
 
                 <div class="form-group">
-                    <label  class="col-sm-3 control-label"><spring:message code="question.text"/> </label>
+                    <label  class="col-sm-3 control-label"><spring:message code="answer.text"/> </label>
                     <div class="col-sm-9">
                         <form:input path="text" class="form-control" />
                         <form:errors class="error" path="text"/>

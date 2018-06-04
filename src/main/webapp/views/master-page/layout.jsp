@@ -82,18 +82,16 @@
 			</div>
 			<div class="col-sm-4">
 				<h6>About Us</h6>
-				<p>Acme-style hackathon developed by group 8 D&T</p>
+				<p>Acme-style hackathon developed by group 13 D&T</p>
 			</div>
 			<div class="col-sm-2">
 				<h6>Navigation</h6>
 				<ul class="unstyled">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Services</a></li>
-					<li><a href="#">Links</a></li>
-					<li><a href="#">Contact</a></li>
+					<li><a href="welcome/index.do">Home</a></li>
 				</ul>
 
 			</div>
+			<!--
 			<div class="col-sm-2">
 				<h6>Follow Us</h6>
 				<ul class="unstyled">
@@ -102,7 +100,8 @@
 					<li><a href="#">Instagram</a></li>
 					<li><a href="#">Google Plus</a></li>
 				</ul>
-			</div>
+			</div>-->
+
 			<div class="col-sm-2">
 				<h6>Language</h6>
 				<ul class="unstyled">
@@ -110,6 +109,7 @@
 					<li><a href="?language=es">Spanish</a></li>
 				</ul>
 			</div>
+
 		</div>
 	</div>
 </footer>

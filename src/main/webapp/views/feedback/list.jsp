@@ -33,7 +33,7 @@
             <display:column property="text" title="${headerTag}"/>
 
             <spring:message var="moment" code="feedback.moment"/>
-            <display:column property="moment" title="${moment}" format="${formatDate}" sortable="true" />
+            <display:column property="moment" title="${moment}" format="${formatDate}" />
 
         </display:table>
 

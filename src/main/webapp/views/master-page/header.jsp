@@ -63,6 +63,9 @@
 						</security:authorize>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="profile/actor/display.do"><span class="glyphicon glyphicon-user"/> <spring:message code="master.page.profile" /></a> </li>
+							<li><a href="userAccount/change.do"><span class="glyphicon glyphicon-cog"/> <spring:message code="master.page.useraccount" /></a> </li>
+							<li><a href="personalData/edit.do"><span class="glyphicon glyphicon-pencil"/> <spring:message code="master.page.personalData" /></a> </li>
+
 							<li><a href="folder/actor/list.do"><span class="glyphicon glyphicon-envelope"/> <spring:message code="master.page.mail" /></a> </li>
 							<li><a href="post/actor/list.do"><span class="glyphicon glyphicon-pushpin"/> <spring:message code="master.page.posts" /></a> </li>
 							<security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','MANAGER')">
@@ -114,8 +117,12 @@
 
 				<!-- Admin -->
 				<security:authorize access="hasRole('ADMINISTRATOR')">
-					<li><a href="/servise/administrator/list.do"><spring:message code="master.page.serviseAll" /></a></li>
+					<li><a href="servise/administrator/list.do"><spring:message code="master.page.serviseAll" /></a></li>
 					<li><a href="configuration/administrator/edit.do"><spring:message code="master.page.configuration" /></a></li>
+					<li><a href="event/administrator/list.do"><spring:message code="master.page.event" /></a></li>
+
+					<li><a href="category/administrator/list.do"><spring:message code="master.page.category" /></a></li>
+
 				</security:authorize>
 
 				<!-- Search -->

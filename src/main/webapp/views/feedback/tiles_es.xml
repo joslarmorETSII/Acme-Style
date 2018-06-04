@@ -17,12 +17,12 @@
 <tiles-definitions>
 
 	<definition name="feedback/feedbackForm" extends="master.page">
-		<put-attribute name="title" value="Editar Opinión" />
+		<put-attribute name="title" value="Editar opinión" />
 		<put-attribute name="body" value="/views/feedback/feedbackForm.jsp" />
 	</definition>
 
 	<definition name="feedback/list" extends="master.page">
-		<put-attribute name="title" value="Lista de Opiniones" />
+		<put-attribute name="title" value="Lista de opiniones" />
 		<put-attribute name="body" value="/views/feedback/list.jsp" />
 	</definition>
 	
