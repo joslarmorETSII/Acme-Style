@@ -121,7 +121,7 @@ public class GalleryController extends AbstractController{
         galleries = profile.getGalleries();
         result = new ModelAndView("gallery/list");
         result.addObject("requestURI", "gallery/actor/list.do?profileId="+profileId);
-        result.addObject("cancelURI", "profile/actor/display.do?profileId="+profileId);
+        result.addObject("cancelURI", "welcome/index.do");
         result.addObject("galleries", galleries);
         result.addObject("owner", owner);
         result.addObject("profile", profile);

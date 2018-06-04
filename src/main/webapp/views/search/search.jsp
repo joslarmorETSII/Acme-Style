@@ -128,8 +128,10 @@
                     </fieldset>
 
                 </div>
+                <acme:cancel code="general.cancel" url="${cancelURI}"/>
+
             </div>
-                    <acme:cancel code="general.cancel" url="${cancelURI}"/>
         </div>
     </div>
 </div>
+

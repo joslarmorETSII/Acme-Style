@@ -30,8 +30,14 @@
                     <div class="panel-body">
 
                         <center>
-                            <img src="${row.url}" width="500px" height="100%" class="img-responsive" /> <hr>
+                            <img src="${row.url}" width="500px" height="100%" class="img-responsive" /></br>
+
+                            <b><spring:message code="photo.descripcion"/></b> <jstl:out value="${row.description}" />
+                            <hr>
                         </center>
+
+
+
                         <acme:button url="photo/user/delete.do?photoId=${row.id}" code="general.delete" />
 
                     </div>

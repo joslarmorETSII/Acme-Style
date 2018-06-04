@@ -32,7 +32,7 @@
                         <img src="${servise.picture}" width="500px" height="100%" class="img-responsive" />
                     </div>
 
-                    <b><spring:message code="servise.description" /></b><jstl:out value="${servise.description}"/><br>
+                    <b><spring:message code="servise.description"/></b> <jstl:out value="${servise.description}"/><br>
 
                     <b><spring:message code="servise.creator.name" /></b> <jstl:out value="${servise.creator.name}"/><br>
 
@@ -91,7 +91,7 @@
                             <b><spring:message code="question.text" /></b> <jstl:out value="${question.text}"/><br>
 
                             <spring:message var="patternDate" code="event.pattern.date" />
-                            <b><spring:message code="question.moment"/>:&nbsp;</b> <fmt:formatDate value="${question.moment}" pattern="${patternDate}"/>
+                            <b><spring:message code="question.moment"/></b> <fmt:formatDate value="${question.moment}" pattern="${patternDate}"/>
                             <center>
                                 <legend><spring:message code="question.answers" /> </legend>
                             </center>
@@ -100,7 +100,7 @@
                                     <b><spring:message code="answer.text" /></b> <jstl:out value="${answer.text}"/><br>
 
                                     <spring:message var="patternDate" code="event.pattern.date" />
-                                    <b><spring:message code="answer.moment"/>:&nbsp;</b> <fmt:formatDate value="${answer.moment}" pattern="${patternDate}"/>
+                                    <b><spring:message code="answer.moment"/></b> <fmt:formatDate value="${answer.moment}" pattern="${patternDate}"/>
                                 </div>
                              </jstl:forEach>
 

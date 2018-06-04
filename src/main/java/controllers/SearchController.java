@@ -10,13 +10,18 @@
 
 package controllers;
 
+import domain.Actor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import security.Authority;
 import services.*;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Controller
 @RequestMapping("/search")
@@ -46,13 +51,20 @@ public class SearchController extends AbstractController {
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView search(@RequestParam String keyword ){
 		ModelAndView result;
+		Collection<Actor> actors = userService.searchActorsPerKeyword(keyword);
+		Collection<Actor> res = new ArrayList<Actor>();
 
 		result = new ModelAndView("search/search");
+
+		for(Actor a : actors){
+			if(!a.getUserAccount().getAuthorities().contains(Authority.ADMINISTRATOR))
+				res.add(a);
+		}
 
 		result.addObject("keyword", keyword);
 		result.addObject("servises", serviseService.searchServisesPerKeyword(keyword));
 		result.addObject("events",eventService.searchEventsPerKeyword(keyword));
-		result.addObject("actors",userService.searchActorsPerKeyword(keyword));
+		result.addObject("actors",res);
 		result.addObject("requestURI", "search/search.do");
 		result.addObject("cancelURI", "welcome/index.do");
 

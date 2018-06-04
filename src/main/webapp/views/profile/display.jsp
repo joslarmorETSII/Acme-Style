@@ -78,5 +78,8 @@
         </security:authorize>
     </div>
 </div>
-
+<center>
+<input type="button" name="cancel" class="btn btn-warning" value="<spring:message code="general.cancel" />"
+       onclick="javascript: relativeRedir('welcome/index.do');" />
+</center>
 

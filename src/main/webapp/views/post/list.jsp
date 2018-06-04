@@ -47,7 +47,7 @@
                             </center>
                         <security:authorize access="hasRole('USER')">
                         <div class="container">
-                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#${row.id}">Add to Panel</button>
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#${row.id}"><spring:message code="panel.add"/> </button>
                             <!-- Modal -->
                             <div class="modal fade" id="${row.id}" role="dialog">
                                 <div class="modal-dialog">
@@ -55,11 +55,11 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Select a Panel</h4>
+                                            <h4 class="modal-title"><spring:message code="panel.select" /> </h4>
                                         </div>
                                         <div class="modal-body">
-                                            <p>My panels</p>
-                                            <form action="panel/user/add.do"  method="get" role="add">
+                                            <p><spring:message code="panel.myPanel" /> </p>
+                                            <form action="panel/user/add.do" method="get" role="add">
                                                 <div class="input-group">
                                                     <jstl:if test="${not empty myPanels}">
                                                         <select name="panelId">
@@ -71,7 +71,7 @@
                                                     </jstl:if>
                                                     <input  name="postId" value="${row.id}" hidden="true">
                                                     <jstl:if test="${not empty myPanels}">
-                                                        <div class="input-group-btn"><button class="btn btn-success" type="submit">Add</button></div>
+                                                        <div class="input-group-btn"><button class="btn btn-success" type="submit"><spring:message code="panel.button.add"/> </button></div>
                                                     </jstl:if>
 
                                                 </div>
@@ -82,7 +82,7 @@
                                         </jstl:if>
 
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="panel.button.close"/> </button>
                                             </div>
                                         </div>
                                     </div>
