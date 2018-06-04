@@ -80,6 +80,7 @@ public class EventManagerController extends AbstractController{
     @RequestMapping(value = "/edit", method = RequestMethod.POST,params = "save")
     public ModelAndView edit(@Valid Event event, BindingResult binding){
         ModelAndView result;
+        eventService.checkCelebrationDate(event.getCelebrationDate(),binding);
         if (binding.hasErrors()) {
             result = createEditModelAndView(event);
         } else

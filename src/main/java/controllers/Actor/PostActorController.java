@@ -143,7 +143,7 @@ public class PostActorController extends AbstractController {
             }
             else {
                 this.postService.save(post);
-                if(post.isRaffle()){
+                if(post.isRaffle() && !post.isFinalMode()){
                     result = new ModelAndView("redirect:listRaffle.do");
                 }else{
                     result = new ModelAndView("redirect:list.do");

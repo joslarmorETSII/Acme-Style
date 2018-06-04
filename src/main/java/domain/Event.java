@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.util.Collection;
 import java.util.Date;
 
@@ -53,7 +54,7 @@ public class Event extends DomainEntity{
         this.description = description;
     }
 
-    //TODO: Comprobar en los servicios que sea futuro
+    @Past
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     public Date getMoment() {
@@ -83,7 +84,7 @@ public class Event extends DomainEntity{
         this.price = price;
     }
 
-    //TODO: Comprobar en los servicios que sea futuro
+
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
