@@ -64,7 +64,7 @@
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="profile/actor/display.do"><span class="glyphicon glyphicon-user"/> <spring:message code="master.page.profile" /></a> </li>
 							<li><a href="userAccount/change.do"><span class="glyphicon glyphicon-cog"/> <spring:message code="master.page.useraccount" /></a> </li>
-							<li><a href="personalData/edit.do"><span class="glyphicon glyphicon-pencil"/> <spring:message code="master.page.personalData" /></a> </li>
+							<li><a href="personalData/actor/edit.do"><span class="glyphicon glyphicon-pencil"/> <spring:message code="master.page.personalData" /></a> </li>
 
 							<li><a href="folder/actor/list.do"><span class="glyphicon glyphicon-envelope"/> <spring:message code="master.page.mail" /></a> </li>
 							<li><a href="post/actor/list.do"><span class="glyphicon glyphicon-pushpin"/> <spring:message code="master.page.posts" /></a> </li>

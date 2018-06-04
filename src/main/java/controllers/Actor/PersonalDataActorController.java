@@ -1,5 +1,6 @@
-package controllers;
+package controllers.Actor;
 
+import controllers.AbstractController;
 import domain.Actor;
 import forms.ActorForm;
 import forms.UserAccountForm;
@@ -15,8 +16,8 @@ import services.ActorService;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/personalData")
-public class PersonalDataController extends AbstractController {
+@RequestMapping("/personalData/actor")
+public class PersonalDataActorController extends AbstractController {
 
     // Supporting services --------------------------------------
 
@@ -27,7 +28,7 @@ public class PersonalDataController extends AbstractController {
 
     // Constructor ----------------------------------------------
 
-    public PersonalDataController() { super(); }
+    public PersonalDataActorController() { super(); }
 
 
     // edit -----------------------------------------------------
