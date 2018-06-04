@@ -17,6 +17,9 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
+<center>
+    <h4><jstl:out value="${panel.name}"/></h4>
+</center>
 
 <jstl:forEach var="row" items="${photos}">
 
@@ -27,12 +30,8 @@
                     <div class="panel-body">
 
                         <center>
-                            <h4><jstl:out value="${panel.name}"/></h4>
-                        </center>
-                        <p><jstl:out value="${row.description}"/><br><br>
-
                             <img src="${row.url}" width="500px" height="100%" class="img-responsive" /> <hr>
-
+                        </center>
                         <acme:button url="photo/user/delete.do?photoId=${row.id}" code="general.delete" />
 
                     </div>

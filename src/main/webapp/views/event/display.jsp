@@ -31,9 +31,9 @@
                     </div>
 
                     <div class="caption">
-                        <b><spring:message code="event.tipo" /></b><jstl:out value="${event.tipo}"/><br>
+                        <b><spring:message code="event.tipo" />:&nbsp;</b><jstl:out value="${event.tipo}"/><br>
 
-                        <b><spring:message code="event.description" /></b><jstl:out value="${event.description}"/><br>
+                        <b><spring:message code="event.description" />:&nbsp;</b><jstl:out value="${event.description}"/><br>
 
                         <div class="pull-left">
                             <spring:message var="patternDate" code="event.pattern.date" />
