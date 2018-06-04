@@ -1,5 +1,6 @@
-package controllers;
+package controllers.Actor;
 
+import controllers.AbstractController;
 import domain.Actor;
 import forms.UserAccountForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ import services.UserAccountService;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/userAccount")
-public class UserAccountController extends AbstractController {
+@RequestMapping("/userAccount/actor")
+public class UserAccountActorController extends AbstractController {
 
     // Supporting services --------------------------------------
 
@@ -30,7 +31,7 @@ public class UserAccountController extends AbstractController {
 
     // Constructor ----------------------------------------------
 
-    public UserAccountController() { super(); }
+    public UserAccountActorController() { super(); }
 
 
     // edit -----------------------------------------------------

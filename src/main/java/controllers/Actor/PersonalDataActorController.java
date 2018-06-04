@@ -60,7 +60,8 @@ public class PersonalDataActorController extends AbstractController {
         Actor actor;
         if (binding.hasErrors())
             result = createEditModelAndView(actorForm);
-       else try {
+        else
+            try {
             actor = actorService.reconstruct(actorForm, binding);
             result = new ModelAndView("redirect: /welcome/index.do");
             actorService.save(actor);

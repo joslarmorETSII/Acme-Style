@@ -20,30 +20,30 @@
         <div class="row">
             <div class="col-md-10">
 
-                <form:form  action="userAccount/change.do" modelAttribute="userAccountForm" class="form-horizontal">
+                <form:form  action="userAccount/actor/change.do" modelAttribute="userAccountForm" class="form-horizontal">
                     <div class="form-group">
-                        <label for="inputUsername" class="col-sm-3 control-label"><spring:message code="user.username"/>*</label>
+                        <label for="inputUsername" class="col-sm-3 control-label"><spring:message code="user.username"/></label>
                         <div class="col-sm-9">
                             <form:input path="username" class="form-control"  id="inputUsername" placeholder="Username" />
                             <form:errors class="error" path="username" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="oldPassword" class="col-sm-3 control-label"><spring:message code="user.oldPassword"/>*</label>
+                        <label for="oldPassword" class="col-sm-3 control-label"><spring:message code="user.oldPassword"/></label>
                         <div class="col-sm-9">
                             <form:password path="oldPassword" class="form-control"  id="oldPassword" placeholder="Old password"/>
                             <form:errors class="error" path="oldPassword" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="newPassword" class="col-sm-3 control-label"><spring:message code="user.password"/>*</label>
+                        <label for="newPassword" class="col-sm-3 control-label"><spring:message code="user.password"/></label>
                         <div class="col-sm-9">
                             <form:password path="newPassword" class="form-control"  id="newPassword" placeholder="New password"/>
                             <form:errors class="error" path="newPassword" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"><spring:message code="user.repeatPassword"/>*</label>
+                        <label class="col-sm-3 control-label"><spring:message code="user.repeatPassword"/></label>
                         <div class="col-sm-9">
                             <form:password path="repeatPassword" class="form-control"  id="repeatPassword" placeholder="repeatPassword"/>
                             <form:errors class="error" path="repeatPassword"/>

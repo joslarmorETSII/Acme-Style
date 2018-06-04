@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-md-10">
 
-            <form:form  action="personalData/edit.do" modelAttribute="actorForm" class="form-horizontal">
+            <form:form  action="personalData/actor/edit.do" modelAttribute="actorForm" class="form-horizontal">
                 <div class="form-group">
                     <label for="inputName" class="col-sm-3 control-label"><spring:message code="artist.name"/></label>
                     <div class="col-sm-9">

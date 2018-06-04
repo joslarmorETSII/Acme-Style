@@ -44,6 +44,9 @@
 		<!-- Category -->
 		<security:intercept-url pattern="/category/administrator/**" access="hasRole('ADMINISTRATOR')" />
 
+		<!-- UserAccount -->
+		<security:intercept-url pattern="/userAccount/actor/**" access="isAuthenticated()" />
+
 		<!-- PersonalData -->
 		<security:intercept-url pattern="/personalData/actor/**" access="isAuthenticated()" />
 
