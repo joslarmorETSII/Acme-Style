@@ -41,7 +41,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
     @Query("select s from Servise s order by s.subscriptions.size desc")
     Collection<Servise> topFiveServiseWithSubscriptions();
 
-    //Top 10 services with more answers about questions associated this services.
+    //Top 10 services with more subscriptions.
     @Query("select s from Servise s order by s.subscriptions.size desc")
     Collection<Servise> topTenServiseWithSubscriptions();
 

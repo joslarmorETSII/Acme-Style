@@ -127,6 +127,15 @@
 
 <fieldset>
     <div class="panel-body">
+        <legend><b><spring:message code="dash.ratioQuestionsServicesByStylists"/></b></legend>
+
+        <jstl:out value="${ratioQuestionsServicesByStylists}"/><br>
+    </div>
+</fieldset>
+<br/>
+
+<fieldset>
+    <div class="panel-body">
         <b><spring:message code="dash.avgAndSqrtCommentsPerUser"/></b>
         <br/>
         <h4><jstl:out value=" AVG: "/><jstl:out value="${avgAndSqrtCommentsPerUser[0]}"/> <br/></h4>
