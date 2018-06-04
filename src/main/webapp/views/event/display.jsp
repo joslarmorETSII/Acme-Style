@@ -36,7 +36,8 @@
                         <b><spring:message code="event.description" /></b><jstl:out value="${event.description}"/><br>
 
                         <div class="pull-left">
-                            <b><spring:message code="event.moment" /></b><jstl:out value="${event.moment}"/><br>
+                            <spring:message var="patternDate" code="event.pattern.date" />
+                            <b><spring:message code="event.moment"/>:&nbsp;</b> <fmt:formatDate value="${event.moment}" pattern="${patternDate}"/>
                         </div>
                     </div>
 

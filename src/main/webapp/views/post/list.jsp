@@ -34,7 +34,7 @@
                     <div class="panel-body">
                             <div class="pull-right">
                             <jstl:if test="${row.raffle}">
-                                <img src="http://1.bp.blogspot.com/-bkJooiCloYQ/UrsYojHuF3I/AAAAAAAAIGY/aWFiQRGWzGE/s1600/Imagen-animada-Regalos-de-navidad-64.gif" width="150px" height="100%" class="img-responsive" />
+                                <img src="http://1.bp.blogspot.com/-bkJooiCloYQ/UrsYojHuF3I/AAAAAAAAIGY/aWFiQRGWzGE/s1600/Imagen-animada-Regalos-de-navidad-64.gif" width="100px" height="100%" class="img-responsive" />
                             </jstl:if>
                             </div>
                         <center>
@@ -42,8 +42,9 @@
                         </center>
                         <p><jstl:out value="${row.description}"/><br><p>
                         <div class="thumbnail">
-                            <img src="${row.picture}" width="500px" height="100%" class="img-responsive" />
-
+                            <center>
+                                <img src="${row.picture}" width="500px" height="100%" class="img-responsive" />
+                            </center>
                         <security:authorize access="hasRole('USER')">
                         <div class="container">
                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#${row.id}">Add to Panel</button>

@@ -37,7 +37,8 @@
                                     <br/>
                                     <b><spring:message code="post.reward"/>:&nbsp;</b> <jstl:out value="${row.reward}" />
                                     <br/>
-                                    <b><spring:message code="post.endDate"/>:&nbsp;</b> <jstl:out value="${row.endDate}" />
+                                    <spring:message var="patternDate" code="event.pattern.date" />
+                                    <b><spring:message code="post.endDate"/>:&nbsp;</b> <fmt:formatDate value="${row.endDate}" pattern="${patternDate}"/>
                                     <br/>
                                 </jstl:if>
 

@@ -51,6 +51,8 @@
             <spring:message code="event.description" var="headerTag" />
             <display:column property="description" title="${headerTag}"/>
 
+
+
             <spring:message code="event.celebrationDate" var="headerTag" />
             <display:column property="celebrationDate" title="${headerTag}" format="${formatDate}" />
 
