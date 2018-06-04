@@ -89,14 +89,18 @@
                                 <legend><spring:message code="servise.questions" /> </legend>
                             </center>
                             <b><spring:message code="question.text" /></b> <jstl:out value="${question.text}"/><br>
-                            <b><spring:message code="question.moment" /></b> <jstl:out value="${question.moment}"/><br>
+
+                            <spring:message var="patternDate" code="event.pattern.date" />
+                            <b><spring:message code="question.moment"/>:&nbsp;</b> <fmt:formatDate value="${question.moment}" pattern="${patternDate}"/>
                             <center>
                                 <legend><spring:message code="question.answers" /> </legend>
                             </center>
                              <jstl:forEach var="answer" items="${question.answers}">
                                 <div class="panel-body">
                                     <b><spring:message code="answer.text" /></b> <jstl:out value="${answer.text}"/><br>
-                                    <b><spring:message code="answer.moment" /></b> <jstl:out value="${answer.moment}"/><br>
+
+                                    <spring:message var="patternDate" code="event.pattern.date" />
+                                    <b><spring:message code="answer.moment"/>:&nbsp;</b> <fmt:formatDate value="${answer.moment}" pattern="${patternDate}"/>
                                 </div>
                              </jstl:forEach>
 

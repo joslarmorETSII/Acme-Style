@@ -14,6 +14,14 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
+<jstl:if test="${pageContext.response.locale.language == 'es' }">
+    <jstl:set value="{0,date,dd/MM/yyyy HH:mm}" var="formatDate"/>
+</jstl:if>
+
+<jstl:if test="${pageContext.response.locale.language == 'en' }">
+    <jstl:set value="{0,date,yyyy/MM/dd HH:mm}" var="formatDate"/>
+</jstl:if>
+
 
 <div class="container">
     <div class="col-md-10 col-md-offset-1">
@@ -21,7 +29,10 @@
 
             <acme:column code="question.servise" value="${row.servise.title} " />
             <acme:column code="question.text" value="${row.text}"/>
-            <acme:column code="question.moment" value="${row.moment}"/>
+
+
+            <spring:message var="moment" code="question.moment"/>
+            <display:column property="moment" title="${moment}" format="${formatDate}" sortable="true" />
 
             <display:column >
                 <acme:button url="answer/actor/list.do?questionId=${row.id}" code="question.answers"/>
