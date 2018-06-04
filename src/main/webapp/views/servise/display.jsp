@@ -78,16 +78,16 @@
     </div>
 </jstl:forEach>
 <div class="well">
-    <center>
-        <legend><spring:message code="servise.questions" /> </legend>
-    </center>
+
     <jstl:forEach var="question" items="${servise.questions}">
         <div class="container">
             <div class="comment">
                 <div class="col-md-12"><br><br><br>
                     <div class="panel panel-default">
                         <div class="panel-body">
-
+                            <center>
+                                <legend><spring:message code="servise.questions" /> </legend>
+                            </center>
                             <b><spring:message code="question.text" /></b> <jstl:out value="${question.text}"/><br>
                             <b><spring:message code="question.moment" /></b> <jstl:out value="${question.moment}"/><br>
                             <center>

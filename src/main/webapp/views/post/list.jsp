@@ -32,7 +32,7 @@
             <div class="col-md-12"><br><br><br>
                 <div class="panel panel-default">
                     <div class="panel-body">
-<div class="pull-right">
+                            <div class="pull-right">
                             <jstl:if test="${row.raffle}">
                                 <img src="http://1.bp.blogspot.com/-bkJooiCloYQ/UrsYojHuF3I/AAAAAAAAIGY/aWFiQRGWzGE/s1600/Imagen-animada-Regalos-de-navidad-64.gif" width="150px" height="100%" class="img-responsive" />
                             </jstl:if>

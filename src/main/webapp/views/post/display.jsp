@@ -96,7 +96,7 @@
                                     </center>
                                     <p><jstl:out value="${comment.text}"/><br><br>
 
-                                    <p><jstl:out value="${row.moment}"/><br><br>
+                                    <fmt:formatDate value="${comment.moment}" pattern="${patternDate}"/>
 
                                 </div>
                             </div>

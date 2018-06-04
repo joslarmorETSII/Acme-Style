@@ -22,16 +22,19 @@
     <div class="row">
         <div class="col-md-12"><br><br><br>
             <div class="panel panel-default">
-                <div class="panel-body">
+                <br class="panel-body">
                     <display:table name="msg.actorReceivers" pagesize="${msg.actorReceivers.size()}" class="displaytag" requestURI="message/actor/details.do" id="row">
                         <spring:message code="message.recipient" var="title"/>
                         <display:column property="name" title="${title}"/>
                     </display:table>
-                        <acme:textbox code="message.sender" path="msg.actorSender.name" readonly="true"/>
-                        <acme:textbox code="message.priority" path="msg.priority" readonly="true"/>
-                        <acme:textbox code="message.subject" path="msg.subject" readonly="true"/>
-                        <acme:textbox code="message.momentSent" path="msg.moment" readonly="true"/>
-                        <acme:textarea code="message.body" path="msg.body" readonly="true"/>
+                    <b><spring:message code="message.sender"/>:&nbsp;</b> <jstl:out value="${msg.actorSender.name}" /></br>
+                        <b><spring:message code="message.priority"/>:&nbsp;</b> <jstl:out value="${msg.priority}" /></br>
+                        <b><spring:message code="message.subject"/>:&nbsp;</b> <jstl:out value="${msg.subject}" /></br>
+
+                        <spring:message var="patternDate" code="event.pattern.date" />
+                        <b><spring:message code="message.moment"/>:&nbsp;</b><fmt:formatDate value="${msg.moment}" pattern="${patternDate}"/></br>
+                        <b><spring:message code="message.body"/>:&nbsp;</b> <jstl:out value="${msg.body}" /></br>
+
                     </div>
                 </div>
 
