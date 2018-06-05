@@ -58,7 +58,7 @@ public class QuestionAdministratorController extends AbstractController {
     protected ModelAndView createEditModelAndView(final Question question, final String messageCode) {
         ModelAndView result;
 
-        result = new ModelAndView("question/edit");
+        result = new ModelAndView("question/add");
         result.addObject("question", question);
         result.addObject("actionURI","question/administrator/edit.do");
         result.addObject("message", messageCode);
