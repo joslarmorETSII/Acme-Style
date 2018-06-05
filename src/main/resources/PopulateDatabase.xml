@@ -424,7 +424,7 @@
 	<!-- Store -->
 
 	<bean id="store1" class="domain.Store">
-		<property name="banner" value="https://www.zara.es"/>
+		<property name="banner" value="http://static2.laverdad.es/www/multimedia/201802/23/media/cortadas/1510041482_232883_1510044376_noticia_normal-kGEC-U501049649118VW-624x385@La%20Verdad.jpg"/>
 		<property name="creditCard" ref="creditCard1"/>
 		<property name="gpsCoordinates" ref="gpsCoordinates1"/>
 		<property name="manager" ref="manager1"/>
@@ -437,7 +437,7 @@
 	</bean>
 
 	<bean id="store2" class="domain.Store">
-		<property name="banner" value="https://www.stradivarius.com/es/"/>
+		<property name="banner" value="http://www.nevada.shopping/sites/nevada.shopping/files/styles/large/public/field/image/stradivarius.jpg?itok=MWiIVO6R"/>
 		<property name="creditCard" ref="creditCard1"/>
 		<property name="gpsCoordinates" ref="gpsCoordinates2"/>
 		<property name="manager" ref="manager1"/>
