@@ -51,6 +51,36 @@
 </div>
 
     <center>
+        <legend><spring:message code="servise.stores" /> </legend>
+    </center>
+    <jstl:forEach var="store" items="${servise.stores}">
+        <div class="container">
+            <div class="comment">
+                <div class="col-md-12"><br><br><br>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+
+                            <center>
+                                <h4><jstl:out value="${store.title}"/></h4>
+                            </center>
+
+                            <div class="thumbnail">
+                                <img src="${store.banner}" width="500px" height="100%" class="img-responsive" />
+                            </div>
+                            <b><spring:message code="store.gpsCoordinates.name" /></b> <jstl:out value="${store.gpsCoordinates.name}"/><br>
+
+                            <b><spring:message code="store.gpsCoodenates.longitude" /></b> <jstl:out value="${store.gpsCoordinates.longitude}"/><br>
+
+                            <b><spring:message code="store.gpsCoodenates.latitude" /></b> <jstl:out value="${store.gpsCoordinates.latitude}"/><br>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </jstl:forEach>
+
+    <center>
         <legend><spring:message code="servise.feedback" /> </legend>
     </center>
     <jstl:forEach var="feedback" items="${servise.feedbacks}">

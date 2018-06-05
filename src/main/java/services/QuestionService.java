@@ -65,7 +65,9 @@ public class QuestionService {
 
     public void deleteAll(Collection<Question> questions){
         for(Question q:questions){
-            answerService.deleteAll(q.getAnswers());
+            if(q.getAnswers()!=null)
+                answerService.deleteAll(q.getAnswers());
+            q.setAnswers(new ArrayList<Answer>());
             delete(q);
         }
     }

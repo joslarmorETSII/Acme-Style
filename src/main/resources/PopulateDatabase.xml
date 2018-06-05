@@ -355,6 +355,7 @@
 		<property name="servises">
 			<list>
 				<ref bean="servise1"/>
+				<ref bean="servise4" />
 			</list>
 		</property>
 		<property name="actions">
@@ -631,6 +632,37 @@
 		<property name="feedbacks">
 			<list>
 				<ref bean="feedback1" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="servise4" class="domain.Servise">
+		<property name="title" value="Service4"/>
+		<property name="description" value="Description4"/>
+		<property name="publicationDate" value="2018/01/01 15:30"/>
+		<property name="picture" value="http://www.image.com"/>
+		<property name="taboo" value="true"/>
+		<property name="price" value="90.0"/>
+		<property name="discount" value="5"/>
+		<property name="questions">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="subscriptions">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="creator" ref="photographer1"/>
+		<property name="stores">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="feedbacks">
+			<list>
+				<null/>
 			</list>
 		</property>
 	</bean>

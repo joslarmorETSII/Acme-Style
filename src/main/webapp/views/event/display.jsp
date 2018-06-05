@@ -42,7 +42,23 @@
                         <b><spring:message code="event.tipo" />:&nbsp;</b><jstl:out value="${event.tipo}"/><br>
                         <b><spring:message code="event.price" />:&nbsp;</b><jstl:out value="${event.price}"/><br>
                         <b><spring:message code="event.location" />:&nbsp;</b><jstl:out value="${event.location.name}"/><br>
+                        <center>
+                            <legend><spring:message code="event.artists" /> </legend>
+                        </center>
+                        <jstl:forEach var="artist" items="${event.artists}">
+                            <div class="container">
+                                <div class="comment">
+                                    <div class="col-md-12">
+                                        <br class="panel panel-default">
+                                            <div class="panel-body">
 
+                                                <h4><jstl:out value="${artist.name}"/></h4></br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </jstl:forEach>
                     </div>
 
 
