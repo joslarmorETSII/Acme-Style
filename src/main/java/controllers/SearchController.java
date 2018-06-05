@@ -40,6 +40,9 @@ public class SearchController extends AbstractController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private AdministratorService administratorService;
+
 	// Constructors -----------------------------------------------------------
 
 	public SearchController() {
@@ -52,14 +55,10 @@ public class SearchController extends AbstractController {
 	public ModelAndView search(@RequestParam String keyword ){
 		ModelAndView result;
 		Collection<Actor> actors = userService.searchActorsPerKeyword(keyword);
-		Collection<Actor> res = new ArrayList<Actor>();
-
+		Collection<Actor> res = new ArrayList<Actor>(actors);
 		result = new ModelAndView("search/search");
 
-		for(Actor a : actors){
-			if(!a.getUserAccount().getAuthorities().equals(Authority.ADMINISTRATOR))
-				res.add(a);
-		}
+		res.remove(administratorService.findAll().iterator().next());
 
 		result.addObject("keyword", keyword);
 		result.addObject("servises", serviseService.searchServisesPerKeyword(keyword));

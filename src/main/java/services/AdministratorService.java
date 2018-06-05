@@ -49,6 +49,10 @@ public class AdministratorService {
         return result;
     }
 
+    public Collection<Administrator> findAll(){
+        return this.administratorRepository.findAll();
+    }
+
     // Other business methods -------------------------------------------------
 
     public Administrator findByPrincipal() {
