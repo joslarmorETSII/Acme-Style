@@ -9,22 +9,16 @@ import repositories.StoreRepository;
 
 @Transactional
 @Component
-public class StoreToStringConverter implements Converter<String, Store> {
-
-    @Autowired
-    private StoreRepository storeRepository;
+public class StoreToStringConverter implements Converter<Store, String> {
 
     @Override
-    public Store convert(String text) {
-        Store result;
-        int id;
+    public String convert(Store entity) {
 
-        try {
-            id = Integer.valueOf(text);
-            result = storeRepository.findOne(id);
-        } catch (Throwable oops) {
-            throw new IllegalArgumentException(oops);
-        }
+        String result;
+        if (entity == null)
+            result = null;
+        else
+            result = String.valueOf(entity.getId());
 
         return result;
     }

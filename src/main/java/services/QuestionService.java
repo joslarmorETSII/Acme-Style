@@ -28,6 +28,9 @@ public class QuestionService {
     @Autowired
     private AnswerService answerService;
 
+    @Autowired
+    private ActorService    actorService;
+
     // Supporting services ----------------------------------------------------
 
 
@@ -55,8 +58,11 @@ public class QuestionService {
     }
 
     public void delete(Question question){
+        Assert.isTrue(actorService.isAdministrator());
+        answerService.deleteAll(question.getAnswers());
         questionRepository.delete(question);
     }
+
     public void deleteAll(Collection<Question> questions){
         for(Question q:questions){
             answerService.deleteAll(q.getAnswers());
