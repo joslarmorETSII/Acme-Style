@@ -1,6 +1,7 @@
-package controllers;
+package controllers.Actor;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import controllers.AbstractController;
 import domain.Actor;
 import domain.Gallery;
 import domain.Profile;
@@ -21,7 +22,7 @@ import java.util.Collection;
 
 @Controller
 @RequestMapping("/gallery/actor")
-public class GalleryController extends AbstractController{
+public class GalleryActorController extends AbstractController {
 
     // Services --------------------------------------------
 
@@ -36,7 +37,7 @@ public class GalleryController extends AbstractController{
 
     // Constructor -----------------------------------------
 
-    public GalleryController() {
+    public GalleryActorController() {
         super();
     }
 

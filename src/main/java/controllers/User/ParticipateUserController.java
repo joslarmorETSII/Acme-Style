@@ -1,5 +1,6 @@
-package controllers;
+package controllers.User;
 
+import controllers.AbstractController;
 import domain.CreditCard;
 import domain.Event;
 import domain.Participate;
@@ -22,7 +23,7 @@ import java.util.Date;
 
 @Controller
 @RequestMapping("/participate/user")
-public class ParticipateController extends AbstractController {
+public class ParticipateUserController extends AbstractController {
 
     // Supporting services --------------------------------------
 
@@ -39,7 +40,7 @@ public class ParticipateController extends AbstractController {
 
     // Constructor ----------------------------------------------
 
-    public ParticipateController() { super(); }
+    public ParticipateUserController() { super(); }
 
 
     // Subscribe ---------------------------------------------------------------

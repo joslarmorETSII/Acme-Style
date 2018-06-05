@@ -1,5 +1,6 @@
-package controllers;
+package controllers.Actor;
 
+import controllers.AbstractController;
 import domain.Actor;
 import domain.Answer;
 import domain.Question;
@@ -17,7 +18,7 @@ import java.util.Collection;
 
 @Controller
 @RequestMapping("/answer/actor")
-public class AnswerController extends AbstractController{
+public class AnswerActorController extends AbstractController {
     // Services ----------------------------------------------
 
     @Autowired
@@ -28,7 +29,7 @@ public class AnswerController extends AbstractController{
 
     // Constructor --------------------------------------------
 
-    public AnswerController() {
+    public AnswerActorController() {
         super();
     }
 

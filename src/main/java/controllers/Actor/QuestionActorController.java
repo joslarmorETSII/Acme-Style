@@ -73,12 +73,7 @@ public class QuestionActorController extends AbstractController {
         } else
             try {
                 questionService.save(question);
-                if(actor.getUserAccount().getAuthorities().equals(Authority.USER)) {
-                    result = new ModelAndView("redirect: /servise/user/list.do");
-                }else{
-                    result = new ModelAndView("redirect: /servise/artist/list.do");
-
-                }
+                result = new ModelAndView("redirect: /servise/user/list.do");
             } catch (Throwable oops) {
                 result = createEditModelAndView(question, "general.commit.error");
             }
