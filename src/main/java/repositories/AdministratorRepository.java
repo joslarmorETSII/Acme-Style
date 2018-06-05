@@ -33,9 +33,9 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
     @Query("select count(s) from Servise s where s.discount >= 5 ")
     Integer numberServiseWithDiscountOverFive();
 
-    //The name of servise with more suscriptions and the sum of suscriptions of this servise
-    @Query("select s1.title, count(s1) from Servise s1 where s1.subscriptions.size >= (select max(s.subscriptions.size) from Servise s)")
-    Object[] serviseBestSuscription();
+    //The name of servise with more suscriptions
+    @Query("select s1 from Servise s1 where s1.subscriptions.size >= (select max(s.subscriptions.size) from Servise s)")
+    Collection<Servise> serviseBestSuscription();
 
     //Top 5 services with more subscriptions.
     @Query("select s from Servise s order by s.subscriptions.size desc")
@@ -60,7 +60,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 
     //The services that have at least 60% more answers than the average about their questions.
     @Query("select s from Servise s join s.questions q where q.answers.size > (select avg(q1.answers.size)*1.6 from Question q1)")
-    Double servicesMoreAnsThan60PercentAboutQuestiosn();
+    Collection<Servise> servicesMoreAnsThan60PercentAboutQuestiosn();
 
     //The average, the minimum, and the maximum number of stores per service.
     @Query("select avg(s.stores.size), min(s.stores.size), max(s.stores.size) from Servise s")
@@ -81,7 +81,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 
     //The number of like of a post per Category.
     @Query("select count(p.lik), c.name from Post p join p.categories c where p.lik > 0 group by c")
-    Object[] numberOfLikePostPerCategory();
+    Collection<String> numberOfLikePostPerCategory();
 
     //A listing of posts in descending order by moment of creation.
     @Query("select p from Post p order by p.moment desc")
@@ -89,7 +89,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 
     //The number of hearts of a post per Category.
     @Query("select count(p.heart), c.name from Post p join p.categories c where p.heart > 0 group by c")
-    Object[] numberOfHeartPostPerCategory();
+    Collection<String> numberOfHeartPostPerCategory();
 
     //Top 10 post, posts with more likes, loves.
     @Query("select p from Post p order by p.lik, p.heart")

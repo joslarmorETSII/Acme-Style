@@ -18,6 +18,7 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="for" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jstl:if test="${pageContext.response.locale.language == 'es' }">
     <jstl:set value="{0,date,dd/MM/yyyy HH:mm}" var="formatDate"/>
@@ -79,8 +80,21 @@
     <div class="panel-body">
         <legend class="text-center"><b><spring:message code="dash.serviseBestSuscription"/></b></legend>
         <br/>
-        <h4><jstl:out value=" NAME: "/><jstl:out value="${serviseBestSuscription[0]}"/> <br/></h4>
-        <h4><jstl:out value=" COUNT: "/><jstl:out value="${serviseBestSuscription[1]}"/> <br/></h4>
+
+        <display:table name="serviseBestSuscription" id="row10" pagesize="5" class="table table-striped table-hover" requestURI="dashboard/administrator/dashboard.do">
+
+            <acme:column code="servise.title" value="${row10.title} " />
+            <acme:column code="servise.description" value="${row10.description}"/>
+            <spring:message var="publicationDate" code="servise.publicationDate"/>
+            <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
+            <acme:column code="servise.taboo" value="${row10.taboo}"/>
+            <spring:message code="servise.picture" var="pic"/>
+            <display:column title="${pic}"><img src="${row10.picture}" alt="no image" width="130" height="100"></display:column>
+
+            <spring:message var="formatDate" code="event.format.date"/>
+            <acme:column code="servise.price" value="${row10.price}"/>
+
+        </display:table>
     </div>
 </fieldset>
 <br/>
@@ -160,7 +174,18 @@
     <div class="panel-body">
         <legend class="text-center"><b><spring:message code="dash.servicesMoreAnsThan60PercentAboutQuestiosn"/></b></legend>
         <br/>
-        <h4><jstl:out value="${servicesMoreAnsThan60PercentAboutQuestiosn}"/><br></h4>
+        <display:table id="row0" name="servicesMoreAnsThan60PercentAboutQuestiosn" class="table table-striped table-hover" requestURI="${requestURI}"
+                       pagesize="5">
+
+            <acme:column code="servise.creator" value="${row0.creator.name} " />
+            <acme:column code="servise.title" value="${row0.title}"/>
+            <acme:column code="servise.description" value="${row0.description}"/>
+            <spring:message code="servise.picture" var="pic"/>
+            <display:column title="${pic}"><img src="${row0.picture}" alt="no image" width="130" height="100"></display:column>
+            <spring:message var="publicationDate" code="servise.publicationDate"/>
+            <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" />
+
+        </display:table>
     </div>
 </fieldset>
 <br/>
@@ -209,8 +234,10 @@
     <div class="panel-body">
         <legend class="text-center"><b><spring:message code="dash.numberOfLikePostPerCategory"/></b></legend>
         <br/>
-        <h4><jstl:out value=" LIKES: "/><jstl:out value="${numberOfLikePostPerCategory[0]}"/> <br/></h4>
-        <h4><jstl:out value=" NAME: "/><jstl:out value="${numberOfLikePostPerCategory[1]}"/> <br/></h4>
+        <for:forEach items="${numberOfLikePostPerCategory}" var="row12">
+            <h4><jstl:out value=" LIKES: "/><jstl:out value="${row12[0]}"/> </h4>
+            <h4><jstl:out value=" NAME: "/><jstl:out value="${row12[1]}"/> <br/></h4>
+        </for:forEach>
     </div>
 </fieldset>
 <br/>
@@ -249,8 +276,10 @@
     <div class="panel-body">
         <legend class="text-center"><b><spring:message code="dash.numberOfHeartPostPerCategory"/></b></legend>
         <br/>
-        <h4><jstl:out value=" SUM: "/><jstl:out value="${numberOfHeartPostPerCategory[0]}"/> <br/></h4>
-        <h4><jstl:out value=" NAME: "/><jstl:out value="${numberOfHeartPostPerCategory[1]}"/> <br/></h4>
+        <for:forEach items="${numberOfHeartPostPerCategory}" var="row11">
+        <h4><jstl:out value=" SUM: "/><jstl:out value="${row11[0]}"/> <br/></h4>
+        <h4><jstl:out value=" NAME: "/><jstl:out value="${row11[1]}"/> <br/></h4>
+        </for:forEach>
     </div>
 </fieldset>
 <br/>
@@ -259,9 +288,21 @@
     <div class="panel-body">
         <legend class="text-center"><b><spring:message code="dash.topTenPostsWithLikesLoves"/></b></legend>
         <br/>
-        <h4><jstl:out value=" TITLE: "/><jstl:out value="${topTenPostsWithLikesLoves[0]}"/> <br/></h4>
-        <h4><jstl:out value=" LIKES: "/><jstl:out value="${topTenPostsWithLikesLoves[1]}"/> <br/></h4>
-        <h4><jstl:out value=" LOVES: "/><jstl:out value="${topTenPostsWithLikesLoves[2]}"/> <br/></h4>
+        <display:table name="topTenPostsWithLikesLoves" id="row30" pagesize="5" class="table table-striped table-hover" requestURI="dashboard/administrator/dashboard.do">
+
+            <acme:column code="post.title" value="${row30.title} " />
+            <acme:column code="post.description" value="${row30.description}"/>
+            <spring:message var="moment" code="post.moment"/>
+            <display:column property="moment" title="${publicationDate}" format="${formatDate}" sortable="true" />
+            <spring:message var="endDate" code="post.endDate"/>
+            <display:column property="endDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
+            <spring:message code="post.picture" var="pic"/>
+            <display:column title="${pic}"><img src="${row30.picture}" alt="no image" width="130" height="100"></display:column>
+            <acme:column code="post.finalMode" value="${row30.finalMode}"/>
+            <acme:column code="post.hasWinner" value="${row30.hasWinner}"/>
+            <acme:column code="post.reward" value="${row30.reward} " />
+
+        </display:table>
     </div>
 </fieldset>
 <br/>

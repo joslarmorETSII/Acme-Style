@@ -62,7 +62,7 @@ public class StoreService {
         Assert.notNull(store);
 
         Assert.isTrue( store.getManager().equals(managerService.findByPrincipal()),"Not the manager of the store");
-        Assert.isTrue(store.getServises().isEmpty(),"The store has Servises");
+        Assert.isNull(store.getServises(),"The store has Servises");
         storeRepository.delete(store);
     }
 

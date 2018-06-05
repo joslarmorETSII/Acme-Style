@@ -96,7 +96,7 @@ public class AdministratorService {
         return this.administratorRepository.numberServiseWithDiscountOverFive();
     }
 
-    public Object[] serviseBestSuscription(){
+    public Collection<Servise> serviseBestSuscription(){
         return this.administratorRepository.serviseBestSuscription();
     }
 
@@ -132,7 +132,7 @@ public class AdministratorService {
         return this.administratorRepository.avgAndSqrtCommentsPerUser();
     }
 
-    public Double servicesMoreAnsThan60PercentAboutQuestiosn(){
+    public Collection<Servise> servicesMoreAnsThan60PercentAboutQuestiosn(){
         return this.administratorRepository.servicesMoreAnsThan60PercentAboutQuestiosn();
     }
 
@@ -148,17 +148,10 @@ public class AdministratorService {
         return this.administratorRepository.ratioEventsStoreVSEvents();
     }
 
-    public Object[] NumberOfLikePostPerCategory(){
-        return this.administratorRepository.numberOfLikePostPerCategory();
-    }
-
     public Collection <Post> listingPostByMomentOfCreation(){
         return this.administratorRepository.listingPostByMomentOfCreation();
     }
 
-    public Object[] NumberOfHeartPostPerCategory(){
-        return this.administratorRepository.numberOfHeartPostPerCategory();
-    }
 
     public Collection<Post> topTenPostsWithLikesLoves(){
         List<Post> result;
@@ -174,11 +167,11 @@ public class AdministratorService {
         return this.administratorRepository.avgMinMaxStoresPerService();
     }
 
-    public Object[] numberOfLikePostPerCategory(){
+    public Collection<String> numberOfLikePostPerCategory(){
         return this.administratorRepository.numberOfLikePostPerCategory();
     }
 
-    public Object[] numberOfHeartPostPerCategory(){
+    public Collection<String> numberOfHeartPostPerCategory(){
         return this.administratorRepository.numberOfHeartPostPerCategory();
     }
 

@@ -38,6 +38,14 @@
         <spring:message code="event.location" var="headerTag" />
         <display:column property="gpsCoordinates.name" title="${headerTag}"/>
 
+
+        <security:authorize access="hasRole('MANAGER')">
+            <display:column>
+                   <acme:button code="general.display" url="/store/display.do?storeId=${row.id}"/>
+            </display:column>
+        </security:authorize>
+
+
     </display:table>
 
         <security:authorize access="hasRole('MANAGER')">
