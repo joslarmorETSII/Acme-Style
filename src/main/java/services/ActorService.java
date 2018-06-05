@@ -178,6 +178,8 @@ public class ActorService {
         Assert.isTrue(!principal.getFollowings().contains(userToFollow),"You already follow this user");
         Assert.isTrue(principal.getId() != actorId,"Can't follow yourself");
         principal.getFollowings().add(userToFollow);
+        userToFollow.getFollowers().add(principal);
+        save(userToFollow);
 
         save(principal);
 
@@ -195,7 +197,8 @@ public class ActorService {
         Assert.isTrue(principal.getId() != actorId);
 
         userToUnFollow.getFollowers().remove(principal);
-
+        principal.getFollowings().remove(userToUnFollow);
+        save(userToUnFollow);
 
         save(principal);
 

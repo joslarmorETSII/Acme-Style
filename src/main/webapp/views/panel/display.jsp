@@ -36,9 +36,13 @@
                             <hr>
                         </center>
 
+                        <acme:button url="photo/user/edit.do?photoId=${row.id}" code="general.edit" />
 
-
-                        <acme:button url="photo/user/delete.do?photoId=${row.id}" code="general.delete" />
+                        <a href="photo/user/delete.do?photoId=${row.id}">
+                            <input name="delete" class="btn btn-danger"
+                                   value="<spring:message code="general.delete" />"
+                                   onclick="return confirm('<spring:message code="post.confirm.delete" />')" />
+                        </a>
 
                     </div>
                     

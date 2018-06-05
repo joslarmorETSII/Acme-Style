@@ -48,7 +48,12 @@
             <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
                 <acme:button url="/question/actor/add.do?serviseId=${servise.id}" code="question.add" />
             </security:authorize>
-            <acme:cancel code="general.cancel" url="/servise/listServisesPublished.do"/>
+            <security:authorize access="hasAnyRole('ADMINISTRATOR','MANAGER')">
+                <acme:cancel code="general.cancel" url="/servise/listServisesPublished.do"/>
+            </security:authorize>
+            <security:authorize access="!hasAnyRole('ADMINISTRATOR','MANAGER')">
+                <acme:cancel code="general.cancel" url="welcome/index.do"/>
+            </security:authorize>
         </div>
     </div>
 </div>

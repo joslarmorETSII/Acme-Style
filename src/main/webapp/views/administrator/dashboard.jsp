@@ -14,15 +14,27 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@taglib prefix="display" uri="http://displaytag.sf.net" %>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+<%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<jstl:if test="${pageContext.response.locale.language == 'es' }">
+    <jstl:set value="{0,date,dd/MM/yyyy HH:mm}" var="formatDate"/>
+</jstl:if>
 
+<jstl:if test="${pageContext.response.locale.language == 'en' }">
+    <jstl:set value="{0,date,yyyy/MM/dd HH:mm}" var="formatDate"/>
+</jstl:if>
 <!-- Queries level c -->
+
+<div class="container">
+    <div class="col-md-10 col-md-offset-1">
 
 <fieldset>
     <div class="panel-body">
-        <b><spring:message code="dash.avgMinMaxServicesPerPhotographer"/></b>
+
+         <legend class="text-center"> <b><spring:message code="dash.avgMinMaxServicesPerPhotographer"/></b></legend>
         <br/>
         <h4><jstl:out value=" AVG: "/><jstl:out value="${avgMinMaxServicesPerPhotographer[0]}"/> <br/></h4>
         <h4><jstl:out value=" MIN: "/><jstl:out value="${avgMinMaxServicesPerPhotographer[1]}"/> <br/></h4>
@@ -31,9 +43,10 @@
 </fieldset>
 <br/>
 
+
 <fieldset>
     <div class="panel-body">
-        <b><spring:message code="dash.avgMinMaxServicesPerMakeupArtist"/></b>
+        <legend class="text-center"> <b><spring:message code="dash.avgMinMaxServicesPerMakeupArtist"/></b></legend>
         <br/>
         <h4><jstl:out value=" AVG: "/><jstl:out value="${avgMinMaxServicesPerMakeupArtist[0]}"/> <br/></h4>
         <h4><jstl:out value=" MIN: "/><jstl:out value="${avgMinMaxServicesPerMakeupArtist[1]}"/> <br/></h4>
@@ -44,7 +57,7 @@
 
 <fieldset>
     <div class="panel-body">
-        <b><spring:message code="dash.avgMinMaxServicesPerStylist"/></b>
+        <legend class="text-center"><b><spring:message code="dash.avgMinMaxServicesPerStylist"/></b></legend>
         <br/>
         <h4><jstl:out value=" AVG: "/><jstl:out value="${avgMinMaxServicesPerStylist[0]}"/> <br/></h4>
         <h4><jstl:out value=" MIN: "/><jstl:out value="${avgMinMaxServicesPerStylist[1]}"/> <br/></h4>
@@ -55,16 +68,16 @@
 
 <fieldset>
     <div class="panel-body">
-        <legend><b><spring:message code="dash.numberServiseWithDiscountOverFive"/></b></legend>
+        <legend class="text-center"><b><spring:message code="dash.numberServiseWithDiscountOverFive"/></b></legend>
 
-        <jstl:out value="${numberServiseWithDiscountOverFive}"/><br>
+        <h4><jstl:out value="${numberServiseWithDiscountOverFive}"/><br></h4>
     </div>
 </fieldset>
 <br/>
 
 <fieldset>
     <div class="panel-body">
-        <b><spring:message code="dash.serviseBestSuscription"/></b>
+        <legend class="text-center"><b><spring:message code="dash.serviseBestSuscription"/></b></legend>
         <br/>
         <h4><jstl:out value=" NAME: "/><jstl:out value="${serviseBestSuscription[0]}"/> <br/></h4>
         <h4><jstl:out value=" COUNT: "/><jstl:out value="${serviseBestSuscription[1]}"/> <br/></h4>
@@ -74,42 +87,41 @@
 
 
 <fieldset>
-    <b><spring:message code="dash.topFiveServiseWithSubscriptions"/></b>
-    <display:table name="topFiveServiseWithSubscriptions" id="row" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}">
+    <legend class="text-center"><b><spring:message code="dash.topFiveServiseWithSubscriptions"/></b></legend>
+    <display:table name="topFiveServiseWithSubscriptions" id="row1" pagesize="5" class="table table-striped table-hover" requestURI="dashboard/administrator/dashboard.do">
 
-        <acme:column code="servise.title" value="${row.title} " />
-        <acme:column code="servise.description" value="${row.description}"/>
+        <acme:column code="servise.title" value="${row1.title} " />
+        <acme:column code="servise.description" value="${row1.description}"/>
         <spring:message var="publicationDate" code="servise.publicationDate"/>
         <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
         <spring:message var="formatDate" code="event.format.date"/>
-        <acme:column code="servise.taboo" value="${row.taboo}"/>
+        <acme:column code="servise.taboo" value="${row1.taboo}"/>
         <spring:message code="servise.picture" var="pic"/>
-        <display:column title="${pic}"><img src="${row.picture}" alt="no image" width="130" height="100"></display:column>
+        <display:column title="${pic}"><img src="${row1.picture}" alt="no image" width="130" height="100"></display:column>
 
-        <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
-        <acme:column code="servise.price" value="${row.price}"/>
-        <acme:column code="servise.discount" value="${row.discount}"/>
+        <acme:column code="servise.price" value="${row1.price}"/>
+        <acme:column code="servise.discount" value="${row1.discount}"/>
 
     </display:table>
 </fieldset>
 
 
         <fieldset>
-            <b><spring:message code="dash.topTenServiseWithSubscriptions"/></b>
-            <display:table name="topTenServiseWithSubscriptions" id="row" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}">
+            <legend class="text-center"><b><spring:message code="dash.topTenServiseWithSubscriptions"/></b></legend>
+            <display:table name="topTenServiseWithSubscriptions" id="row2" pagesize="5" class="table table-striped table-hover" requestURI="dashboard/administrator/dashboard.do">
 
-                <acme:column code="servise.title" value="${row.title} " />
-                <acme:column code="servise.description" value="${row.description}"/>
+                <acme:column code="servise.title" value="${row2.title} " />
+                <acme:column code="servise.description" value="${row2.description}"/>
                 <spring:message var="publicationDate" code="servise.publicationDate"/>
                 <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
-                <acme:column code="servise.taboo" value="${row.taboo}"/>
+                <acme:column code="servise.taboo" value="${row2.taboo}"/>
                 <spring:message code="servise.picture" var="pic"/>
-                <display:column title="${pic}"><img src="${row.picture}" alt="no image" width="130" height="100"></display:column>
+                <display:column title="${pic}"><img src="${row2.picture}" alt="no image" width="130" height="100"></display:column>
 
 
                 <spring:message var="formatDate" code="event.format.date"/>
-                <acme:column code="servise.price" value="${row.price}"/>
-                <acme:column code="servise.discount" value="${row.discount}"/>
+                <acme:column code="servise.price" value="${row2.price}"/>
+                <acme:column code="servise.discount" value="${row2.discount}"/>
 
             </display:table>
         </fieldset>
@@ -118,25 +130,25 @@
 
 <fieldset>
     <div class="panel-body">
-        <legend><b><spring:message code="dash.avgQuestionPerServiseForAllPhotographer"/></b></legend>
+        <legend class="text-center"><b><spring:message code="dash.avgQuestionPerServiseForAllPhotographer"/></b></legend>
 
-        <jstl:out value="${avgQuestionPerServiseForAllPhotographer}"/><br>
+        <h4><jstl:out value="${avgQuestionPerServiseForAllPhotographer}"/><br></h4>
     </div>
 </fieldset>
 <br/>
 
 <fieldset>
     <div class="panel-body">
-        <legend><b><spring:message code="dash.ratioQuestionsServicesByStylists"/></b></legend>
+        <legend class="text-center"><b><spring:message code="dash.ratioQuestionsServicesByStylists"/></b></legend>
 
-        <jstl:out value="${ratioQuestionsServicesByStylists}"/><br>
+       <h4> <jstl:out value="${ratioQuestionsServicesByStylists}"/><br></h4>
     </div>
 </fieldset>
 <br/>
 
 <fieldset>
     <div class="panel-body">
-        <b><spring:message code="dash.avgAndSqrtCommentsPerUser"/></b>
+        <legend class="text-center"><b><spring:message code="dash.avgAndSqrtCommentsPerUser"/></b></legend>
         <br/>
         <h4><jstl:out value=" AVG: "/><jstl:out value="${avgAndSqrtCommentsPerUser[0]}"/> <br/></h4>
         <h4><jstl:out value=" SQRT: "/><jstl:out value="${avgAndSqrtCommentsPerUser[1]}"/> <br/></h4>
@@ -146,16 +158,16 @@
 
 <fieldset>
     <div class="panel-body">
-        <legend><b><spring:message code="dash.servicesMoreAnsThan60PercentAboutQuestiosn"/></b></legend>
-
-        <jstl:out value="${servicesMoreAnsThan60PercentAboutQuestiosn}"/><br>
+        <legend class="text-center"><b><spring:message code="dash.servicesMoreAnsThan60PercentAboutQuestiosn"/></b></legend>
+        <br/>
+        <h4><jstl:out value="${servicesMoreAnsThan60PercentAboutQuestiosn}"/><br></h4>
     </div>
 </fieldset>
 <br/>
 
 <fieldset>
     <div class="panel-body">
-        <b><spring:message code="dash.avgMinMaxStoresPerService"/></b>
+        <legend class="text-center"><b><spring:message code="dash.avgMinMaxStoresPerService"/></b></legend>
         <br/>
         <h4><jstl:out value=" AVG: "/><jstl:out value="${avgMinMaxStoresPerService[0]}"/> <br/></h4>
         <h4><jstl:out value=" MIN: "/><jstl:out value="${avgMinMaxStoresPerService[1]}"/> <br/></h4>
@@ -166,7 +178,7 @@
 
 <fieldset>
     <div class="panel-body">
-        <b><spring:message code="dash.avgSqrtEventsPerManager"/></b>
+        <legend class="text-center"><b><spring:message code="dash.avgSqrtEventsPerManager"/></b></legend>
         <br/>
         <h4><jstl:out value=" AVG: "/><jstl:out value="${avgSqrtEventsPerManager[0]}"/> <br/></h4>
         <h4><jstl:out value=" SQRT: "/><jstl:out value="${avgSqrtEventsPerManager[1]}"/> <br/></h4>
@@ -176,7 +188,7 @@
 
 <fieldset>
     <div class="panel-body">
-        <b><spring:message code="dash.avgSqrtParticipatersParticipateAEventStore"/></b>
+        <legend class="text-center"><b><spring:message code="dash.avgSqrtParticipatersParticipateAEventStore"/></b></legend>
         <br/>
         <h4><jstl:out value=" AVG: "/><jstl:out value="${avgSqrtParticipatersParticipateAEventStore[0]}"/> <br/></h4>
         <h4><jstl:out value=" SQRT: "/><jstl:out value="${avgSqrtParticipatersParticipateAEventStore[1]}"/> <br/></h4>
@@ -186,16 +198,16 @@
 
 <fieldset>
     <div class="panel-body">
-        <legend><b><spring:message code="dash.ratioEventsStoreVSEvents"/></b></legend>
+        <legend class="text-center"><b><spring:message code="dash.ratioEventsStoreVSEvents"/></b></legend>
 
-        <jstl:out value="${ratioEventsStoreVSEvents}"/><br>
+       <h4> <jstl:out value="${ratioEventsStoreVSEvents}"/><br></h4>
     </div>
 </fieldset>
 <br/>
 
 <fieldset>
     <div class="panel-body">
-        <b><spring:message code="dash.numberOfLikePostPerCategory"/></b>
+        <legend class="text-center"><b><spring:message code="dash.numberOfLikePostPerCategory"/></b></legend>
         <br/>
         <h4><jstl:out value=" LIKES: "/><jstl:out value="${numberOfLikePostPerCategory[0]}"/> <br/></h4>
         <h4><jstl:out value=" NAME: "/><jstl:out value="${numberOfLikePostPerCategory[1]}"/> <br/></h4>
@@ -204,25 +216,30 @@
 <br/>
 
         <fieldset>
-            <b><spring:message code="dash.listingPostByMomentOfCreation"/></b>
-            <display:table name="listingPostByMomentOfCreation" id="row" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}">
+            <legend class="text-center"><b><spring:message code="dash.listingPostByMomentOfCreation"/></b></legend>
+            <display:table name="listingPostByMomentOfCreation" id="post" pagesize="5" class="table table-striped table-hover" requestURI="dashboard/administrator/dashboard.do">
 
-                <acme:column code="post.title" value="${row.title} " />
-                <acme:column code="post.description" value="${row.description}"/>
-                <spring:message var="moment" code="post.moment"/>
-                <display:column property="moment" title="${publicationDate}" format="${formatDate}" sortable="true" />
-                <spring:message var="endDate" code="post.endDate"/>
-                <display:column property="endDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
-                <spring:message code="post.picture" var="pic"/>
-                <display:column title="${pic}"><img src="${row.picture}" alt="no image" width="130" height="100"></display:column>
+                <spring:message code="post.title" var="titleTag" />
+                <display:column property="title" title="${titleTag}" />
 
 
-                <acme:column code="post.price" value="${row.price}"/>
-                <acme:column code="post.discount" value="${row.reward}"/>
+                <spring:message code="post.description" var="descriptionTag" />
+                <display:column property="description" title="${descriptionTag}" />
 
-                <acme:column code="post.finalMode" value="${row.finalMode}"/>
-                <acme:column code="post.hasWinner" value="${row.hasWinner}"/>
-                <acme:column code="post.reward" value="${row.reward} " />
+                <spring:message code="post.moment" var="momentTag" />
+                <display:column property="moment" title="${momentTag}" format="${formatDate}" />
+
+                <spring:message code="post.endDate" var="endDateTag" />
+                <display:column property="endDate" title="${endDateTag}" format="${formatDate}" />
+
+                <spring:message code="post.finalMode" var="finalModeTag" />
+                <display:column property="finalMode" title="${finalModeTag}" />
+
+                <spring:message code="post.hasWinner" var="hasWinnerTag" />
+                <display:column property="hasWinner" title="${hasWinnerTag}" />
+
+                <spring:message code="post.reward" var="rewardTag" />
+                <display:column property="reward" title="${rewardTag}" />
 
             </display:table>
         </fieldset>
@@ -230,7 +247,7 @@
 
 <fieldset>
     <div class="panel-body">
-        <b><spring:message code="dash.numberOfHeartPostPerCategory"/></b>
+        <legend class="text-center"><b><spring:message code="dash.numberOfHeartPostPerCategory"/></b></legend>
         <br/>
         <h4><jstl:out value=" SUM: "/><jstl:out value="${numberOfHeartPostPerCategory[0]}"/> <br/></h4>
         <h4><jstl:out value=" NAME: "/><jstl:out value="${numberOfHeartPostPerCategory[1]}"/> <br/></h4>
@@ -240,7 +257,7 @@
 
 <fieldset>
     <div class="panel-body">
-        <b><spring:message code="dash.topTenPostsWithLikesLoves"/></b>
+        <legend class="text-center"><b><spring:message code="dash.topTenPostsWithLikesLoves"/></b></legend>
         <br/>
         <h4><jstl:out value=" TITLE: "/><jstl:out value="${topTenPostsWithLikesLoves[0]}"/> <br/></h4>
         <h4><jstl:out value=" LIKES: "/><jstl:out value="${topTenPostsWithLikesLoves[1]}"/> <br/></h4>
@@ -251,7 +268,7 @@
 
 <fieldset>
     <div class="panel-body">
-        <b><spring:message code="dash.avgMaxMinSqrtPhotosPerPanel"/></b>
+        <legend class="text-center"><b><spring:message code="dash.avgMaxMinSqrtPhotosPerPanel"/></b></legend>
         <br/>
         <h4><jstl:out value=" AVG: "/><jstl:out value="${avgMaxMinSqrtPhotosPerPanel[0]}"/> <br/></h4>
         <h4><jstl:out value=" MAX: "/><jstl:out value="${avgMaxMinSqrtPhotosPerPanel[1]}"/> <br/></h4>
@@ -262,7 +279,7 @@
 
 <fieldset>
     <div class="panel-body">
-        <b><spring:message code="dash.avgMaxMinSqrtPanelsPerUser"/></b>
+        <legend class="text-center"><b><spring:message code="dash.avgMaxMinSqrtPanelsPerUser"/></b></legend>
         <br/>
         <h4><jstl:out value=" AVG: "/><jstl:out value="${avgMaxMinSqrtPanelsPerUser[0]}"/> <br/></h4>
         <h4><jstl:out value=" MIN: "/><jstl:out value="${avgMaxMinSqrtPanelsPerUser[1]}"/> <br/></h4>
@@ -274,45 +291,42 @@
 
 <fieldset>
     <div class="panel-body">
-        <legend><b><spring:message code="dash.ratioPostsWithRaffles"/></b></legend>
+        <legend class="text-center"><b><spring:message code="dash.ratioPostsWithRaffles"/></b></legend>
 
-        <jstl:out value="${ratioPostsWithRaffles}"/><br>
+       <h4> <jstl:out value="${ratioPostsWithRaffles}"/><br></h4>
     </div>
 </fieldset>
 <br/>
 
 <fieldset>
     <div class="panel-body">
-        <legend><b><spring:message code="dash.avgPostWithReward"/></b></legend>
+        <legend class="text-center"><b><spring:message code="dash.avgPostWithReward"/></b></legend>
 
-        <jstl:out value="${avgPostWithReward}"/><br>
+       <h4> <jstl:out value="${avgPostWithReward}"/><br></h4>
     </div>
 </fieldset>
 <br/>
 
         <fieldset>
-            <b><spring:message code="dash.listingPostByEndDate"/></b>
-            <display:table name="listingPostByEndDate" id="row" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}">
+            <legend class="text-center"><b><spring:message code="dash.listingPostByEndDate"/></b></legend>
+            <display:table name="listingPostByEndDate" id="row3" pagesize="5" class="table table-striped table-hover" requestURI="dashboard/administrator/dashboard.do">
 
-                <acme:column code="post.title" value="${row.title} " />
-                <acme:column code="post.description" value="${row.description}"/>
+                <acme:column code="post.title" value="${row3.title} " />
+                <acme:column code="post.description" value="${row3.description}"/>
                 <spring:message var="moment" code="post.moment"/>
                 <display:column property="moment" title="${publicationDate}" format="${formatDate}" sortable="true" />
                 <spring:message var="endDate" code="post.endDate"/>
                 <display:column property="endDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
                 <spring:message code="post.picture" var="pic"/>
-                <display:column title="${pic}"><img src="${row.picture}" alt="no image" width="130" height="100"></display:column>
-
-
-                <acme:column code="post.price" value="${row.price}"/>
-                <acme:column code="post.discount" value="${row.reward}"/>
-
-                <acme:column code="post.finalMode" value="${row.finalMode}"/>
-                <acme:column code="post.hasWinner" value="${row.hasWinner}"/>
-                <acme:column code="post.reward" value="${row.reward} " />
+                <display:column title="${pic}"><img src="${row3.picture}" alt="no image" width="130" height="100"></display:column>
+                <acme:column code="post.finalMode" value="${row3.finalMode}"/>
+                <acme:column code="post.hasWinner" value="${row3.hasWinner}"/>
+                <acme:column code="post.reward" value="${row3.reward} " />
 
             </display:table>
         </fieldset>
 
 <br/>
 
+    </div>
+</div>

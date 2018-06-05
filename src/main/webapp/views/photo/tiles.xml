@@ -16,8 +16,9 @@
        
 <tiles-definitions>
 
-	<definition name="panel/display" extends="master.page">
-		<put-attribute name="title" value="Panel" />
-		<put-attribute name="body" value="/views/panel/display.jsp" />
+	<definition name="photo/edit" extends="master.page">
+		<put-attribute name="title" value="Photo" />
+		<put-attribute name="body" value="/views/photo/edit.jsp" />
 	</definition>
+
 </tiles-definitions>

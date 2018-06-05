@@ -66,8 +66,8 @@ public class ProfileUserController extends AbstractController {
         result = new ModelAndView("profile/display");
         result.addObject("profile",profile);
         result.addObject("actor",actor);
-        result.addObject("followings_num",actor.getFollowings().size());
-        result.addObject("followers_num",actor.getFollowers().size());
+        result.addObject("followings_num",profile.getActor().getFollowings().size());
+        result.addObject("followers_num",profile.getActor().getFollowers().size());
         result.addObject("esSeguido", actor.getFollowings().contains(profile.getActor()));
 
 

@@ -84,15 +84,15 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
     Object[] numberOfLikePostPerCategory();
 
     //A listing of posts in descending order by moment of creation.
-    @Query("select p.title, p.moment from Post p order by p.moment desc")
-    Collection <Post> listingPostByMomentOfCreation();
+    @Query("select p from Post p order by p.moment desc")
+    Collection<Post> listingPostByMomentOfCreation();
 
     //The number of hearts of a post per Category.
     @Query("select count(p.heart), c.name from Post p join p.categories c where p.heart > 0 group by c")
     Object[] numberOfHeartPostPerCategory();
 
     //Top 10 post, posts with more likes, loves.
-    @Query("select p.title, p.lik, p.heart from Post p order by p.lik, p.heart")
+    @Query("select p from Post p order by p.lik, p.heart")
     Collection<Post> topTenPostsWithLikesLoves();
 
     //The average, max, min and standard deviation of number of photo per panel.
@@ -108,7 +108,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
     Double ratioPostsWithRaffles();
 
     //The average of post with reward.
-    @Query("select avg(p) from Post p where p.reward <> null")
+    @Query("select count(p)*1.0 /(select count(p1)*1.0 from Post p1) from Post p where p.reward <>null")
     Double avgPostWithReward();
 
     //A listing of posts in ascendant order by end of raffle.

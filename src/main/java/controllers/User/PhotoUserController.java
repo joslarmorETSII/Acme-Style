@@ -95,7 +95,7 @@ public class PhotoUserController extends AbstractController {
         else
             try {
                     this.photoService.save(photo);
-                    result = new ModelAndView("redirect: ../../photo/user/list.do");
+                    result = new ModelAndView("redirect: ../../panel/user/list.do");
 
             } catch (final Throwable oops) {
                 result = this.createEditModelAndView(photo, "general.commit.error");

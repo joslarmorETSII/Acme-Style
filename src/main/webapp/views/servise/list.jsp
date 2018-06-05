@@ -80,9 +80,13 @@
 
             <security:authorize access="hasRole('USER')" >
                 <display:column>
-
                         <acme:button url="servise/user/display.do?serviseId=${row.id}" code="general.display"/>
+                </display:column>
+            </security:authorize>
 
+            <security:authorize access="hasRole('MANAGER')" >
+                <display:column>
+                    <acme:button url="servise/actor/display.do?serviseId=${row.id}" code="general.display"/>
                 </display:column>
             </security:authorize>
 
