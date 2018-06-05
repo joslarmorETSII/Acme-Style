@@ -114,7 +114,7 @@ public class PostService {
         post.setActions(new ArrayList<Action>());
 
         postRepository.delete(post);
-    }
+}
 
     public Post save(Post post){
         Assert.notNull(post);

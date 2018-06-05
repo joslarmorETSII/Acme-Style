@@ -13,6 +13,7 @@ import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 @Transactional
 @ContextConfiguration(locations = {
@@ -106,6 +107,49 @@ public class EventServiceTest extends AbstractTest {
 
            this.unauthenticate();
 
+
+        } catch (final Throwable oops) {
+
+            caught = oops.getClass();
+
+        }
+
+        this.checkExceptions(expected, caught);
+        rollbackTransaction();
+
+    }
+
+    /*  FUNCTIONAL REQUIREMENT:
+            * An actor who is authenticated as a manager must be able to:
+               -. Manage his or her events which includes creating editing and listing.
+    */
+
+    public void manageEventTest(final String username, String title, String description, Date moment,
+                               String tipo, double price, Date celebrationDate, GpsCoordinates location,
+                                String image,final Class<?> expected) {
+        Class<?> caught = null;
+        startTransaction();
+        try {
+
+            this.authenticate(username);
+
+            Event result;
+
+            result = eventService.create();
+
+            result.setTitle(title);
+            result.setMoment(moment);
+            result.setDescription(description);
+            result.setTipo(tipo);
+            result.setPrice(price);
+            result.setCelebrationDate(celebrationDate);
+            result.setLocation(location);
+            result.setImage(image);
+
+            eventService.save(result);
+            eventService.findAll();
+            eventService.delete(result);
+            eventService.flush();
 
         } catch (final Throwable oops) {
 
