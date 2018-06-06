@@ -94,7 +94,7 @@ public class ProfileUserController extends AbstractController {
         else
             try {
                 profileService.save(profile);
-                result = new ModelAndView("redirect: /profile/actor/display.do");
+                result = new ModelAndView("redirect:/profile/actor/display.do");
             } catch ( Throwable oops) {
                 result = this.createEditModelAndView(profile, "general.commit.error");
             }
