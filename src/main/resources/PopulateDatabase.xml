@@ -210,6 +210,7 @@
 		<property name="subscriptions">
 			<list>
 				<ref bean="subscription1"/>
+				<ref bean="subscription2"/>
 			</list>
 		</property>
 		<property name="participates">
@@ -651,7 +652,7 @@
 		</property>
 		<property name="subscriptions">
 			<list>
-				<null/>
+				<ref bean="subscription2"/>
 			</list>
 		</property>
 		<property name="creator" ref="photographer1"/>
@@ -866,6 +867,13 @@
 		<property name="moment" value="2018/01/02 15:30"/>
 		<property name="user" ref="user1"/>
 		<property name="servise" ref="servise1"/>
+	</bean>
+
+	<bean id="subscription2" class="domain.Subscription">
+		<property name="creditCard" ref="creditCard2"/>
+		<property name="moment" value="2018/01/02 15:30"/>
+		<property name="user" ref="user1"/>
+		<property name="servise" ref="servise4"/>
 	</bean>
 
 	<!-- Folders -->

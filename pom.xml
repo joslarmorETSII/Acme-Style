@@ -23,24 +23,24 @@
 	<artifactId>Acme-Style</artifactId>
 	<version>1.13</version>
 	<packaging>war</packaging>
-	
-	<properties>
+
+	<!--<properties>
 	    	<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 			<docker.image.prefix>nullpoint</docker.image.prefix>
   	</properties>
 
-	<!-- Indexing information -->
+	&lt;!&ndash; Indexing information &ndash;&gt;
 
 	<name>Acme-Style</name>
 	<url>http://www.acme-style.com</url>
 	<description>This is D&amp;T's acme style.</description>
-	
-	<!-- Build commands -->
+
+	&lt;!&ndash; Build commands &ndash;&gt;
 
 	<build>
 		<plugins>
 
-			<!-- Java compiler -->
+			&lt;!&ndash; Java compiler &ndash;&gt;
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -72,7 +72,55 @@
 					</resources>
 				</configuration>
 			</plugin>
+-->
+	<properties>
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+		<docker.image.prefix>acmestyle</docker.image.prefix>
+	</properties>
 
+	<!-- Indexing information -->
+
+	<name>Acme-Style</name>
+	<url>http://www.acme-style.com</url>
+	<description>This is D&amp;T's acme style.</description>
+
+	<!-- Build commands -->
+
+	<build>
+		<plugins>
+
+			<!-- Java compiler -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<showWarnings>true</showWarnings>
+					<compilerArguments>
+						<Xlint/>
+					</compilerArguments>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.4.11</version>
+				<configuration>
+					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+					<dockerDirectory>src/main/docker</dockerDirectory>
+					<resources>
+						<resources>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resources>
+					</resources>
+				</configuration>
+			</plugin>
 			<!-- Population -->
 
 			<plugin>
