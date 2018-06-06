@@ -65,7 +65,7 @@ public class UserAccountActorController extends AbstractController {
             if (binding.hasErrors())
                 result = createEditModelAndView(userAccountForm);
             else {
-                result = new ModelAndView("redirect: /welcome/index.do");
+                result = new ModelAndView("redirect:/welcome/index.do");
                 userAccountService.save(userAccount);
             }
 

@@ -86,7 +86,7 @@ public class EventManagerController extends AbstractController{
         } else
             try {
                 eventService.save(event);
-                result = new ModelAndView("redirect: /event/manager/list.do");
+                result = new ModelAndView("redirect:/event/manager/list.do");
             } catch (Throwable oops) {
                 result = createEditModelAndView(event, "general.commit.error");
             }

@@ -65,7 +65,7 @@ public class AnswerArtistController extends AbstractController{
         } else
             try {
                 answerService.save(answer);
-                result = new ModelAndView("redirect: /answer/actor/list.do?questionId="+answer.getQuestion().getId());
+                result = new ModelAndView("redirect:/answer/actor/list.do?questionId="+answer.getQuestion().getId());
             } catch (Throwable oops) {
                 result = createEditModelAndView(answer, "general.commit.error");
             }

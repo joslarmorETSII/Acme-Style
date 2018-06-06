@@ -63,7 +63,7 @@ public class ActorController extends AbstractController{
 
         actor = actorService.findOne(actorId);
         actorService.follow(actorId);
-        result = new ModelAndView("redirect: ../profile/actor/view.do?profileId="+actor.getProfile().getId());
+        result = new ModelAndView("redirect:../profile/actor/view.do?profileId="+actor.getProfile().getId());
 
         return result;
     }
@@ -76,7 +76,7 @@ public class ActorController extends AbstractController{
 
         actor = actorService.findOne(actorId);
         actorService.unfollow(actorId);
-        result = new ModelAndView("redirect: ../profile/actor/view.do?profileId="+actor.getProfile().getId());
+        result = new ModelAndView("redirect:../profile/actor/view.do?profileId="+actor.getProfile().getId());
 
         return result;
     }

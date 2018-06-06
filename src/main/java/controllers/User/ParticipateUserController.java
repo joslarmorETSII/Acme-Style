@@ -80,7 +80,7 @@ public class ParticipateUserController extends AbstractController {
         Participate subscription = participateService.participateByUserAndEvent(principal.getId(),eventId);
         participateService.delete(subscription);
 
-        result = new ModelAndView("redirect: ../../event/user/listParticipated.do");
+        result = new ModelAndView("redirect:../../event/user/listParticipated.do");
 
         return result;
     }
@@ -102,7 +102,7 @@ public class ParticipateUserController extends AbstractController {
 
 
 
-                result = new ModelAndView("redirect: ../../event/user/list.do");
+                result = new ModelAndView("redirect:../../event/user/list.do");
                 event = participateToEventForm.getEvent();
                 participate = participateService.create();
                 participate.setCreditCard(creditCard);

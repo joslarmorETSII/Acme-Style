@@ -73,7 +73,7 @@ public class QuestionActorController extends AbstractController {
         } else
             try {
                 questionService.save(question);
-                result = new ModelAndView("redirect: /question/actor/list.do?serviseId="+question.getServise().getId());
+                result = new ModelAndView("redirect:/question/actor/list.do?serviseId="+question.getServise().getId());
             } catch (Throwable oops) {
                 result = createEditModelAndView(question, "general.commit.error");
             }

@@ -84,7 +84,7 @@ public class StoreManagerController extends AbstractController{
         } else
             try {
                 storeService.save(store);
-                result = new ModelAndView("redirect: list.do");
+                result = new ModelAndView("redirect:list.do");
             } catch (Throwable oops) {
                 result = createEditModelAndView(store, "general.commit.error");
             }

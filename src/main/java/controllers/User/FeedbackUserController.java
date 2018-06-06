@@ -111,7 +111,7 @@ public class FeedbackUserController extends AbstractController{
             else {
                 servise = feedbackForm.getServise();
 
-                result = new ModelAndView("redirect: list.do?serviseId="+servise.getId());
+                result = new ModelAndView("redirect:list.do?serviseId="+servise.getId());
 
                 user = userService.findByPrincipal();
                 feedback.setUser(user);

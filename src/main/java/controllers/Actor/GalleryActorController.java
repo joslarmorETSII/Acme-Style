@@ -98,7 +98,7 @@ public class GalleryActorController extends AbstractController {
         gallery = galleryService.findOne(galleryId);
         Assert.isTrue(gallery.getProfile().getActor().equals(actorService.findByPrincipal()));
         galleryService.delete(gallery);
-        result = new ModelAndView("redirect: list.do?profileId="+gallery.getProfile().getId());
+        result = new ModelAndView("redirect:list.do?profileId="+gallery.getProfile().getId());
 
         return result;
     }

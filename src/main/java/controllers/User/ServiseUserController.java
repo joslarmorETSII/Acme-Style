@@ -128,7 +128,7 @@ public class ServiseUserController extends AbstractController {
         Subscription subscription = subscribeService.subscriptionByUserAndService(principal.getId(),serviseId);
         subscribeService.delete(subscription);
 
-        result = new ModelAndView("redirect: listServisesToSubscribe.do");
+        result = new ModelAndView("redirect:listServisesToSubscribe.do");
 
         return result;
     }
@@ -147,7 +147,7 @@ public class ServiseUserController extends AbstractController {
             if (binding.hasErrors())
                 result = createEditModelAndView(subscribeServiseForm);
             else {
-                result = new ModelAndView("redirect: list.do");
+                result = new ModelAndView("redirect:list.do");
 
                 subscription = subscribeService.create();
                 user = userService.findByPrincipal();
