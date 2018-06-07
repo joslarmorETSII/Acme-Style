@@ -33,13 +33,14 @@ public class PostServiceTest extends AbstractTest {
     private ActorService actorService;
 
     @Autowired
-    private ArtistService artistService;
+    private UserService userService;
 
     @Autowired
     private CommentService commentService;
 
     @Autowired
-    MessageService messageService;
+    private ActionService actionService;
+
 
     // Tests
     // ====================================================
@@ -241,5 +242,84 @@ public class PostServiceTest extends AbstractTest {
             this.createRaffleTest((String) testingData[i][0], (String) testingData[i][1], (Date) testingData[i][2],
                     (String) testingData[i][3], (String) testingData[i][4], (int) testingData[i][5],
                     (int) testingData[i][6], (int) testingData[i][7], (Class<?>) testingData[i][8]);
+    }
+
+
+
+     /*  FUNCTIONAL REQUIREMENT:
+            * An actor who is authenticated as user must be able to:
+               -. Participate in raffles.
+
+    */
+
+    public void participateRaffleTest( String username,String raffleBean, String commentText,  Class<?> expected) {
+        Class<?> caught = null;
+        startTransaction();
+        try {
+
+            this.authenticate(username);
+
+            User principal;
+            Comment comment;
+            Action action;
+            Post raffle = postService.findOne(getEntityId(raffleBean));
+            principal = userService.findByPrincipal();
+            comment = commentService.create();
+            comment.setText(commentText);
+            comment.setPost(raffle);
+
+            Comment saved = commentService.save(comment);
+            principal.getComments().add(comment);
+            raffle.getComments().add(saved);
+
+            action = actionService.create();
+            action.setLik(true);
+            action.setPost(raffle);
+            Action actionSaved = actionService.save(action);
+
+            raffle.getActions().add(actionSaved);
+            postService.likePost(raffle);
+            userService.save(principal);
+
+            actionService.flush();
+            postService.flush();
+            userService.flush();
+
+        } catch (final Throwable oops) {
+
+            caught = oops.getClass();
+
+        }
+
+        this.checkExceptions(expected, caught);
+        rollbackTransaction();
+
+    }
+
+
+    @Test
+    public void driverParticipateRaffleTest() {
+
+        Date moment = new Date(System.currentTimeMillis()-1000);
+
+        final Object testingData[][] = {
+                //  Algiuen logueado como Usuario participa en un raffle -> true
+                {
+                        "user1", "post2", "comment1", null
+                },
+                //  Algiuen logueado como Usuario participa en un raffle dejando un comentario con script en el texto -> false
+                {
+                        "user1", "post2", "<script>", ConstraintViolationException.class
+                },
+                //  Algiuen sin loguearse participa en un raffle -> false
+                {
+                        null, "post2", "Commentario1", IllegalArgumentException.class
+                },
+
+
+        };
+        for (int i = 0; i < testingData.length; i++)
+            this.participateRaffleTest((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2],
+                      (Class<?>) testingData[i][3]);
     }
 }

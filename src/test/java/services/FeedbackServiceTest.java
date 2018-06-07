@@ -93,7 +93,10 @@ public class FeedbackServiceTest extends AbstractTest {
                 {
                         "user1", "servise3",  "text",4, IllegalArgumentException.class
                 },
-
+                // User deja un feedback con script-> false
+                {
+                        "user1", "servise4",  "<sql>",4, ConstraintViolationException.class
+                },
 
         };
         for (int i = 0; i < testingData.length; i++)

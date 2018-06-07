@@ -246,4 +246,8 @@ public class ActorService {
         return result;
     }
 
+    public void saveAll(Collection<Actor> actors){
+        actorRepository.save(actors);
+    }
+
 }

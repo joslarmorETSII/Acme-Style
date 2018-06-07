@@ -91,4 +91,7 @@ public class CategoryService {
         return this.categoryRepository.categoriesAssociated();
     }
 
+    public void flush() {
+        categoryRepository.flush();
+    }
 }

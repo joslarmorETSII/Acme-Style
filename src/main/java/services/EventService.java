@@ -70,7 +70,12 @@ public class EventService {
 
     public void delete(Event event){
         Assert.notNull(event);
-        Assert.isTrue(actorService.checkRole(Authority.MANAGER));
+        Assert.isTrue(actorService.checkRole(Authority.MANAGER)||actorService.checkRole(Authority.ADMINISTRATOR));
+        if(event.getParticipates()!=null){
+            for(Participate p: event.getParticipates()){
+                participateService.delete(p);
+            }
+        }
 
         eventRepository.delete(event);
     }

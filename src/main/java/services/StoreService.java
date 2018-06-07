@@ -26,7 +26,7 @@ public class StoreService {
     // Supporting services ----------------------------------------------------
 
     @Autowired
-    private ActorService actorService;
+    private EventService eventService;
 
     @Autowired
     private ManagerService managerService;
@@ -59,10 +59,20 @@ public class StoreService {
     }
 
     public void delete(Store store){
-        Assert.notNull(store);
+        Collection<Event> events;
 
+        Assert.notNull(store);
         Assert.isTrue( store.getManager().equals(managerService.findByPrincipal()),"Not the manager of the store");
         Assert.isNull(store.getServises(),"The store has Servises");
+
+        events = eventsOfaStore(store.getId());
+        if (events!=null){
+            for(Event e: events){
+                e.setStore(null);
+                eventService.save(e);
+            }
+        }
+
         storeRepository.delete(store);
     }
 
@@ -118,6 +128,13 @@ public class StoreService {
         return result;
     }
 
+    Collection<Event> eventsOfaStore(int storeId ){
+        return storeRepository.eventsOfaStore(storeId);
+    }
+
+    public void flush(){
+        storeRepository.flush();
+    }
 }
 
 

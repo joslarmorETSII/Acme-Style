@@ -83,7 +83,7 @@ public class PostService {
     public void delete(Post post){
         Assert.notNull(post);
         Assert.isTrue(actorService.findByPrincipal().equals(post.getActor()) || actorService.checkRole(Authority.ADMINISTRATOR));
-
+        Set<Actor> participants = new HashSet<>();
         if(post.isRaffle()){
             if(post.getEndDate().after(new Date())){
                 Assert.isTrue(post.getComments().isEmpty(), "Raffle have participants");
@@ -97,8 +97,8 @@ public class PostService {
 
         for(Comment c : post.getComments()){
             Actor a = c.getActor();
-            a.setComments(new ArrayList<Comment>());
-            this.actorService.save(a);
+            a.getComments().remove(c);
+            participants.add(a);
         }
 
         this.commentService.deleteAll(post);
@@ -106,9 +106,9 @@ public class PostService {
         for(Action a : post.getActions()){
             Actor aux = a.getActor();
             aux.getActions().remove(a);
-            this.actorService.save(aux);
-
+            participants.add(aux);
         }
+        actorService.saveAll(participants);
 
         actionService.deleteAll(post.getActions());
         post.setActions(new ArrayList<Action>());
@@ -208,10 +208,10 @@ public class PostService {
         Date date = new Date();
         boolean result;
 
-        if (endDate != null)
-            result = endDate.after(date);
+        if (endDate != null )
+            result = endDate.after(date) ;
         else
-            result = true;
+            result = false;
         if (!result) {
             codigos = new String[1];
             codigos[0] = "post.endDate.invalid";
@@ -241,8 +241,10 @@ public class PostService {
         List<Actor> actors = new ArrayList<>(this.postRepository.actorLikeRaffle(post.getId()));
         actors.retainAll(this.postRepository.actorCommentRaffle(post.getId()));
 
+        Authority authority = new Authority();
+        authority.setAuthority(Authority.USER);
         for (Actor a : actors) {
-            if (a.getUserAccount().getAuthorities().equals(Authority.USER))
+            if (a.getUserAccount().getAuthorities().contains(authority))
                 res.add(a);
         }
 

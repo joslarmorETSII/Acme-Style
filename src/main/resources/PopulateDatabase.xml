@@ -277,7 +277,8 @@
 		<property name="profile" ref ="profile3"/>
 		<property name="posts">
 			<list>
-				<null/>
+				<ref bean="post1"/>
+				<ref bean="post2"/>
 			</list>
 		</property>
 		<property name="followings">
@@ -460,27 +461,27 @@
 
 	<bean id="gallery2" class="domain.Gallery" >
 		<property name="picture" value="https://image.freepik.com/free-icon/male-user-profile-picture_318-37825.jpg" />
-		<property name="profile" ref="profile1" />
+		<property name="profile" ref="profile2" />
 	</bean>
 
 	<bean id="gallery3" class="domain.Gallery" >
 		<property name="picture" value="http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png" />
-		<property name="profile" ref="profile1" />
+		<property name="profile" ref="profile3" />
 	</bean>
 
 	<bean id="gallery4" class="domain.Gallery" >
 		<property name="picture" value="https://www.profilegroup.co.nz/wp-content/uploads/2015/12/au.png" />
-		<property name="profile" ref="profile1" />
+		<property name="profile" ref="profile4" />
 	</bean>
 
 	<bean id="gallery5" class="domain.Gallery" >
 		<property name="picture" value="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" />
-		<property name="profile" ref="profile1" />
+		<property name="profile" ref="profile5" />
 	</bean>
 
 	<bean id="gallery6" class="domain.Gallery" >
 		<property name="picture" value="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" />
-		<property name="profile" ref="profile1" />
+		<property name="profile" ref="profile6" />
 	</bean>
 
 	<!-- Events -->
@@ -765,6 +766,38 @@
 				<ref bean="action1"/>
 			</list>
 		</property>
+	</bean>
+
+	<bean id="post2" class="domain.Post" >
+		<property name="title" value="Esto es un Raffle"/>
+		<property name="moment" value="2018/06/01 12:00"/>
+		<property name="description" value="Esto es una descripcion de un raffle de prueba"/>
+		<property name="picture"  value="https://i.kinja-img.com/gawker-media/image/upload/s--FPy3RYSo--/c_scale,f_auto,fl_progressive,q_80,w_800/cur9iivisdrebdoigjna.jpg"/>
+		<property name="lik" value="0"/>
+		<property name="dislike" value="0"/>
+		<property name="heart" value="0"/>
+		<property name="actor" ref="stylist1" />
+		<property name="raffle" value="true" />
+		<property name="endDate" value="2018/07/01 12:00"/>
+		<property name="reward" value="iPhone X"/>
+		<property name="finalMode" value="true"/>
+		<property name="hasWinner" value="false" />
+		<property name="comments">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="categories">
+			<list>
+				<ref bean="category1"/>
+			</list>
+		</property>
+		<property name="actions">
+			<list>
+				<null/>
+			</list>
+		</property>
+
 	</bean>
 
 	<!-- Actions -->

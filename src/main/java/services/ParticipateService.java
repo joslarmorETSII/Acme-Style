@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import repositories.ParticipateRepository;
+import security.Authority;
 
 import java.util.Collection;
 import java.util.Date;
@@ -59,7 +60,7 @@ public class ParticipateService {
         User user= participate.getUser();
 
         Assert.notNull(participate);
-        Assert.isTrue(actorService.findByPrincipal().equals(user));
+        Assert.isTrue(actorService.checkRole(Authority.ADMINISTRATOR)||actorService.findByPrincipal().equals(user));
         participateRepository.delete(participate);
     }
 

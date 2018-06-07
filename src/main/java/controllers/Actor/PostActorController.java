@@ -164,8 +164,12 @@ public class PostActorController extends AbstractController {
         ModelAndView result;
 
         Post post = this.postService.findOneToEdit(postId);
-        postService.delete(post);
-        result = new ModelAndView("redirect:list.do");
+       try {
+           postService.delete(post);
+           result = new ModelAndView("redirect:list.do");
+       }catch (Throwable oops){
+          result= panic(oops);
+       }
 
         return result;
     }

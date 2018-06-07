@@ -17,6 +17,8 @@ public class AnswerService {
 
     @Autowired
     private AnswerRepository answerRepository;
+    @Autowired
+    private ActorService actorService;
 
     // Supporting services ----------------------------------------------------
 
@@ -44,6 +46,7 @@ public class AnswerService {
     }
 
     public void delete(Answer answer){
+        Assert.isTrue(actorService.isAdministrator());
         answerRepository.delete(answer);
     }
 
@@ -57,6 +60,10 @@ public class AnswerService {
 
     public Collection<Answer> findAll(){
         return answerRepository.findAll();
+    }
+
+    public void flush() {
+        answerRepository.flush();
     }
 
     // Other business methods -------------------------------------------------
