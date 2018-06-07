@@ -118,6 +118,8 @@ public class StoreManagerController extends AbstractController{
         stores = manager.getStores();
         result = new ModelAndView("store/list");
         result.addObject("stores",stores);
+        result.addObject("requestURI", "store/manager/list.do");
+
 
         return  result;
     }
