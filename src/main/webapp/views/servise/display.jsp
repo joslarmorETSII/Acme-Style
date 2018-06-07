@@ -98,7 +98,11 @@
                         <b><spring:message code="feedback.text" /></b> <jstl:out value="${feedback.text}"/><br>
 
                         <security:authorize access="hasRole('ADMINISTRATOR')" >
-                            <acme:button url="feedback/administrator/edit.do?feedbackId=${feedback.id}" code="general.delete" />
+                            <a href="feedback/administrator/edit.do?feedbackId=${feedback.id}">
+                                <input type="submit" class="btn btn-danger" name="delete"
+                                       value="<spring:message code="general.delete" />"
+                                       onclick="return confirm('<spring:message code="message.confirm.delete" />')" />&nbsp;
+                            </a>
                         </security:authorize>
 
                     </div>

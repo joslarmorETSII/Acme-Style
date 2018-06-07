@@ -49,7 +49,11 @@
                                 </div>
                                 <div class="col-md-12 description">
                                     <h4><jstl:if test="${owner}">
-                                        <acme:button code="general.delete"  url="gallery/actor/delete.do?galleryId=${gallery.id}"/>
+                                        <a href="gallery/actor/delete.do?galleryId=${gallery.id}">
+                                            <input type="submit" class="btn btn-danger" name="delete"
+                                                   value="<spring:message code="general.delete" />"
+                                                   onclick="return confirm('<spring:message code="message.confirm.delete" />')" />&nbsp;
+                                        </a>
                                     </jstl:if>
                                     </h4>
                                 </div>

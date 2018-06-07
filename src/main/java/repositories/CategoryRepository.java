@@ -10,6 +10,6 @@ import java.util.Collection;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category,Integer> {
 
-    @Query("select p.categories from Post p")
+    @Query("select distinct p.categories from Post p")
     Collection<Category> categoriesAssociated();
 }

@@ -41,7 +41,11 @@
             </display:column>
 
             <display:column>
-                <acme:button url="panel/user/edit.do?panelId=${row.id}" code="general.delete" />
+                <a href="panel/user/edit.do?panelId=${row.id}">
+                    <input type="submit" class="btn btn-danger" name="delete"
+                           value="<spring:message code="general.delete" />"
+                           onclick="return confirm('<spring:message code="message.confirm.delete" />')" />&nbsp;
+                </a>
             </display:column>
             
         </display:table>

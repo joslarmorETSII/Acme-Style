@@ -58,7 +58,6 @@ public class QuestionService {
     }
 
     public void delete(Question question){
-        Assert.isTrue(actorService.isAdministrator());
         answerService.deleteAll(question.getAnswers());
         questionRepository.delete(question);
     }

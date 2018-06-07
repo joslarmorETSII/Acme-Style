@@ -43,7 +43,7 @@
     <spring:message code="message.delete" var="headerTag" />
     <display:column title="${headerTag}">
         <a href="message/actor/trash.do?messageId=${row.id}">
-            <input type="submit" name="delete"
+            <input type="submit" class="btn btn-danger" name="delete"
                    value="<spring:message code="message.delete" />"
                    onclick="return confirm('<spring:message code="message.confirm.delete" />')" />&nbsp;
         </a>

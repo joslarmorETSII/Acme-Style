@@ -228,19 +228,18 @@ public class ActorService {
         UserAccount result;
         FieldError error;
         String[] codigos;
-        String password;
+        String oldPassword;
 
         result = findByPrincipal().getUserAccount();
-        password = new Md5PasswordEncoder().encodePassword(userAccountForm.getOldPassword(),null);
+        oldPassword = new Md5PasswordEncoder().encodePassword(userAccountForm.getOldPassword(),null);
+
         comprobarContrasena(userAccountForm.getNewPassword(),userAccountForm.getRepeatPassword(),binding);
-        if (!result.getPassword().equals(password)) {
+
+        if (!result.getPassword().equals(oldPassword)) {
             codigos = new String[1];
             codigos[0] = "userAccount.password.error";
             error = new FieldError("userAccountForm", "oldPassword", null, false, codigos, null, "Wrong password");
             binding.addError(error);
-        }else {
-            result.setUsername(userAccountForm.getUsername());
-            result.setPassword(new Md5PasswordEncoder().encodePassword(userAccountForm.getNewPassword(),null));
         }
 
         return result;

@@ -4,6 +4,7 @@ import controllers.AbstractController;
 import domain.Actor;
 import forms.UserAccountForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,6 +67,8 @@ public class UserAccountActorController extends AbstractController {
                 result = createEditModelAndView(userAccountForm);
             else {
                 result = new ModelAndView("redirect:/welcome/index.do");
+                userAccount.setUsername(userAccountForm.getUsername());
+                userAccount.setPassword(new Md5PasswordEncoder().encodePassword(userAccountForm.getNewPassword(),null));
                 userAccountService.save(userAccount);
             }
 
