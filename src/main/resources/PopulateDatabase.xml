@@ -1228,6 +1228,20 @@
 		</property>
 	</bean>
 
+	<bean id="message3" class="domain.Message" >
+		<property name="moment" value="11/03/2017 12:00"/>
+		<property name="subject" value="Mensaje de prueba" />
+		<property name="body" value ="Hola buenas tardes, esta aplicacion es una maquina."/>
+		<property name="priority" value="HIGH"/>
+		<property name="folder" ref="outbox1"/>
+		<property name="actorSender" ref="administrator"/>
+		<property name="actorReceivers" >
+			<list>
+				<ref bean="photographer1" />
+			</list>
+		</property>
+	</bean>
+
 	<!-- Panels -->
 
 	<bean id="panel1" class="domain.Panel">

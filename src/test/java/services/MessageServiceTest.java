@@ -90,7 +90,7 @@ public class MessageServiceTest extends AbstractTest {
 
 
         final Object testingData[][] = {
-                // Mandar un Message estando logueado como Stylist1 y cambiar la carpeta a la trashbox del Photographer -> true
+                // Mandar un Message estando logueado como Photographer y cambiar la carpeta a la trashbox del Stylist -> true
                 {
                         "photographer", "subject", "Body1", "LOW",  "trashbox5", "stylist1", "message2", null
                 },
