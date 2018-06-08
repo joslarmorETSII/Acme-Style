@@ -69,6 +69,12 @@
 </div>
 
 <div class="text-center">
-<input type="button" class="btn btn-warning" name="cancel" value="<spring:message code="general.cancel" />"
-       onclick="javascript: relativeRedir('${cancelURI}');" />
+    <security:authorize access="hasRole('ADMINISTRATOR')">
+        <acme:cancel code="general.cancel" url="event/administrator/list.do"/>
+    </security:authorize>
+
+    <security:authorize access="!hasRole('ADMINISTRATOR')">
+        <input type="button" class="btn btn-warning" name="cancel" value="<spring:message code="general.cancel" />"
+            onclick="javascript: relativeRedir('${cancelURI}');" />
+    </security:authorize>
 </div>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import security.Authority;
 import services.*;
 
 import java.util.Collection;
@@ -77,9 +78,7 @@ public class EventAdministratorController extends AbstractController {
         ModelAndView result;
         Event event;
 
-
         event = this.eventService.findOne(eventId);
-
 
         Actor actor=actorService.findByPrincipal();
         Administrator admin = administratorService.findByPrincipal();

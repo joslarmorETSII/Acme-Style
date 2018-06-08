@@ -88,6 +88,7 @@ public class QuestionActorController extends AbstractController {
         ModelAndView result;
         Servise servise;
         Collection<Question> questions;
+        Actor actor = actorService.findByPrincipal();
 
         servise = serviseService.findOne(serviseId);
         Assert.notNull(servise);

@@ -34,7 +34,8 @@
                 <div class="form-group last">
                     <div class="col-sm-offset-3 col-sm-9">
                         <acme:submit name="save" code="general.save"/>
-                        <acme:cancel url="${cancelURI}" code="general.cancel"/>
+                            <acme:cancel url="${cancelURI}" code="general.cancel"/>
+
                     </div>
                 </div>
 

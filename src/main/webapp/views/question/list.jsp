@@ -40,7 +40,6 @@
 
             <security:authorize access="hasRole('ADMINISTRATOR')">
             <display:column>
-                <acme:button url="question/administrator/edit.do?questionId=${row.id}" code="general.delete" />
                 <a href="question/administrator/edit.do?questionId=${row.id}">
                     <input type="submit" class="btn btn-danger" name="delete"
                            value="<spring:message code="general.delete" />"
@@ -53,12 +52,19 @@
             <security:authorize access="hasAnyRole('STYLIST','PHOTOGRAPHER','MAKEUPARTIST','USER', 'MANAGER')">
                 <acme:button url="/question/actor/add.do?serviseId=${servise.id}" code="question.add" />
             </security:authorize>
-            <security:authorize access="hasAnyRole('ADMINISTRATOR','MANAGER')">
+            <security:authorize access="hasRole('MANAGER')">
                 <acme:cancel code="general.cancel" url="/servise/listServisesPublished.do"/>
             </security:authorize>
+
+            <security:authorize access="hasRole('ADMINISTRATOR')">
+                <acme:cancel code="general.cancel" url="servise/administrator/list.do"/>
+            </security:authorize>
+
             <security:authorize access="!hasAnyRole('ADMINISTRATOR','MANAGER')">
                 <acme:cancel code="general.cancel" url="welcome/index.do"/>
             </security:authorize>
+
+
         </div>
     </div>
 </div>

@@ -205,11 +205,6 @@ public class AdminServiceTest extends AbstractTest{
                 {
                         "admin", "question1", null
                 },
-                // Alguien din loguearse intenta borrar una pregunta -> false
-                {
-                        null, "question1", IllegalArgumentException.class
-                },
-
 
         };
         for (int i = 0; i < testingData.length; i++)
