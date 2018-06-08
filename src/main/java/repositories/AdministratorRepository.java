@@ -58,7 +58,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
     Object[] avgAndSqrtCommentsPerUser();
 
 
-    //The services that have at least 60% more answers than the average about their questions.
+    //The services that have at least 60% more answers than the average.
     @Query("select s from Servise s join s.questions q where q.answers.size > (select avg(q1.answers.size)*1.6 from Question q1)")
     Collection<Servise> servicesMoreAnsThan60PercentAboutQuestiosn();
 
@@ -71,7 +71,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
     Object[] avgSqrtEventsPerManager();
 
 
-    //The average and standard deviation of number of users who participate in a event which celebrate in a store.
+    //The average and standard deviation of number of users who participate in a event that is celebrated in a store.
     @Query("select avg(u.participates.size), sqrt(sum(u.participates.size *u.participates.size)/ count(u) - (avg(u.participates.size) *avg(u.participates.size))) from User u join u.participates p where p.event.store > 0")
     Object[] avgSqrtParticipatersParticipateAEventStore();
 
@@ -111,7 +111,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
     @Query("select count(p)*1.0 /(select count(p1)*1.0 from Post p1) from Post p where p.reward <>null")
     Double avgPostWithReward();
 
-    //A listing of posts in ascendant order by end of raffle.
-    @Query("select p from Post p order by p.endDate asc")
+    //A listing of raffles in ascendant order by end of raffle.
+    @Query("select p from Post p where p.raffle = true and p.finalMode =true order by p.endDate asc")
     Collection<Post> listingPostByEndDate();
 }

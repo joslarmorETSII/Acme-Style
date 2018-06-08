@@ -105,7 +105,7 @@ public class AdministratorService {
         result = new ArrayList<>(this.administratorRepository.topFiveServiseWithSubscriptions());
 
         if (result.size() > 5)
-            result.subList(0, 4);
+            result = result.subList(0, 5);
 
         return result;
     }
@@ -115,7 +115,7 @@ public class AdministratorService {
         result = new ArrayList<>(this.administratorRepository.topTenServiseWithSubscriptions());
 
         if (result.size() > 10)
-            result.subList(0, 9);
+            result = result.subList(0, 10);
 
         return result;
     }
@@ -158,7 +158,7 @@ public class AdministratorService {
         result = new ArrayList<>(this.administratorRepository.topTenPostsWithLikesLoves());
 
         if (result.size() > 10)
-            result.subList(0, 9);
+           result= result.subList(0, 10);
 
         return result;
     }

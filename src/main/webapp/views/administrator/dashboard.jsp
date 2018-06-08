@@ -19,6 +19,8 @@
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="for" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
 
 <jstl:if test="${pageContext.response.locale.language == 'es' }">
     <jstl:set value="{0,date,dd/MM/yyyy HH:mm}" var="formatDate"/>
@@ -93,6 +95,8 @@
 
             <spring:message var="formatDate" code="event.format.date"/>
             <acme:column code="servise.price" value="${row10.price}"/>
+            <acme:column code="servise.subscriptions" value="${fn:length(row10.subscriptions)}" sortable="true"/>
+
 
         </display:table>
     </div>
@@ -102,19 +106,21 @@
 
 <fieldset>
     <legend class="text-center"><b><spring:message code="dash.topFiveServiseWithSubscriptions"/></b></legend>
-    <display:table name="topFiveServiseWithSubscriptions" id="row1" pagesize="5" class="table table-striped table-hover" requestURI="dashboard/administrator/dashboard.do">
+    <display:table name="topFiveServiseWithSubscriptions" id="row1111" pagesize="5" class="table table-striped table-hover" requestURI="dashboard/administrator/dashboard.do">
 
-        <acme:column code="servise.title" value="${row1.title} " />
-        <acme:column code="servise.description" value="${row1.description}"/>
+        <acme:column code="servise.title" value="${row1111.title} " />
+        <acme:column code="servise.description" value="${row1111.description}"/>
         <spring:message var="publicationDate" code="servise.publicationDate"/>
         <display:column property="publicationDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
         <spring:message var="formatDate" code="event.format.date"/>
-        <acme:column code="servise.taboo" value="${row1.taboo}"/>
+        <acme:column code="servise.taboo" value="${row1111.taboo}"/>
         <spring:message code="servise.picture" var="pic"/>
-        <display:column title="${pic}"><img src="${row1.picture}" alt="no image" width="130" height="100"></display:column>
+        <display:column title="${pic}"><img src="${row1111.picture}" alt="no image" width="130" height="100"></display:column>
 
-        <acme:column code="servise.price" value="${row1.price}"/>
-        <acme:column code="servise.discount" value="${row1.discount}"/>
+        <acme:column code="servise.price" value="${row1111.price}"/>
+        <acme:column code="servise.discount" value="${row1111.discount}"/>
+        <acme:column code="servise.subscriptions" value="${fn:length(row1111.subscriptions)}" sortable="true"/>
+
 
     </display:table>
 </fieldset>
@@ -136,6 +142,8 @@
                 <spring:message var="formatDate" code="event.format.date"/>
                 <acme:column code="servise.price" value="${row2.price}"/>
                 <acme:column code="servise.discount" value="${row2.discount}"/>
+                <acme:column code="servise.subscriptions" value="${fn:length(row2.subscriptions)}" sortable="true"/>
+
 
             </display:table>
         </fieldset>
@@ -256,8 +264,6 @@
                 <spring:message code="post.moment" var="momentTag" />
                 <display:column property="moment" title="${momentTag}" format="${formatDate}" />
 
-                <spring:message code="post.endDate" var="endDateTag" />
-                <display:column property="endDate" title="${endDateTag}" format="${formatDate}" />
 
                 <spring:message code="post.finalMode" var="finalModeTag" />
                 <display:column property="finalMode" title="${finalModeTag}" />
@@ -294,13 +300,8 @@
             <acme:column code="post.description" value="${row30.description}"/>
             <spring:message var="moment" code="post.moment"/>
             <display:column property="moment" title="${publicationDate}" format="${formatDate}" sortable="true" />
-            <spring:message var="endDate" code="post.endDate"/>
-            <display:column property="endDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
             <spring:message code="post.picture" var="pic"/>
             <display:column title="${pic}"><img src="${row30.picture}" alt="no image" width="130" height="100"></display:column>
-            <acme:column code="post.finalMode" value="${row30.finalMode}"/>
-            <acme:column code="post.hasWinner" value="${row30.hasWinner}"/>
-            <acme:column code="post.reward" value="${row30.reward} " />
 
         </display:table>
     </div>
@@ -354,15 +355,12 @@
 
                 <acme:column code="post.title" value="${row3.title} " />
                 <acme:column code="post.description" value="${row3.description}"/>
-                <spring:message var="moment" code="post.moment"/>
-                <display:column property="moment" title="${publicationDate}" format="${formatDate}" sortable="true" />
                 <spring:message var="endDate" code="post.endDate"/>
-                <display:column property="endDate" title="${publicationDate}" format="${formatDate}" sortable="true" />
+                <display:column property="endDate" title="${endDate}" format="${formatDate}"/>
                 <spring:message code="post.picture" var="pic"/>
                 <display:column title="${pic}"><img src="${row3.picture}" alt="no image" width="130" height="100"></display:column>
-                <acme:column code="post.finalMode" value="${row3.finalMode}"/>
                 <acme:column code="post.hasWinner" value="${row3.hasWinner}"/>
-                <acme:column code="post.reward" value="${row3.reward} " />
+                <acme:column code="post.reward" value="${row3.reward}" />
 
             </display:table>
         </fieldset>
