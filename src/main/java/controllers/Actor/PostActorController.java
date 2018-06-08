@@ -2,18 +2,20 @@ package controllers.Actor;
 
 import controllers.AbstractController;
 import domain.*;
-import forms.SubscribeServiseForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import services.*;
 
-import java.text.SimpleDateFormat;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -179,6 +181,8 @@ public class PostActorController extends AbstractController {
     @RequestMapping(value = "/getWinner", method = RequestMethod.GET)
     public ModelAndView getWinner(@RequestParam int postId){
         ModelAndView result;
+
+
 
         Post post = this.postService.findOneToEdit(postId);
         try{

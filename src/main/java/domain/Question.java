@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.util.Collection;
@@ -48,6 +49,7 @@ public class Question extends DomainEntity{
     private Servise servise;
     private Collection<Answer> answers;
 
+    @Valid
     @ManyToOne(optional = false)
     public Servise getServise() {
         return servise;
@@ -57,6 +59,7 @@ public class Question extends DomainEntity{
         this.servise = servise;
     }
 
+    @Valid
     @OneToMany(mappedBy = "question")
     public Collection<Answer> getAnswers() {
         return answers;

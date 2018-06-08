@@ -35,6 +35,7 @@ public class Post extends DomainEntity{
     private String reward;
     private boolean finalMode;
     private boolean hasWinner;
+    private String winner;
 
     @NotBlank
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
@@ -145,6 +146,15 @@ public class Post extends DomainEntity{
 
     public void setHasWinner(boolean hasWinner) {
         this.hasWinner = hasWinner;
+    }
+
+    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+    public String getWinner() {
+        return winner;
+    }
+
+    public void setWinner(String winner) {
+        this.winner = winner;
     }
 
     // Relationships ---------------------------------------------------------------------

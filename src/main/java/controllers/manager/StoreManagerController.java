@@ -30,9 +30,6 @@ public class StoreManagerController extends AbstractController{
     private ManagerService managerService;
 
     @Autowired
-    private EventService eventService;
-
-    @Autowired
     private StoreService storeService;
 
     @Autowired

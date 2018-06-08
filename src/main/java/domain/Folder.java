@@ -59,7 +59,7 @@ public class Folder extends DomainEntity {
     private Actor				actor;
     private Collection<Message>	messages;
 
-
+    @Valid
     @ManyToOne(optional = false)
     public Actor getActor() {
         return this.actor;

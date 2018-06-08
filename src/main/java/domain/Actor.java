@@ -92,6 +92,7 @@ public abstract class Actor extends DomainEntity {
     private Collection<Comment> comments;
     private Collection<Action> actions;
 
+    @Valid
     @NotNull
     @OneToOne(cascade = CascadeType.ALL, optional = false)
     public UserAccount getUserAccount() {

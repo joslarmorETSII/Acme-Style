@@ -15,7 +15,7 @@
 <div class="container">
     <div class="col-md-10 col-md-offset-1">
 
-    <display:table name="stores" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}" id="row">
+        <display:table name="stores" id="row" pagesize="5" class="table table-striped table-hover" requestURI="${requestURI}" >
 
         <security:authorize access="hasRole('MANAGER')">
             <display:column>
@@ -27,17 +27,14 @@
             </display:column>
         </security:authorize>
 
-
         <spring:message code="store.title" var="headerTag" />
         <display:column property="title" title="${headerTag}"/>
 
         <spring:message code="store.banner" var="pic"/>
         <display:column title="${pic}"><img src="${row.banner}" alt="no image" width="130" height="100"></display:column>
 
-
         <spring:message code="event.location" var="headerTag" />
         <display:column property="gpsCoordinates.name" title="${headerTag}"/>
-
 
         <security:authorize access="hasRole('MANAGER')">
             <display:column>
@@ -45,12 +42,13 @@
             </display:column>
         </security:authorize>
 
-
     </display:table>
 
         <security:authorize access="hasRole('MANAGER')">
             <acme:button code="general.create" url="store/manager/create.do"/>
         </security:authorize>
+
         <acme:cancel code="general.cancel" url="welcome/index.do"/>
+
     </div>
 </div>

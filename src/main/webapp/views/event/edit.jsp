@@ -2,9 +2,9 @@
  * register.jsp
  *
  * Copyright (C) 2017 Universidad de Sevilla
- * 
- * The use of this project is hereby constrained to the conditions of the 
- * TDG Licence, a copy of which you may download from 
+ *
+ * The use of this project is hereby constrained to the conditions of the
+ * TDG Licence, a copy of which you may download from
  * http://www.tdg-seville.info/License.html
  --%>
 
@@ -95,7 +95,6 @@
                          <label class="col-sm-3 control-label"><spring:message code="event.artists" /></label>
                          <div class="col-sm-9">
                              <form:select class="form-control" path="artists">
-                                 <form:option label="----" value="0"/>
                                  <form:options class="form-control" items="${artists}" itemLabel="name"/>
                              </form:select>
                              <form:errors path="artists" cssClass="error" />

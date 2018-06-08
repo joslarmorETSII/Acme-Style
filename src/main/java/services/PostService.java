@@ -251,6 +251,7 @@ public class PostService {
         Integer indexWinner = (int) (Math.random() * res.size());
         Actor actorWinner = res.get(indexWinner);
         post.setHasWinner(true);
+        post.setWinner(actorWinner.getName());
         this.save(post);
         this.messageService.notifyRaffleWinner(actorWinner, post);
 

@@ -74,7 +74,7 @@
                                             <acme:button url="post/actor/getWinner.do?postId=${row.id}" code="general.winner" />
                                         </jstl:if>
                                         <jstl:if test="${row.hasWinner eq true}">
-                                            <spring:message code="raffle.hasWinner"  />
+                                            <spring:message code="raffle.hasWinner"/> <jstl:out value="${row.winner}"/>
                                         </jstl:if>
                                     </security:authorize>
 

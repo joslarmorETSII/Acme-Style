@@ -750,6 +750,7 @@
 		<property name="reward"><null/></property>
 		<property name="finalMode" value="true"/>
 		<property name="hasWinner" value="false" />
+		<property name="winner"><null/></property>
 		<property name="comments">
 			<list>
 				<ref bean="comment1"/>
@@ -782,6 +783,7 @@
 		<property name="reward" value="iPhone X"/>
 		<property name="finalMode" value="true"/>
 		<property name="hasWinner" value="false" />
+		<property name="winner"><null/></property>
 		<property name="comments">
 			<list>
 				<null/>

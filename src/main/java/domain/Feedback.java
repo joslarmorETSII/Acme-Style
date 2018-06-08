@@ -59,6 +59,7 @@ public class Feedback extends DomainEntity {
     private User user;
     private Servise servise;
 
+    @Valid
     @ManyToOne(optional = false)
     public User getUser() {
         return user;

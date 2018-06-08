@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.util.Date;
@@ -47,6 +48,7 @@ public class Answer extends DomainEntity{
 
     private Question question;
 
+    @Valid
     @ManyToOne(optional = false)
     public Question getQuestion() {
         return question;
