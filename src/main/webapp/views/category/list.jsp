@@ -53,7 +53,6 @@
 
             <security:authorize access="hasRole('ADMINISTRATOR')">
                 <display:column>
-                    <acme:button url="" code="general.delete"/>
                     <a href="category/administrator/delete.do?categoryId=${row.id}">
                         <input type="submit" class="btn btn-danger" name="delete"
                                value="<spring:message code="general.delete" />"

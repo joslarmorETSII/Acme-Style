@@ -39,7 +39,6 @@
                             <spring:message var="patternDate" code="event.pattern.date" />
                             <b><spring:message code="event.moment"/>:&nbsp;</b> <fmt:formatDate value="${event.moment}" pattern="${patternDate}"/>
                         </div><br>
-                        <b><spring:message code="event.tipo" />:&nbsp;</b><jstl:out value="${event.tipo}"/><br>
                         <b><spring:message code="event.price" />:&nbsp;</b><jstl:out value="${event.price}"/><br>
                         <b><spring:message code="event.location" />:&nbsp;</b><jstl:out value="${event.location.name}"/><br>
                         <center>
